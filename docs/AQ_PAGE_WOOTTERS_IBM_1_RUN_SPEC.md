@@ -3,21 +3,33 @@
 *Drafted 2026-08-04. Successor to `AQ_PAGE_WOOTTERS_IBM_0_RESULTS_2026-08-03.md`.*
 
 > [!IMPORTANT]
-> **Gate 0 passed the same day (16/16 checks) — see
-> `AQ_PAGE_WOOTTERS_IBM_1_GATE0_RESULTS_2026-08-04.md`.** Two revisions came
-> out of it and supersede text below:
-> 1. **H2 is replaced.** The exponential-in-entanglement form
->    `C(E) = C₀e^{−kE}` fits the exact witness curve poorly (R² ≈ 0.53–0.57).
->    The witness instead follows a **power law in the clock-record overlap**,
->    `C ∝ cos(μ/2)^p` with `p ≈ 1` (R² = 1.0000 / 0.9982). Both forms are fit
->    and compared on hardware; they are strongly distinguishable.
+> **Gate 0 passed 16/16 the same day, under a stated statistical criterion —
+> see `AQ_PAGE_WOOTTERS_IBM_1_GATE0_RESULTS_2026-08-04.md` (a corrected
+> version; the same-day first draft was withdrawn after review found its
+> text didn't match its own committed code — sampling threshold, Gate 4
+> coverage, and an entropy-estimator bug, all documented and fixed there).**
+> Three things supersede the text below:
+> 1. **H2 is replaced, narrowly.** The exponential-in-entanglement form
+>    `C(E) = C₀e^{−kE}` fits the exact witness curve on the planned 9-point
+>    grid at R² = 0.79/0.81. The witness instead follows a **power law in the
+>    clock-record overlap**, `C ∝ cos(μ/2)^p` — exactly linear at d=4
+>    (p=1 to numerical precision), p≈1.06–1.21 at d=8 depending on estimator
+>    (R² = 1.0000 / 0.9994). This is a narrower claim than "contradicts
+>    arXiv:2512.15789": that paper's `E` is clock–*subsystem* entanglement;
+>    this run's `E` is environment–(clock+system) entanglement by
+>    construction. Both forms are fit and compared on hardware.
 > 2. **The D-LinOSS analysis is ruled out** for this run (no μ-signal in
->    conditional trajectories; trivial path recovery; ≥33 μ points needed
->    before a recurrent model beats its own shuffled controls). The direct
->    two-form fit with bootstrap CIs is the correct estimator here.
+>    conditional trajectories; trivial path recovery; the entanglement-damped
+>    architecture never beats a stationary one at any tested grid density,
+>    9 through 65 points). The direct two-form fit with bootstrap CIs is the
+>    correct estimator here.
+> 3. **Arm 1B's entropy is now the tomographic von Neumann entropy**, not
+>    single-basis population entropy — the two differ sharply for the
+>    uncoupled control, which is provably near-pure (S≈0) and was previously
+>    misreported as rising like the coupled arm.
 >
-> Gate 4 — conditional evolution surviving at R² = 0.998 across *every* μ,
-> including where the witness has collapsed — is confirmed exact and
+> Gate 4 — conditional evolution surviving at R² ≥ 0.995 across *all 9* μ
+> points, including where the witness has collapsed — is confirmed exact and
 > noise-robust in simulation.
 
 ## What IBM-0 established, and what it left open

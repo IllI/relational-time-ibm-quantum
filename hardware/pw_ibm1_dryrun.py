@@ -104,6 +104,28 @@ def binary_entropy(p: float) -> float:
     return float(-p * np.log2(p) - (1 - p) * np.log2(1 - p))
 
 
+def von_neumann_from_bloch(r: np.ndarray) -> float:
+    """S = H2((1+|r|)/2) for a single-qubit state with Bloch vector r. This
+    is the physically correct conditional-system entropy; it requires the
+    full 3-basis Bloch vector, not a single-basis population, because a
+    coherent (pure) superposition can have arbitrary Z-population while its
+    true von Neumann entropy is exactly zero."""
+    norm = float(np.clip(np.linalg.norm(r), 0.0, 1.0))
+    return binary_entropy(0.5 * (1.0 + norm))
+
+
+def expected_tvd_shot_noise(p: np.ndarray, n_shots: int) -> float:
+    """Generalizes uniform_tvd_floor (pw_ibm_dryrun.py) to a non-uniform
+    reference distribution: E[TVD] ~= 0.5 * sum_k E[|phat_k - p_k|], with
+    each term approximated by the folded-normal mean sigma_k*sqrt(2/pi),
+    sigma_k = sqrt(p_k(1-p_k)/N). This is the same normal approximation
+    already used for the uniform case, extended componentwise; it is the
+    principled shot-noise floor for a TVD statistic against ANY exact
+    reference distribution, not an arbitrary round number."""
+    sigma = np.sqrt(np.clip(p * (1.0 - p), 0.0, None) / max(n_shots, 1))
+    return float(0.5 * np.sum(sigma * np.sqrt(2.0 / np.pi)))
+
+
 # ---------------------------------------------------------------------------
 # Circuits
 # ---------------------------------------------------------------------------
@@ -193,6 +215,39 @@ def build_arrow(n_clock: int, couple: bool, fixed_t: int | None = None) -> Quant
     history_prep(qc, clock, system, theta, fixed_t)
     if couple:
         qc.cx(system, env)
+    qc.measure(clock + [system], list(range(n_clock + 1)))
+    return qc
+
+
+def build_arrow_tomo(n_clock: int, couple: bool, basis: str,
+                     fixed_t: int | None = None) -> QuantumCircuit:
+    """Arm 1B-T: full conditional Bloch tomography of the system, so the
+    conditional entropy can be computed as the true von Neumann entropy
+    H2((1+|r(t)|)/2) rather than the Z-basis population entropy H2(p1).
+
+    The distinction matters most for the uncoupled control: with no CNOT to
+    the environment, the system stays in a PURE coherent superposition for
+    every clock reading (no entanglement, no mixedness), so its true von
+    Neumann entropy is exactly zero at every t -- even though its Z-basis
+    population entropy rises just like the coupled case, since population
+    entropy conflates superposition with mixedness. The coupled and
+    classical-clock arms both dephase the system into a Z-diagonal state via
+    the CNOT-then-trace mechanism, so H2(p1) happens to equal the true
+    entropy there; only the uncoupled control needs the fix."""
+    d = 2**n_clock
+    theta = np.pi / (2.0 * (d - 1))
+    clock = list(range(n_clock))
+    system = n_clock
+    env = n_clock + 1
+    qc = QuantumCircuit(n_clock + 2, n_clock + 1)
+    history_prep(qc, clock, system, theta, fixed_t)
+    if couple:
+        qc.cx(system, env)
+    if basis == "X":
+        qc.h(system)
+    elif basis == "Y":
+        qc.sdg(system)
+        qc.h(system)
     qc.measure(clock + [system], list(range(n_clock + 1)))
     return qc
 
@@ -297,9 +352,20 @@ def main() -> None:
             block[f"classical_tvd_mu{mu_label}"] = float(0.5 * np.sum(np.abs(p_cls - 1.0 / d)))
 
         exact_curve = [r["exact_tvd"] for r in rows]
-        ideal_gap = max(abs(r["ideal_tvd"] - r["exact_tvd"]) for r in rows)
+        # Gate 0 threshold: 3x the expected shot-noise floor for the TVD
+        # statistic at THIS mu's own exact distribution -- not an arbitrary
+        # round number. Generalizes the uniform_tvd_floor convention already
+        # used for Gate 3 in pw_ibm_dryrun.py to a non-uniform reference.
+        per_point_floor = [expected_tvd_shot_noise(exact_pk(n_clock, mu), SHOTS) for mu in MU_GRID]
+        per_point_gap = [abs(r["ideal_tvd"] - r["exact_tvd"]) for r in rows]
+        per_point_ratio = [gap / max(3.0 * fl, 1e-9) for gap, fl in zip(per_point_gap, per_point_floor)]
+        ideal_gap = max(per_point_gap)
+        worst_ratio = max(per_point_ratio)
         block["max_ideal_vs_exact_gap"] = ideal_gap
-        gates[f"gate0_sampling_matches_exact_d{d}"] = bool(ideal_gap < 0.015)
+        block["gate0_per_point_floor_x3"] = [3.0 * f for f in per_point_floor]
+        block["gate0_per_point_gap"] = per_point_gap
+        block["gate0_worst_gap_over_3x_floor_ratio"] = worst_ratio
+        gates[f"gate0_sampling_matches_exact_d{d}"] = bool(worst_ratio < 1.0)
         gates[f"gate2_monotone_decay_exact_d{d}"] = monotone_exact
         noisy_curve = [r["noisy_tvd"] for r in rows]
         gates[f"gate2_monotone_decay_noisy_d{d}"] = bool(
@@ -307,16 +373,20 @@ def main() -> None:
         )
         gates[f"gate3_threshold_d{d}"] = bool(noisy_curve[-1] < 3 * floor + block["classical_tvd_mupi"])
 
-        # --- Gate 4: conditional evolution must survive every mu ---
+        # --- Gate 4: conditional evolution must survive EVERY mu on the
+        # actual measurement grid (all 9 points), not a 3-point subsample.
+        # Free in Aer, so there is no reason to under-test this -- it is the
+        # headline claim of the whole run. ---
         cond_block = {}
         worst_ideal, worst_noisy = 1.0, 1.0
-        for mu in (0.0, float(np.pi / 2), float(np.pi)):
-            p1_i = conditional_p1(run(ideal, build_conditional_dec(n_clock, mu), SHOTS), n_clock)
-            p1_n = conditional_p1(run(noisy, build_conditional_dec(n_clock, mu), SHOTS), n_clock)
+        for mu in MU_GRID:
+            p1_i = conditional_p1(run(ideal, build_conditional_dec(n_clock, float(mu)), SHOTS), n_clock)
+            p1_n = conditional_p1(run(noisy, build_conditional_dec(n_clock, float(mu)), SHOTS), n_clock)
             r2_i, r2_n = cond_r2(p1_i, n_clock), cond_r2(p1_n, n_clock)
-            cond_block[f"mu_{mu/np.pi:.2f}pi"] = {"ideal_r2": r2_i, "noisy_r2": r2_n}
+            cond_block[f"mu_{mu/np.pi:.3f}pi"] = {"ideal_r2": r2_i, "noisy_r2": r2_n}
             worst_ideal, worst_noisy = min(worst_ideal, r2_i), min(worst_noisy, r2_n)
         block["conditional"] = cond_block
+        block["conditional_n_mu_tested"] = len(MU_GRID)
         gates[f"gate4_cond_survives_ideal_d{d}"] = bool(worst_ideal > 0.995)
         gates[f"gate4_cond_survives_noisy_d{d}"] = bool(worst_noisy > 0.95)
 
@@ -329,41 +399,99 @@ def main() -> None:
         print(f"  cond-evo R2 worst: ideal {worst_ideal:.4f}  noisy {worst_noisy:.4f}")
 
     # --- Arm 1B: informational arrow (d=8) ---
+    # Two entropy estimators are reported side by side and are NOT
+    # interchangeable:
+    #   population entropy   H2(p1)                 -- single-basis Z read,
+    #                                                   what a naive hardware
+    #                                                   measurement gives
+    #   von Neumann entropy  H2((1+|r(t)|)/2)        -- true entropy of the
+    #                                                   conditional state,
+    #                                                   requires 3-basis
+    #                                                   tomography
+    # These coincide whenever rho_S(t) is Z-diagonal (true for the coupled
+    # and classical-clock arms, where CNOT-then-trace dephases the system),
+    # and diverge sharply for the uncoupled control, where no CNOT is ever
+    # applied: the system stays PURE for every t (zero entanglement with
+    # anything), so its true von Neumann entropy is exactly 0 at every clock
+    # reading even though its Z-population entropy rises just like the
+    # coupled case. Reporting only H2(p1) for that control was wrong -- it
+    # measures superposition, not mixedness.
     n_clock = 3
     d = 2**n_clock
     theta = np.pi / (2.0 * (d - 1))
     arrow_exact = [binary_entropy(float(np.sin(t * theta / 2.0) ** 2)) for t in range(d)]
 
-    def arrow_from_counts(counts):
+    def population_entropy_from_counts(counts):
         p1 = conditional_p1(counts, n_clock)
         return [binary_entropy(p1[t]) if not np.isnan(p1[t]) else 0.0 for t in range(d)]
 
-    arrow_coupled = arrow_from_counts(run(noisy, build_arrow(n_clock, couple=True), SHOTS))
-    arrow_uncoupled = arrow_from_counts(run(noisy, build_arrow(n_clock, couple=False), SHOTS))
-    # Classical-clock control: definite |t>, coupled -- H3 predicts the arrow persists.
-    arrow_classical = []
+    def bloch_and_vn_entropy(couple: bool, fixed_t: int | None = None) -> tuple[list, list]:
+        axes = {}
+        for basis in ("X", "Y", "Z"):
+            circuits = (
+                [build_arrow_tomo(n_clock, couple, basis, fixed_t)]
+                if fixed_t is not None
+                else [build_arrow_tomo(n_clock, couple, basis)]
+            )
+            shots = SHOTS // d if fixed_t is not None else SHOTS
+            p1 = conditional_p1(run(noisy, circuits[0], shots), n_clock)
+            axes[basis] = p1
+        vecs = [
+            np.array([1.0 - 2.0 * axes["X"][t], 1.0 - 2.0 * axes["Y"][t], 1.0 - 2.0 * axes["Z"][t]])
+            for t in range(d)
+        ]
+        vn = [von_neumann_from_bloch(v) for v in vecs]
+        return [v.tolist() for v in vecs], vn
+
+    arrow_coupled_pop = population_entropy_from_counts(run(noisy, build_arrow(n_clock, couple=True), SHOTS))
+    arrow_uncoupled_pop = population_entropy_from_counts(run(noisy, build_arrow(n_clock, couple=False), SHOTS))
+    arrow_classical_pop = []
     for t in range(d):
         counts = run(noisy, build_arrow(n_clock, couple=True, fixed_t=t), SHOTS // d)
         p1 = conditional_p1(counts, n_clock)
-        arrow_classical.append(binary_entropy(p1[t]) if not np.isnan(p1[t]) else 0.0)
+        arrow_classical_pop.append(binary_entropy(p1[t]) if not np.isnan(p1[t]) else 0.0)
+
+    coupled_bloch, arrow_coupled_vn = bloch_and_vn_entropy(couple=True)
+    uncoupled_bloch, arrow_uncoupled_vn = bloch_and_vn_entropy(couple=False)
+    classical_bloch, classical_vn_by_t = [], []
+    for t in range(d):
+        vecs, vn = bloch_and_vn_entropy(couple=True, fixed_t=t)
+        classical_bloch.append(vecs[t])
+        classical_vn_by_t.append(vn[t])
 
     def mostly_monotone(seq, slack=0.05):
         return all(seq[i + 1] >= seq[i] - slack for i in range(len(seq) - 1))
 
-    gates["gate6_arrow_monotone"] = bool(mostly_monotone(arrow_coupled))
-    gates["gate6_arrow_classical_too_H3"] = bool(mostly_monotone(arrow_classical))
+    gates["gate6_arrow_monotone_vn"] = bool(mostly_monotone(arrow_coupled_vn))
+    gates["gate6_arrow_classical_too_H3_vn"] = bool(mostly_monotone(classical_vn_by_t))
+    gates["gate6_uncoupled_stays_near_pure"] = bool(max(arrow_uncoupled_vn) < 0.3)
     report["arrow"] = {
         "theta_pi": float(theta / np.pi),
-        "exact": arrow_exact,
-        "noisy_coupled": arrow_coupled,
-        "noisy_uncoupled": arrow_uncoupled,
-        "noisy_classical_clock": arrow_classical,
+        "exact_von_neumann": arrow_exact,
+        "population_entropy": {
+            "coupled": arrow_coupled_pop,
+            "uncoupled": arrow_uncoupled_pop,
+            "classical_clock": arrow_classical_pop,
+        },
+        "von_neumann_entropy_from_tomography": {
+            "coupled": arrow_coupled_vn,
+            "uncoupled": arrow_uncoupled_vn,
+            "classical_clock": classical_vn_by_t,
+        },
+        "bloch_vectors": {
+            "coupled": coupled_bloch,
+            "uncoupled": uncoupled_bloch,
+            "classical_clock": classical_bloch,
+        },
     }
     print(f"\n=== arrow (d=8, theta={theta/np.pi:.4f}pi) ===")
-    print(f"  exact     : {['%.3f' % v for v in arrow_exact]}")
-    print(f"  coupled   : {['%.3f' % v for v in arrow_coupled]}")
-    print(f"  uncoupled : {['%.3f' % v for v in arrow_uncoupled]}")
-    print(f"  classical : {['%.3f' % v for v in arrow_classical]}")
+    print(f"  exact (von Neumann)      : {['%.3f' % v for v in arrow_exact]}")
+    print(f"  coupled   pop / vN       : {['%.3f' % v for v in arrow_coupled_pop]}")
+    print(f"                             {['%.3f' % v for v in arrow_coupled_vn]}")
+    print(f"  uncoupled pop / vN       : {['%.3f' % v for v in arrow_uncoupled_pop]}")
+    print(f"                             {['%.3f' % v for v in arrow_uncoupled_vn]}  <- should stay near 0 (pure)")
+    print(f"  classical pop / vN       : {['%.3f' % v for v in arrow_classical_pop]}")
+    print(f"                             {['%.3f' % v for v in classical_vn_by_t]}")
 
     # --- Conditional Bloch trajectories per mu (input to the D-LinOSS /
     # path-observability analysis; also the hardware artifact format) ---

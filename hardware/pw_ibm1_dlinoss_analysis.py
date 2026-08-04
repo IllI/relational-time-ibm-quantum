@@ -110,6 +110,70 @@ def fit_exponential(ent: np.ndarray, tvd: np.ndarray) -> dict:
 
 
 # --------------------------------------------------------------------------
+# Corrected H2: C(E) = C_0 * cos(mu/2)^p, power law in the clock-record
+# overlap. Falls directly out of rho_C[t,t'] = (1/d)cos((t-t')pi/d)*
+# cos(mu/2)^{hamming(t,t')} -- the decay is a Hamming-weighted POWER of the
+# record overlap, not an exponential in the environment entanglement.
+#
+# Scope note (kept precise on purpose): this compares clock-marginal TVD
+# against S(rho_E), the entanglement of the environment with clock+system.
+# arXiv:2512.15789 proposes C(E) = C_0*exp(-kE) for subsystem coherence
+# against clock-SUBSYSTEM entanglement -- a related but not identical
+# quantity. This fit is NOT a direct test of their claim; it establishes a
+# narrower, local result: for THIS engineered Hamming-dephasing channel and
+# THIS witness, coherence tracks the record-overlap channel parameter far
+# better than an exponential in the entanglement measure available here.
+# --------------------------------------------------------------------------
+
+def fit_power_law(mu: np.ndarray, tvd: np.ndarray) -> dict:
+    overlap = np.cos(mu / 2.0)
+    mask = (tvd > 1e-6) & (overlap > 1e-6)
+    x, y = np.log(overlap[mask]), np.log(tvd[mask])
+    if x.size < 3:
+        return {"ok": False}
+
+    def fit(idx):
+        a, b = np.polyfit(x[idx], y[idx], 1)
+        return a, np.exp(b)
+
+    p, c0 = fit(np.arange(x.size))
+    pred = p * x + np.log(c0)
+    r2 = float(1 - np.sum((y - pred) ** 2) / max(np.sum((y - y.mean()) ** 2), 1e-12))
+    rng = np.random.default_rng(1)
+    ps = []
+    for _ in range(BOOTSTRAP):
+        idx = rng.integers(0, x.size, x.size)
+        if np.ptp(x[idx]) < 1e-9:
+            continue
+        ps.append(fit(idx)[0])
+    lo, hi = np.percentile(ps, [2.5, 97.5]) if ps else (np.nan, np.nan)
+    return {
+        "ok": True, "p": float(p), "C0": float(c0), "R2": r2,
+        "p_ci95": [float(lo), float(hi)], "n_points": int(x.size),
+    }
+
+
+def dense_asymptotic_comparison(n_clock: int, n_mu: int = 400) -> dict:
+    """The two fits above, evaluated on a dense EXACT (noiseless) mu grid
+    rather than the sparse 9-point hardware-matching grid. Reported
+    separately from the primary (9-point) numbers -- conflating the two was
+    the source of the earlier R^2 discrepancy (0.786/0.805 primary vs
+    0.535/0.573 quoted from an uncommitted dense scratch computation). Both
+    are legitimate views of the same underlying curve; they are not the same
+    statistic and should never be reported as if they were."""
+    import pw_ibm1_dryrun as dr
+
+    mu = np.linspace(1e-3, np.pi * (1 - 1e-3), n_mu)
+    tvd = np.array([dr.exact_tvd(n_clock, m) for m in mu])
+    ent = np.array([dr.clock_env_entanglement(n_clock, m) for m in mu])
+    return {
+        "n_mu": n_mu, "d": 2**n_clock,
+        "exponential_in_entanglement": fit_exponential(ent, tvd),
+        "power_law_in_overlap": fit_power_law(mu, tvd),
+    }
+
+
+# --------------------------------------------------------------------------
 # D-LinOSS over the mu-flow
 # --------------------------------------------------------------------------
 
@@ -255,11 +319,49 @@ def control_scores(data: dict, seed: int = 1) -> dict:
     return out
 
 
+# --------------------------------------------------------------------------
+# Density sweep: does the mu-flow become learnable (beats its own shuffled/
+# reversed controls) as the grid densifies? Committed and reproducible --
+# this was previously run as an uncommitted scratch one-liner. Uses the
+# exact (noiseless) synthetic curve at each density, matching how it was
+# originally run, since the point is to characterize the D-LinOSS approach
+# itself rather than to re-derive noise statistics already covered above.
+# --------------------------------------------------------------------------
+
+def density_sweep(n_clock: int, densities: tuple[int, ...] = (9, 17, 33, 65)) -> dict:
+    import pw_ibm1_dryrun as dr
+
+    out = {}
+    for n_mu in densities:
+        mu = np.linspace(0.0, np.pi, n_mu)
+        pk = np.array([dr.exact_pk(n_clock, m) for m in mu])
+        tvd = np.array([dr.exact_tvd(n_clock, m) for m in mu])
+        ent = np.array([dr.clock_env_entanglement(n_clock, m) for m in mu])
+        data = {"d": 2**n_clock, "mu": mu, "pk": pk, "tvd": tvd,
+                "entanglement": ent, "floor": 0.0, "classical_baseline": 0.0}
+        model = evaluate(data)
+        ctrl = control_scores(data)
+        damped_mse = model["entanglement_damped"]["payload_mse"]
+        stat_mse = model["stationary"]["payload_mse"]
+        best_ctrl = min(ctrl["shuffled_mu"]["damped_payload_mse"], ctrl["reversed_mu"]["damped_payload_mse"])
+        out[str(n_mu)] = {
+            "stationary_payload_mse": stat_mse,
+            "damped_payload_mse": damped_mse,
+            "damped_beats_stationary": bool(damped_mse < stat_mse),
+            "shuffled_control_mse": ctrl["shuffled_mu"]["damped_payload_mse"],
+            "reversed_control_mse": ctrl["reversed_mu"]["damped_payload_mse"],
+            "beats_best_control": bool(damped_mse < best_ctrl),
+        }
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", type=Path, default=Path("pw_ibm1_dryrun_results.json"))
     ap.add_argument("--which", default="noisy", choices=["exact", "ideal", "noisy"])
     ap.add_argument("--out", type=Path, default=Path("pw_ibm1_dlinoss_results.json"))
+    ap.add_argument("--skip-density-sweep", action="store_true",
+                    help="skip the 9/17/33/65-point density sweep (slow: trains 8 models)")
     args = ap.parse_args()
 
     report = {
@@ -268,29 +370,50 @@ def main() -> None:
     }
     print(f"D-LinOSS on the mu-flow  [{args.which}]  source={args.results}\n")
 
-    for key in ("n_clock_2", "n_clock_3"):
+    for idx, key in enumerate(("n_clock_2", "n_clock_3")):
+        n_clock = idx + 2
         data = load_sweep(args.results, key, args.which)
         d = data["d"]
 
-        h2 = fit_exponential(data["entanglement"], data["tvd"])
+        # PRIMARY: fit on the actual 9-point hardware-matching grid, both forms.
+        h2_exp = fit_exponential(data["entanglement"], data["tvd"])
+        h2_pow = fit_power_law(data["mu"], data["tvd"])
+        # SECONDARY: same two forms on a dense exact grid -- reported separately,
+        # never merged with the primary numbers (see dense_asymptotic_comparison docstring).
+        dense = dense_asymptotic_comparison(n_clock)
+
         model = evaluate(data)
         ctrl = control_scores(data)
 
-        report[key] = {"h2_exponential_fit": h2, "dlinoss": model, "controls": ctrl,
-                       "entanglement": data["entanglement"].tolist(),
-                       "witness_tvd": data["tvd"].tolist()}
+        report[key] = {
+            "primary_9point": {"exponential_in_entanglement": h2_exp, "power_law_in_overlap": h2_pow},
+            "dense_asymptotic_400point": dense,
+            "dlinoss": model, "controls": ctrl,
+            "entanglement": data["entanglement"].tolist(),
+            "witness_tvd": data["tvd"].tolist(),
+        }
 
-        print(f"=== d={d} ===")
-        if h2["ok"]:
-            print(f"  H2  C(E)=C0*exp(-kE):  k={h2['k']:.3f}  CI95={[round(v,3) for v in h2['k_ci95']]}  R^2={h2['R2']:.4f}")
-        print(f"  payload MSE   stationary {model['stationary']['payload_mse']:.3e}   "
-              f"entanglement-damped {model['entanglement_damped']['payload_mse']:.3e}")
-        print(f"  payload witness MAE   stationary {model['stationary']['payload_witness_mae']:.4f}   "
-              f"damped {model['entanglement_damped']['payload_witness_mae']:.4f}")
-        print(f"  damped wins extrapolation: {model['damped_wins_extrapolation']}   "
-              f"witness: {model['damped_wins_witness']}")
+        if not args.skip_density_sweep:
+            report[key]["mu_density_sweep"] = density_sweep(n_clock)
+
+        print(f"=== d={d} (primary: 9-point hardware-matching grid, which={args.which}) ===")
+        if h2_exp["ok"]:
+            print(f"  exp-in-entanglement  C=C0*exp(-kE):     k={h2_exp['k']:.3f}  CI95={[round(v,3) for v in h2_exp['k_ci95']]}  R^2={h2_exp['R2']:.4f}")
+        if h2_pow["ok"]:
+            print(f"  power-in-overlap     C=C0*cos(mu/2)^p:  p={h2_pow['p']:.3f}  CI95={[round(v,3) for v in h2_pow['p_ci95']]}  R^2={h2_pow['R2']:.4f}")
+        print(f"  [dense 400-pt exact, secondary]  exp R^2={dense['exponential_in_entanglement'].get('R2', float('nan')):.4f}   "
+              f"power R^2={dense['power_law_in_overlap'].get('R2', float('nan')):.4f}")
+        print(f"  D-LinOSS payload MSE (9-pt grid)  stationary {model['stationary']['payload_mse']:.3e}   "
+              f"entanglement-damped {model['entanglement_damped']['payload_mse']:.3e}   "
+              f"damped_wins={model['damped_wins_extrapolation']}")
         print(f"  controls (damped payload MSE)  shuffled {ctrl['shuffled_mu']['damped_payload_mse']:.3e}   "
-              f"reversed {ctrl['reversed_mu']['damped_payload_mse']:.3e}\n")
+              f"reversed {ctrl['reversed_mu']['damped_payload_mse']:.3e}")
+        if not args.skip_density_sweep:
+            print("  density sweep (exact, beats_best_control):")
+            for n_mu, row in report[key]["mu_density_sweep"].items():
+                print(f"    n_mu={n_mu:>3}  damped_wins_stationary={row['damped_beats_stationary']}  "
+                      f"beats_best_control={row['beats_best_control']}")
+        print()
 
     args.out.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"[DONE] -> {args.out}")

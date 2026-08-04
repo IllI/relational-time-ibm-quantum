@@ -3,16 +3,55 @@
   "source": "pw_ibm1_dryrun_results.json",
   "which": "exact",
   "n_clock_2": {
-    "h2_exponential_fit": {
-      "ok": true,
-      "k": 0.6828254034723709,
-      "C0": 0.21570996707108295,
-      "R2": 0.7859645093934666,
-      "k_ci95": [
-        0.3358340326234032,
-        1.0681316415668767
-      ],
-      "n_points": 8
+    "primary_9point": {
+      "exponential_in_entanglement": {
+        "ok": true,
+        "k": 0.6828254034723709,
+        "C0": 0.21570996707108295,
+        "R2": 0.7859645093934666,
+        "k_ci95": [
+          0.3358340326234032,
+          1.0681316415668767
+        ],
+        "n_points": 8
+      },
+      "power_law_in_overlap": {
+        "ok": true,
+        "p": 1.0,
+        "C0": 0.17677669529663684,
+        "R2": 1.0,
+        "p_ci95": [
+          0.9999999999999982,
+          1.0000000000000022
+        ],
+        "n_points": 8
+      }
+    },
+    "dense_asymptotic_400point": {
+      "n_mu": 400,
+      "d": 4,
+      "exponential_in_entanglement": {
+        "ok": true,
+        "k": 0.984978177238485,
+        "C0": 0.26468327259270735,
+        "R2": 0.5528611470971735,
+        "k_ci95": [
+          0.886077684210912,
+          1.0899307406512282
+        ],
+        "n_points": 400
+      },
+      "power_law_in_overlap": {
+        "ok": true,
+        "p": 1.000000000000001,
+        "C0": 0.1767766952966372,
+        "R2": 1.0,
+        "p_ci95": [
+          0.9999999999999992,
+          1.000000000000002
+        ],
+        "n_points": 400
+      }
     },
     "dlinoss": {
       "d": 4,
@@ -87,19 +126,92 @@
       0.06764951251827465,
       0.034487422410367854,
       0.0
-    ]
+    ],
+    "mu_density_sweep": {
+      "9": {
+        "stationary_payload_mse": 0.010957189835608006,
+        "damped_payload_mse": 0.014245830476284027,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.006540798116475344,
+        "reversed_control_mse": 0.003981208428740501,
+        "beats_best_control": false
+      },
+      "17": {
+        "stationary_payload_mse": 0.0014400511281564832,
+        "damped_payload_mse": 0.014750325120985508,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.0035342080518603325,
+        "reversed_control_mse": 0.009821208193898201,
+        "beats_best_control": false
+      },
+      "33": {
+        "stationary_payload_mse": 4.074385287822224e-05,
+        "damped_payload_mse": 0.0011049698805436492,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.001461506704799831,
+        "reversed_control_mse": 0.01418133545666933,
+        "beats_best_control": true
+      },
+      "65": {
+        "stationary_payload_mse": 1.3750527614320163e-05,
+        "damped_payload_mse": 0.0012408086331561208,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.0006698584766127169,
+        "reversed_control_mse": 0.05866963788866997,
+        "beats_best_control": false
+      }
+    }
   },
   "n_clock_3": {
-    "h2_exponential_fit": {
-      "ok": true,
-      "k": 0.5289947915418495,
-      "C0": 0.6208284986602324,
-      "R2": 0.8050290125029966,
-      "k_ci95": [
-        0.2727518530609589,
-        0.8151541963527252
-      ],
-      "n_points": 8
+    "primary_9point": {
+      "exponential_in_entanglement": {
+        "ok": true,
+        "k": 0.5289947915418495,
+        "C0": 0.6208284986602324,
+        "R2": 0.8050290125029966,
+        "k_ci95": [
+          0.2727518530609589,
+          0.8151541963527252
+        ],
+        "n_points": 8
+      },
+      "power_law_in_overlap": {
+        "ok": true,
+        "p": 1.147876019011085,
+        "C0": 0.48930332107685764,
+        "R2": 0.9993844601138734,
+        "p_ci95": [
+          1.131299932458799,
+          1.2144497787967228
+        ],
+        "n_points": 8
+      }
+    },
+    "dense_asymptotic_400point": {
+      "n_mu": 400,
+      "d": 8,
+      "exponential_in_entanglement": {
+        "ok": true,
+        "k": 0.7401891594376732,
+        "C0": 0.770942531473054,
+        "R2": 0.5901101654770443,
+        "k_ci95": [
+          0.6716240902630523,
+          0.8127538275877629
+        ],
+        "n_points": 400
+      },
+      "power_law_in_overlap": {
+        "ok": true,
+        "p": 1.090147685933924,
+        "C0": 0.47671200776753203,
+        "R2": 0.9983273255083719,
+        "p_ci95": [
+          1.0786141877428732,
+          1.1061774642935638
+        ],
+        "n_points": 400
+      }
     },
     "dlinoss": {
       "d": 8,
@@ -174,6 +286,40 @@
       0.1594831237379551,
       0.07656456268795664,
       0.0
-    ]
+    ],
+    "mu_density_sweep": {
+      "9": {
+        "stationary_payload_mse": 0.0009358935640193522,
+        "damped_payload_mse": 0.008371887728571892,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.0017835506005212665,
+        "reversed_control_mse": 0.003376837819814682,
+        "beats_best_control": false
+      },
+      "17": {
+        "stationary_payload_mse": 0.00030846678419038653,
+        "damped_payload_mse": 0.004699728451669216,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.007316316943615675,
+        "reversed_control_mse": 0.002276128390803933,
+        "beats_best_control": false
+      },
+      "33": {
+        "stationary_payload_mse": 0.00012940690794494003,
+        "damped_payload_mse": 0.0005151111399754882,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.0013134981272742152,
+        "reversed_control_mse": 0.0019102655351161957,
+        "beats_best_control": true
+      },
+      "65": {
+        "stationary_payload_mse": 7.767051283735782e-05,
+        "damped_payload_mse": 0.00043411634396761656,
+        "damped_beats_stationary": false,
+        "shuffled_control_mse": 0.0005336471949703991,
+        "reversed_control_mse": 0.0015544201014563441,
+        "beats_best_control": true
+      }
+    }
   }
 }
