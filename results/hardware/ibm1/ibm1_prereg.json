@@ -1,0 +1,75 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-1",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-04T16:38:11.087084Z",
+  "optimization_level": 0,
+  "mu_grid_pi": [
+    0.0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1.0
+  ],
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "predictions": {
+    "4": {
+      "exact_witness_curve": [
+        0.17677669529663698,
+        0.17337998066526852,
+        0.16332037060954716,
+        0.14698445030241988,
+        0.12500000000000006,
+        0.09821186979838782,
+        0.06764951251827465,
+        0.034487422410367854,
+        0.0
+      ],
+      "h2_primary": "power law C = C0*cos(mu/2)^p fits far better than exponential C0*exp(-kE); see AQ_PAGE_WOOTTERS_IBM_1_GATE0_RESULTS_2026-08-04.md for exact CI targets"
+    },
+    "8": {
+      "exact_witness_curve": [
+        0.49668927417218595,
+        0.4847051176099532,
+        0.4497741274730023,
+        0.39483609023509014,
+        0.32439293404388925,
+        0.24397176123778921,
+        0.1594831237379551,
+        0.07656456268795664,
+        0.0
+      ],
+      "h2_primary": "power law C = C0*cos(mu/2)^p fits far better than exponential C0*exp(-kE); see AQ_PAGE_WOOTTERS_IBM_1_GATE0_RESULTS_2026-08-04.md for exact CI targets"
+    }
+  },
+  "gates": [
+    "gate1_anchor",
+    "gate2_monotone_decay",
+    "gate3_threshold",
+    "gate4_conditional_survives_all_mu",
+    "gate5_h2_power_beats_exponential",
+    "gate6_arrow_monotone_vn",
+    "gate6_uncoupled_stays_near_pure"
+  ]
+}

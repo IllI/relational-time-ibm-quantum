@@ -1,0 +1,281 @@
+{
+  "calibration": {
+    "q0_prep0": 0.004,
+    "q0_prep1": 0.996,
+    "q1_prep0": 0.0,
+    "q1_prep1": 0.992,
+    "q2_prep0": 0.002,
+    "q2_prep1": 1.0,
+    "q3_prep0": 0.004,
+    "q3_prep1": 0.986,
+    "q4_prep0": 0.0,
+    "q4_prep1": 0.998,
+    "q5_prep0": 0.006,
+    "q5_prep1": 0.996,
+    "q6_prep0": 0.0,
+    "q6_prep1": 0.998
+  },
+  "arms_1a": {
+    "4": {
+      "sweep": [
+        {
+          "mu_pi": 0.0,
+          "witness_tvd": 0.18,
+          "witness_classical_tvd": 0.046,
+          "exact_tvd": 0.17677669529663698,
+          "entanglement": 1.1836104573564713e-15,
+          "conditional_r2": 0.9946009388408084
+        },
+        {
+          "mu_pi": 0.125,
+          "witness_tvd": 0.16999999999999998,
+          "witness_classical_tvd": 0.032,
+          "exact_tvd": 0.17337998066526852,
+          "entanglement": 0.15635760487047992,
+          "conditional_r2": 0.9952498269413448
+        },
+        {
+          "mu_pi": 0.25,
+          "witness_tvd": 0.128,
+          "witness_classical_tvd": 0.05400000000000002,
+          "exact_tvd": 0.16332037060954716,
+          "entanglement": 0.4666532573018707,
+          "conditional_r2": 0.9947012780911217
+        },
+        {
+          "mu_pi": 0.375,
+          "witness_tvd": 0.10999999999999999,
+          "witness_classical_tvd": 0.04000000000000002,
+          "exact_tvd": 0.14698445030241988,
+          "entanglement": 0.8340647712435592,
+          "conditional_r2": 0.9800178217070338
+        },
+        {
+          "mu_pi": 0.5,
+          "witness_tvd": 0.11199999999999999,
+          "witness_classical_tvd": 0.010000000000000009,
+          "exact_tvd": 0.12500000000000006,
+          "entanglement": 1.2017520733857117,
+          "conditional_r2": 0.9681700778980414
+        },
+        {
+          "mu_pi": 0.625,
+          "witness_tvd": 0.09600000000000002,
+          "witness_classical_tvd": 0.036000000000000004,
+          "exact_tvd": 0.09821186979838782,
+          "entanglement": 1.5283824851808034,
+          "conditional_r2": 0.9514788835355946
+        },
+        {
+          "mu_pi": 0.75,
+          "witness_tvd": 0.08800000000000001,
+          "witness_classical_tvd": 0.034000000000000016,
+          "exact_tvd": 0.06764951251827465,
+          "entanglement": 1.7832372037162658,
+          "conditional_r2": 0.9975141051850022
+        },
+        {
+          "mu_pi": 0.875,
+          "witness_tvd": 0.068,
+          "witness_classical_tvd": 0.08000000000000002,
+          "exact_tvd": 0.034487422410367854,
+          "entanglement": 1.9447369658684495,
+          "conditional_r2": 0.9959122149586191
+        },
+        {
+          "mu_pi": 1.0,
+          "witness_tvd": 0.026000000000000023,
+          "witness_classical_tvd": 0.05600000000000002,
+          "exact_tvd": 0.0,
+          "entanglement": 2.0,
+          "conditional_r2": 0.9074360371886946
+        }
+      ]
+    },
+    "8": {
+      "sweep": [
+        {
+          "mu_pi": 0.0,
+          "witness_tvd": 0.34900000000000003,
+          "witness_classical_tvd": 0.04500000000000001,
+          "exact_tvd": 0.49668927417218595,
+          "entanglement": 9.527958957254818e-16,
+          "conditional_r2": 0.9600851264146331
+        },
+        {
+          "mu_pi": 0.125,
+          "witness_tvd": 0.38900000000000007,
+          "witness_classical_tvd": 0.036250000000000004,
+          "exact_tvd": 0.4847051176099532,
+          "entanglement": 0.2345364073057204,
+          "conditional_r2": 0.9364823213288503
+        },
+        {
+          "mu_pi": 0.25,
+          "witness_tvd": 0.347,
+          "witness_classical_tvd": 0.038750000000000014,
+          "exact_tvd": 0.4497741274730023,
+          "entanglement": 0.699979885952805,
+          "conditional_r2": 0.9501694927878487
+        },
+        {
+          "mu_pi": 0.375,
+          "witness_tvd": 0.34299999999999997,
+          "witness_classical_tvd": 0.05750000000000001,
+          "exact_tvd": 0.39483609023509014,
+          "entanglement": 1.2510971568653377,
+          "conditional_r2": 0.9726520518909544
+        },
+        {
+          "mu_pi": 0.5,
+          "witness_tvd": 0.273,
+          "witness_classical_tvd": 0.021250000000000012,
+          "exact_tvd": 0.32439293404388925,
+          "entanglement": 1.802628110078568,
+          "conditional_r2": 0.9639677910577106
+        },
+        {
+          "mu_pi": 0.625,
+          "witness_tvd": 0.255,
+          "witness_classical_tvd": 0.04249999999999999,
+          "exact_tvd": 0.24397176123778921,
+          "entanglement": 2.292573727771205,
+          "conditional_r2": 0.984045030762734
+        },
+        {
+          "mu_pi": 0.75,
+          "witness_tvd": 0.14900000000000002,
+          "witness_classical_tvd": 0.05000000000000003,
+          "exact_tvd": 0.1594831237379551,
+          "entanglement": 2.674855805574399,
+          "conditional_r2": 0.9401956968799065
+        },
+        {
+          "mu_pi": 0.875,
+          "witness_tvd": 0.08199999999999999,
+          "witness_classical_tvd": 0.03375000000000001,
+          "exact_tvd": 0.07656456268795664,
+          "entanglement": 2.9171054488026744,
+          "conditional_r2": 0.9481791033395541
+        },
+        {
+          "mu_pi": 1.0,
+          "witness_tvd": 0.04900000000000001,
+          "witness_classical_tvd": 0.03624999999999999,
+          "exact_tvd": 0.0,
+          "entanglement": 2.9999999999999996,
+          "conditional_r2": 0.939724872395495
+        }
+      ]
+    }
+  },
+  "arm_1b": {
+    "theta_pi": 0.07142857142857142,
+    "coupled_von_neumann": [
+      0.2775090129650402,
+      0.3290413568025904,
+      0.2888711379052461,
+      0.39124356362925566,
+      0.7531979910695014,
+      0.788412174886576,
+      0.8663972334361423,
+      0.9602553596067605
+    ],
+    "uncoupled_von_neumann": [
+      0.11383641498941499,
+      0.28557046455511537,
+      0.2772886705266212,
+      0.3022363417272015,
+      0.06453296423883279,
+      0.0,
+      0.017354932812337992,
+      0.0
+    ],
+    "classical_von_neumann": [
+      0.19332372237791753,
+      0.09661748905380378,
+      0.31885541852100957,
+      0.4820661480830931,
+      0.6840384356390418,
+      0.8448029889246229,
+      0.9605591135960243,
+      0.9968479591238444
+    ]
+  },
+  "h2_fits": {
+    "4": {
+      "exponential_in_entanglement": {
+        "ok": true,
+        "k": 0.6222746747306436,
+        "C0": 0.19139431870304158,
+        "R2": 0.6874234906177048,
+        "k_ci95": [
+          0.3532014852091053,
+          0.965264469712435
+        ],
+        "n_points": 9
+      },
+      "power_law_in_overlap": {
+        "ok": true,
+        "p": 0.5151861965124419,
+        "C0": 0.14520199485501437,
+        "R2": 0.8115215414672914,
+        "p_ci95": [
+          0.3608528833313254,
+          1.1111863202111656
+        ],
+        "n_points": 8
+      }
+    },
+    "8": {
+      "exponential_in_entanglement": {
+        "ok": true,
+        "k": 0.5350514722189993,
+        "C0": 0.4991760010415399,
+        "R2": 0.7036090452304573,
+        "k_ci95": [
+          0.2062891299793728,
+          0.8546401718092264
+        ],
+        "n_points": 9
+      },
+      "power_law_in_overlap": {
+        "ok": true,
+        "p": 0.9346921130355593,
+        "C0": 0.3852164465964082,
+        "R2": 0.9818512798093055,
+        "p_ci95": [
+          0.6216245393375576,
+          1.004215203419985
+        ],
+        "n_points": 8
+      }
+    }
+  },
+  "gates": {
+    "gate2_monotone_decay_d4": true,
+    "gate3_threshold_d4": true,
+    "gate4_cond_survives_d4": true,
+    "gate5_power_beats_exp_d4": true,
+    "gate2_monotone_decay_d8": true,
+    "gate3_threshold_d8": true,
+    "gate4_cond_survives_d8": true,
+    "gate5_power_beats_exp_d8": true,
+    "gate6_arrow_monotone": true,
+    "gate6_uncoupled_stays_near_pure": true
+  },
+  "all_gates_pass": true,
+  "job_ids": [
+    "d9p1asrbvhrs73a21kog",
+    "d9p1b7l7skus73ckc6l0",
+    "d9p1bqrbvhrs73a21lo0",
+    "d9p1bsm28h6s739qngag",
+    "d9p1bum28h6s739qngd0",
+    "d9p1cd628h6s739qngrg",
+    "d9p1cf3bvhrs73a21md0",
+    "d9p1debbvhrs73a21o30",
+    "d9p1dmjbvhrs73a21ogg",
+    "d9p1e0628h6s739qnjbg",
+    "d9p1e4d7skus73ckca7g"
+  ]
+}
