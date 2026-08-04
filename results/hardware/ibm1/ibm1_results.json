@@ -277,5 +277,24 @@
     "d9p1dmjbvhrs73a21ogg",
     "d9p1e0628h6s739qnjbg",
     "d9p1e4d7skus73ckca7g"
-  ]
+  ],
+  "backend": "ibm_marrakesh",
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  }
 }

@@ -497,6 +497,16 @@ def main() -> None:
     results["gates"] = gates
     results["all_gates_pass"] = bool(all(gates.values()))
     results["job_ids"] = getattr(backend, "job_ids", [])
+    # pw_ibm_provenance.py (written for pw_ibm_submit.py's IBM-0 schema)
+    # reads results["backend"] and results["layouts"] to resolve which
+    # backend/qubits to snapshot calibration for. Omitting them here meant
+    # a real provenance run silently captured calibration for the wrong
+    # (default) backend with an empty qubit list -- found only because the
+    # printed "Capturing provenance for 11 jobs on None" was read instead
+    # of assumed. Backend name and both layouts are already known locally;
+    # there is no reason not to write them.
+    results["backend"] = backend.name
+    results["layouts"] = {"4": layout4, "8": layout8}
 
     (out_dir / "ibm1_results.json").write_text(json.dumps(results, indent=2, default=str), encoding="utf-8")
     if not args.dry:
