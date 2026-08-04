@@ -173,19 +173,35 @@ C - D at d = 4 / 8 is 0.19/0.38 (marrakesh_A), 0.12/0.31 (fez), 0.20/0.38
 (marrakesh_B) -- 5x to 10x the classical arm itself, in every run, on both
 devices.
 
-**Layout-integrity disclosure (bug found in code review, 2026-08-03).** The
-submitter recorded an intended physical chain from `find_chain()` but never
-passed `initial_layout` to `transpile()`. At `optimization_level=0` the
-transpiler defaults to a trivial layout, so the `--exclude 0 1 2 3`
-"disjoint layout" replication (`marrakesh_B`) very likely executed on
-physical qubits 0-3 anyway -- making it a *temporal* replicate (~28 min after
-the primary), not a spatial one. The cross-device `ibm_fez` replication is
-unaffected as a replication control (different chip regardless of qubit
-indices). `pw_ibm_verify_layout.py` retrieves the actual transpiled circuits
-from the still-queryable jobs to settle this definitively; its output
-(`pw_ibm_actual_layouts.json` per run) is the authoritative record, and the
-layoutB provenance calibration snapshot (captured for qubits 4-7) must be
-re-read against it.
+**Layout-integrity disclosure (bug found in code review, 2026-08-03;
+VERIFIED same day).** The submitter recorded an intended physical chain from
+`find_chain()` but never passed `initial_layout` to `transpile()`.
+`pw_ibm_verify_layout.py` retrieved the actual transpiled circuits from all
+36 archived jobs (`pw_ibm_actual_layouts.json` per run -- the authoritative
+layout record) and confirmed: **every run executed on physical qubits 0-3**
+of its backend. Therefore:
+
+- `marrakesh_B` is a **temporal replicate** (~28 min after the primary, same
+  physical qubits), not a spatial one. Its provenance calibration snapshot
+  (mistakenly captured for qubits 4-7) is superseded by the primary run's
+  qubits 0-3 snapshot, which `pw_ibm_mitigation.py` already used.
+- The cross-device `ibm_fez` run stands unchanged as the genuine
+  device-independence control.
+- The replication evidence is honestly summarized as: one cross-device
+  replication plus one same-device temporal replicate. A true disjoint-layout
+  replication remains unexecuted (and would need the now-fixed submitter to
+  pass `initial_layout`).
+
+The verification also recovered the true on-device circuit costs, which are
+substantially higher than the basis-gate-only dry-run estimates (routing on
+the heavy-hex lattice): d=8 witness depth 143-158 with 33-36 two-qubit ops
+(vs. 59/15 estimated). The witness separation survived at these depths, which
+strengthens the noise-robustness statement. The measurement maps also show
+the transpiler permuted clbit-to-physical-qubit assignments per circuit
+(routing swaps); this does not affect any TVD or conditional analysis (both
+are computed from classical bitstrings), but it does mean per-qubit readout
+mitigation matrices are approximate at d >= 4 -- consistent with mitigation's
+small effect.
 
 ## Provenance
 

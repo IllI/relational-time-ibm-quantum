@@ -1,0 +1,286 @@
+{
+  "backend": "ibm_marrakesh",
+  "recorded_layouts": {
+    "1": [
+      4,
+      5
+    ],
+    "2": [
+      4,
+      5,
+      6
+    ],
+    "3": [
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "jobs": [
+    {
+      "touched_physical_qubits": [
+        0,
+        1
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 1
+      },
+      "depth": 25,
+      "two_qubit_ops": 2,
+      "op_counts": {
+        "rz": 16,
+        "sx": 9,
+        "cz": 2,
+        "measure": 2
+      },
+      "job_id": "d9ojrsna5u8s73e2sig0",
+      "n_circuits_in_job": 1
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 1
+      },
+      "depth": 25,
+      "two_qubit_ops": 2,
+      "op_counts": {
+        "rz": 14,
+        "sx": 8,
+        "cz": 2,
+        "measure": 2
+      },
+      "job_id": "d9ojrufa5u8s73e2siig",
+      "n_circuits_in_job": 2
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0
+      },
+      "depth": 25,
+      "two_qubit_ops": 2,
+      "op_counts": {
+        "rz": 18,
+        "sx": 10,
+        "cz": 2,
+        "measure": 1
+      },
+      "job_id": "d9ojs03vt76s73cq7pi0",
+      "n_circuits_in_job": 1
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0
+      },
+      "depth": 25,
+      "two_qubit_ops": 2,
+      "op_counts": {
+        "rz": 16,
+        "sx": 9,
+        "cz": 2,
+        "measure": 1
+      },
+      "job_id": "d9ojs1rvt76s73cq7pkg",
+      "n_circuits_in_job": 2
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 2,
+        "2": 1
+      },
+      "depth": 58,
+      "two_qubit_ops": 7,
+      "op_counts": {
+        "rz": 32,
+        "sx": 24,
+        "cz": 7,
+        "measure": 3
+      },
+      "job_id": "d9ojs3jvt76s73cq7pn0",
+      "n_circuits_in_job": 1
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 2,
+        "2": 1
+      },
+      "depth": 55,
+      "two_qubit_ops": 7,
+      "op_counts": {
+        "rz": 28,
+        "sx": 22,
+        "cz": 7,
+        "measure": 3
+      },
+      "job_id": "d9ojsnva5u8s73e2sjf0",
+      "n_circuits_in_job": 4
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 1
+      },
+      "depth": 90,
+      "two_qubit_ops": 15,
+      "op_counts": {
+        "rz": 47,
+        "sx": 42,
+        "cz": 15,
+        "measure": 2
+      },
+      "job_id": "d9ojtmva5u8s73e2ske0",
+      "n_circuits_in_job": 1
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 1
+      },
+      "depth": 72,
+      "two_qubit_ops": 15,
+      "op_counts": {
+        "rz": 43,
+        "sx": 40,
+        "cz": 15,
+        "measure": 2
+      },
+      "job_id": "d9ojtova5u8s73e2skhg",
+      "n_circuits_in_job": 4
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 3,
+        "1": 0,
+        "2": 2,
+        "3": 1
+      },
+      "depth": 92,
+      "two_qubit_ops": 18,
+      "op_counts": {
+        "sx": 51,
+        "rz": 48,
+        "cz": 18,
+        "measure": 4
+      },
+      "job_id": "d9ojtqm44aac73f5e0fg",
+      "n_circuits_in_job": 1
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 0,
+        "1": 1,
+        "2": 3,
+        "3": 2
+      },
+      "depth": 91,
+      "two_qubit_ops": 15,
+      "op_counts": {
+        "sx": 42,
+        "rz": 42,
+        "cz": 15,
+        "measure": 4
+      },
+      "job_id": "d9ojtsdoh1qc73bc2kv0",
+      "n_circuits_in_job": 8
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 3,
+        "1": 2,
+        "2": 1
+      },
+      "depth": 152,
+      "two_qubit_ops": 33,
+      "op_counts": {
+        "rz": 87,
+        "sx": 84,
+        "cz": 33,
+        "measure": 3
+      },
+      "job_id": "d9ojtu7a5u8s73e2skqg",
+      "n_circuits_in_job": 1
+    },
+    {
+      "touched_physical_qubits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "measure_clbit_to_physical_qubit": {
+        "0": 2,
+        "1": 0,
+        "2": 1
+      },
+      "depth": 143,
+      "two_qubit_ops": 33,
+      "op_counts": {
+        "sx": 81,
+        "rz": 81,
+        "cz": 33,
+        "measure": 3
+      },
+      "job_id": "d9oju1loh1qc73bc2l40",
+      "n_circuits_in_job": 8
+    }
+  ],
+  "union_touched_qubits": [
+    0,
+    1,
+    2,
+    3
+  ]
+}

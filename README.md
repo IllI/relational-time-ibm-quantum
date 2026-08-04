@@ -140,12 +140,18 @@ analysis reproduces from counts with no IBM dependency.
    the 1/d-averaged classical mixture non-uniform at the 0.03–0.05 level.
    Correct future design: pre-register the *separation* C−D against the
    in-run classical baseline, not D against an idealized uniform floor.
-3. **Layout-integrity disclosure:** the submitter computed but never passed
-   `initial_layout` to the transpiler (bug found in code review). The
-   "disjoint layout" replicate is therefore very likely a *temporal*
-   replicate on the same physical qubits; `hardware/pw_ibm_verify_layout.py`
-   retrieves the actual transpiled circuits from the archived jobs to settle
-   it, and its output is the authoritative layout record.
+3. **Layout-integrity disclosure (verified):** the submitter computed but
+   never passed `initial_layout` to the transpiler (bug found in code
+   review). `hardware/pw_ibm_verify_layout.py` retrieved the actual
+   transpiled circuits from all 36 archived jobs and confirmed every run
+   executed on physical qubits 0-3 of its backend
+   (`results/hardware/*/pw_ibm_actual_layouts.json` is the authoritative
+   record). The "disjoint layout" run is therefore a *temporal* replicate;
+   the evidence is honestly: one cross-device replication + one temporal
+   replicate. True on-device depths were also recovered (d=8 witness:
+   143-158, 33-36 two-qubit ops -- ~2.5x the basis-only estimate), which
+   strengthens the noise-robustness statement since the separation survived
+   at those depths.
 4. None of the above touches the separation (5–10× everywhere), the
    dimensional scaling, the d=2 structural null, or the classical
    reproducibility of conditional evolution — the four findings that
