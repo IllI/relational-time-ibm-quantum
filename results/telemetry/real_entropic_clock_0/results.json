@@ -1,0 +1,147 @@
+{
+  "program": "CHRONOS-REAL-ENTROPIC-CLOCK-0",
+  "results": {
+    "seed11": {
+      "pair": "seed11",
+      "n_windows": 252,
+      "calibration_steps": 126,
+      "diagnostics": {
+        "initial_loss": 11.589494705200195,
+        "final_loss": 0.23238255083560944,
+        "calibration_cosine": 0.7687034010887146
+      },
+      "path": {
+        "true_path_cost": 3054.98974609375,
+        "best_null_path_cost": 3251.7562696838318,
+        "path_rank": 1,
+        "path_margin_per_step": 1.574132188720654,
+        "best_null_type": "severed_path",
+        "segment_margin_w16": 0.42857142857142855
+      },
+      "dlinoss": {
+        "relational_score": 0.059835147112607956,
+        "best_null_score": 0.10544893890619278,
+        "best_null_name": "block_shuffled_path",
+        "relational_gain": -0.045613791793584824,
+        "window_fraction_beating_best_null": 0.13600000739097595,
+        "gain_ci95": [
+          -0.46900057792663574,
+          -0.3220638036727905
+        ],
+        "control_scores": {
+          "shuffled_path": -0.011268178932368755,
+          "severed_path": -0.04151032119989395,
+          "wrong_lag_path": -0.038395632058382034,
+          "block_shuffled_path": 0.10544893890619278,
+          "cross_pair_path": 0.05668611451983452
+        }
+      },
+      "ridge": {
+        "score": 0.172911137342453,
+        "dlinoss_minus_ridge": -0.11307599022984505
+      },
+      "gates": {
+        "path_rank1": true,
+        "gain_positive": false,
+        "gain_gate_010": false,
+        "ci_lower_positive": false,
+        "window_fraction_070": false
+      }
+    },
+    "rep1": {
+      "pair": "rep1",
+      "n_windows": 252,
+      "calibration_steps": 126,
+      "diagnostics": {
+        "initial_loss": 6.306870460510254,
+        "final_loss": 0.20923686027526855,
+        "calibration_cosine": 0.8572138547897339
+      },
+      "path": {
+        "true_path_cost": 2402.340576171875,
+        "best_null_path_cost": 2474.0868342208805,
+        "path_rank": 1,
+        "path_margin_per_step": 0.5739700643920441,
+        "best_null_type": "cross_pair_path",
+        "segment_margin_w16": 0.14285714285714285
+      },
+      "dlinoss": {
+        "relational_score": 0.13887546956539154,
+        "best_null_score": 0.11171088367700577,
+        "best_null_name": "cross_pair_path",
+        "relational_gain": 0.027164585888385773,
+        "window_fraction_beating_best_null": 0.20000000298023224,
+        "gain_ci95": [
+          -0.38079753518104553,
+          -0.20271553099155426
+        ],
+        "control_scores": {
+          "shuffled_path": -0.12031237781047821,
+          "severed_path": -0.20174553990364075,
+          "wrong_lag_path": -0.002417953684926033,
+          "block_shuffled_path": -0.07869531959295273,
+          "cross_pair_path": 0.11171088367700577
+        }
+      },
+      "ridge": {
+        "score": 0.1955021470785141,
+        "dlinoss_minus_ridge": -0.05662667751312256
+      },
+      "gates": {
+        "path_rank1": true,
+        "gain_positive": true,
+        "gain_gate_010": false,
+        "ci_lower_positive": false,
+        "window_fraction_070": false
+      }
+    },
+    "chrono0_seed14": {
+      "pair": "chrono0_seed14",
+      "n_windows": 252,
+      "calibration_steps": 126,
+      "diagnostics": {
+        "initial_loss": 6.226933479309082,
+        "final_loss": 0.18127600848674774,
+        "calibration_cosine": 0.8195146322250366
+      },
+      "path": {
+        "true_path_cost": 1339.4398193359375,
+        "best_null_path_cost": 1568.4470219612092,
+        "path_rank": 1,
+        "path_margin_per_step": 1.8320576210021735,
+        "best_null_type": "wrong_lag_path",
+        "segment_margin_w16": 0.7142857142857143
+      },
+      "dlinoss": {
+        "relational_score": 0.06525605916976929,
+        "best_null_score": 0.031908225268125534,
+        "best_null_name": "plus1h_real_path",
+        "relational_gain": 0.03334783390164375,
+        "window_fraction_beating_best_null": 0.1680000126361847,
+        "gain_ci95": [
+          -0.43411335349082947,
+          -0.29216262698173523
+        ],
+        "control_scores": {
+          "shuffled_path": -0.014680651016533375,
+          "severed_path": -0.0551728829741478,
+          "wrong_lag_path": -0.00501985102891922,
+          "block_shuffled_path": -0.04156539589166641,
+          "cross_pair_path": -0.04648597911000252,
+          "plus1h_real_path": 0.031908225268125534
+        }
+      },
+      "ridge": {
+        "score": 0.28548359870910645,
+        "dlinoss_minus_ridge": -0.22022753953933716
+      },
+      "gates": {
+        "path_rank1": true,
+        "gain_positive": true,
+        "gain_gate_010": false,
+        "ci_lower_positive": false,
+        "window_fraction_070": false
+      }
+    }
+  }
+}

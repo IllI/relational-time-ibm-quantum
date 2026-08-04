@@ -1,0 +1,129 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-0-MITIGATION-POSTHOC",
+  "runs": {
+    "marrakesh_A": {
+      "1": {
+        "d": 2,
+        "tvd_C_raw": 0.00712500000000002,
+        "tvd_C_mitigated": 0.0049345700676861615,
+        "tvd_D_raw": 0.003249999999999975,
+        "tvd_D_mitigated": 0.0009556279769365184,
+        "exact_tvd": 8.326672684688674e-17,
+        "null_floor": 0.004460310290381928,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": 0.003875000000000045,
+        "separation_mitigated": 0.003978942090749643
+      },
+      "2": {
+        "d": 4,
+        "tvd_C_raw": 0.196375,
+        "tvd_C_mitigated": 0.20460135566548693,
+        "tvd_D_raw": 0.010250000000000037,
+        "tvd_D_mitigated": 0.008143394334419685,
+        "exact_tvd": 0.17677669529663698,
+        "null_floor": 0.007725484040463792,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": 0.18612499999999996,
+        "separation_mitigated": 0.19645796133106724
+      },
+      "3": {
+        "d": 8,
+        "tvd_C_raw": 0.405875,
+        "tvd_C_mitigated": 0.4171000387619478,
+        "tvd_D_raw": 0.022750000000000013,
+        "tvd_D_mitigated": 0.02244824780480148,
+        "exact_tvd": 0.49668927417218595,
+        "null_floor": 0.011800871798532871,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": 0.383125,
+        "separation_mitigated": 0.3946517909571463
+      }
+    },
+    "fez": {
+      "1": {
+        "d": 2,
+        "tvd_C_raw": 0.005249999999999977,
+        "tvd_C_mitigated": 0.003996002997751713,
+        "tvd_D_raw": 0.0007500000000000284,
+        "tvd_D_mitigated": 0.010135398451161653,
+        "exact_tvd": 8.326672684688674e-17,
+        "null_floor": 0.004460310290381928,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": 0.0044999999999999485,
+        "separation_mitigated": -0.00613939545340994
+      },
+      "2": {
+        "d": 4,
+        "tvd_C_raw": 0.154625,
+        "tvd_C_mitigated": 0.1591664137582196,
+        "tvd_D_raw": 0.03937499999999998,
+        "tvd_D_mitigated": 0.03092180864351733,
+        "exact_tvd": 0.17677669529663698,
+        "null_floor": 0.007725484040463792,
+        "gate3_raw_pass": false,
+        "gate3_mitigated_pass": false,
+        "separation_raw": 0.11525000000000003,
+        "separation_mitigated": 0.12824460511470226
+      },
+      "3": {
+        "d": 8,
+        "tvd_C_raw": 0.33125,
+        "tvd_C_mitigated": 0.3447943691144535,
+        "tvd_D_raw": 0.022499999999999992,
+        "tvd_D_mitigated": 0.021560070457971675,
+        "exact_tvd": 0.49668927417218595,
+        "null_floor": 0.011800871798532871,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": 0.30874999999999997,
+        "separation_mitigated": 0.3232342986564818
+      }
+    },
+    "marrakesh_B": {
+      "1": {
+        "d": 2,
+        "tvd_C_raw": 0.004750000000000004,
+        "tvd_C_mitigated": 0.002495863624968675,
+        "tvd_D_raw": 0.007500000000000034,
+        "tvd_D_mitigated": 0.00531962897969418,
+        "exact_tvd": 8.326672684688674e-17,
+        "null_floor": 0.004460310290381928,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": -0.00275000000000003,
+        "separation_mitigated": -0.002823765354725505
+      },
+      "2": {
+        "d": 4,
+        "tvd_C_raw": 0.209625,
+        "tvd_C_mitigated": 0.21852044787348016,
+        "tvd_D_raw": 0.0072499999999999926,
+        "tvd_D_mitigated": 0.005062923038355482,
+        "exact_tvd": 0.17677669529663698,
+        "null_floor": 0.007725484040463792,
+        "gate3_raw_pass": true,
+        "gate3_mitigated_pass": true,
+        "separation_raw": 0.20237500000000003,
+        "separation_mitigated": 0.21345752483512467
+      },
+      "3": {
+        "d": 8,
+        "tvd_C_raw": 0.42262500000000003,
+        "tvd_C_mitigated": 0.43487941075530623,
+        "tvd_D_raw": 0.04537500000000002,
+        "tvd_D_mitigated": 0.04421057909250441,
+        "exact_tvd": 0.49668927417218595,
+        "null_floor": 0.011800871798532871,
+        "gate3_raw_pass": false,
+        "gate3_mitigated_pass": false,
+        "separation_raw": 0.37725000000000003,
+        "separation_mitigated": 0.3906688316628018
+      }
+    }
+  },
+  "gate3_mitigated_all_pass": false
+}

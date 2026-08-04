@@ -1,0 +1,3762 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-DLINOSS-A10-EVENT-DAMPED-CONFIRM-0",
+  "backend": "tpu",
+  "config": {
+    "time_steps": 128,
+    "state_dim": 64,
+    "latent_dim": 8,
+    "true_lag": 5,
+    "seeds": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "noise_values": [
+      0.0,
+      0.01,
+      0.02,
+      0.03
+    ],
+    "hidden_dims": [
+      32
+    ],
+    "context_steps": [
+      8
+    ],
+    "operators": [
+      "event_damped"
+    ],
+    "losses": [
+      "uniform",
+      "event_weighted"
+    ],
+    "epochs": 350,
+    "learning_rate": 0.003,
+    "bootstrap_samples": 400,
+    "out_dir": "results",
+    "require_tpu": true
+  },
+  "aggregate": {
+    "h32_c8_event_damped_event_weighted": {
+      "median_gain": 0.7078245207667351,
+      "median_relational_minus_external": 0.7228332832455635,
+      "median_minus_ridge": -0.07397902011871338,
+      "median_window_fraction": 0.6587301790714264,
+      "median_event_gain": 0.27137036621570587,
+      "median_non_event_gain": 0.2873021960258484,
+      "gate_pass_rates": {
+        "path_observability_rank1": 1.0,
+        "gain": 1.0,
+        "external": 1.0,
+        "ridge_gap": 0.75,
+        "window_fraction": 0.375,
+        "ci_lower": 1.0
+      }
+    },
+    "h32_c8_event_damped_uniform": {
+      "median_gain": 0.6966885477304459,
+      "median_relational_minus_external": 0.7180859223008156,
+      "median_minus_ridge": -0.08176764845848083,
+      "median_window_fraction": 0.6507936716079712,
+      "median_event_gain": 0.26303547620773315,
+      "median_non_event_gain": 0.28059595823287964,
+      "gate_pass_rates": {
+        "path_observability_rank1": 1.0,
+        "gain": 1.0,
+        "external": 1.0,
+        "ridge_gap": 0.65,
+        "window_fraction": 0.35,
+        "ci_lower": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3215814232826233,
+        "final_loss": 0.02523035928606987,
+        "calibration_cosine": 0.9019880294799805
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8825597763061523,
+        "dlinoss_best_null_score": 0.10184212774038315,
+        "dlinoss_relational_gain": 0.7807176485657692,
+        "dlinoss_relational_minus_external_gain": 0.7807176485657692,
+        "ridge_score": 0.9389594793319702,
+        "dlinoss_minus_ridge": -0.05639970302581787,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.296700656414032,
+          0.43798625469207764
+        ],
+        "event_window_gain": 0.28860700130462646,
+        "non_event_window_gain": 0.3701086640357971,
+        "high_strain_window_gain": 0.4353633224964142,
+        "low_strain_window_gain": 0.27633005380630493,
+        "path_margin_per_step": 134.96096770755844,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.296700656414032,
+        "ci_upper": 0.43798625469207764
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3253520429134369,
+        "final_loss": 0.025578511878848076,
+        "calibration_cosine": 0.9054009318351746
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8825809955596924,
+        "dlinoss_best_null_score": 0.11332034319639206,
+        "dlinoss_relational_gain": 0.7692606523633003,
+        "dlinoss_relational_minus_external_gain": 0.7830185815691948,
+        "ridge_score": 0.9389594793319702,
+        "dlinoss_minus_ridge": -0.05637848377227783,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.2842639982700348,
+          0.4314248263835907
+        ],
+        "event_window_gain": 0.31572163105010986,
+        "non_event_window_gain": 0.3557802140712738,
+        "high_strain_window_gain": 0.4097881615161896,
+        "low_strain_window_gain": 0.2884380519390106,
+        "path_margin_per_step": 134.96096770755844,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2842639982700348,
+        "ci_upper": 0.4314248263835907
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3305816054344177,
+        "final_loss": 0.02423436939716339,
+        "calibration_cosine": 0.9042940735816956
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.840221643447876,
+        "dlinoss_best_null_score": 0.21212339401245117,
+        "dlinoss_relational_gain": 0.6280982494354248,
+        "dlinoss_relational_minus_external_gain": 0.6280982494354248,
+        "ridge_score": 0.965444803237915,
+        "dlinoss_minus_ridge": -0.12522315979003906,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.1839284747838974,
+          0.31356486678123474
+        ],
+        "event_window_gain": 0.22953356802463531,
+        "non_event_window_gain": 0.26055410504341125,
+        "high_strain_window_gain": 0.2723516523838043,
+        "low_strain_window_gain": 0.228767991065979,
+        "path_margin_per_step": 139.97417822943802,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1839284747838974,
+        "ci_upper": 0.31356486678123474
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3265323340892792,
+        "final_loss": 0.025023069232702255,
+        "calibration_cosine": 0.9143493175506592
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8527968525886536,
+        "dlinoss_best_null_score": 0.20376993715763092,
+        "dlinoss_relational_gain": 0.6490269154310226,
+        "dlinoss_relational_minus_external_gain": 0.6490269154310226,
+        "ridge_score": 0.965444803237915,
+        "dlinoss_minus_ridge": -0.11264795064926147,
+        "fraction_windows_beating_best_null": 0.6349206566810608,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.2074800431728363,
+          0.3250163495540619
+        ],
+        "event_window_gain": 0.2943091094493866,
+        "non_event_window_gain": 0.2499072551727295,
+        "high_strain_window_gain": 0.2823307514190674,
+        "low_strain_window_gain": 0.24763570725917816,
+        "path_margin_per_step": 139.97417822943802,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2074800431728363,
+        "ci_upper": 0.3250163495540619
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.32162806391716003,
+        "final_loss": 0.02263813652098179,
+        "calibration_cosine": 0.9022642970085144
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8244857788085938,
+        "dlinoss_best_null_score": 0.10281900316476822,
+        "dlinoss_relational_gain": 0.7216667756438255,
+        "dlinoss_relational_minus_external_gain": 0.7370128482580185,
+        "ridge_score": 0.9173635244369507,
+        "dlinoss_minus_ridge": -0.09287774562835693,
+        "fraction_windows_beating_best_null": 0.6984127163887024,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.21959681808948517,
+          0.3579234182834625
+        ],
+        "event_window_gain": 0.18299369513988495,
+        "non_event_window_gain": 0.31709402799606323,
+        "high_strain_window_gain": 0.2995118200778961,
+        "low_strain_window_gain": 0.2754579186439514,
+        "path_margin_per_step": 137.10956085205078,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.21959681808948517,
+        "ci_upper": 0.3579234182834625
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3126879632472992,
+        "final_loss": 0.02715850993990898,
+        "calibration_cosine": 0.9065576791763306
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8500382900238037,
+        "dlinoss_best_null_score": 0.12730367481708527,
+        "dlinoss_relational_gain": 0.7227346152067184,
+        "dlinoss_relational_minus_external_gain": 0.8076721727848053,
+        "ridge_score": 0.9173635244369507,
+        "dlinoss_minus_ridge": -0.06732523441314697,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.25532984733581543,
+          0.3911699950695038
+        ],
+        "event_window_gain": 0.2552638053894043,
+        "non_event_window_gain": 0.33868879079818726,
+        "high_strain_window_gain": 0.36272120475769043,
+        "low_strain_window_gain": 0.278908908367157,
+        "path_margin_per_step": 137.10956085205078,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.25532984733581543,
+        "ci_upper": 0.3911699950695038
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31706511974334717,
+        "final_loss": 0.02406906522810459,
+        "calibration_cosine": 0.9265343546867371
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8402919173240662,
+        "dlinoss_best_null_score": 0.2318260222673416,
+        "dlinoss_relational_gain": 0.6084658950567245,
+        "dlinoss_relational_minus_external_gain": 0.6673783212900162,
+        "ridge_score": 0.9587512016296387,
+        "dlinoss_minus_ridge": -0.11845928430557251,
+        "fraction_windows_beating_best_null": 0.5714285969734192,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.14719435572624207,
+          0.283383309841156
+        ],
+        "event_window_gain": 0.21569034457206726,
+        "non_event_window_gain": 0.21259619295597076,
+        "high_strain_window_gain": 0.20162992179393768,
+        "low_strain_window_gain": 0.2256370484828949,
+        "path_margin_per_step": 108.15572348942845,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.14719435572624207,
+        "ci_upper": 0.283383309841156
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31609341502189636,
+        "final_loss": 0.02464946173131466,
+        "calibration_cosine": 0.9072177410125732
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8510133624076843,
+        "dlinoss_best_null_score": 0.20900337398052216,
+        "dlinoss_relational_gain": 0.6420099884271622,
+        "dlinoss_relational_minus_external_gain": 0.6883479505777359,
+        "ridge_score": 0.9587512016296387,
+        "dlinoss_minus_ridge": -0.10773783922195435,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.1620599776506424,
+          0.2890395522117615
+        ],
+        "event_window_gain": 0.23870441317558289,
+        "non_event_window_gain": 0.2122223973274231,
+        "high_strain_window_gain": 0.1846216470003128,
+        "low_strain_window_gain": 0.25964969396591187,
+        "path_margin_per_step": 108.15572348942845,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1620599776506424,
+        "ci_upper": 0.2890395522117615
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.2822093367576599,
+        "final_loss": 0.01766493357717991,
+        "calibration_cosine": 0.9373863339424133
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8935247659683228,
+        "dlinoss_best_null_score": 0.12408402562141418,
+        "dlinoss_relational_gain": 0.7694407403469086,
+        "dlinoss_relational_minus_external_gain": 0.8354506827890873,
+        "ridge_score": 0.953183650970459,
+        "dlinoss_minus_ridge": -0.05965888500213623,
+        "fraction_windows_beating_best_null": 0.7936508655548096,
+        "ridge_fraction_windows_beating_best_null": 0.8253968954086304,
+        "ci95": [
+          0.2792808413505554,
+          0.3997670114040375
+        ],
+        "event_window_gain": 0.2576170563697815,
+        "non_event_window_gain": 0.35712265968322754,
+        "high_strain_window_gain": 0.325479656457901,
+        "low_strain_window_gain": 0.3504621982574463,
+        "path_margin_per_step": 87.002231077164,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2792808413505554,
+        "ci_upper": 0.3997670114040375
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.2784259617328644,
+        "final_loss": 0.01898382231593132,
+        "calibration_cosine": 0.932890772819519
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8800482153892517,
+        "dlinoss_best_null_score": 0.10675515979528427,
+        "dlinoss_relational_gain": 0.7732930555939674,
+        "dlinoss_relational_minus_external_gain": 0.8177778497338295,
+        "ridge_score": 0.953183650970459,
+        "dlinoss_minus_ridge": -0.07313543558120728,
+        "fraction_windows_beating_best_null": 0.7936508655548096,
+        "ridge_fraction_windows_beating_best_null": 0.8253968954086304,
+        "ci95": [
+          0.2870466411113739,
+          0.41611436009407043
+        ],
+        "event_window_gain": 0.2900735139846802,
+        "non_event_window_gain": 0.36034083366394043,
+        "high_strain_window_gain": 0.3043610155582428,
+        "low_strain_window_gain": 0.38822102546691895,
+        "path_margin_per_step": 87.002231077164,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2870466411113739,
+        "ci_upper": 0.41611436009407043
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3186834156513214,
+        "final_loss": 0.019692910835146904,
+        "calibration_cosine": 0.9237925410270691
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.882760226726532,
+        "dlinoss_best_null_score": 0.16650687158107758,
+        "dlinoss_relational_gain": 0.7162533551454544,
+        "dlinoss_relational_minus_external_gain": 0.7162533551454544,
+        "ridge_score": 0.9270700812339783,
+        "dlinoss_minus_ridge": -0.04430985450744629,
+        "fraction_windows_beating_best_null": 0.6349206566810608,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.2344081550836563,
+          0.40097373723983765
+        ],
+        "event_window_gain": 0.3260842263698578,
+        "non_event_window_gain": 0.3106745779514313,
+        "high_strain_window_gain": 0.2772332429885864,
+        "low_strain_window_gain": 0.3522203862667084,
+        "path_margin_per_step": 173.56370994931203,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2344081550836563,
+        "ci_upper": 0.40097373723983765
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31388866901397705,
+        "final_loss": 0.02390407957136631,
+        "calibration_cosine": 0.9294436573982239
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8690438270568848,
+        "dlinoss_best_null_score": 0.15783660113811493,
+        "dlinoss_relational_gain": 0.7112072259187698,
+        "dlinoss_relational_minus_external_gain": 0.7112072259187698,
+        "ridge_score": 0.9270700812339783,
+        "dlinoss_minus_ridge": -0.058026254177093506,
+        "fraction_windows_beating_best_null": 0.6349206566810608,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.20356860756874084,
+          0.3658311367034912
+        ],
+        "event_window_gain": 0.260283887386322,
+        "non_event_window_gain": 0.2956092357635498,
+        "high_strain_window_gain": 0.26795023679733276,
+        "low_strain_window_gain": 0.3014293909072876,
+        "path_margin_per_step": 173.56370994931203,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.20356860756874084,
+        "ci_upper": 0.3658311367034912
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3179684281349182,
+        "final_loss": 0.020840661600232124,
+        "calibration_cosine": 0.9368013143539429
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8099194765090942,
+        "dlinoss_best_null_score": 0.16175267100334167,
+        "dlinoss_relational_gain": 0.6481668055057526,
+        "dlinoss_relational_minus_external_gain": 0.7254530340433121,
+        "ridge_score": 0.9340299963951111,
+        "dlinoss_minus_ridge": -0.12411051988601685,
+        "fraction_windows_beating_best_null": 0.682539701461792,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.1742568016052246,
+          0.32549071311950684
+        ],
+        "event_window_gain": 0.10614732652902603,
+        "non_event_window_gain": 0.26993849873542786,
+        "high_strain_window_gain": 0.23615935444831848,
+        "low_strain_window_gain": 0.25659576058387756,
+        "path_margin_per_step": 122.00244227333684,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1742568016052246,
+        "ci_upper": 0.32549071311950684
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3131190240383148,
+        "final_loss": 0.019124573096632957,
+        "calibration_cosine": 0.9206750988960266
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.7952063679695129,
+        "dlinoss_best_null_score": 0.17385298013687134,
+        "dlinoss_relational_gain": 0.6213533878326416,
+        "dlinoss_relational_minus_external_gain": 0.7083060219883919,
+        "ridge_score": 0.9340299963951111,
+        "dlinoss_minus_ridge": -0.13882362842559814,
+        "fraction_windows_beating_best_null": 0.682539701461792,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.17890843749046326,
+          0.3159574568271637
+        ],
+        "event_window_gain": 0.131474569439888,
+        "non_event_window_gain": 0.25996002554893494,
+        "high_strain_window_gain": 0.25200745463371277,
+        "low_strain_window_gain": 0.23152753710746765,
+        "path_margin_per_step": 122.00244227333684,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17890843749046326,
+        "ci_upper": 0.3159574568271637
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.30060669779777527,
+        "final_loss": 0.023237962275743484,
+        "calibration_cosine": 0.9197434782981873
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8778392672538757,
+        "dlinoss_best_null_score": 0.14112944900989532,
+        "dlinoss_relational_gain": 0.7367098182439804,
+        "dlinoss_relational_minus_external_gain": 0.8167035467922688,
+        "ridge_score": 0.949361264705658,
+        "dlinoss_minus_ridge": -0.07152199745178223,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2644076347351074,
+          0.39364200830459595
+        ],
+        "event_window_gain": 0.3151465058326721,
+        "non_event_window_gain": 0.3339748680591583,
+        "high_strain_window_gain": 0.31763955950737,
+        "low_strain_window_gain": 0.3392086923122406,
+        "path_margin_per_step": 170.46520696246452,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2644076347351074,
+        "ci_upper": 0.39364200830459595
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3005047142505646,
+        "final_loss": 0.02222738042473793,
+        "calibration_cosine": 0.9156659245491028
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8808797597885132,
+        "dlinoss_best_null_score": 0.13701261579990387,
+        "dlinoss_relational_gain": 0.7438671439886093,
+        "dlinoss_relational_minus_external_gain": 0.8045413717627525,
+        "ridge_score": 0.949361264705658,
+        "dlinoss_minus_ridge": -0.06848150491714478,
+        "fraction_windows_beating_best_null": 0.6984127163887024,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.27845701575279236,
+          0.40963733196258545
+        ],
+        "event_window_gain": 0.30535686016082764,
+        "non_event_window_gain": 0.3605007827281952,
+        "high_strain_window_gain": 0.33867037296295166,
+        "low_strain_window_gain": 0.3506304621696472,
+        "path_margin_per_step": 170.46520696246452,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.27845701575279236,
+        "ci_upper": 0.40963733196258545
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3631417453289032,
+        "final_loss": 0.0229025911539793,
+        "calibration_cosine": 0.9158235788345337
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8752415180206299,
+        "dlinoss_best_null_score": 0.18744586408138275,
+        "dlinoss_relational_gain": 0.6877956539392471,
+        "dlinoss_relational_minus_external_gain": 0.6877956539392471,
+        "ridge_score": 0.9355698823928833,
+        "dlinoss_minus_ridge": -0.06032836437225342,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18410591781139374,
+          0.31076857447624207
+        ],
+        "event_window_gain": 0.2770177721977234,
+        "non_event_window_gain": 0.23390236496925354,
+        "high_strain_window_gain": 0.31903621554374695,
+        "low_strain_window_gain": 0.1810707449913025,
+        "path_margin_per_step": 270.5479608057416,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18410591781139374,
+        "ci_upper": 0.31076857447624207
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3530954420566559,
+        "final_loss": 0.02340470440685749,
+        "calibration_cosine": 0.9129977226257324
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8733109831809998,
+        "dlinoss_best_null_score": 0.21238885819911957,
+        "dlinoss_relational_gain": 0.6609221249818802,
+        "dlinoss_relational_minus_external_gain": 0.6609221249818802,
+        "ridge_score": 0.9355698823928833,
+        "dlinoss_minus_ridge": -0.062258899211883545,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.17222407460212708,
+          0.2984459400177002
+        ],
+        "event_window_gain": 0.27169355750083923,
+        "non_event_window_gain": 0.21871191263198853,
+        "high_strain_window_gain": 0.3117980659008026,
+        "low_strain_window_gain": 0.16495957970619202,
+        "path_margin_per_step": 270.5479608057416,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17222407460212708,
+        "ci_upper": 0.2984459400177002
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3349192142486572,
+        "final_loss": 0.02238524705171585,
+        "calibration_cosine": 0.9315871596336365
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.844163715839386,
+        "dlinoss_best_null_score": 0.14628642797470093,
+        "dlinoss_relational_gain": 0.6978772878646851,
+        "dlinoss_relational_minus_external_gain": 0.7156977206468582,
+        "ridge_score": 0.9467576742172241,
+        "dlinoss_minus_ridge": -0.10259395837783813,
+        "fraction_windows_beating_best_null": 0.5714285969734192,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.1922069489955902,
+          0.3340678811073303
+        ],
+        "event_window_gain": 0.2080434113740921,
+        "non_event_window_gain": 0.2800898551940918,
+        "high_strain_window_gain": 0.19203071296215057,
+        "low_strain_window_gain": 0.3406311869621277,
+        "path_margin_per_step": 91.37063543168344,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1922069489955902,
+        "ci_upper": 0.3340678811073303
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.0,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.33198440074920654,
+        "final_loss": 0.020824415609240532,
+        "calibration_cosine": 0.9161012768745422
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8522806167602539,
+        "dlinoss_best_null_score": 0.1252230852842331,
+        "dlinoss_relational_gain": 0.7270575314760208,
+        "dlinoss_relational_minus_external_gain": 0.7270575314760208,
+        "ridge_score": 0.9467576742172241,
+        "dlinoss_minus_ridge": -0.09447705745697021,
+        "fraction_windows_beating_best_null": 0.5396825671195984,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.1755392849445343,
+          0.3312278389930725
+        ],
+        "event_window_gain": 0.1883002072572708,
+        "non_event_window_gain": 0.27543431520462036,
+        "high_strain_window_gain": 0.1736893355846405,
+        "low_strain_window_gain": 0.3440473675727844,
+        "path_margin_per_step": 91.37063543168344,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1755392849445343,
+        "ci_upper": 0.3312278389930725
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.321616530418396,
+        "final_loss": 0.027949640527367592,
+        "calibration_cosine": 0.904784619808197
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8898379802703857,
+        "dlinoss_best_null_score": 0.11019496619701385,
+        "dlinoss_relational_gain": 0.7796430140733719,
+        "dlinoss_relational_minus_external_gain": 0.7796430140733719,
+        "ridge_score": 0.9393527507781982,
+        "dlinoss_minus_ridge": -0.0495147705078125,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.29925620555877686,
+          0.4406434893608093
+        ],
+        "event_window_gain": 0.32490238547325134,
+        "non_event_window_gain": 0.36952370405197144,
+        "high_strain_window_gain": 0.4518374502658844,
+        "low_strain_window_gain": 0.2730492353439331,
+        "path_margin_per_step": 132.32935350206176,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.29925620555877686,
+        "ci_upper": 0.4406434893608093
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.32538676261901855,
+        "final_loss": 0.027666935697197914,
+        "calibration_cosine": 0.8876994848251343
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8901978135108948,
+        "dlinoss_best_null_score": 0.11929041892290115,
+        "dlinoss_relational_gain": 0.7709073945879936,
+        "dlinoss_relational_minus_external_gain": 0.7748992815613747,
+        "ridge_score": 0.9393527507781982,
+        "dlinoss_minus_ridge": -0.04915493726730347,
+        "fraction_windows_beating_best_null": 0.7460317611694336,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.2972002923488617,
+          0.4455134868621826
+        ],
+        "event_window_gain": 0.30882716178894043,
+        "non_event_window_gain": 0.37376880645751953,
+        "high_strain_window_gain": 0.4468882083892822,
+        "low_strain_window_gain": 0.2785812318325043,
+        "path_margin_per_step": 132.32935350206176,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2972002923488617,
+        "ci_upper": 0.4455134868621826
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3302720785140991,
+        "final_loss": 0.023524867370724678,
+        "calibration_cosine": 0.9106680750846863
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8417376279830933,
+        "dlinoss_best_null_score": 0.20312121510505676,
+        "dlinoss_relational_gain": 0.6386164128780365,
+        "dlinoss_relational_minus_external_gain": 0.6386164128780365,
+        "ridge_score": 0.9655681252479553,
+        "dlinoss_minus_ridge": -0.12383049726486206,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.19785593450069427,
+          0.33112895488739014
+        ],
+        "event_window_gain": 0.2617487609386444,
+        "non_event_window_gain": 0.264016717672348,
+        "high_strain_window_gain": 0.2961657643318176,
+        "low_strain_window_gain": 0.23138397932052612,
+        "path_margin_per_step": 138.6965578836109,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.19785593450069427,
+        "ci_upper": 0.33112895488739014
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.32617446780204773,
+        "final_loss": 0.024025382474064827,
+        "calibration_cosine": 0.9017152190208435
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8571190237998962,
+        "dlinoss_best_null_score": 0.18889862298965454,
+        "dlinoss_relational_gain": 0.6682204008102417,
+        "dlinoss_relational_minus_external_gain": 0.6682204008102417,
+        "ridge_score": 0.9655681252479553,
+        "dlinoss_minus_ridge": -0.10844910144805908,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.18833938241004944,
+          0.3181155323982239
+        ],
+        "event_window_gain": 0.2444419264793396,
+        "non_event_window_gain": 0.25663936138153076,
+        "high_strain_window_gain": 0.2719936966896057,
+        "low_strain_window_gain": 0.233760267496109,
+        "path_margin_per_step": 138.6965578836109,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18833938241004944,
+        "ci_upper": 0.3181155323982239
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.322016179561615,
+        "final_loss": 0.024980874732136726,
+        "calibration_cosine": 0.899085521697998
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8380337953567505,
+        "dlinoss_best_null_score": 0.13189458847045898,
+        "dlinoss_relational_gain": 0.7061392068862915,
+        "dlinoss_relational_minus_external_gain": 0.8032249324023724,
+        "ridge_score": 0.9178282618522644,
+        "dlinoss_minus_ridge": -0.07979446649551392,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.26089200377464294,
+          0.3894679546356201
+        ],
+        "event_window_gain": 0.3439289629459381,
+        "non_event_window_gain": 0.3202698528766632,
+        "high_strain_window_gain": 0.37282058596611023,
+        "low_strain_window_gain": 0.27971214056015015,
+        "path_margin_per_step": 137.06043566507006,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.26089200377464294,
+        "ci_upper": 0.3894679546356201
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3130403757095337,
+        "final_loss": 0.02796529047191143,
+        "calibration_cosine": 0.9000952243804932
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8430056571960449,
+        "dlinoss_best_null_score": 0.1533564329147339,
+        "dlinoss_relational_gain": 0.689649224281311,
+        "dlinoss_relational_minus_external_gain": 0.7983387522399426,
+        "ridge_score": 0.9178282618522644,
+        "dlinoss_minus_ridge": -0.07482260465621948,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.24274399876594543,
+          0.35959774255752563
+        ],
+        "event_window_gain": 0.2710471749305725,
+        "non_event_window_gain": 0.31304657459259033,
+        "high_strain_window_gain": 0.3518887162208557,
+        "low_strain_window_gain": 0.2570434808731079,
+        "path_margin_per_step": 137.06043566507006,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.24274399876594543,
+        "ci_upper": 0.35959774255752563
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31708455085754395,
+        "final_loss": 0.02316652610898018,
+        "calibration_cosine": 0.9211466312408447
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8726823329925537,
+        "dlinoss_best_null_score": 0.23014263808727264,
+        "dlinoss_relational_gain": 0.6425396949052811,
+        "dlinoss_relational_minus_external_gain": 0.6731851249933243,
+        "ridge_score": 0.9589087963104248,
+        "dlinoss_minus_ridge": -0.0862264633178711,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.1797349452972412,
+          0.3116089701652527
+        ],
+        "event_window_gain": 0.2627028524875641,
+        "non_event_window_gain": 0.23411430418491364,
+        "high_strain_window_gain": 0.21942879259586334,
+        "low_strain_window_gain": 0.2706756889820099,
+        "path_margin_per_step": 107.65845360165561,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1797349452972412,
+        "ci_upper": 0.3116089701652527
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3160760700702667,
+        "final_loss": 0.021622445434331894,
+        "calibration_cosine": 0.9114699959754944
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8624733090400696,
+        "dlinoss_best_null_score": 0.2214215099811554,
+        "dlinoss_relational_gain": 0.6410517990589142,
+        "dlinoss_relational_minus_external_gain": 0.6659811735153198,
+        "ridge_score": 0.9589087963104248,
+        "dlinoss_minus_ridge": -0.09643548727035522,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18027891218662262,
+          0.29320093989372253
+        ],
+        "event_window_gain": 0.2768127918243408,
+        "non_event_window_gain": 0.20720741152763367,
+        "high_strain_window_gain": 0.20469930768013,
+        "low_strain_window_gain": 0.264016330242157,
+        "path_margin_per_step": 107.65845360165561,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18027891218662262,
+        "ci_upper": 0.29320093989372253
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.2824237644672394,
+        "final_loss": 0.01947556808590889,
+        "calibration_cosine": 0.930796205997467
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8704939484596252,
+        "dlinoss_best_null_score": 0.08752832561731339,
+        "dlinoss_relational_gain": 0.7829656228423119,
+        "dlinoss_relational_minus_external_gain": 0.7940894365310669,
+        "ridge_score": 0.9528918862342834,
+        "dlinoss_minus_ridge": -0.0823979377746582,
+        "fraction_windows_beating_best_null": 0.80952388048172,
+        "ridge_fraction_windows_beating_best_null": 0.8412699103355408,
+        "ci95": [
+          0.2936161458492279,
+          0.41882404685020447
+        ],
+        "event_window_gain": 0.3641691207885742,
+        "non_event_window_gain": 0.35249701142311096,
+        "high_strain_window_gain": 0.36007240414619446,
+        "low_strain_window_gain": 0.3495353162288666,
+        "path_margin_per_step": 85.24301997109069,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2936161458492279,
+        "ci_upper": 0.41882404685020447
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.2784695625305176,
+        "final_loss": 0.01869337074458599,
+        "calibration_cosine": 0.9376420974731445
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8962835073471069,
+        "dlinoss_best_null_score": 0.1087806224822998,
+        "dlinoss_relational_gain": 0.7875028848648071,
+        "dlinoss_relational_minus_external_gain": 0.8342069871723652,
+        "ridge_score": 0.9528918862342834,
+        "dlinoss_minus_ridge": -0.056608378887176514,
+        "fraction_windows_beating_best_null": 0.8253968954086304,
+        "ridge_fraction_windows_beating_best_null": 0.8412699103355408,
+        "ci95": [
+          0.3236491084098816,
+          0.4385736882686615
+        ],
+        "event_window_gain": 0.38514333963394165,
+        "non_event_window_gain": 0.38021036982536316,
+        "high_strain_window_gain": 0.35939714312553406,
+        "low_strain_window_gain": 0.4022229313850403,
+        "path_margin_per_step": 85.24301997109069,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.3236491084098816,
+        "ci_upper": 0.4385736882686615
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31819209456443787,
+        "final_loss": 0.021087119355797768,
+        "calibration_cosine": 0.9241005182266235
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8643048405647278,
+        "dlinoss_best_null_score": 0.15883643925189972,
+        "dlinoss_relational_gain": 0.7054684013128281,
+        "dlinoss_relational_minus_external_gain": 0.7054684013128281,
+        "ridge_score": 0.926722526550293,
+        "dlinoss_minus_ridge": -0.062417685985565186,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.18145498633384705,
+          0.34884536266326904
+        ],
+        "event_window_gain": 0.22922097146511078,
+        "non_event_window_gain": 0.2811020612716675,
+        "high_strain_window_gain": 0.2693912088871002,
+        "low_strain_window_gain": 0.2616425156593323,
+        "path_margin_per_step": 171.88652210538376,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18145498633384705,
+        "ci_upper": 0.34884536266326904
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3133963644504547,
+        "final_loss": 0.024440698325634003,
+        "calibration_cosine": 0.9154186248779297
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8669713735580444,
+        "dlinoss_best_null_score": 0.1535896509885788,
+        "dlinoss_relational_gain": 0.7133817225694656,
+        "dlinoss_relational_minus_external_gain": 0.7133817225694656,
+        "ridge_score": 0.926722526550293,
+        "dlinoss_minus_ridge": -0.059751152992248535,
+        "fraction_windows_beating_best_null": 0.5873016119003296,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.17929568886756897,
+          0.34799203276634216
+        ],
+        "event_window_gain": 0.2131861448287964,
+        "non_event_window_gain": 0.28953835368156433,
+        "high_strain_window_gain": 0.2539583444595337,
+        "low_strain_window_gain": 0.27867230772972107,
+        "path_margin_per_step": 171.88652210538376,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17929568886756897,
+        "ci_upper": 0.34799203276634216
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3180759847164154,
+        "final_loss": 0.01922679878771305,
+        "calibration_cosine": 0.9326439499855042
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.812232255935669,
+        "dlinoss_best_null_score": 0.1566200703382492,
+        "dlinoss_relational_gain": 0.6556121855974197,
+        "dlinoss_relational_minus_external_gain": 0.7141375541687012,
+        "ridge_score": 0.9341529607772827,
+        "dlinoss_minus_ridge": -0.12192070484161377,
+        "fraction_windows_beating_best_null": 0.6984127163887024,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.19009557366371155,
+          0.32484567165374756
+        ],
+        "event_window_gain": 0.20235776901245117,
+        "non_event_window_gain": 0.26320916414260864,
+        "high_strain_window_gain": 0.26281121373176575,
+        "low_strain_window_gain": 0.24648025631904602,
+        "path_margin_per_step": 121.03859054807643,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.19009557366371155,
+        "ci_upper": 0.32484567165374756
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31324175000190735,
+        "final_loss": 0.017392870038747787,
+        "calibration_cosine": 0.918755829334259
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8121263980865479,
+        "dlinoss_best_null_score": 0.17816902697086334,
+        "dlinoss_relational_gain": 0.6339573711156845,
+        "dlinoss_relational_minus_external_gain": 0.7088482230901718,
+        "ridge_score": 0.9341529607772827,
+        "dlinoss_minus_ridge": -0.12202656269073486,
+        "fraction_windows_beating_best_null": 0.6984127163887024,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.1829555630683899,
+          0.32681554555892944
+        ],
+        "event_window_gain": 0.2032238095998764,
+        "non_event_window_gain": 0.256543904542923,
+        "high_strain_window_gain": 0.2638096213340759,
+        "low_strain_window_gain": 0.2345089316368103,
+        "path_margin_per_step": 121.03859054807643,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1829555630683899,
+        "ci_upper": 0.32681554555892944
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3007771074771881,
+        "final_loss": 0.023972325026988983,
+        "calibration_cosine": 0.9122533202171326
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8811525702476501,
+        "dlinoss_best_null_score": 0.09246993064880371,
+        "dlinoss_relational_gain": 0.7886826395988464,
+        "dlinoss_relational_minus_external_gain": 0.7886826395988464,
+        "ridge_score": 0.9491351246833801,
+        "dlinoss_minus_ridge": -0.06798255443572998,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2651023864746094,
+          0.394907146692276
+        ],
+        "event_window_gain": 0.2633680999279022,
+        "non_event_window_gain": 0.3527902662754059,
+        "high_strain_window_gain": 0.37008678913116455,
+        "low_strain_window_gain": 0.28573429584503174,
+        "path_margin_per_step": 166.9672589062889,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2651023864746094,
+        "ci_upper": 0.394907146692276
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3007284104824066,
+        "final_loss": 0.023384537547826767,
+        "calibration_cosine": 0.9070538282394409
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8849138617515564,
+        "dlinoss_best_null_score": 0.15008050203323364,
+        "dlinoss_relational_gain": 0.7348333597183228,
+        "dlinoss_relational_minus_external_gain": 0.7948042824864388,
+        "ridge_score": 0.9491351246833801,
+        "dlinoss_minus_ridge": -0.06422126293182373,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2746637761592865,
+          0.39889493584632874
+        ],
+        "event_window_gain": 0.25309276580810547,
+        "non_event_window_gain": 0.36549365520477295,
+        "high_strain_window_gain": 0.3450450003147125,
+        "low_strain_window_gain": 0.32207775115966797,
+        "path_margin_per_step": 166.9672589062889,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2746637761592865,
+        "ci_upper": 0.39889493584632874
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.36339864134788513,
+        "final_loss": 0.023289771750569344,
+        "calibration_cosine": 0.9141658544540405
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8729187250137329,
+        "dlinoss_best_null_score": 0.21613231301307678,
+        "dlinoss_relational_gain": 0.6567864120006561,
+        "dlinoss_relational_minus_external_gain": 0.6567864120006561,
+        "ridge_score": 0.9363158941268921,
+        "dlinoss_minus_ridge": -0.06339716911315918,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18309125304222107,
+          0.316811740398407
+        ],
+        "event_window_gain": 0.27713918685913086,
+        "non_event_window_gain": 0.23505714535713196,
+        "high_strain_window_gain": 0.32427656650543213,
+        "low_strain_window_gain": 0.17755722999572754,
+        "path_margin_per_step": 270.4144726078094,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18309125304222107,
+        "ci_upper": 0.316811740398407
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3533185124397278,
+        "final_loss": 0.02352438122034073,
+        "calibration_cosine": 0.9127343893051147
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8797966837882996,
+        "dlinoss_best_null_score": 0.22067858278751373,
+        "dlinoss_relational_gain": 0.6591181010007858,
+        "dlinoss_relational_minus_external_gain": 0.6591181010007858,
+        "ridge_score": 0.9363158941268921,
+        "dlinoss_minus_ridge": -0.05651921033859253,
+        "fraction_windows_beating_best_null": 0.5873016119003296,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18064306676387787,
+          0.3137131631374359
+        ],
+        "event_window_gain": 0.24350804090499878,
+        "non_event_window_gain": 0.2502446472644806,
+        "high_strain_window_gain": 0.3045637607574463,
+        "low_strain_window_gain": 0.19299161434173584,
+        "path_margin_per_step": 270.4144726078094,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18064306676387787,
+        "ci_upper": 0.3137131631374359
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.33557775616645813,
+        "final_loss": 0.022171275690197945,
+        "calibration_cosine": 0.9098800420761108
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8394374251365662,
+        "dlinoss_best_null_score": 0.18159638345241547,
+        "dlinoss_relational_gain": 0.6578410416841507,
+        "dlinoss_relational_minus_external_gain": 0.7211007475852966,
+        "ridge_score": 0.9463981986045837,
+        "dlinoss_minus_ridge": -0.10696077346801758,
+        "fraction_windows_beating_best_null": 0.5555555820465088,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.17876556515693665,
+          0.32165244221687317
+        ],
+        "event_window_gain": 0.1840762495994568,
+        "non_event_window_gain": 0.26792654395103455,
+        "high_strain_window_gain": 0.17473164200782776,
+        "low_strain_window_gain": 0.32938551902770996,
+        "path_margin_per_step": 91.98918411254901,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17876556515693665,
+        "ci_upper": 0.32165244221687317
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.01,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3325639069080353,
+        "final_loss": 0.02458074502646923,
+        "calibration_cosine": 0.9173877239227295
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8491197824478149,
+        "dlinoss_best_null_score": 0.19424454867839813,
+        "dlinoss_relational_gain": 0.6548752337694168,
+        "dlinoss_relational_minus_external_gain": 0.7197320759296417,
+        "ridge_score": 0.9463981986045837,
+        "dlinoss_minus_ridge": -0.0972784161567688,
+        "fraction_windows_beating_best_null": 0.5555555820465088,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.17827756702899933,
+          0.31866124272346497
+        ],
+        "event_window_gain": 0.16538649797439575,
+        "non_event_window_gain": 0.2686730623245239,
+        "high_strain_window_gain": 0.1940908432006836,
+        "low_strain_window_gain": 0.30541980266571045,
+        "path_margin_per_step": 91.98918411254901,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17827756702899933,
+        "ci_upper": 0.31866124272346497
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.32183462381362915,
+        "final_loss": 0.026395684108138084,
+        "calibration_cosine": 0.9052777886390686
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8836090564727783,
+        "dlinoss_best_null_score": 0.13017426431179047,
+        "dlinoss_relational_gain": 0.7534347921609879,
+        "dlinoss_relational_minus_external_gain": 0.7962938994169235,
+        "ridge_score": 0.9396026730537415,
+        "dlinoss_minus_ridge": -0.055993616580963135,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.27260586619377136,
+          0.42281609773635864
+        ],
+        "event_window_gain": 0.31806397438049316,
+        "non_event_window_gain": 0.3437464237213135,
+        "high_strain_window_gain": 0.4222469627857208,
+        "low_strain_window_gain": 0.2580680847167969,
+        "path_margin_per_step": 129.6580230955095,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.27260586619377136,
+        "ci_upper": 0.42281609773635864
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3255666494369507,
+        "final_loss": 0.025699647143483162,
+        "calibration_cosine": 0.8866596221923828
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8862428665161133,
+        "dlinoss_best_null_score": 0.12769809365272522,
+        "dlinoss_relational_gain": 0.7585447728633881,
+        "dlinoss_relational_minus_external_gain": 0.8006381317973137,
+        "ridge_score": 0.9396026730537415,
+        "dlinoss_minus_ridge": -0.053359806537628174,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.2899324595928192,
+          0.44533753395080566
+        ],
+        "event_window_gain": 0.31573864817619324,
+        "non_event_window_gain": 0.3670518398284912,
+        "high_strain_window_gain": 0.4506102204322815,
+        "low_strain_window_gain": 0.266862154006958,
+        "path_margin_per_step": 129.6580230955095,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2899324595928192,
+        "ci_upper": 0.44533753395080566
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3301457464694977,
+        "final_loss": 0.02450963854789734,
+        "calibration_cosine": 0.9085127115249634
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8669885993003845,
+        "dlinoss_best_null_score": 0.21253220736980438,
+        "dlinoss_relational_gain": 0.6544563919305801,
+        "dlinoss_relational_minus_external_gain": 0.6544563919305801,
+        "ridge_score": 0.9659156799316406,
+        "dlinoss_minus_ridge": -0.0989270806312561,
+        "fraction_windows_beating_best_null": 0.5873016119003296,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18872994184494019,
+          0.32287412881851196
+        ],
+        "event_window_gain": 0.23669542372226715,
+        "non_event_window_gain": 0.269524484872818,
+        "high_strain_window_gain": 0.2769569456577301,
+        "low_strain_window_gain": 0.24078017473220825,
+        "path_margin_per_step": 137.2447811066159,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18872994184494019,
+        "ci_upper": 0.32287412881851196
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3259855806827545,
+        "final_loss": 0.02467643842101097,
+        "calibration_cosine": 0.9142380356788635
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8450128436088562,
+        "dlinoss_best_null_score": 0.19472745060920715,
+        "dlinoss_relational_gain": 0.650285392999649,
+        "dlinoss_relational_minus_external_gain": 0.650285392999649,
+        "ridge_score": 0.9659156799316406,
+        "dlinoss_minus_ridge": -0.12090283632278442,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.17793095111846924,
+          0.29318636655807495
+        ],
+        "event_window_gain": 0.2529309391975403,
+        "non_event_window_gain": 0.22657203674316406,
+        "high_strain_window_gain": 0.2554846704006195,
+        "low_strain_window_gain": 0.21586094796657562,
+        "path_margin_per_step": 137.2447811066159,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17793095111846924,
+        "ci_upper": 0.29318636655807495
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.322136253118515,
+        "final_loss": 0.02129555307328701,
+        "calibration_cosine": 0.9144481420516968
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8223600387573242,
+        "dlinoss_best_null_score": 0.12686023116111755,
+        "dlinoss_relational_gain": 0.6954998075962067,
+        "dlinoss_relational_minus_external_gain": 0.8179814852774143,
+        "ridge_score": 0.9184579253196716,
+        "dlinoss_minus_ridge": -0.09609788656234741,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2335575819015503,
+          0.36201944947242737
+        ],
+        "event_window_gain": 0.2800370752811432,
+        "non_event_window_gain": 0.3031482696533203,
+        "high_strain_window_gain": 0.3607707619667053,
+        "low_strain_window_gain": 0.2372153103351593,
+        "path_margin_per_step": 135.99340961759054,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2335575819015503,
+        "ci_upper": 0.36201944947242737
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31315580010414124,
+        "final_loss": 0.026481332257390022,
+        "calibration_cosine": 0.8976624011993408
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8456467986106873,
+        "dlinoss_best_null_score": 0.14120498299598694,
+        "dlinoss_relational_gain": 0.7044418156147003,
+        "dlinoss_relational_minus_external_gain": 0.7979300506412983,
+        "ridge_score": 0.9184579253196716,
+        "dlinoss_minus_ridge": -0.07281112670898438,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.271316260099411,
+          0.4017525017261505
+        ],
+        "event_window_gain": 0.31476128101348877,
+        "non_event_window_gain": 0.342454195022583,
+        "high_strain_window_gain": 0.39723679423332214,
+        "low_strain_window_gain": 0.2772679030895233,
+        "path_margin_per_step": 135.99340961759054,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.271316260099411,
+        "ci_upper": 0.4017525017261505
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31687891483306885,
+        "final_loss": 0.021956106647849083,
+        "calibration_cosine": 0.9081072211265564
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.852396547794342,
+        "dlinoss_best_null_score": 0.27249953150749207,
+        "dlinoss_relational_gain": 0.57989701628685,
+        "dlinoss_relational_minus_external_gain": 0.649810865521431,
+        "ridge_score": 0.9592975974082947,
+        "dlinoss_minus_ridge": -0.10690104961395264,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.16057336330413818,
+          0.27044081687927246
+        ],
+        "event_window_gain": 0.23820319771766663,
+        "non_event_window_gain": 0.1964024305343628,
+        "high_strain_window_gain": 0.18447738885879517,
+        "low_strain_window_gain": 0.24061167240142822,
+        "path_margin_per_step": 107.18999397277842,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.16057336330413818,
+        "ci_upper": 0.27044081687927246
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31587284803390503,
+        "final_loss": 0.024216922000050545,
+        "calibration_cosine": 0.9073947072029114
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8681120276451111,
+        "dlinoss_best_null_score": 0.20304454863071442,
+        "dlinoss_relational_gain": 0.6650674790143967,
+        "dlinoss_relational_minus_external_gain": 0.6995830237865448,
+        "ridge_score": 0.9592975974082947,
+        "dlinoss_minus_ridge": -0.0911855697631836,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.17556340992450714,
+          0.3047805428504944
+        ],
+        "event_window_gain": 0.30294084548950195,
+        "non_event_window_gain": 0.20009514689445496,
+        "high_strain_window_gain": 0.19980832934379578,
+        "low_strain_window_gain": 0.28072118759155273,
+        "path_margin_per_step": 107.18999397277842,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17556340992450714,
+        "ci_upper": 0.3047805428504944
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.28244563937187195,
+        "final_loss": 0.019945716485381126,
+        "calibration_cosine": 0.9289628863334656
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8861979246139526,
+        "dlinoss_best_null_score": 0.09496939927339554,
+        "dlinoss_relational_gain": 0.7912285253405571,
+        "dlinoss_relational_minus_external_gain": 0.8296260572969913,
+        "ridge_score": 0.9527650475502014,
+        "dlinoss_minus_ridge": -0.06656712293624878,
+        "fraction_windows_beating_best_null": 0.80952388048172,
+        "ridge_fraction_windows_beating_best_null": 0.8412699103355408,
+        "ci95": [
+          0.29596808552742004,
+          0.4187789857387543
+        ],
+        "event_window_gain": 0.3302117586135864,
+        "non_event_window_gain": 0.36383169889450073,
+        "high_strain_window_gain": 0.3602219223976135,
+        "low_strain_window_gain": 0.35472118854522705,
+        "path_margin_per_step": 84.70657580178889,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.29596808552742004,
+        "ci_upper": 0.4187789857387543
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.27838751673698425,
+        "final_loss": 0.018623944371938705,
+        "calibration_cosine": 0.9232974648475647
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8806230425834656,
+        "dlinoss_best_null_score": 0.06463903933763504,
+        "dlinoss_relational_gain": 0.8159840032458305,
+        "dlinoss_relational_minus_external_gain": 0.8286485522985458,
+        "ridge_score": 0.9527650475502014,
+        "dlinoss_minus_ridge": -0.07214200496673584,
+        "fraction_windows_beating_best_null": 0.80952388048172,
+        "ridge_fraction_windows_beating_best_null": 0.8412699103355408,
+        "ci95": [
+          0.2928212583065033,
+          0.41685205698013306
+        ],
+        "event_window_gain": 0.3097385764122009,
+        "non_event_window_gain": 0.363556832075119,
+        "high_strain_window_gain": 0.3544946312904358,
+        "low_strain_window_gain": 0.3521539270877838,
+        "path_margin_per_step": 84.70657580178889,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2928212583065033,
+        "ci_upper": 0.41685205698013306
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3181245028972626,
+        "final_loss": 0.019136231392621994,
+        "calibration_cosine": 0.9319213032722473
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8658128976821899,
+        "dlinoss_best_null_score": 0.17834696173667908,
+        "dlinoss_relational_gain": 0.6874659359455109,
+        "dlinoss_relational_minus_external_gain": 0.6874659359455109,
+        "ridge_score": 0.9265019297599792,
+        "dlinoss_minus_ridge": -0.06068903207778931,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.20831075310707092,
+          0.38222143054008484
+        ],
+        "event_window_gain": 0.2680508494377136,
+        "non_event_window_gain": 0.30302828550338745,
+        "high_strain_window_gain": 0.27292680740356445,
+        "low_strain_window_gain": 0.3114212155342102,
+        "path_margin_per_step": 170.60973154703802,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.20831075310707092,
+        "ci_upper": 0.38222143054008484
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31331107020378113,
+        "final_loss": 0.019778823480010033,
+        "calibration_cosine": 0.9203609824180603
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8688362240791321,
+        "dlinoss_best_null_score": 0.11636074632406235,
+        "dlinoss_relational_gain": 0.7524754777550697,
+        "dlinoss_relational_minus_external_gain": 0.7555238083004951,
+        "ridge_score": 0.9265019297599792,
+        "dlinoss_minus_ridge": -0.05766570568084717,
+        "fraction_windows_beating_best_null": 0.6349206566810608,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.21212656795978546,
+          0.36371615529060364
+        ],
+        "event_window_gain": 0.24958130717277527,
+        "non_event_window_gain": 0.30337390303611755,
+        "high_strain_window_gain": 0.2412855327129364,
+        "low_strain_window_gain": 0.33158260583877563,
+        "path_margin_per_step": 170.60973154703802,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.21212656795978546,
+        "ci_upper": 0.36371615529060364
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3182804584503174,
+        "final_loss": 0.01823347806930542,
+        "calibration_cosine": 0.9266033172607422
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8233538269996643,
+        "dlinoss_best_null_score": 0.1459842026233673,
+        "dlinoss_relational_gain": 0.677369624376297,
+        "dlinoss_relational_minus_external_gain": 0.7575539499521255,
+        "ridge_score": 0.9344998598098755,
+        "dlinoss_minus_ridge": -0.11114603281021118,
+        "fraction_windows_beating_best_null": 0.6507936716079712,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.18254542350769043,
+          0.32730966806411743
+        ],
+        "event_window_gain": 0.14012114703655243,
+        "non_event_window_gain": 0.27123892307281494,
+        "high_strain_window_gain": 0.2362549602985382,
+        "low_strain_window_gain": 0.26825276017189026,
+        "path_margin_per_step": 118.57665129646433,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18254542350769043,
+        "ci_upper": 0.32730966806411743
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3134562075138092,
+        "final_loss": 0.020117711275815964,
+        "calibration_cosine": 0.9366117715835571
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8012369275093079,
+        "dlinoss_best_null_score": 0.1630919724702835,
+        "dlinoss_relational_gain": 0.6381449550390244,
+        "dlinoss_relational_minus_external_gain": 0.7236053496599197,
+        "ridge_score": 0.9344998598098755,
+        "dlinoss_minus_ridge": -0.13326293230056763,
+        "fraction_windows_beating_best_null": 0.6666666865348816,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.1710256040096283,
+          0.3180652856826782
+        ],
+        "event_window_gain": 0.07380945235490799,
+        "non_event_window_gain": 0.26478612422943115,
+        "high_strain_window_gain": 0.2627643048763275,
+        "low_strain_window_gain": 0.2130325734615326,
+        "path_margin_per_step": 118.57665129646433,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1710256040096283,
+        "ci_upper": 0.3180652856826782
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.30095934867858887,
+        "final_loss": 0.024097733199596405,
+        "calibration_cosine": 0.9152691960334778
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8854240775108337,
+        "dlinoss_best_null_score": 0.13628309965133667,
+        "dlinoss_relational_gain": 0.7491409778594971,
+        "dlinoss_relational_minus_external_gain": 0.7571132183074951,
+        "ridge_score": 0.9488480091094971,
+        "dlinoss_minus_ridge": -0.06342393159866333,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2662088871002197,
+          0.39696067571640015
+        ],
+        "event_window_gain": 0.30004480481147766,
+        "non_event_window_gain": 0.34090062975883484,
+        "high_strain_window_gain": 0.36941906809806824,
+        "low_strain_window_gain": 0.29029202461242676,
+        "path_margin_per_step": 161.9072261846635,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2662088871002197,
+        "ci_upper": 0.39696067571640015
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3009090721607208,
+        "final_loss": 0.022483890876173973,
+        "calibration_cosine": 0.9183852672576904
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.870319128036499,
+        "dlinoss_best_null_score": 0.141632542014122,
+        "dlinoss_relational_gain": 0.728686586022377,
+        "dlinoss_relational_minus_external_gain": 0.7981689646840096,
+        "ridge_score": 0.9488480091094971,
+        "dlinoss_minus_ridge": -0.07852888107299805,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.24843494594097137,
+          0.3936183452606201
+        ],
+        "event_window_gain": 0.2819790840148926,
+        "non_event_window_gain": 0.3386082947254181,
+        "high_strain_window_gain": 0.3748072683811188,
+        "low_strain_window_gain": 0.2716865837574005,
+        "path_margin_per_step": 161.9072261846635,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.24843494594097137,
+        "ci_upper": 0.3936183452606201
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3634051978588104,
+        "final_loss": 0.02511642314493656,
+        "calibration_cosine": 0.9239386320114136
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8735927939414978,
+        "dlinoss_best_null_score": 0.23672251403331757,
+        "dlinoss_relational_gain": 0.6368702799081802,
+        "dlinoss_relational_minus_external_gain": 0.6368702799081802,
+        "ridge_score": 0.9369812607765198,
+        "dlinoss_minus_ridge": -0.06338846683502197,
+        "fraction_windows_beating_best_null": 0.6349206566810608,
+        "ridge_fraction_windows_beating_best_null": 0.6507936716079712,
+        "ci95": [
+          0.1993900090456009,
+          0.3259418308734894
+        ],
+        "event_window_gain": 0.2879781723022461,
+        "non_event_window_gain": 0.25373759865760803,
+        "high_strain_window_gain": 0.341419517993927,
+        "low_strain_window_gain": 0.19233617186546326,
+        "path_margin_per_step": 270.2579304722378,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1993900090456009,
+        "ci_upper": 0.3259418308734894
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3532888889312744,
+        "final_loss": 0.021110543981194496,
+        "calibration_cosine": 0.9185938239097595
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8902164101600647,
+        "dlinoss_best_null_score": 0.20468290150165558,
+        "dlinoss_relational_gain": 0.6855335086584091,
+        "dlinoss_relational_minus_external_gain": 0.6855335086584091,
+        "ridge_score": 0.9369812607765198,
+        "dlinoss_minus_ridge": -0.04676485061645508,
+        "fraction_windows_beating_best_null": 0.6507936716079712,
+        "ridge_fraction_windows_beating_best_null": 0.6507936716079712,
+        "ci95": [
+          0.20399649441242218,
+          0.3258383870124817
+        ],
+        "event_window_gain": 0.2861318588256836,
+        "non_event_window_gain": 0.25881144404411316,
+        "high_strain_window_gain": 0.33841314911842346,
+        "low_strain_window_gain": 0.20048007369041443,
+        "path_margin_per_step": 270.2579304722378,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.20399649441242218,
+        "ci_upper": 0.3258383870124817
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3361973464488983,
+        "final_loss": 0.02176116779446602,
+        "calibration_cosine": 0.9262546300888062
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8385467529296875,
+        "dlinoss_best_null_score": 0.1547916829586029,
+        "dlinoss_relational_gain": 0.6837550699710846,
+        "dlinoss_relational_minus_external_gain": 0.7140047177672386,
+        "ridge_score": 0.9461429715156555,
+        "dlinoss_minus_ridge": -0.10759621858596802,
+        "fraction_windows_beating_best_null": 0.5555555820465088,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.16623733937740326,
+          0.3039889335632324
+        ],
+        "event_window_gain": 0.1902540624141693,
+        "non_event_window_gain": 0.2515547573566437,
+        "high_strain_window_gain": 0.15418101847171783,
+        "low_strain_window_gain": 0.3248133659362793,
+        "path_margin_per_step": 92.64772468688017,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.16623733937740326,
+        "ci_upper": 0.3039889335632324
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.02,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.33306729793548584,
+        "final_loss": 0.021795807406306267,
+        "calibration_cosine": 0.9216046929359436
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8418805599212646,
+        "dlinoss_best_null_score": 0.16350501775741577,
+        "dlinoss_relational_gain": 0.6783755421638489,
+        "dlinoss_relational_minus_external_gain": 0.6940416693687439,
+        "ridge_score": 0.9461429715156555,
+        "dlinoss_minus_ridge": -0.10426241159439087,
+        "fraction_windows_beating_best_null": 0.5396825671195984,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.1847764551639557,
+          0.32861900329589844
+        ],
+        "event_window_gain": 0.1741187572479248,
+        "non_event_window_gain": 0.27775856852531433,
+        "high_strain_window_gain": 0.17768655717372894,
+        "low_strain_window_gain": 0.3390771448612213,
+        "path_margin_per_step": 92.64772468688017,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1847764551639557,
+        "ci_upper": 0.32861900329589844
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3219641149044037,
+        "final_loss": 0.024130357429385185,
+        "calibration_cosine": 0.9148086905479431
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8833999633789062,
+        "dlinoss_best_null_score": 0.11769960820674896,
+        "dlinoss_relational_gain": 0.7657003551721573,
+        "dlinoss_relational_minus_external_gain": 0.7882192507386208,
+        "ridge_score": 0.9399998784065247,
+        "dlinoss_minus_ridge": -0.05659991502761841,
+        "fraction_windows_beating_best_null": 0.6984127163887024,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.2622200548648834,
+          0.42215558886528015
+        ],
+        "event_window_gain": 0.28688639402389526,
+        "non_event_window_gain": 0.3496439754962921,
+        "high_strain_window_gain": 0.4308741092681885,
+        "low_strain_window_gain": 0.2474181354045868,
+        "path_margin_per_step": 127.84731054881276,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2622200548648834,
+        "ci_upper": 0.42215558886528015
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 11,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.32564616203308105,
+        "final_loss": 0.029709696769714355,
+        "calibration_cosine": 0.9049118161201477
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8941362500190735,
+        "dlinoss_best_null_score": 0.13795176148414612,
+        "dlinoss_relational_gain": 0.7561844885349274,
+        "dlinoss_relational_minus_external_gain": 0.788666732609272,
+        "ridge_score": 0.9399998784065247,
+        "dlinoss_minus_ridge": -0.04586362838745117,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7460317611694336,
+        "ci95": [
+          0.27465590834617615,
+          0.4247819781303406
+        ],
+        "event_window_gain": 0.27613556385040283,
+        "non_event_window_gain": 0.3565896451473236,
+        "high_strain_window_gain": 0.43604007363319397,
+        "low_strain_window_gain": 0.24945172667503357,
+        "path_margin_per_step": 127.84731054881276,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.27465590834617615,
+        "ci_upper": 0.4247819781303406
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3298264145851135,
+        "final_loss": 0.023393556475639343,
+        "calibration_cosine": 0.9097852110862732
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8567094206809998,
+        "dlinoss_best_null_score": 0.22107751667499542,
+        "dlinoss_relational_gain": 0.6356319040060043,
+        "dlinoss_relational_minus_external_gain": 0.6356319040060043,
+        "ridge_score": 0.9660667181015015,
+        "dlinoss_minus_ridge": -0.10935729742050171,
+        "fraction_windows_beating_best_null": 0.5873016119003296,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18960687518119812,
+          0.31806546449661255
+        ],
+        "event_window_gain": 0.25518935918807983,
+        "non_event_window_gain": 0.25205379724502563,
+        "high_strain_window_gain": 0.27825453877449036,
+        "low_strain_window_gain": 0.22872954607009888,
+        "path_margin_per_step": 136.83116680326924,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18960687518119812,
+        "ci_upper": 0.31806546449661255
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 12,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3256160616874695,
+        "final_loss": 0.029863158240914345,
+        "calibration_cosine": 0.9008679986000061
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8313610553741455,
+        "dlinoss_best_null_score": 0.19604434072971344,
+        "dlinoss_relational_gain": 0.6353167146444321,
+        "dlinoss_relational_minus_external_gain": 0.6353167146444321,
+        "ridge_score": 0.9660667181015015,
+        "dlinoss_minus_ridge": -0.13470566272735596,
+        "fraction_windows_beating_best_null": 0.5714285969734192,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.15229256451129913,
+          0.2774292528629303
+        ],
+        "event_window_gain": 0.1810702383518219,
+        "non_event_window_gain": 0.2334548383951187,
+        "high_strain_window_gain": 0.2236921191215515,
+        "low_strain_window_gain": 0.2085350751876831,
+        "path_margin_per_step": 136.83116680326924,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.15229256451129913,
+        "ci_upper": 0.2774292528629303
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.32250237464904785,
+        "final_loss": 0.025201259180903435,
+        "calibration_cosine": 0.8959457874298096
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8335877060890198,
+        "dlinoss_best_null_score": 0.1315520852804184,
+        "dlinoss_relational_gain": 0.7020356208086014,
+        "dlinoss_relational_minus_external_gain": 0.7909713871777058,
+        "ridge_score": 0.9191774129867554,
+        "dlinoss_minus_ridge": -0.0855897068977356,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.24895131587982178,
+          0.37956616282463074
+        ],
+        "event_window_gain": 0.23398849368095398,
+        "non_event_window_gain": 0.3344270586967468,
+        "high_strain_window_gain": 0.35855889320373535,
+        "low_strain_window_gain": 0.2671075165271759,
+        "path_margin_per_step": 135.68675555032397,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.24895131587982178,
+        "ci_upper": 0.37956616282463074
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 13,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3134936988353729,
+        "final_loss": 0.028322050347924232,
+        "calibration_cosine": 0.8984540700912476
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8385502099990845,
+        "dlinoss_best_null_score": 0.09980431199073792,
+        "dlinoss_relational_gain": 0.7387458980083466,
+        "dlinoss_relational_minus_external_gain": 0.8154295813292265,
+        "ridge_score": 0.9191774129867554,
+        "dlinoss_minus_ridge": -0.0806272029876709,
+        "fraction_windows_beating_best_null": 0.7142857313156128,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2576944828033447,
+          0.38480621576309204
+        ],
+        "event_window_gain": 0.26829785108566284,
+        "non_event_window_gain": 0.3386005461215973,
+        "high_strain_window_gain": 0.3520888686180115,
+        "low_strain_window_gain": 0.2947762906551361,
+        "path_margin_per_step": 135.68675555032397,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2576944828033447,
+        "ci_upper": 0.38480621576309204
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31676235795021057,
+        "final_loss": 0.023333538323640823,
+        "calibration_cosine": 0.910793125629425
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8513058423995972,
+        "dlinoss_best_null_score": 0.2509933412075043,
+        "dlinoss_relational_gain": 0.6003125011920929,
+        "dlinoss_relational_minus_external_gain": 0.6935951709747314,
+        "ridge_score": 0.9595692753791809,
+        "dlinoss_minus_ridge": -0.10826343297958374,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.17580074071884155,
+          0.2973427176475525
+        ],
+        "event_window_gain": 0.28789281845092773,
+        "non_event_window_gain": 0.19735626876354218,
+        "high_strain_window_gain": 0.19259993731975555,
+        "low_strain_window_gain": 0.2726956307888031,
+        "path_margin_per_step": 107.07928967188286,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.17580074071884155,
+        "ci_upper": 0.2973427176475525
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 14,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3157414197921753,
+        "final_loss": 0.024441702291369438,
+        "calibration_cosine": 0.9102141857147217
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8624646663665771,
+        "dlinoss_best_null_score": 0.2604054808616638,
+        "dlinoss_relational_gain": 0.6020591855049133,
+        "dlinoss_relational_minus_external_gain": 0.6653944849967957,
+        "ridge_score": 0.9595692753791809,
+        "dlinoss_minus_ridge": -0.09710460901260376,
+        "fraction_windows_beating_best_null": 0.60317462682724,
+        "ridge_fraction_windows_beating_best_null": 0.6190476417541504,
+        "ci95": [
+          0.18832924962043762,
+          0.3009258508682251
+        ],
+        "event_window_gain": 0.2835444509983063,
+        "non_event_window_gain": 0.21640677750110626,
+        "high_strain_window_gain": 0.2023896425962448,
+        "low_strain_window_gain": 0.28243717551231384,
+        "path_margin_per_step": 107.07928967188286,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.18832924962043762,
+        "ci_upper": 0.3009258508682251
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.2824656069278717,
+        "final_loss": 0.01882687583565712,
+        "calibration_cosine": 0.9267581105232239
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8714393377304077,
+        "dlinoss_best_null_score": 0.10493835061788559,
+        "dlinoss_relational_gain": 0.7665009871125221,
+        "dlinoss_relational_minus_external_gain": 0.816084798425436,
+        "ridge_score": 0.9525766968727112,
+        "dlinoss_minus_ridge": -0.08113735914230347,
+        "fraction_windows_beating_best_null": 0.8253968954086304,
+        "ridge_fraction_windows_beating_best_null": 0.8412699103355408,
+        "ci95": [
+          0.29364439845085144,
+          0.4160515367984772
+        ],
+        "event_window_gain": 0.3722814917564392,
+        "non_event_window_gain": 0.349447637796402,
+        "high_strain_window_gain": 0.3693678379058838,
+        "low_strain_window_gain": 0.33871257305145264,
+        "path_margin_per_step": 83.744079279824,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.29364439845085144,
+        "ci_upper": 0.4160515367984772
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 15,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.2782841622829437,
+        "final_loss": 0.020661327987909317,
+        "calibration_cosine": 0.9275321960449219
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8757361173629761,
+        "dlinoss_best_null_score": 0.0838269591331482,
+        "dlinoss_relational_gain": 0.7919091582298279,
+        "dlinoss_relational_minus_external_gain": 0.8148768581449986,
+        "ridge_score": 0.9525766968727112,
+        "dlinoss_minus_ridge": -0.07684057950973511,
+        "fraction_windows_beating_best_null": 0.80952388048172,
+        "ridge_fraction_windows_beating_best_null": 0.8412699103355408,
+        "ci95": [
+          0.29511216282844543,
+          0.42404794692993164
+        ],
+        "event_window_gain": 0.3985708951950073,
+        "non_event_window_gain": 0.34872061014175415,
+        "high_strain_window_gain": 0.36545896530151367,
+        "low_strain_window_gain": 0.3511991500854492,
+        "path_margin_per_step": 83.744079279824,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.29511216282844543,
+        "ci_upper": 0.42404794692993164
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3180157542228699,
+        "final_loss": 0.022165684029459953,
+        "calibration_cosine": 0.9143893122673035
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8684907555580139,
+        "dlinoss_best_null_score": 0.15700630843639374,
+        "dlinoss_relational_gain": 0.7114844471216202,
+        "dlinoss_relational_minus_external_gain": 0.7114844471216202,
+        "ridge_score": 0.9262969493865967,
+        "dlinoss_minus_ridge": -0.057806193828582764,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.20931047201156616,
+          0.37134531140327454
+        ],
+        "event_window_gain": 0.24880655109882355,
+        "non_event_window_gain": 0.3022333085536957,
+        "high_strain_window_gain": 0.27848541736602783,
+        "low_strain_window_gain": 0.2935169041156769,
+        "path_margin_per_step": 170.0198648652579,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.20931047201156616,
+        "ci_upper": 0.37134531140327454
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 16,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3131944239139557,
+        "final_loss": 0.023671183735132217,
+        "calibration_cosine": 0.9250844717025757
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8668981790542603,
+        "dlinoss_best_null_score": 0.1516338586807251,
+        "dlinoss_relational_gain": 0.7152643203735352,
+        "dlinoss_relational_minus_external_gain": 0.7152643203735352,
+        "ridge_score": 0.9262969493865967,
+        "dlinoss_minus_ridge": -0.059398770332336426,
+        "fraction_windows_beating_best_null": 0.6190476417541504,
+        "ridge_fraction_windows_beating_best_null": 0.6349206566810608,
+        "ci95": [
+          0.2105056643486023,
+          0.38507410883903503
+        ],
+        "event_window_gain": 0.31797242164611816,
+        "non_event_window_gain": 0.2897864282131195,
+        "high_strain_window_gain": 0.2837218642234802,
+        "low_strain_window_gain": 0.31239694356918335,
+        "path_margin_per_step": 170.0198648652579,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2105056643486023,
+        "ci_upper": 0.38507410883903503
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.31823259592056274,
+        "final_loss": 0.01720922254025936,
+        "calibration_cosine": 0.9290302395820618
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8117372393608093,
+        "dlinoss_best_null_score": 0.13948798179626465,
+        "dlinoss_relational_gain": 0.6722492575645447,
+        "dlinoss_relational_minus_external_gain": 0.7199184894561768,
+        "ridge_score": 0.9344515800476074,
+        "dlinoss_minus_ridge": -0.1227143406867981,
+        "fraction_windows_beating_best_null": 0.682539701461792,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.1998385637998581,
+          0.3355497121810913
+        ],
+        "event_window_gain": 0.1787000447511673,
+        "non_event_window_gain": 0.2765659987926483,
+        "high_strain_window_gain": 0.2730250060558319,
+        "low_strain_window_gain": 0.2524715065956116,
+        "path_margin_per_step": 117.29476430257172,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.1998385637998581,
+        "ci_upper": 0.3355497121810913
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 17,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3134308457374573,
+        "final_loss": 0.018185380846261978,
+        "calibration_cosine": 0.9310612082481384
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8145166039466858,
+        "dlinoss_best_null_score": 0.16713553667068481,
+        "dlinoss_relational_gain": 0.647381067276001,
+        "dlinoss_relational_minus_external_gain": 0.7251754552125931,
+        "ridge_score": 0.9344515800476074,
+        "dlinoss_minus_ridge": -0.11993497610092163,
+        "fraction_windows_beating_best_null": 0.6984127163887024,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.19432775676250458,
+          0.3351593613624573
+        ],
+        "event_window_gain": 0.19339843094348907,
+        "non_event_window_gain": 0.27177244424819946,
+        "high_strain_window_gain": 0.26320260763168335,
+        "low_strain_window_gain": 0.2580317258834839,
+        "path_margin_per_step": 117.29476430257172,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.19432775676250458,
+        "ci_upper": 0.3351593613624573
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.30129286646842957,
+        "final_loss": 0.02630634792149067,
+        "calibration_cosine": 0.910824716091156
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8851961493492126,
+        "dlinoss_best_null_score": 0.1391352117061615,
+        "dlinoss_relational_gain": 0.7460609376430511,
+        "dlinoss_relational_minus_external_gain": 0.8035310357809067,
+        "ridge_score": 0.9487448334693909,
+        "dlinoss_minus_ridge": -0.06354868412017822,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.24748152494430542,
+          0.37183913588523865
+        ],
+        "event_window_gain": 0.2879718840122223,
+        "non_event_window_gain": 0.3197176158428192,
+        "high_strain_window_gain": 0.3321562707424164,
+        "low_strain_window_gain": 0.2898106873035431,
+        "path_margin_per_step": 158.1866022648888,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.24748152494430542,
+        "ci_upper": 0.37183913588523865
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 18,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.30119141936302185,
+        "final_loss": 0.02398788556456566,
+        "calibration_cosine": 0.9204017519950867
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.881139874458313,
+        "dlinoss_best_null_score": 0.13242672383785248,
+        "dlinoss_relational_gain": 0.7487131506204605,
+        "dlinoss_relational_minus_external_gain": 0.7700518518686295,
+        "ridge_score": 0.9487448334693909,
+        "dlinoss_minus_ridge": -0.06760495901107788,
+        "fraction_windows_beating_best_null": 0.7301587462425232,
+        "ridge_fraction_windows_beating_best_null": 0.7142857313156128,
+        "ci95": [
+          0.2740926444530487,
+          0.3944867253303528
+        ],
+        "event_window_gain": 0.32490378618240356,
+        "non_event_window_gain": 0.33503249287605286,
+        "high_strain_window_gain": 0.3763708472251892,
+        "low_strain_window_gain": 0.28928858041763306,
+        "path_margin_per_step": 158.1866022648888,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2740926444530487,
+        "ci_upper": 0.3944867253303528
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": true,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3634882867336273,
+        "final_loss": 0.021951405331492424,
+        "calibration_cosine": 0.906766414642334
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8772642016410828,
+        "dlinoss_best_null_score": 0.22423161566257477,
+        "dlinoss_relational_gain": 0.653032585978508,
+        "dlinoss_relational_minus_external_gain": 0.653032585978508,
+        "ridge_score": 0.9376771450042725,
+        "dlinoss_minus_ridge": -0.0604129433631897,
+        "fraction_windows_beating_best_null": 0.6507936716079712,
+        "ridge_fraction_windows_beating_best_null": 0.6507936716079712,
+        "ci95": [
+          0.2087431252002716,
+          0.3400733768939972
+        ],
+        "event_window_gain": 0.2866097390651703,
+        "non_event_window_gain": 0.26807087659835815,
+        "high_strain_window_gain": 0.3444981575012207,
+        "low_strain_window_gain": 0.206777423620224,
+        "path_margin_per_step": 270.07905265687015,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2087431252002716,
+        "ci_upper": 0.3400733768939972
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 19,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.35337379574775696,
+        "final_loss": 0.02244328334927559,
+        "calibration_cosine": 0.9096164703369141
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8902311325073242,
+        "dlinoss_best_null_score": 0.21778954565525055,
+        "dlinoss_relational_gain": 0.6724415868520737,
+        "dlinoss_relational_minus_external_gain": 0.6724415868520737,
+        "ridge_score": 0.9376771450042725,
+        "dlinoss_minus_ridge": -0.04744601249694824,
+        "fraction_windows_beating_best_null": 0.6507936716079712,
+        "ridge_fraction_windows_beating_best_null": 0.6507936716079712,
+        "ci95": [
+          0.2127169817686081,
+          0.35033664107322693
+        ],
+        "event_window_gain": 0.2963537871837616,
+        "non_event_window_gain": 0.2808932662010193,
+        "high_strain_window_gain": 0.362815797328949,
+        "low_strain_window_gain": 0.2121599316596985,
+        "path_margin_per_step": 270.07905265687015,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.2127169817686081,
+        "ci_upper": 0.35033664107322693
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "uniform"
+      },
+      "diagnostics": {
+        "initial_loss": 0.33631572127342224,
+        "final_loss": 0.01954295113682747,
+        "calibration_cosine": 0.924981951713562
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.84502112865448,
+        "dlinoss_best_null_score": 0.14309270679950714,
+        "dlinoss_relational_gain": 0.7019284218549728,
+        "dlinoss_relational_minus_external_gain": 0.7151248157024384,
+        "ridge_score": 0.9459720253944397,
+        "dlinoss_minus_ridge": -0.10095089673995972,
+        "fraction_windows_beating_best_null": 0.5873016119003296,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.19118008017539978,
+          0.3253253400325775
+        ],
+        "event_window_gain": 0.2050907462835312,
+        "non_event_window_gain": 0.27325332164764404,
+        "high_strain_window_gain": 0.20254042744636536,
+        "low_strain_window_gain": 0.3183255195617676,
+        "path_margin_per_step": 93.46099180433507,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.19118008017539978,
+        "ci_upper": 0.3253253400325775
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": false,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    },
+    {
+      "config": {
+        "seed": 20,
+        "noise": 0.03,
+        "hidden_dim": 32,
+        "context_steps": 8,
+        "operator": "event_damped",
+        "loss": "event_weighted"
+      },
+      "diagnostics": {
+        "initial_loss": 0.3331368565559387,
+        "final_loss": 0.020864399150013924,
+        "calibration_cosine": 0.9184402823448181
+      },
+      "metrics": {
+        "dlinoss_relational_score": 0.8570433259010315,
+        "dlinoss_best_null_score": 0.14317673444747925,
+        "dlinoss_relational_gain": 0.7138665914535522,
+        "dlinoss_relational_minus_external_gain": 0.7220612168312073,
+        "ridge_score": 0.9459720253944397,
+        "dlinoss_minus_ridge": -0.0889286994934082,
+        "fraction_windows_beating_best_null": 0.5873016119003296,
+        "ridge_fraction_windows_beating_best_null": 0.5873016119003296,
+        "ci95": [
+          0.19435901939868927,
+          0.3288710415363312
+        ],
+        "event_window_gain": 0.16113227605819702,
+        "non_event_window_gain": 0.28506603837013245,
+        "high_strain_window_gain": 0.19594493508338928,
+        "low_strain_window_gain": 0.328799843788147,
+        "path_margin_per_step": 93.46099180433507,
+        "path_rank": 1,
+        "segment_margin_w16": 1.0,
+        "ci_lower": 0.19435901939868927,
+        "ci_upper": 0.3288710415363312
+      },
+      "gates": {
+        "path_observability_rank1": true,
+        "gain": true,
+        "external": true,
+        "ridge_gap": true,
+        "window_fraction": false,
+        "ci_lower": true
+      }
+    }
+  ]
+}

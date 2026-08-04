@@ -1,0 +1,44 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-0",
+  "backend": "ibm_fez",
+  "dry_run": false,
+  "submission_time": "2026-08-04T01:16:41.473610Z",
+  "optimization_level": 0,
+  "clock_sizes": [
+    1,
+    2,
+    3
+  ],
+  "shots": 8000,
+  "excluded_qubits": [],
+  "predictions": {
+    "1": {
+      "d": 2,
+      "exact_witness_tvd": 8.326672684688674e-17,
+      "null_floor": 0.004460310290381928,
+      "classical_arm_expected": "< 3 * null_floor",
+      "cond_z_form": "A * cos(2*pi*t/d)"
+    },
+    "2": {
+      "d": 4,
+      "exact_witness_tvd": 0.17677669529663698,
+      "null_floor": 0.007725484040463792,
+      "classical_arm_expected": "< 3 * null_floor",
+      "cond_z_form": "A * cos(2*pi*t/d)"
+    },
+    "3": {
+      "d": 8,
+      "exact_witness_tvd": 0.49668927417218595,
+      "null_floor": 0.011800871798532871,
+      "classical_arm_expected": "< 3 * null_floor",
+      "cond_z_form": "A * cos(2*pi*t/d)"
+    }
+  },
+  "gates": [
+    "gate1_structural_null_d2",
+    "gate2_witness_ordered",
+    "gate3_classical_arms_null",
+    "gate4_conditional_recovered",
+    "gate5_A_equals_B"
+  ]
+}

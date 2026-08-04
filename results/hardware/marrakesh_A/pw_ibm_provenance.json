@@ -1,0 +1,468 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-0-PROVENANCE",
+  "source_results": "results_page_wootters_ibm0\\pw_ibm_results.json",
+  "backend": "ibm_marrakesh",
+  "layouts": {
+    "1": [
+      0,
+      1
+    ],
+    "2": [
+      0,
+      1,
+      2
+    ],
+    "3": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "jobs": [
+    {
+      "job_id": "d9ojerdoh1qc73bc24dg",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:50:53.146102-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:50:53.146102Z",
+          "finished": "2026-08-04T00:51:00.152273Z",
+          "running": "2026-08-04T00:50:54.780273Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 4.22912842
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojetbvt76s73cq7b30",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:01.403453-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:01.403453Z",
+          "finished": "2026-08-04T00:51:07.947495Z",
+          "running": "2026-08-04T00:51:02.219176Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.9057543089999998
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojev5oh1qc73bc24ig",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:09.019266-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:09.019266Z",
+          "finished": "2026-08-04T00:51:15.7596Z",
+          "running": "2026-08-04T00:51:10.503138Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 4.22912842
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojf15oh1qc73bc24kg",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:16.992841-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:16.992841Z",
+          "finished": "2026-08-04T00:51:22.981845Z",
+          "running": "2026-08-04T00:51:17.8639Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.9057543089999998
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojf33vt76s73cq7b90",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:24.464658-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:24.464658Z",
+          "finished": "2026-08-04T00:51:31.052713Z",
+          "running": "2026-08-04T00:51:25.848624Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.233509738
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojf4va5u8s73e2s4pg",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:31.828571-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:31.828571Z",
+          "finished": "2026-08-04T00:51:38.458717Z",
+          "running": "2026-08-04T00:51:33.30108Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.378720111
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojf6rvt76s73cq7bdg",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:39.180931-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:39.180931Z",
+          "finished": "2026-08-04T00:51:45.461853Z",
+          "running": "2026-08-04T00:51:40.484793Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.9215008620000003
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojf8jvt76s73cq7bg0",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:46.561238-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:46.561238Z",
+          "finished": "2026-08-04T00:51:53.919039Z",
+          "running": "2026-08-04T00:51:47.694537Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.394764653
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojfau44aac73f5dgs0",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:51:55.075460-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:51:55.07546Z",
+          "finished": "2026-08-04T00:52:08.531018Z",
+          "running": "2026-08-04T00:51:56.034171Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.335691
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojfee44aac73f5dh10",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:52:09.749641-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:52:09.749641Z",
+          "finished": "2026-08-04T00:52:16.727771Z",
+          "running": "2026-08-04T00:52:11.269775Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.339320054
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojfgdoh1qc73bc253g",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:52:17.821108-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:52:17.821108Z",
+          "finished": "2026-08-04T00:52:24.058756Z",
+          "running": "2026-08-04T00:52:19.053209Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 4.1635162
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9ojfie44aac73f5dh50",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-03T19:52:25.481222-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-04T00:52:25.481222Z",
+          "finished": "2026-08-04T00:52:31.733303Z",
+          "running": "2026-08-04T00:52:26.189597Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.592988983
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    }
+  ],
+  "calibration": {
+    "backend": "ibm_marrakesh",
+    "qubits_of_interest": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "num_qubits": 156,
+    "processor_type": {
+      "family": "Heron",
+      "revision": "2"
+    },
+    "last_update_date": "2026-08-03T20:00:04-05:00",
+    "qubit_properties": {
+      "0": {
+        "T1": 0.00023687141381717632,
+        "T2": 5.6693214907669095e-05,
+        "readout_error": 0.0130615234375,
+        "prob_meas0_prep1": 0.015380859375,
+        "prob_meas1_prep0": 0.0107421875
+      },
+      "1": {
+        "T1": 0.0001878616443277842,
+        "T2": 0.00016759267633764655,
+        "readout_error": 0.008544921875,
+        "prob_meas0_prep1": 0.005859375,
+        "prob_meas1_prep0": 0.01123046875
+      },
+      "2": {
+        "T1": 0.0002854725912282511,
+        "T2": 0.00033082475183954187,
+        "readout_error": 0.0050048828125,
+        "prob_meas0_prep1": 0.009033203125,
+        "prob_meas1_prep0": 0.0009765625
+      },
+      "3": {
+        "T1": 0.00026888406464581165,
+        "T2": 0.00025468299647306145,
+        "readout_error": 0.00732421875,
+        "prob_meas0_prep1": 0.0048828125,
+        "prob_meas1_prep0": 0.009765625
+      }
+    },
+    "two_qubit_gate_errors": {
+      "cz_1_2": {
+        "gate_error": 0.0016746503294031712,
+        "gate_length": 68
+      },
+      "cz_2_1": {
+        "gate_error": 0.0016746503294031712,
+        "gate_length": 68
+      },
+      "cz_2_3": {
+        "gate_error": 0.002037382047190589,
+        "gate_length": 68
+      },
+      "cz_3_2": {
+        "gate_error": 0.002037382047190589,
+        "gate_length": 68
+      },
+      "cz_0_1": {
+        "gate_error": 0.004191647345771682,
+        "gate_length": 68
+      },
+      "cz_1_0": {
+        "gate_error": 0.004191647345771682,
+        "gate_length": 68
+      },
+      "rzz_1_2": {
+        "gate_error": 0.0018291563890040219,
+        "gate_length": 68
+      },
+      "rzz_2_1": {
+        "gate_error": 0.0018291563890040219,
+        "gate_length": 68
+      },
+      "rzz_2_3": {
+        "gate_error": 0.0014868995487590242,
+        "gate_length": 68
+      },
+      "rzz_3_2": {
+        "gate_error": 0.0014868995487590242,
+        "gate_length": 68
+      },
+      "rzz_0_1": {
+        "gate_error": 0.003789049923195703,
+        "gate_length": 68
+      },
+      "rzz_1_0": {
+        "gate_error": 0.003789049923195703,
+        "gate_length": 68
+      }
+    }
+  },
+  "note": "Server-side timestamps are authoritative for chronology. Raw counts in pw_ibm_counts_nclock*.json remain the reproducible record and do not depend on this metadata."
+}
