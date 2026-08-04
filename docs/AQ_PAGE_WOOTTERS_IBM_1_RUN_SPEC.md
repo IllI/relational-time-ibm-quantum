@@ -145,13 +145,23 @@ Conditioned on clock reading `t`, tracing out `E` leaves
 S(ρ_S|t)  =  H₂(cos²(tθ/2))        (binary entropy)
 ```
 
-rising monotonically from 0. **This needs no tomography** — `ρ_S(t)` is
-diagonal in the computational basis, so a single Z-basis measurement of the
-system conditioned on each clock reading gives the entropy directly.
+rising monotonically from 0. `ρ_S(t)` is diagonal in the computational basis
+for this arm and for the classical-clock control, so a **single Z-basis
+measurement suffices for those two** — `S(ρ_S|t) = H₂(p₁(t))` is exact there.
 
-Controls: no-coupling (`S(t) = 0` flat, proving the arrow requires the
-inaccessible degree of freedom) and classical-clock (predicted to reproduce
-the arrow — see H3).
+**Correction found in Gate 0 (2026-08-04):** this does *not* extend to the
+no-coupling control. With no CNOT to the environment the system stays in a
+pure coherent superposition at every clock reading — zero entanglement to
+anything, true von Neumann entropy exactly 0 for all `t` — but a single
+Z-basis population entropy cannot see that and reports a rising curve that
+looks like the coupled arm's, purely from measuring a superposition in the
+wrong basis. **The no-coupling control needs 3-basis (X, Y, Z) tomography**
+to report its entropy correctly via the Bloch vector,
+`S = H₂((1+|r(t)|)/2)`; the coupled and classical-clock arms do not.
+
+Controls: no-coupling (`S(t) ≈ 0` flat under the correct tomographic
+estimator, proving the arrow requires the inaccessible degree of freedom) and
+classical-clock (predicted to reproduce the arrow — see H3).
 
 ## Endpoints and gates
 
@@ -192,11 +202,26 @@ Added cost over IBM-0 is `n_c` CRY gates (≈2 CX each), so ≈4–6 extra CX �
 comfortably within the depths already shown to survive (IBM-0's d=8 witness ran
 at depth 143–158 with 33–36 two-qubit ops and the separation held).
 
-Nine `μ` points × 4 arms × 2 clock sizes at 8000 shots ≈ 100–150k shots, in the
-same range as IBM-0's ~102k, which consumed roughly 48 s of QPU. **Recommended
-backend: `ibm_marrakesh`** — it served all of IBM-0's primary run and 24 of the
-36 archived jobs promptly, whereas `ibm_fez` and `ibm_kingston` queued for hours
-on the free tier the following day.
+**Corrected shot budget (2026-08-04, submitter build):** an initial estimate of
+100–150k shots assumed 8000 shots per circuit, copied from IBM-0 without
+accounting for IBM-1 sweeping 9 μ points per circuit role instead of IBM-0's
+single point — at 8000 shots/circuit the actual total is 576k, not 100–150k.
+Corrected using Paper 1's own precedent instead: `ibm_run2`/`ibm_run3` swept
+9 points at **500 shots/point** and still fit the predicted curve at
+R² = 0.986 on real hardware. IBM-1 uses the same convention: 500 shots for
+each arm-1A sweep circuit (witness, conditional, and their classical
+controls), 2000 for the arm-1B main circuits, ~250 for the arm-1B classical
+control (split 8 ways across clock readings), 500 for calibration. Actual
+total: **≈53k shots** (arm 1A ≈36k, arm 1B ≈10k, calibration 7k) — under the
+original estimate, not over it. Gate thresholds that depend on shot count
+(monotonicity slack, sampling-check floor) scale with the actual per-circuit
+shot count via `expected_tvd_shot_noise()`, not a value fixed at design time,
+so this reduction did not require re-deriving the gates by hand — confirmed
+by rerunning Gate 0's own logic against the reduced budget before submission.
+
+**Recommended backend: `ibm_marrakesh`** — it served all of IBM-0's primary
+run and 24 of the 36 archived jobs promptly, whereas `ibm_fez` and
+`ibm_kingston` queued for hours on the free tier the following day.
 
 ## Claim boundary (inherited, unchanged)
 
