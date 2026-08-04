@@ -130,6 +130,32 @@ with the uniform-attenuation fit quality (R² = 0.71 at d=4 vs 0.90 at d=8),
 **d=8 carries this result and d=4 is corroborative at best.** Any future run
 should either raise d=4's shot count substantially or drop it.
 
+**Provenance confirms a specific hardware cause, not just shot noise.**
+Calibration snapshot (`results/hardware/ibm1/ibm1_provenance.json`,
+`last_update_date` 2026-08-04T10:53:52-05:00, ~45 min before submission):
+
+| qubit | readout err | T1 | T2 |
+|---|---|---|---|
+| q2 | 0.0026 | 285.5 μs | 330.8 μs |
+| q6 | 0.0037 | 148.0 μs | 155.7 μs |
+| q0 | 0.0062 | 236.9 μs | 56.7 μs |
+| q3 | 0.0082 | 268.9 μs | 254.7 μs |
+| **q4** | 0.0143 | **79.3 μs** | **28.0 μs** |
+| q5 | 0.0237 | 291.5 μs | 168.7 μs |
+| q1 | 0.0251 | 187.9 μs | 167.6 μs |
+
+`q4` has the worst T1 and worst T2 of all seven qubits used, by a wide margin
+(T1 less than a third of the next-worst; T2 about half). In the d=4 layout
+(`[0,1,2,3,4]`, `n_clock=2`), `q4` is `env[1]` — the qubit receiving the
+`CRY(μ)` coupling and left unmeasured on *every* d=4 arm-1A circuit,
+independent of μ. Its poor coherence time is a real, uncontrolled decoherence
+source sitting exactly where the experiment places its intended synthetic
+channel, compounding with rather than merely adding noise to the μ-sweep.
+This is a more specific explanation for the weak d=4 arm than shot statistics
+alone, and it is actionable: a future run should pick layouts that avoid
+placing environment qubits on the coupling map's worst-T2 sites, which the
+current layout selection (first contiguous chain found) does not screen for.
+
 ---
 
 ## Gate 5 — functional form on hardware
