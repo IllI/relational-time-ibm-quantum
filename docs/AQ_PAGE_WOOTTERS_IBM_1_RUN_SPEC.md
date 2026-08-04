@@ -1,9 +1,24 @@
 # AQ-PAGE-WOOTTERS-IBM-1 Run Spec — Where Relational Time Stops Being Quantum
 
-*Drafted 2026-08-04. Successor to `AQ_PAGE_WOOTTERS_IBM_0_RESULTS_2026-08-03.md`.
-Not yet executed — Gate 0 (Aer dry run with exact statevector predictions) must
-pass before any hardware submission, per the discipline that caught three wrong
-circuits in the sister OAT program.*
+*Drafted 2026-08-04. Successor to `AQ_PAGE_WOOTTERS_IBM_0_RESULTS_2026-08-03.md`.*
+
+> [!IMPORTANT]
+> **Gate 0 passed the same day (16/16 checks) — see
+> `AQ_PAGE_WOOTTERS_IBM_1_GATE0_RESULTS_2026-08-04.md`.** Two revisions came
+> out of it and supersede text below:
+> 1. **H2 is replaced.** The exponential-in-entanglement form
+>    `C(E) = C₀e^{−kE}` fits the exact witness curve poorly (R² ≈ 0.53–0.57).
+>    The witness instead follows a **power law in the clock-record overlap**,
+>    `C ∝ cos(μ/2)^p` with `p ≈ 1` (R² = 1.0000 / 0.9982). Both forms are fit
+>    and compared on hardware; they are strongly distinguishable.
+> 2. **The D-LinOSS analysis is ruled out** for this run (no μ-signal in
+>    conditional trajectories; trivial path recovery; ≥33 μ points needed
+>    before a recurrent model beats its own shuffled controls). The direct
+>    two-form fit with bootstrap CIs is the correct estimator here.
+>
+> Gate 4 — conditional evolution surviving at R² = 0.998 across *every* μ,
+> including where the witness has collapsed — is confirmed exact and
+> noise-robust in simulation.
 
 ## What IBM-0 established, and what it left open
 
