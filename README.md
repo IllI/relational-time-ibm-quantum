@@ -1,17 +1,125 @@
-# Relational Time on Real Substrates: From Telemetry Nulls to a Page–Wootters Coherence Witness on IBM Quantum
+# Measuring the Quantum Signature of Relational Time on Superconducting Hardware
 
-Companion repository for Paper 2: a complete, honestly-reported research
-program (spring–summer 2026) testing whether relational, emergent time — time
-defined by interactions between parts of a system rather than by an external
-parameter — leaves measurable, machine-learnable structure on real substrates.
+**What this is.** An experimental program testing whether *relational time* —
+time defined by correlations between a clock and the rest of a system, rather
+than by an external parameter — leaves a measurable quantum signature that can
+be distinguished from its classical mimic. It runs from a set of disciplined
+nulls on classical substrates to a replicated positive result on IBM Quantum
+Heron processors. All raw counts, pre-registrations, and provenance are
+archived here; every analysis reproduces from counts.
+
+---
+
+## The question
+
+Page and Wootters (1983) proposed that a universe in a globally *static*
+entangled state contains apparent dynamics: partition it into a clock `C` and
+a system `S`, and conditioning `S` on a clock reading yields an evolving
+system state — with no external time parameter anywhere. Moreva *et al.*
+(PRA **89**, 052122 (2014)) illustrated this with entangled photons, and the
+idea has since been extended to quantum reference frames, relativistic clocks,
+and cosmology.
+
+**The standing objection is that the usual demonstration proves nothing
+quantum.** A classically correlated clock–system state,
+`ρ = (1/d) Σ_t |t⟩⟨t| ⊗ |ψ(t)⟩⟨ψ(t)|`, reproduces the conditional evolution
+`⟨Z_S | t⟩` *exactly*. If "time flows relative to the clock" is the whole
+signature, a classical clock delivers it too, and nothing has been shown about
+quantum time.
+
+## Hypothesis
+
+If relational time in the Page–Wootters sense is genuinely quantum, the
+distinguishing structure cannot live in the conditional dynamics. It must live
+in the **coherence of the clock marginal**.
+
+Tracing the system out of the history state
+`|Ψ⟩ = (1/√d) Σ_t |t⟩_C ⊗ U^t|0⟩_S` gives
+
+```
+ρ_C[t,t'] = (1/d) ⟨ψ(t')|ψ(t)⟩ = (1/d) cos((t − t')·π/d)
+```
+
+Those off-diagonals are the overlaps between clock records — the degree to
+which different "moments" are *not* perfectly distinguishable. The classical
+mixture has the identical diagonal and **exactly zero** off-diagonals. So the
+hypothesis is concrete and falsifiable:
+
+1. **The clock marginal carries coherence that no classical clock–system
+   correlation can reproduce**, and it is measurable by reading the clock in
+   its Fourier (energy) basis — the basis conjugate to clock-time, whose
+   eigenstates are the eigenstates of the clock's shift generator. A peaked
+   Fourier distribution reflects the clock–system constraint structure that
+   defines a history state; a classical mixture is exactly uniform there.
+   *(This is why the inverse quantum Fourier transform is not incidental
+   machinery here — it is the measurement that accesses the constraint.)*
+2. **The signature should strengthen with clock dimension `d`**, because
+   adjacent records become *less* orthogonal as `d` grows (`cos(π/d) → 1`),
+   putting more coherence into `ρ_C`.
+3. **It must vanish structurally at `d = 2`**, where the history state is
+   exactly a Bell pair and the clock marginal is maximally mixed — a null
+   predicted by theory, reachable with the same apparatus by changing nothing
+   but the clock size.
+
+## What was tested
+
+A four-arm protocol on IBM Heron r2 processors, pre-registered before
+submission, at clock sizes `d = 2, 4, 8`:
+
+| Arm | Clock prepared | Clock measured in | Tests |
+|---|---|---|---|
+| **A** | superposition | computational | conditional evolution `⟨Z_S\|t⟩ = cos(2πt/d)` |
+| **B** | definite `\|t⟩`, averaged 1/d | computational | *the objection* — must reproduce A exactly |
+| **C** | superposition | inverse-QFT | clock-marginal coherence |
+| **D** | definite `\|t⟩`, averaged 1/d | inverse-QFT | classical baseline — must be uniform |
+
+Arms B and D are real hardware circuits, not classical post-processing: a
+definite clock state averaged over `t` with weight `1/d` realizes the
+classical mixture exactly.
+
+## Conclusion
+
+Stated as narrowly as the evidence supports:
+
+> In a 2–4 qubit engineered history state on superconducting hardware, the
+> conditional-evolution signal usually cited as "time from entanglement" is
+> reproduced by a classical clock control to within shot noise — confirming
+> the objection experimentally. The clock-marginal coherence is **not**
+> reproduced: it separates the coherent history state from its classical
+> mimic by 5–10× on two devices, grows with clock dimension as predicted
+> (measured ≈0.005 → 0.16–0.21 → 0.33–0.42 against exact values 0, 0.177,
+> 0.497), and vanishes at the `d = 2` structural null.
+
+**What this does not show.** It does not show that time in nature is emergent,
+does not test quantum gravity or the Wheeler–DeWitt equation, and does not
+realize a physical Page–Wootters universe. The history state here is
+*engineered*, not found. What it establishes is narrower and prior to any of
+that: the specific quantum structure the Page–Wootters mechanism requires is
+present, measurable, and cleanly separable from its classical imitation on
+current hardware — which is the precondition for any stronger claim, and which
+had not previously been measured on a gate-based processor.
+
+**Where this connects to current work.** Two recent results make quantitative
+predictions this apparatus is positioned to test, and both note the
+small-processor test as an open gap: a December 2025 relational-emergent-time
+framework predicts local coherence decaying as `C(E) = C₀e^{−kE}` with
+clock–system entanglement `E` (arXiv:2512.15789), and a February 2026 extended
+two-qubit Page–Wootters model predicts a monotonic *informational arrow of
+time* — von Neumann entropy of the conditional system state increasing across
+successive clock readings once an inaccessible auxiliary is traced out
+(*Phys. Lett. A*, S0375960126001325). A follow-up run designed against both is
+specified in `docs/AQ_PAGE_WOOTTERS_IBM_1_RUN_SPEC.md`.
+
+---
+
+## The research path
 
 The program produced **three disciplined nulls and one replicated positive
-hardware result**, in that order, and the nulls are load-bearing: each one
-redirected the question onto a better substrate until it became well-posed.
+result**, in that order, and the nulls are load-bearing: each redirected the
+question onto a better substrate until it became well-posed.
 
-**Headline result.** On IBM Quantum Heron processors, a 4-arm protocol
-measured the clock-marginal coherence witness of an engineered Page–Wootters
-history state `|Ψ⟩ = (1/√d) Σ_t |t⟩_C ⊗ U^t|0⟩_S`:
+**Headline result.** On IBM Quantum Heron processors, the 4-arm protocol above
+measured the clock-marginal coherence witness of `|Ψ⟩ = (1/√d) Σ_t |t⟩_C ⊗ U^t|0⟩_S`:
 
 1. Conditional evolution `⟨Z_S|t⟩ = cos(2πt/d)` recovered with R² > 0.99 —
    and **reproduced exactly by a classical-clock control**, demonstrating on
