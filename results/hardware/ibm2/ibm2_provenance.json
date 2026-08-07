@@ -1,0 +1,309 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-0-PROVENANCE",
+  "source_results": "results_ibm2_ibm_marrakesh\\ibm2_results.json",
+  "backend": "ibm_marrakesh",
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "jobs": [
+    {
+      "job_id": "d9r5jt7pemts73cs6dlg",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-07T17:19:33.046312-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-07T22:19:33.046312Z",
+          "finished": "2026-08-07T22:19:49.355948Z",
+          "running": "2026-08-07T22:19:34.338016Z"
+        },
+        "bss": {
+          "seconds": 5
+        },
+        "usage": {
+          "quantum_seconds": 5,
+          "seconds": 5,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 6.0863662099999996
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9r5k1gpdb6s73e4fvug",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-07T17:19:50.263377-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-07T22:19:50.263377Z",
+          "finished": "2026-08-07T22:19:56.133478Z",
+          "running": "2026-08-07T22:19:51.470698Z"
+        },
+        "bss": {
+          "seconds": 3
+        },
+        "usage": {
+          "quantum_seconds": 3,
+          "seconds": 3,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 2.595812532
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9r5k38pdb6s73e4g010",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-07T17:19:57.274701-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-07T22:19:57.274701Z",
+          "finished": "2026-08-07T22:20:05.231969Z",
+          "running": "2026-08-07T22:19:58.185962Z"
+        },
+        "bss": {
+          "seconds": 5
+        },
+        "usage": {
+          "quantum_seconds": 5,
+          "seconds": 5,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 5.998195061
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    },
+    {
+      "job_id": "d9r5k5npemts73cs6du0",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-07T17:20:06.588889-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2*",
+        "timestamps": {
+          "created": "2026-08-07T22:20:06.588889Z",
+          "finished": "2026-08-07T22:20:13.523607Z",
+          "running": "2026-08-07T22:20:07.894077Z"
+        },
+        "bss": {
+          "seconds": 4
+        },
+        "usage": {
+          "quantum_seconds": 4,
+          "seconds": 4,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 3.592988983
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    }
+  ],
+  "calibration": {
+    "backend": "ibm_marrakesh",
+    "qubits_of_interest": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "num_qubits": 156,
+    "processor_type": {
+      "family": "Heron",
+      "revision": "2"
+    },
+    "last_update_date": "2026-08-06T22:19:40-05:00",
+    "qubit_properties": {
+      "0": {
+        "T1": 0.0002620436124583514,
+        "T2": 4.195244103036823e-05,
+        "readout_error": 0.005859375,
+        "prob_meas0_prep1": 0.01171875,
+        "prob_meas1_prep0": 0
+      },
+      "1": {
+        "T1": 0.00019959232505076648,
+        "T2": 0.00014189956107947394,
+        "readout_error": 0.0068359375,
+        "prob_meas0_prep1": 0.01025390625,
+        "prob_meas1_prep0": 0.00341796875
+      },
+      "2": {
+        "T1": 0.00026678881532594766,
+        "T2": 0.0002378081382237399,
+        "readout_error": 0.002197265625,
+        "prob_meas0_prep1": 0.0029296875,
+        "prob_meas1_prep0": 0.00146484375
+      },
+      "3": {
+        "T1": 0.0003322751436234701,
+        "T2": 2.2125066568822566e-05,
+        "readout_error": 0.010009765625,
+        "prob_meas0_prep1": 0.01318359375,
+        "prob_meas1_prep0": 0.0068359375
+      },
+      "4": {
+        "T1": 0.00016220771457202955,
+        "T2": 0.00016410145851262952,
+        "readout_error": 0.006103515625,
+        "prob_meas0_prep1": 0.01123046875,
+        "prob_meas1_prep0": 0.0009765625
+      },
+      "5": {
+        "T1": 0.00018506693414181865,
+        "T2": 0.00014839285078091047,
+        "readout_error": 0.00341796875,
+        "prob_meas0_prep1": 0.00537109375,
+        "prob_meas1_prep0": 0.00146484375
+      },
+      "6": {
+        "T1": 0.00018704451173059684,
+        "T2": 0.00017379836646537068,
+        "readout_error": 0.00244140625,
+        "prob_meas0_prep1": 0.00244140625,
+        "prob_meas1_prep0": 0.00244140625
+      }
+    },
+    "two_qubit_gate_errors": {
+      "cz_5_6": {
+        "gate_error": 0.0030679059551625976,
+        "gate_length": 68
+      },
+      "cz_6_5": {
+        "gate_error": 0.0030679059551625976,
+        "gate_length": 68
+      },
+      "cz_1_2": {
+        "gate_error": 0.0017856753483267152,
+        "gate_length": 68
+      },
+      "cz_2_1": {
+        "gate_error": 0.0017856753483267152,
+        "gate_length": 68
+      },
+      "cz_2_3": {
+        "gate_error": 0.0016403852155710275,
+        "gate_length": 68
+      },
+      "cz_3_2": {
+        "gate_error": 0.0016403852155710275,
+        "gate_length": 68
+      },
+      "cz_3_4": {
+        "gate_error": 0.0023634021425834595,
+        "gate_length": 80
+      },
+      "cz_4_3": {
+        "gate_error": 0.0023634021425834595,
+        "gate_length": 80
+      },
+      "cz_4_5": {
+        "gate_error": 0.0043326665503730655,
+        "gate_length": 68
+      },
+      "cz_5_4": {
+        "gate_error": 0.0043326665503730655,
+        "gate_length": 68
+      },
+      "cz_0_1": {
+        "gate_error": 0.0035951341730614816,
+        "gate_length": 68
+      },
+      "cz_1_0": {
+        "gate_error": 0.0035951341730614816,
+        "gate_length": 68
+      },
+      "rzz_5_6": {
+        "gate_error": 0.004608756571284234,
+        "gate_length": 68
+      },
+      "rzz_6_5": {
+        "gate_error": 0.004608756571284234,
+        "gate_length": 68
+      },
+      "rzz_1_2": {
+        "gate_error": 0.001210269144732018,
+        "gate_length": 68
+      },
+      "rzz_2_1": {
+        "gate_error": 0.001210269144732018,
+        "gate_length": 68
+      },
+      "rzz_2_3": {
+        "gate_error": 0.001150531455609144,
+        "gate_length": 68
+      },
+      "rzz_3_2": {
+        "gate_error": 0.001150531455609144,
+        "gate_length": 68
+      },
+      "rzz_3_4": {
+        "gate_error": 0.004861128506417178,
+        "gate_length": 80
+      },
+      "rzz_4_3": {
+        "gate_error": 0.004861128506417178,
+        "gate_length": 80
+      },
+      "rzz_4_5": {
+        "gate_error": 0.005571729681649512,
+        "gate_length": 68
+      },
+      "rzz_5_4": {
+        "gate_error": 0.005571729681649512,
+        "gate_length": 68
+      },
+      "rzz_0_1": {
+        "gate_error": 0.0021592850823458354,
+        "gate_length": 68
+      },
+      "rzz_1_0": {
+        "gate_error": 0.0021592850823458354,
+        "gate_length": 68
+      }
+    }
+  },
+  "note": "Server-side timestamps are authoritative for chronology. Raw counts in pw_ibm_counts_nclock*.json remain the reproducible record and do not depend on this metadata."
+}
