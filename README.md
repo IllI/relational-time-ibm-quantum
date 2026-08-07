@@ -90,14 +90,32 @@ Stated as narrowly as the evidence supports:
 > (measured ≈0.005 → 0.16–0.21 → 0.33–0.42 against exact values 0, 0.177,
 > 0.497), and vanishes at the `d = 2` structural null.
 
+> [!IMPORTANT]
+> **The clock-marginal witness is necessary but NOT sufficient — measured, not
+> speculated.** An adversarial run (IBM-2, 2026-08-07) prepared a coherent
+> clock–system *product* state `(1/√d)Σ_t|t⟩_C ⊗ |0⟩_S` with **zero**
+> entanglement and found it scores **4.2× (d=4) and 1.9× (d=8) higher** on the
+> local witness than the actual history state. The witness certifies *clock
+> coherence*, not clock–system structure. The statement above — that the
+> classical mixture fails to reproduce it — stands; any reading of it as
+> certifying the Page–Wootters structure specifically does not.
+>
+> The same run measured a joint-readout witness
+> `W_joint = TVD(p(k,z), p(k)p(z))` from the same counts, which separates the
+> history state from **both** adversarial controls (0.300 vs 0.004 and 0.014
+> at d=8; 15× its own noise floor). See
+> `docs/AQ_PAGE_WOOTTERS_IBM_2_RESULTS_2026-08-07.md`.
+
 **What this does not show.** It does not show that time in nature is emergent,
 does not test quantum gravity or the Wheeler–DeWitt equation, and does not
 realize a physical Page–Wootters universe. The history state here is
 *engineered*, not found. What it establishes is narrower and prior to any of
-that: the specific quantum structure the Page–Wootters mechanism requires is
-present, measurable, and cleanly separable from its classical imitation on
-current hardware — which is the precondition for any stronger claim, and which
-had not previously been measured on a gate-based processor.
+that: a quantum structure required by the Page–Wootters mechanism is present,
+measurable, and separable from both a classical clock mixture and a coherent
+non-entangled product state — the latter only once the joint witness is used,
+since the clock-marginal witness alone fails that second test. That is a
+precondition for any stronger claim, and had not previously been measured on a
+gate-based processor.
 
 **Where this connects to current work.** Two recent results make quantitative
 predictions this apparatus is positioned to test, and both note the

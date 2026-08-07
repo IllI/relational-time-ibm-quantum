@@ -1,5 +1,17 @@
 # AQ-PAGE-WOOTTERS-IBM-0 Results - 2026-08-03
 
+> [!IMPORTANT]
+> **Superseded in scope by IBM-2 (2026-08-07): the witness measured here is
+> necessary but not sufficient.** An adversarial coherent clock-system
+> *product* state with zero entanglement scores 4.2x (d=4) / 1.9x (d=8)
+> HIGHER on this local clock-marginal witness than the history state does.
+> Everything measured in this document stands as recorded -- the classical
+> mixture genuinely does not reproduce the witness -- but the witness
+> certifies *clock coherence*, not clock-system structure, and should not be
+> read as certifying the Page-Wootters structure specifically. A joint-readout
+> witness that does separate the history state from both adversarial controls
+> is measured in `AQ_PAGE_WOOTTERS_IBM_2_RESULTS_2026-08-07.md`.
+
 ## Outcome
 
 **All five pre-registered gates passed on `ibm_marrakesh`.** The Page-Wootters

@@ -1,0 +1,65 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-2",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-07T22:19:31.888490Z",
+  "optimization_level": 0,
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "shots_main": 4000,
+  "shots_classical_sub": 1000,
+  "exact_predictions": {
+    "4": {
+      "C_history": {
+        "local": 0.17677669529663692,
+        "joint": 0.30177669529663687
+      },
+      "E_product": {
+        "local": 0.75,
+        "joint": 0.0
+      },
+      "D_classical": {
+        "local": 0.0,
+        "joint": 0.0
+      },
+      "E_local_analytic_(d-1)/d": 0.75
+    },
+    "8": {
+      "C_history": {
+        "local": 0.4966892741721861,
+        "joint": 0.37928347451700284
+      },
+      "E_product": {
+        "local": 0.875,
+        "joint": 0.0
+      },
+      "D_classical": {
+        "local": 0.0,
+        "joint": 4.163336342344337e-17
+      },
+      "E_local_analytic_(d-1)/d": 0.875
+    }
+  },
+  "gates": {
+    "gate1_specificity_failure": "arm E local witness > arm C local witness",
+    "gate2_E_joint_near_zero": "arm E joint witness < 3x its own shot-noise floor",
+    "gate3_F_joint_beats_E": "arm C(=F) joint witness > arm E joint + 3x floor",
+    "gate4_separation_vs_inrun_baseline": "C local - D local > 3x floor, measured against the IN-RUN classical baseline (the IBM-0 Gate 3 correction), not an idealized uniform"
+  }
+}
