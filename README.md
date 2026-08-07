@@ -105,17 +105,38 @@ Stated as narrowly as the evidence supports:
 > history state from **both** adversarial controls (0.300 vs 0.004 and 0.014
 > at d=8; 15× its own noise floor). See
 > `docs/AQ_PAGE_WOOTTERS_IBM_2_RESULTS_2026-08-07.md`.
+>
+> **A second adversarial run (IBM-3, same day) then did the same to the fix:**
+> a *separable* 50/50 mixture of two coherent product states — zero
+> entanglement, but clock coherence plus classical clock–system correlation —
+> scores **0.47/0.45 on `W_joint`, 1.7× the history state's value**, exactly
+> as statevector predicted (0.500 vs 0.302/0.379). A two-line theorem
+> (`docs/AQ_PAGE_WOOTTERS_IBM_3_RESULTS_2026-08-07.md`) generalizes this: any
+> single-product-basis distribution is exactly reproducible by a separable
+> state, so **no observable measured in this program — local witness, joint
+> witness, conditional evolution, the arrow — certifies clock–system
+> entanglement, and none could have.** This despite the history state being
+> *maximally* entangled across clock|system (Schmidt coefficients exactly
+> ½, ½). What the witnesses certify, and certify well, is clock *coherence*
+> (local) and coherence-plus-correlation (joint). The multi-setting fidelity
+> witness that would certify entanglement (`F > λ_max = 0.5`) is specified in
+> the IBM-3 doc as a possible IBM-4, not yet run.
 
 **What this does not show.** It does not show that time in nature is emergent,
-does not test quantum gravity or the Wheeler–DeWitt equation, and does not
-realize a physical Page–Wootters universe. The history state here is
-*engineered*, not found. What it establishes is narrower and prior to any of
-that: a quantum structure required by the Page–Wootters mechanism is present,
-measurable, and separable from both a classical clock mixture and a coherent
-non-entangled product state — the latter only once the joint witness is used,
-since the clock-marginal witness alone fails that second test. That is a
-precondition for any stronger claim, and had not previously been measured on a
-gate-based processor.
+does not test quantum gravity or the Wheeler–DeWitt equation, does not realize
+a physical Page–Wootters universe — and, per IBM-3, does not certify the
+clock–system *entanglement* of the engineered history state by any measured
+observable. What the program establishes is a systematic, hardware-measured
+anatomy of relational-time observables: the conditional-evolution signal and
+the informational arrow are classically reproducible; the clock-coherence
+witness is not, scales with clock dimension, has a structural null, and has a
+measured decoherence threshold past which apparent temporal dynamics survives
+its own quantum signature; and each witness's certification limit was found
+and quantified by this program's own pre-registered adversarial controls —
+the local witness by IBM-2, the joint witness by IBM-3 — rather than left for
+a referee. The one genuinely quantum resource certified throughout is clock
+coherence; whether the clock's quantumness is *relational* remains open on
+hardware pending a multi-setting measurement.
 
 **Where this connects to current work.** Two recent results make quantitative
 predictions this apparatus is positioned to test, and both note the

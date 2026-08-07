@@ -1,0 +1,47 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-3",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-07T22:40:34.669888Z",
+  "optimization_level": 0,
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "shots_per_branch": 4000,
+  "exact_predictions": {
+    "4": {
+      "separable": {
+        "local": 0.5,
+        "joint": 0.5
+      },
+      "history": {
+        "local": 0.17677669529663692,
+        "joint": 0.30177669529663687
+      }
+    },
+    "8": {
+      "separable": {
+        "local": 0.75,
+        "joint": 0.5
+      },
+      "history": {
+        "local": 0.4966892741721861,
+        "joint": 0.37928347451700284
+      }
+    }
+  },
+  "gates": {
+    "gate1_separable_joint_fires": "separable W_joint > 3x its own shot-noise floor -> W_joint is NOT an entanglement witness",
+    "gate2_separable_joint_exceeds_history": "separable W_joint > history W_joint -> same failure mode IBM-2 found for the local witness"
+  }
+}

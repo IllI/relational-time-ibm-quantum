@@ -1,5 +1,16 @@
 # AQ-PAGE-WOOTTERS-IBM-2 — Witness Specificity: A Reported Limitation and Its Fix
 
+> [!IMPORTANT]
+> **The "fix" has its own measured limitation — see IBM-3 (same day).**
+> `W_joint` separates the history state from the two controls measured here,
+> but a *separable* classically-correlated state (a 50/50 mixture of two
+> coherent product states) scores **0.47/0.45 on hardware — 1.7× the history
+> state** — so `W_joint` certifies coherence-plus-correlation, not
+> entanglement. A two-line argument in the IBM-3 doc shows no functional of
+> a single-setting joint distribution could ever certify entanglement. The
+> scope note at the bottom of this document was correct, and IBM-3 measured
+> it. See `AQ_PAGE_WOOTTERS_IBM_3_RESULTS_2026-08-07.md`.
+
 **Executed 2026-08-07 on `ibm_marrakesh`.** 4 jobs, 22 circuits, ~30k shots.
 All 8 pre-registered gates pass. Pre-registration filed before submission:
 `results/hardware/ibm2/ibm2_prereg.json`.
@@ -161,6 +172,10 @@ python pw_ibm_provenance.py --results results_ibm2_ibm_marrakesh/ibm2_results.js
 - **The clock-ambiguity test** (two inequivalent clock decompositions of the
   same global state) remains the other open item on the critique roadmap. It
   needs more circuits and more design work than this run did.
-- **A formal treatment of `W_joint`** — whether it can be promoted from
+- ~~**A formal treatment of `W_joint`** — whether it can be promoted from
   "separates these three states" to a certified correlation witness with a
-  bound on separable states — is theory work, not hardware work.
+  bound on separable states — is theory work, not hardware work.~~
+  **Answered by IBM-3, negatively:** a separable mixture of two coherent
+  product states scores 0.5 exactly (0.47/0.45 measured), exceeding the
+  history state. No single-setting observable can bound separable states —
+  see the diagonal-mimic theorem in `AQ_PAGE_WOOTTERS_IBM_3_RESULTS_2026-08-07.md`.
