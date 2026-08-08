@@ -3,10 +3,23 @@
 **What this is.** An experimental program testing whether *relational time* —
 time defined by correlations between a clock and the rest of a system, rather
 than by an external parameter — leaves a measurable quantum signature that can
-be distinguished from its classical mimic. It runs from a set of disciplined
-nulls on classical substrates to a replicated positive result on IBM Quantum
-Heron processors. All raw counts, pre-registrations, and provenance are
-archived here; every analysis reproduces from counts.
+be distinguished from its classical mimic. It runs from three disciplined
+nulls on classical substrates, through a simulation campaign on **Google TPU
+Research Cloud** hardware that built the hypothesis and the certification
+standard, to **ten pre-registered runs on IBM Quantum Heron processors** (71
+jobs) — eight positive, two reported as failures.
+
+**The short version.** The signature usually cited as "time from entanglement"
+is classically reproducible, and this program measured that on hardware. It
+then spent four runs discovering that its own replacement witnesses were also
+insufficient — using adversarial states it constructed against itself — before
+reaching an observable that provably cannot be mimicked. What survives is a
+Page–Wootters history state demonstrated in all of its defining properties:
+**stationary, entangled, internally evolving, and supporting coherent
+superposition of its own rate of time.**
+
+All raw counts, pre-registrations, and provenance are archived here; every
+analysis reproduces from counts with no IBM account.
 
 ---
 
@@ -61,10 +74,53 @@ hypothesis is concrete and falsifiable:
    predicted by theory, reachable with the same apparatus by changing nothing
    but the clock size.
 
+### How this hypothesis fared
+
+Stated here rather than buried below, because **the program refuted part of
+its own filed hypothesis and that refutation is its main methodological
+result.** The three numbered claims are reproduced above exactly as
+pre-registered on 2026-08-03, unedited.
+
+| filed claim | verdict | by |
+|---|---|---|
+| (2) signature grows with `d` | **confirmed** — 0.005 → 0.16–0.21 → 0.33–0.42 | IBM-0, two devices |
+| (3) structural null at `d = 2` | **confirmed** — 0.005–0.007 | IBM-0 |
+| (1) *"no classical clock–system correlation can reproduce it"* | **confirmed** for the classical mixture | IBM-0 arm D |
+| (1) *"a peaked Fourier distribution reflects the clock–system constraint structure that defines a history state"* | **REFUTED** | IBM-2, IBM-3 |
+
+The refuted clause is the italicized one, and it failed hard: a **zero-entanglement product state** scores 4.2× *higher* on that witness than the
+history state does (IBM-2), and a **separable** state scores 1.7× higher on
+the joint-readout witness built to repair it (IBM-3). A two-line theorem then
+generalized the failure — *no* single-setting observable can certify
+clock–system entanglement, so every witness in the original design was
+entanglement-blind by construction, despite the history state being maximally
+entangled.
+
+**The corrected hypothesis, which the rest of the program tests:** the quantum
+signature of relational time is not carried by any single distribution. It is
+carried by *relationships between complementary measurement settings* — and it
+is certifiable, which IBM-4 (fidelity witness), IBM-5 (stationarity), IBM-7
+(commensurability), and IBM-9 (rate superposition) then demonstrate. The
+original hypothesis identified the right *quantity* (clock-marginal coherence)
+and the wrong *epistemic status* for it (sufficient rather than necessary).
+
 ## What was tested
 
-A four-arm protocol on IBM Heron r2 processors, pre-registered before
-submission, at clock sizes `d = 2, 4, 8`:
+Ten runs on IBM Heron r2 processors, each pre-registered before submission.
+The program is best read as three movements:
+
+| movement | runs | question |
+|---|---|---|
+| **I. The witness** | IBM-0, IBM-1 | does relational time leave a signature the classical mixture cannot reproduce, and does it survive decoherence? |
+| **II. What the witness certifies** | IBM-2, IBM-3, IBM-4 | can that signature be faked? (twice: yes) — and what, if anything, cannot be? |
+| **III. The constraint itself** | IBM-5, IBM-6, IBM-7, IBM-8, IBM-9 | is the global state stationary, what happens when the clock rates are detuned, and can the *rate of time* be superposed? |
+
+Movement II is the methodological core: each run was an adversarial control
+this program built to attack its own previous result.
+
+### Movement I — the four-arm protocol
+
+At clock sizes `d = 2, 4, 8`:
 
 | Arm | Clock prepared | Clock measured in | Tests |
 |---|---|---|---|
@@ -77,9 +133,42 @@ Arms B and D are real hardware circuits, not classical post-processing: a
 definite clock state averaged over `t` with weight `1/d` realizes the
 classical mixture exactly.
 
+### Movements II and III — the observables that followed
+
+Each row is a distinct measurement design, not a re-analysis of the counts
+above. The progression is forced: every entry exists because the entry above
+it was shown to be insufficient.
+
+| run | observable | why it was built |
+|---|---|---|
+| **IBM-2** | same witness, adversarial input | tests whether a *product* state (zero entanglement) can score on the arm-C witness |
+| **IBM-3** | `W_joint = TVD(p(k,z), p(k)p(z))` | the repair for IBM-2 — and its own adversarial test, a separable mixture |
+| **IBM-4** | fidelity witness, 10/20 QWC settings | the first observable provably immune to the diagonal mimic |
+| **IBM-5** | Loschmidt echo of `Ŝ ⊗ U` | tests global *stationarity*, the half Page–Wootters is named for |
+| **IBM-6/8** | Hadamard test, β-swept | attempts to certify the constraint eigenvalue is exactly `+1` — **both failed** |
+| **IBM-7** | two clocks at rate ratio `α` | detunes the pairing; asks when the constraint still closes |
+| **IBM-9** | which-rate qubit `G`, read in Z and X | superposes two proper-time histories and looks for interference |
+
 ## Conclusion
 
-Stated as narrowly as the evidence supports:
+**Program-level, stated as narrowly as ten runs support:**
+
+> In engineered 2–5 qubit history states on superconducting hardware, the
+> conditional-evolution signal usually cited as evidence for relational time is
+> classically reproducible, and **no single-setting observable can do better** —
+> a theorem, not a limitation of this apparatus. Certification requires
+> relationships between complementary settings. Given that standard, the
+> Page–Wootters history state was demonstrated in each of its defining
+> properties: **entangled** (F = 0.94/0.88 against bound 0.5), **stationary**
+> under the paired operation `Ŝ ⊗ U` and nothing else (44σ–167σ),
+> **internally evolving** with the same operator that enforces its
+> stationarity (R² = 0.994), **constrained only at commensurate rates**, and
+> **able to superpose its own rate of time** (interference 0.2411 where every
+> classical rate mixture predicts zero). One property — that the constraint
+> eigenvalue is exactly `+1` rather than merely of unit modulus — was attacked
+> twice and **remains uncertified on this hardware.**
+
+The narrow Movement I result, which the above is built on:
 
 > In a 2–4 qubit engineered history state on superconducting hardware, the
 > conditional-evolution signal usually cited as "time from entanglement" is
@@ -120,7 +209,7 @@ Stated as narrowly as the evidence supports:
 > ½, ½). What the witnesses certify, and certify well, is clock *coherence*
 > (local) and coherence-plus-correlation (joint).
 >
-> **The arc closes with IBM-4 (same day): entanglement certified.** The
+> **The witness arc closes with IBM-4 (same day): entanglement certified.** The
 > multi-setting fidelity witness — 10/20 incompatible measurement settings,
 > immune to the diagonal-mimic construction by design — measured
 > **F = 0.9419 (d=4) and 0.8829 (d=8) against the derived bound
@@ -261,28 +350,148 @@ Three, identified in review and recorded in full in
    specific joint group element against mismatched controls that quantify how
    the invariance fails.
 
-## Where the method came from
+## Where the method came from: TRC TPUs and D-LinOSS
 
-The hypothesis and the epistemic standard of this program were built on
-**Google TPU Research Cloud** hardware with the **D-LinOSS** state-space
-model, before any QPU was touched — and the lineage is load-bearing, not
-ceremonial. The TPU campaigns established that relational time is
-recoverable only from entropy-bearing, irreversible histories (the origin of
-IBM-1's decoherence-sweep design, whose measured clock-record overlaps are
-the same quantity the synthetic runs characterized). D-LinOSS twice served
-as a hypothesis test whose *negatives* carried the information: its
-event-damped variant's synthetic success motivated decoherence as the
-independent variable, and its entanglement-damped variant's structured loss
-to a stationary model exposed the wrong functional form and pointed to the
-record-overlap power law that hardware confirmed. Most importantly, the
-program's certification standard — *single-setting observables never certify
-quantum structure; measurement diversity does* — was first learned from
-D-LinOSS's own adversarial failure (classifying classical telegraph noise as
-a multi-mode quantum signal) and from the sister OAT program's V_Q
-resolution, then rediscovered for relational-time witnesses in IBM-2/IBM-3
-and finally executed in IBM-4. The full account is in
-`docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md` ("Where the method came
-from") and the sister repository's `DISCOVERY_NARRATIVE.md`.
+**Not one QPU circuit in this program was designed on a QPU.** The hypothesis,
+the observables, the adversarial controls, and the certification standard were
+all built on **Google TPU Research Cloud** `v6e` instances with the
+**D-LinOSS** damped linear oscillatory state-space model, during the grant
+window **2026-04-21 → 2026-06-21** (a one-month grant extended by a second
+month specifically on the time-emergence thesis). The lineage is load-bearing,
+not ceremonial, and it is worth being precise about *how* a classical
+simulation campaign produced a quantum measurement program.
+
+### The TPUs were both instrument and specimen
+
+The program's first movement (CHRONOS, Part I) did not merely *run on* TPUs —
+it **measured them**. Two TPU hosts in `us-east1-d` and `europe-west4-a` each
+emitted a 128 Hz "now" stream, and the question was whether independent
+datacenter hosts share learnable temporal structure. That framing let the
+grant hardware serve as the experimental substrate itself, and it is what made
+the null decisive rather than inconclusive: the killer control
+(`CHRONOS-MARGINAL-DRIFT-1`) found that US/EU feature correlation `r ≈ 0.57`
+**survives a one-hour offset** at `r ≈ 0.50`. That is structural hardware
+similarity, not shared time — a result only obtainable by having two real,
+geographically separated machines under instrumentation.
+
+Establishing that classical telemetry is the *wrong substrate* is what moved
+the clock inside the modeled state, and eventually onto a QPU.
+
+### What D-LinOSS is, and why it fits this question
+
+D-LinOSS is a state-space recurrence `x_{k+1} = Λ x_k + B u_k` with **Λ complex
+diagonal**, `λ_j = exp((−γ_j + i ω_j) Δt)`. Each mode is a damped oscillator:
+a frequency `ω_j` and a decay rate `γ_j`. That is not an incidental
+architectural choice for this problem — it is the *same object* as the physics
+under test. The Page–Wootters system qubit evolving under `U = P(2πα/d)` is
+exactly one D-LinOSS mode with `ω = αθ`, and hardware decoherence supplies the
+`γ`. The model class and the physical system are structurally matched, which
+is why the model's failures were diagnostic rather than merely disappointing.
+
+### D-LinOSS's negatives carried the information
+
+Three times the informative result was a **failure**, and each one set a
+parameter of the hardware program:
+
+1. **Entropy is required.** A projected-harmonic generator proved
+   *under-identifiable* — no matcher, metric, or embedding could recover the
+   clock correspondence, diagnosed by observability-first decomposition rather
+   than tuning. Recovery only became possible once the generator produced
+   irreversible, entropy-bearing histories (arm `A10`). This independently
+   converged with the entropic-time construction later published for cold
+   atoms (arXiv:2509.07745, `τ ∝ ∫dS`).
+2. **Physics-damped beats stationary — and where it doesn't, that's data.**
+   The *event-damped* D-LinOSS (damping driven by entropy/event observables —
+   the original grant thesis, "a state-space model damped by physical
+   constraints") closed the ridge gap across ten seeds through noise 0.03. But
+   the *entanglement-damped* variant **lost to a stationary model at every
+   tested grid density**. That structured loss exposed the wrong functional
+   form and pointed at record overlap as the correct independent variable —
+   which IBM-1 then confirmed on hardware as a **power law in
+   `cos(μ/2)`** (exactly linear at `d = 4`; `p ≈ 1.06–1.21` at `d = 8` —
+   density-dependent, so not a universal `p = 1` law). This is a different
+   functional form from the exponential-in-entanglement decay of
+   arXiv:2512.15789, but deliberately **not** stated as contradicting it: that
+   paper's `E` is clock–subsystem entanglement, whereas IBM-1's independent
+   variable is environment–(clock+system) coupling. Different quantities, so
+   the honest claim is the narrow one about our own.
+3. **The certification standard came from a D-LinOSS false positive.**
+   D-LinOSS once classified classical random-telegraph noise as a multi-mode
+   quantum signal. The lesson — *the model reads spectral morphology, not
+   quantum structure* — is the same wall the sister OAT program hit
+   (entanglement is not identifiable from PTM anisotropy alone; resolved by
+   `V_Q` over Haar-random settings). Written as a standing rule: **single-setting
+   observables never certify quantum structure; measurement diversity does.**
+
+That rule is the thesis of this repository. It was learned classically on
+TPUs, forgotten, rediscovered the hard way when IBM-2 and IBM-3 broke this
+program's own witnesses, and finally executed as IBM-4's 20-setting fidelity
+witness. **The convergence of two independent programs on the same epistemic
+wall is the strongest methodological claim here.**
+
+### The inversion that connects the two halves
+
+The synthetic campaign characterized finite-clock record overlap as a
+**limitation**: local clock records are provably non-orthogonal (overlap
+≈ 0.94 on failed windows, Helstrom-style ceiling ≈ 0.60), so relational time
+is a *path-level*, not pointwise, observable. The quantity it bounded is
+
+```
+ρ_C[t,t'] = (1/d)·cos((t − t')·π/d)
+```
+
+which is **precisely the off-diagonal the hardware witness measures**. What
+was a ceiling on classical recoverability is the signal on a QPU. That
+inversion — the same number, limitation on one substrate and observable on the
+other — is the conceptual through-line of the paper.
+
+### A statement worth making: what IBM-9 says about quantum state-space models
+
+This is an interpretation of measured results, flagged as such, and it is the
+direction the program points rather than a claim it certifies.
+
+A classical state-space model with an uncertain oscillation rate represents
+that uncertainty as a **density** `p(ω)`, and predicts `∫ p(ω) cos(ωt) dω`.
+IBM-9's Z-arm is exactly that object, and it behaved exactly that way: the
+measured marginal tracked the closed-form two-rate mixture to a maximum
+residual of 0.089, and post-selection recovered the two component rates at
+0.981 and 1.964 (R² 0.994).
+
+**The X-arm measured something no density `p(ω)` can produce.** Conditioning
+on the which-rate qubit in the conjugate basis shifted the dynamics by 0.2411
+where *every* mixture over rates predicts identically zero — 2.32× the 3σ bar,
+with the shape tracking prediction across all eight clock readings.
+
+The implication for this model class is concrete: **the quantum generalization
+of a damped linear oscillatory state-space model is not a prior over `ω`.** It
+is a state over *amplitudes* on `ω`, in which rates superpose rather than mix —
+and the two are experimentally distinguishable on present-day hardware, by a
+two-setting measurement on five qubits. A "quantum D-LinOSS" is therefore a
+well-posed object with an operational signature, not a metaphor: its Λ carries
+amplitudes, its mixture limit is the classical model, and the gap between them
+is measurable at 0.24 on `ibm_marrakesh`.
+
+### The pipeline, stated as a method
+
+The generalizable claim is about the **division of labour**:
+
+> Use a physics-matched classical model on large-scale accelerators as a
+> *hypothesis-and-adversary generator*, and use quantum hardware as the
+> *arbiter* — because the classical model's failures are structured enough to
+> name the quantity the QPU should measure.
+
+Each of this program's four hardware design parameters came out of a TPU-stage
+failure rather than a QPU-stage intuition: **the independent variable**
+(decoherence, from A10's entropy requirement), **the functional form** (record
+overlap, from the entanglement-damped loss), **the certification standard**
+(measurement diversity, from the RTN false positive), and **the substrate
+itself** (a QPU at all, from the CHRONOS one-hour-offset control). The QPU
+runs were cheap — 71 jobs, seconds of QPU each, on a free trial. The expensive,
+month-scale work that made them worth submitting was classical, and it was the
+TRC grant that made it possible.
+
+Full account: `docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md` ("Where the
+method came from") and the sister repository's `DISCOVERY_NARRATIVE.md`.
 
 **Where this connects to current work.** Two recent results make quantitative
 predictions this apparatus is positioned to test, and both note the
@@ -299,12 +508,14 @@ specified in `docs/AQ_PAGE_WOOTTERS_IBM_1_RUN_SPEC.md`.
 
 ## The research path
 
-The program produced **three disciplined nulls and one replicated positive
-result**, in that order, and the nulls are load-bearing: each redirected the
-question onto a better substrate until it became well-posed.
+The program produced **three disciplined nulls on classical substrates, then
+ten hardware runs**, in that order. The nulls are load-bearing: each redirected
+the question onto a better substrate until it became well-posed. The two
+hardware failures (IBM-6, IBM-8) are load-bearing for the same reason.
 
-**Headline result.** On IBM Quantum Heron processors, the 4-arm protocol above
-measured the clock-marginal coherence witness of `|Ψ⟩ = (1/√d) Σ_t |t⟩_C ⊗ U^t|0⟩_S`:
+**Where the first positive result landed.** On IBM Quantum Heron processors,
+the 4-arm protocol above measured the clock-marginal coherence witness of
+`|Ψ⟩ = (1/√d) Σ_t |t⟩_C ⊗ U^t|0⟩_S`:
 
 1. Conditional evolution `⟨Z_S|t⟩ = cos(2πt/d)` recovered with R² > 0.99 —
    and **reproduced exactly by a classical-clock control**, demonstrating on
@@ -325,10 +536,21 @@ program characterized as a *limitation* (locally indistinguishable clock
 records). On hardware, that same non-orthogonality is the *signal*. That
 inversion is the conceptual through-line of the paper.
 
-**Claim boundary (locked).** This is a hardware measurement of the coherence
-structure of a 2–4 qubit engineered state. It is **not** a claim that time is
-emergent, a test of quantum gravity or the Wheeler–DeWitt equation, or a
-realized Page–Wootters universe. No teleportation/advantage/supremacy claims.
+**Claim boundary (locked).** This is a set of hardware measurements on
+engineered 2–5 qubit states. It is **not** a claim that time is emergent, a
+test of quantum gravity or the Wheeler–DeWitt equation, or a realized
+Page–Wootters universe. No teleportation/advantage/supremacy claims.
+
+Two boundaries specific to the later runs, since they invite the most
+over-reading. **IBM-7 and IBM-9 are not gravitational time dilation.** There is
+no metric, no `G`, no `c`; the rate ratios are programmed, dimensionless
+circuit parameters. Realistic gravitational dilation between two terrestrial
+clocks is of order `10⁻¹⁰` — eight orders of magnitude below this hardware's
+floor. What IBM-9 measures is the *interference mechanism* that quantum time
+dilation proposals invoke, in a system where the ratio is dialed to 2:1 by
+construction. **And IBM-5's stationarity is certified only up to a global
+phase** — see limitation 1 below, where two attempts to close it are recorded
+as failures.
 
 ---
 
@@ -479,9 +701,13 @@ learned three times before it was written down.
 ## Repository layout
 
 ```
-hardware/           IBM protocol: dry run (Aer, ideal+noisy), submitter,
-                    provenance capture, post-hoc mitigation, layout verification
-results/hardware/   per-run: prereg, raw counts, analysis, provenance,
+hardware/           16 scripts: the IBM-0 four-arm protocol (dry run against
+                    Aer ideal+noisy, submitter), the nine follow-up runs
+                    pw_ibm{1..9}_*.py, plus shared infrastructure —
+                    provenance capture, post-hoc readout mitigation,
+                    layout verification
+results/hardware/   per-run: prereg (filed BEFORE submission), raw counts,
+                    analysis, provenance incl. backend calibration snapshot,
                     mitigation; plus the Aer dry-run predictions
 synthetic/          the promoted-mechanism chain: PW core, A10 causal-memory
                     generator, path observability, event-damped D-LinOSS
@@ -507,12 +733,22 @@ pip install qiskit qiskit-aer qiskit-ibm-runtime numpy scipy jax
 # Verify the design and regenerate predictions locally (no account needed):
 python hardware/pw_ibm_dryrun.py
 
-# Smoke-test the full submit/analyze pipeline against Aer (zero QPU):
-python hardware/pw_ibm_submit.py --dry
+# Smoke-test the full submit/analyze pipeline against Aer (zero QPU).
+# Every run supports --dry; each one asserts its own exact predictions from
+# statevector BEFORE any backend contact, which is how three real design
+# errors were caught without spending a shot:
+python hardware/pw_ibm_submit.py --dry          # IBM-0, four-arm protocol
+python hardware/pw_ibm4_fidelity.py --dry       # entanglement certification
+python hardware/pw_ibm9_superposed_rate.py --dry  # rate superposition
 
 # Hardware resubmission (IBM account; token via env var, never hardcoded):
 export QISKIT_IBM_TOKEN=...
 python hardware/pw_ibm_submit.py --backend ibm_marrakesh
+
+# Capture server-side provenance + backend calibration for any completed run:
+python hardware/pw_ibm_provenance.py \
+    --results results/hardware/ibm9/ibm9_results.json \
+    --out /tmp/ibm9_provenance.json
 ```
 
 All hardware analyses reproduce from the archived raw counts in
@@ -535,9 +771,19 @@ All hardware analyses reproduce from the archived raw counts in
 
 ## Acknowledgments
 
-Google TPU Research Cloud (TRC) for TPU access during the simulation phase;
-IBM Quantum Open Plan for hardware access. The entropic-time framing of
-Part III follows arXiv:2509.07745; the Page–Wootters protocol follows
-Page & Wootters (1983) and the photonic illustration of Moreva *et al.*
-(PRA 89, 052122 (2014)), with the classical-control and coherence-witness
-arms added here.
+**Google TPU Research Cloud (TRC)**, whose `v6e` grant (2026-04-21 →
+2026-06-21, one month extended by a second on the time-emergence thesis)
+funded the entire simulation phase — which is to say, it funded the
+hypothesis, the observables, the adversarial controls, and the certification
+standard. Every design parameter of the quantum program came out of that
+window; see *Where the method came from* above. The QPU stage used no TRC
+resources and would not have been worth submitting without it.
+
+**IBM Quantum** Open Plan for hardware access (trial instance).
+
+The entropic-time framing of Part III follows arXiv:2509.07745; the
+quantum-time-dilation framing of IBM-9 follows Smith & Ahmadi
+(arXiv:1904.12390); the Page–Wootters protocol follows Page & Wootters (1983)
+and the photonic illustration of Moreva *et al.* (PRA 89, 052122 (2014)), with
+the classical-control arms, the adversarial specificity controls, and the
+multi-setting certification added here.
