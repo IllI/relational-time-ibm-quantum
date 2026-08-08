@@ -1,0 +1,59 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-7",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-08T16:33:05.159109Z",
+  "optimization_level": 0,
+  "shots": 4000,
+  "n_clock_A": 2,
+  "alphas": [
+    0.5,
+    0.75,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "exact_predictions": {
+    "0.5": {
+      "matched": 0.5624999999999996,
+      "alpha1": 0.48927669529663637,
+      "wrong": 0.3124999999999998,
+      "commensurate": false
+    },
+    "0.75": {
+      "matched": 0.7812499999999992,
+      "alpha1": 0.8005402537373678,
+      "wrong": 0.05269660940672621,
+      "commensurate": false
+    },
+    "1.0": {
+      "matched": 0.9999999999999991,
+      "alpha1": 0.9999999999999991,
+      "wrong": 1.4950558849080197e-33,
+      "commensurate": true
+    },
+    "1.5": {
+      "matched": 0.5624999999999996,
+      "alpha1": 0.48927669529663637,
+      "wrong": 0.31249999999999967,
+      "commensurate": false
+    },
+    "2.0": {
+      "matched": 0.9999999999999991,
+      "alpha1": 0.49999999999999944,
+      "wrong": 0.9999999999999991,
+      "commensurate": true
+    }
+  },
+  "layout": [
+    0,
+    1,
+    2
+  ],
+  "scope": "alpha is a dimensionless programmable RATE RATIO. No gravity, no metric, no physical constants are simulated. Realistic gravitational dilation (alpha-1 ~ 4.5e-10 at GPS orbit) is eight orders of magnitude below this hardware's noise floor; only the MECHANISM is demonstrated.",
+  "gates": {
+    "gate1_alpha_recovered": "fitted alpha within 0.15 of programmed, R^2 > 0.90",
+    "gate2_matched_echo_highest": "matched echo exceeds both mismatched pairings",
+    "gate3_commensurability": "matched echo is high at INTEGER alpha (constraint closes) and clearly lower at non-integer alpha (no exact joint cyclic symmetry exists) -- closure is a resonance in the rate ratio"
+  }
+}

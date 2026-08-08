@@ -1,0 +1,166 @@
+{
+  "backend": "ibm_marrakesh",
+  "exact_predictions": {
+    "0.5": {
+      "matched": 0.5624999999999996,
+      "alpha1": 0.48927669529663637,
+      "wrong": 0.3124999999999998,
+      "commensurate": false
+    },
+    "0.75": {
+      "matched": 0.7812499999999992,
+      "alpha1": 0.8005402537373678,
+      "wrong": 0.05269660940672621,
+      "commensurate": false
+    },
+    "1.0": {
+      "matched": 0.9999999999999991,
+      "alpha1": 0.9999999999999991,
+      "wrong": 1.4950558849080197e-33,
+      "commensurate": true
+    },
+    "1.5": {
+      "matched": 0.5624999999999996,
+      "alpha1": 0.48927669529663637,
+      "wrong": 0.31249999999999967,
+      "commensurate": false
+    },
+    "2.0": {
+      "matched": 0.9999999999999991,
+      "alpha1": 0.49999999999999944,
+      "wrong": 0.9999999999999991,
+      "commensurate": true
+    }
+  },
+  "arms": {
+    "0.5": {
+      "conditional_x": {
+        "0": 0.9372623574144486,
+        "1": 0.6998904709748083,
+        "2": -0.0803921568627451,
+        "3": -0.6374384236453202
+      },
+      "alpha_fit": 0.5063912782556511,
+      "alpha_r2": 0.9950732455624555,
+      "echo": {
+        "matched": 0.51125,
+        "alpha1": 0.42675,
+        "wrong": 0.31725
+      },
+      "echo_normalised": {
+        "matched": 0.5801418439716312,
+        "alpha1": 0.4842553191489362,
+        "wrong": 0.36
+      }
+    },
+    "0.75": {
+      "conditional_x": {
+        "0": 0.9366852886405959,
+        "1": 0.42073170731707316,
+        "2": -0.6796875,
+        "3": -0.8888888888888888
+      },
+      "alpha_fit": 0.7416083216643329,
+      "alpha_r2": 0.9987913867557644,
+      "echo": {
+        "matched": 0.64925,
+        "alpha1": 0.7415,
+        "wrong": 0.072
+      },
+      "echo_normalised": {
+        "matched": 0.7367375886524823,
+        "alpha1": 0.8414184397163121,
+        "wrong": 0.08170212765957446
+      }
+    },
+    "1.0": {
+      "conditional_x": {
+        "0": 0.8958517210944396,
+        "1": 0.031423290203327174,
+        "2": -0.9218241042345277,
+        "3": -0.020833333333333332
+      },
+      "alpha_fit": 0.9935987197439488,
+      "alpha_r2": 0.9994666677112485,
+      "echo": {
+        "matched": 0.88125,
+        "alpha1": 0.8785,
+        "wrong": 0.0345
+      },
+      "echo_normalised": {
+        "matched": 1.0,
+        "alpha1": 0.9968794326241135,
+        "wrong": 0.03914893617021277
+      }
+    },
+    "1.5": {
+      "conditional_x": {
+        "0": 0.9241706161137441,
+        "1": -0.6380182002022244,
+        "2": 0.004024144869215292,
+        "3": 0.7006237006237006
+      },
+      "alpha_fit": 1.49250850170034,
+      "alpha_r2": 0.999168144922586,
+      "echo": {
+        "matched": 0.51525,
+        "alpha1": 0.45775,
+        "wrong": 0.31775
+      },
+      "echo_normalised": {
+        "matched": 0.5846808510638298,
+        "alpha1": 0.5194326241134751,
+        "wrong": 0.3605673758865248
+      }
+    },
+    "2.0": {
+      "conditional_x": {
+        "0": 0.8962075848303394,
+        "1": -0.9378134403209629,
+        "2": 0.8978805394990366,
+        "3": -0.9252336448598131
+      },
+      "alpha_fit": 2.0,
+      "alpha_r2": 0.999620377307402,
+      "echo": {
+        "matched": 0.864,
+        "alpha1": 0.43075,
+        "wrong": 0.86575
+      },
+      "echo_normalised": {
+        "matched": 0.9804255319148937,
+        "alpha1": 0.4887943262411348,
+        "wrong": 0.9824113475177305
+      }
+    }
+  },
+  "echo_attenuation_reference": 0.88125,
+  "gates": {
+    "gate1_alpha_recovered_a0.5": true,
+    "gate2_matched_echo_highest_a0.5": true,
+    "gate3_closure_matches_theory_a0.5": true,
+    "gate1_alpha_recovered_a0.75": true,
+    "gate2_matched_echo_highest_a0.75": false,
+    "gate3_closure_matches_theory_a0.75": true,
+    "gate1_alpha_recovered_a1.0": true,
+    "gate2_matched_echo_highest_a1.0": true,
+    "gate3_closure_matches_theory_a1.0": true,
+    "gate1_alpha_recovered_a1.5": true,
+    "gate2_matched_echo_highest_a1.5": true,
+    "gate3_closure_matches_theory_a1.5": true,
+    "gate1_alpha_recovered_a2.0": true,
+    "gate2_matched_echo_highest_a2.0": true,
+    "gate3_closure_matches_theory_a2.0": true
+  },
+  "all_gates_pass": false,
+  "job_ids": [
+    "d9rlkgftfhrs73drqvsg"
+  ],
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2
+    ]
+  }
+}

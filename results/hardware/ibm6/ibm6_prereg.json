@@ -1,0 +1,69 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-6",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-08T16:18:14.194588Z",
+  "optimization_level": 0,
+  "shots": 4000,
+  "exact_amplitudes": {
+    "4": {
+      "joint": {
+        "re": 0.9999999999999996,
+        "im": -3.061616997868381e-17,
+        "abs2": 0.9999999999999991,
+        "phase": -3.0616169978683824e-17
+      },
+      "clock_only": {
+        "re": 0.4999999999999998,
+        "im": -0.4999999999999998,
+        "abs2": 0.4999999999999996,
+        "phase": -0.7853981633974483
+      },
+      "system_only": {
+        "re": 0.49999999999999983,
+        "im": 0.4999999999999998,
+        "abs2": 0.4999999999999996,
+        "phase": 0.7853981633974483
+      },
+      "wrong_way": {
+        "re": 0.0,
+        "im": -3.061616997868381e-17,
+        "abs2": 9.3734986416366e-34,
+        "phase": -1.5707963267948966
+      }
+    },
+    "8": {
+      "joint": {
+        "re": 0.9999999999999994,
+        "im": 2.1454457722911798e-18,
+        "abs2": 0.9999999999999989,
+        "phase": 2.145445772291181e-18
+      },
+      "clock_only": {
+        "re": 0.8535533905932732,
+        "im": -0.35355339059327356,
+        "abs2": 0.8535533905932727,
+        "phase": -0.3926990816987242
+      },
+      "system_only": {
+        "re": 0.8535533905932733,
+        "im": 0.3535533905932736,
+        "abs2": 0.853553390593273,
+        "phase": 0.3926990816987242
+      },
+      "wrong_way": {
+        "re": 0.49999999999999967,
+        "im": -0.4999999999999998,
+        "abs2": 0.49999999999999944,
+        "phase": -0.7853981633974484
+      }
+    }
+  },
+  "purpose": "Close IBM-5's phase-blindness limitation: certify the joint eigenvalue is +1, not merely that |Psi> is an eigenvector.",
+  "gates": {
+    "gate1_joint_real_positive": "Re<Psi|A|Psi> for the joint arm is the largest of the four arms and clearly positive",
+    "gate2_joint_imag_zero": "|Im| for the joint arm is within 3 sigma of 0 -> eigenvalue is REAL",
+    "gate3_phase_near_zero": "|phase| of the joint arm < 0.15 rad after attenuation -> eigenvalue is +1, not e^{i phi}",
+    "gate4_conjugate_pair_split": "clock_only and system_only carry opposite-sign imaginary parts, separating two arms the echo assigns IDENTICAL modulus -- the directional information the echo discards"
+  }
+}

@@ -144,9 +144,18 @@ d. But that is an analytic fact about the target state, **not** something this
 run's hardware measured. The measured claim is "stationary up to a global
 phase."
 
-*Closable:* a Hadamard test (one ancilla, controlled-`Ŝ⊗U`) returns
-`Re⟨Ψ|A|Ψ⟩` and `Im⟨Ψ|A|Ψ⟩` separately and would upgrade the claim from
-eigenvector to eigenvalue-exactly-+1. Not run.
+*Attempted and NOT closed.* A Hadamard test (IBM-6, same day) measured
+`Re` and `Im` separately and **failed to certify the eigenvalue**. Its arms
+were not depth-matched — the joint arm carries 29 two-qubit gates at d=8
+against 8 for `system_only`, because a controlled clock-shift needs a
+3-controlled X — so cross-arm comparison is confounded by circuit depth, and
+at d=8 the shallow control arm measured *higher* than the joint arm. The
+measured imaginary part was ~6σ from the zero theory requires, most likely
+coherent error in the controlled-MCX cascade, which is exactly the systematic
+that cannot be told apart from a genuine eigenvalue phase with this data.
+**This limitation therefore stands, unclosed.** See
+`AQ_PAGE_WOOTTERS_IBM_6_7_RESULTS_2026-08-08.md`; any future attempt must
+depth-match the arms.
 
 ### 2. The clock/system bipartition is chosen, not derived
 
