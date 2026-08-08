@@ -1,0 +1,116 @@
+cff-version: 1.2.0
+title: >-
+  Measuring the Quantum Signature of Relational Time on
+  Superconducting Hardware
+message: >-
+  If you use this software, data, or the experimental protocols
+  in this repository, please cite it as below.
+type: software
+authors:
+  - family-names: "O'Néill"
+    given-names: "Caoimhín"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # add before release
+repository-code: "https://github.com/IllI/relational-time-ibm-quantum"
+abstract: >-
+  An experimental program testing whether relational time -- time defined by
+  correlations between a clock and the rest of a system rather than by an
+  external parameter -- leaves a measurable quantum signature distinguishable
+  from its classical mimic. Four pre-registered runs on IBM Quantum Heron
+  processors establish, in order: that the conditional-evolution signal
+  usually cited as "time from entanglement" is reproduced by a classical
+  clock control; that the clock-marginal coherence witness is not, and has a
+  measured decoherence threshold past which apparent temporal dynamics
+  survives its own quantum signature; that this witness is nonetheless
+  necessary but not sufficient, since a zero-entanglement coherent product
+  state scores higher on it; that no functional of a single measurement
+  setting can certify clock-system entanglement (demonstrated adversarially,
+  then proved); and finally that a multi-setting fidelity witness does
+  certify it (F = 0.94/0.88 against a derived bound of 0.5), with both
+  adversarial states correctly rejected. Includes the preceding
+  cross-datacenter TPU telemetry nulls and the synthetic Page-Wootters /
+  D-LinOSS simulation campaign from which the hypothesis and the
+  measurement-diversity certification standard originate. All raw counts,
+  pre-registrations, and server-side provenance are archived; every analysis
+  reproduces from counts.
+keywords:
+  - quantum information
+  - Page-Wootters mechanism
+  - relational time
+  - emergent time
+  - quantum reference frames
+  - entanglement witness
+  - decoherence
+  - IBM Quantum
+  - superconducting qubits
+  - pre-registration
+  - state-space models
+  - D-LinOSS
+license: MIT
+version: 1.0.0
+date-released: "2026-08-07"
+references:
+  - type: article
+    authors:
+      - family-names: Page
+        given-names: "Don N."
+      - family-names: Wootters
+        given-names: "William K."
+    title: >-
+      Evolution without evolution: Dynamics described by stationary
+      observables
+    journal: "Physical Review D"
+    volume: 27
+    issue: 12
+    start: 2885
+    year: 1983
+    doi: "10.1103/PhysRevD.27.2885"
+  - type: article
+    authors:
+      - family-names: Moreva
+        given-names: Ekaterina
+      - family-names: Brida
+        given-names: Giorgio
+      - family-names: Gramegna
+        given-names: Marco
+      - family-names: Giovannetti
+        given-names: Vittorio
+      - family-names: Maccone
+        given-names: Lorenzo
+      - family-names: Genovese
+        given-names: Marco
+    title: "Time from quantum entanglement: An experimental illustration"
+    journal: "Physical Review A"
+    volume: 89
+    issue: 5
+    start: 052122
+    year: 2014
+    doi: "10.1103/PhysRevA.89.052122"
+  - type: article
+    authors:
+      - family-names: Bourennane
+        given-names: Mohamed
+      - family-names: Eibl
+        given-names: Manfred
+      - family-names: Kurtsiefer
+        given-names: Christian
+      - family-names: Gaertner
+        given-names: Sascha
+      - family-names: Weinfurter
+        given-names: Harald
+      - family-names: Gühne
+        given-names: Otfried
+      - family-names: Hyllus
+        given-names: Philipp
+      - family-names: Bruß
+        given-names: Dagmar
+      - family-names: Lewenstein
+        given-names: Maciej
+      - family-names: Sanpera
+        given-names: Anna
+    title: "Experimental detection of multipartite entanglement using witness operators"
+    journal: "Physical Review Letters"
+    volume: 92
+    issue: 8
+    start: 087902
+    year: 2004
+    doi: "10.1103/PhysRevLett.92.087902"

@@ -1,0 +1,64 @@
+{
+  "title": "Measuring the Quantum Signature of Relational Time on Superconducting Hardware",
+  "upload_type": "software",
+  "description": "<p>An experimental program testing whether <em>relational time</em> &mdash; time defined by correlations between a clock and the rest of a system rather than by an external parameter &mdash; leaves a measurable quantum signature distinguishable from its classical mimic.</p><p>Four pre-registered runs on IBM Quantum Heron processors (<code>ibm_marrakesh</code>, <code>ibm_fez</code>) establish, in order:</p><ul><li><strong>IBM-0</strong>: the conditional-evolution signal usually cited as &ldquo;time from entanglement&rdquo; is reproduced by a classical clock control to within shot noise; the clock-marginal coherence witness is not, scales with clock dimension, and vanishes at a structural null. Replicated across two devices.</li><li><strong>IBM-1</strong>: the witness has a measured decoherence threshold, following a power law in the clock-record overlap; conditional evolution survives at R&sup2; &ge; 0.94 at every coupling strength, including where the witness has collapsed &mdash; apparent temporal dynamics outliving its own quantum signature.</li><li><strong>IBM-2</strong>: that witness is necessary but <em>not sufficient</em> &mdash; a coherent clock&ndash;system product state with zero entanglement scores 1.9&ndash;4.2&times; higher on it.</li><li><strong>IBM-3</strong>: the joint-readout replacement fails the same way (a separable mixture scores 1.7&times; higher), and a two-line theorem shows <em>no</em> functional of a single measurement setting can certify clock&ndash;system entanglement.</li><li><strong>IBM-4</strong>: a multi-setting fidelity witness does certify it &mdash; F = 0.9419 (d=4) and 0.8829 (d=8) against a derived bound of &lambda;<sub>max</sub> = 0.5 &mdash; with both adversarial states correctly rejected by the same measurement.</li></ul><p>Also archived: the preceding cross-datacenter TPU telemetry experiments (disciplined nulls, with the raw 128 Hz streams), the synthetic Page&ndash;Wootters / D-LinOSS simulation campaign from which the hypothesis and the measurement-diversity certification standard originate, and a Bose&ndash;Einstein-condensate entropic-time bridge that failed its pre-registered gate.</p><p>Every limitation was found by this program's own pre-registered adversarial controls. All raw shot counts, pre-registrations, and server-side provenance (job IDs, calibration snapshots) are archived; every analysis reproduces from counts without IBM access.</p><p><strong>Claim boundary:</strong> nothing here claims that time in nature is emergent, tests quantum gravity or the Wheeler&ndash;DeWitt equation, or realizes a physical Page&ndash;Wootters universe. The history state is engineered; the clock is 2&ndash;3 qubits.</p><p>Simulation phase supported by Google TPU Research Cloud; hardware phase by the IBM Quantum Open Plan.</p>",
+  "creators": [
+    {
+      "name": "O'Néill, Caoimhín"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "version": "1.0.0",
+  "language": "eng",
+  "keywords": [
+    "quantum information",
+    "Page-Wootters mechanism",
+    "relational time",
+    "emergent time",
+    "quantum reference frames",
+    "entanglement witness",
+    "fidelity witness",
+    "decoherence",
+    "IBM Quantum",
+    "superconducting qubits",
+    "pre-registration",
+    "reproducibility",
+    "state-space models",
+    "D-LinOSS",
+    "TPU"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/IllI/relational-time-ibm-quantum",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/IllI/twisted-spin-ptm",
+      "relation": "isRelatedTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.1103/PhysRevD.27.2885",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1103/PhysRevA.89.052122",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1103/PhysRevLett.92.087902",
+      "relation": "cites",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    }
+  ],
+  "notes": "Simulation phase (synthetic Page-Wootters / D-LinOSS campaign and CHRONOS telemetry collection) supported by Google TPU Research Cloud, grant window 2026-04-21 to 2026-06-21, extended one month on the time-emergence thesis. Hardware phase used the IBM Quantum Open Plan and no TRC resources. The views expressed are those of the author and do not reflect the official policy or position of IBM, the IBM Quantum team, or Google."
+}

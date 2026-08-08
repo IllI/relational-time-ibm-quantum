@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pw_ibm*_checkpoints/
+.run4_checkpoints/
+*.env
