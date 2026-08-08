@@ -1,0 +1,100 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-8",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-08T16:45:58.347120Z",
+  "optimization_level": 0,
+  "shots": 4000,
+  "betas": [
+    -1.0,
+    -0.5,
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "exact_amplitudes": {
+    "4": {
+      "-1.0": {
+        "re": 0.0,
+        "im": -3.061616997868381e-17,
+        "phase": -1.5707963267948966
+      },
+      "-0.5": {
+        "re": 0.1464466094067262,
+        "im": -0.3535533905932736,
+        "phase": -1.1780972450961724
+      },
+      "0.0": {
+        "re": 0.4999999999999998,
+        "im": -0.4999999999999998,
+        "phase": -0.7853981633974483
+      },
+      "0.5": {
+        "re": 0.8535533905932733,
+        "im": -0.3535533905932736,
+        "phase": -0.3926990816987242
+      },
+      "1.0": {
+        "re": 0.9999999999999996,
+        "im": -3.061616997868381e-17,
+        "phase": -3.0616169978683824e-17
+      },
+      "1.5": {
+        "re": 0.8535533905932733,
+        "im": 0.3535533905932735,
+        "phase": 0.3926990816987241
+      },
+      "2.0": {
+        "re": 0.49999999999999983,
+        "im": 0.4999999999999998,
+        "phase": 0.7853981633974483
+      }
+    },
+    "8": {
+      "-1.0": {
+        "re": 0.49999999999999967,
+        "im": -0.4999999999999998,
+        "phase": -0.7853981633974484
+      },
+      "-0.5": {
+        "re": 0.6913417161825445,
+        "im": -0.4619397662556431,
+        "phase": -0.5890486225480862
+      },
+      "0.0": {
+        "re": 0.8535533905932732,
+        "im": -0.35355339059327356,
+        "phase": -0.3926990816987242
+      },
+      "0.5": {
+        "re": 0.9619397662556428,
+        "im": -0.19134171618254475,
+        "phase": -0.19634954084936204
+      },
+      "1.0": {
+        "re": 0.9999999999999994,
+        "im": 2.1454457722911798e-18,
+        "phase": 2.145445772291181e-18
+      },
+      "1.5": {
+        "re": 0.9619397662556428,
+        "im": 0.19134171618254475,
+        "phase": 0.19634954084936204
+      },
+      "2.0": {
+        "re": 0.8535533905932733,
+        "im": 0.3535533905932735,
+        "phase": 0.3926990816987241
+      }
+    }
+  },
+  "purpose": "Fix IBM-6's depth-confounded comparison by sweeping one angle through one identical circuit, and separate a genuine eigenvalue phase from a coherent-error offset by fitting Im(beta).",
+  "gates": {
+    "gate1_peak_at_beta1": "Re(beta) is maximal at beta = 1",
+    "gate2_shape_matches": "normalised Re(beta) tracks (1+cos((beta-1)theta))/2 within 0.10 across the sweep",
+    "gate3_offset_small": "the beta-independent offset c in the Im fit is within 3 sigma of 0 -> no coherent-error phase, eigenvalue REAL",
+    "gate4_im_zero_at_beta1": "Im(beta=1), after subtracting the fitted offset c, is within 3 sigma of 0"
+  }
+}

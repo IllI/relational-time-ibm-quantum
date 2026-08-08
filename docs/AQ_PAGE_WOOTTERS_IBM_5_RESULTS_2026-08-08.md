@@ -153,7 +153,7 @@ at d=8 the shallow control arm measured *higher* than the joint arm. The
 measured imaginary part was ~6σ from the zero theory requires, most likely
 coherent error in the controlled-MCX cascade, which is exactly the systematic
 that cannot be told apart from a genuine eigenvalue phase with this data.
-**This limitation therefore stands, unclosed.** See
+**Attempted TWICE and unclosed.** A second, depth-matched attempt (IBM-8) swept a single angle through a single circuit, provably eliminating the depth confound -- and still failed: d=8 is structurally distorted (non-monotone, peak at the wrong beta, Im-fit R^2 0.74) and d=4 is borderline (shape off by 0.127, coherent offset -0.048). The offset-fitting that lets d=4 pass its final gate rests on a modelling assumption that can absorb the very phase it seeks. **The limitation is published as unclosed and further attempts on this hardware are not recommended.** See `AQ_PAGE_WOOTTERS_IBM_8_RESULTS_2026-08-08.md` and
 `AQ_PAGE_WOOTTERS_IBM_6_7_RESULTS_2026-08-08.md`; any future attempt must
 depth-match the arms.
 
