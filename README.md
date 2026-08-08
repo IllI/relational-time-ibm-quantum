@@ -130,6 +130,29 @@ Stated as narrowly as the evidence supports:
 > values). Necessary → insufficient → insufficient → sufficient, measured:
 > `docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md`.
 
+> [!NOTE]
+> **Both halves of the mechanism are now measured (IBM-5).** Everything above
+> concerns the *conditional* half — dynamics appear when you condition on a
+> clock reading. The half Page–Wootters is named for, that the global state is
+> **stationary**, went untested until IBM-5. A Loschmidt echo shows the state
+> is invariant under the joint operation `(Ŝ ⊗ U)|Ψ⟩ = |Ψ⟩` (return
+> probability 0.903 at d=4) but **not** under either factor alone (0.461
+> clock-only, 0.499 system-only) nor under the mismatched pairing `Ŝ ⊗ U⁻¹`
+> (0.024) — separations of 44σ–167σ. Only the correctly *paired* operation
+> preserves the state, and that pairing is the constraint. The same `U` that
+> compensates the clock shift generates the conditional sequence
+> `⟨X_S|t⟩ = cos(2πt/d)` (R² = 0.994), routed through one shared source
+> function so the identity is structural rather than numerical.
+>
+> Designing that run surfaced a property of the state used in IBM-0…IBM-4: its
+> generator `Ry(2π/d)` satisfies `U^d = −I`, so **that** state is cyclically
+> stationary only up to a sign on the wraparound term — a history state in the
+> conditional sense but not exactly stationary. IBM-5 uses `P(2π/d)` with
+> `U^d = +I` exactly. One gate failed as written at d=8 (the test's contrast
+> degrades as the clock gets finer) and is reported as failed, with the
+> corrected statistic separate:
+> `docs/AQ_PAGE_WOOTTERS_IBM_5_RESULTS_2026-08-08.md`.
+
 **What this does not show.** It does not show that time in nature is emergent,
 does not test quantum gravity or the Wheeler–DeWitt equation, does not realize
 a physical Page–Wootters universe — and, per IBM-3, does not certify the
@@ -144,9 +167,16 @@ and quantified by this program's own pre-registered adversarial controls —
 the local witness by IBM-2, the joint witness by IBM-3 — rather than left for
 a referee. The clock's quantumness is certified throughout as *coherence*;
 its quantumness as *relational* — genuine clock–system entanglement — is
-certified by IBM-4's multi-setting fidelity witness, the one observable in
+certified by IBM-4's multi-setting fidelity witness — the one observable in
 the program that provably cannot be mimicked by a separable state, tested
-against the exact adversarial states that broke its predecessors.
+against the exact adversarial states that broke its predecessors. IBM-5 then
+closes the mechanism by measuring its other half: the global state is
+stationary under the joint clock-shift-plus-evolution and under nothing else,
+with the operator that makes it stationary being the same one that generates
+its conditional dynamics. What the program delivers is therefore both a
+hardware-measured anatomy of what relational-time observables certify, and a
+Page–Wootters history state demonstrated in both of its defining
+properties — stationary, entangled, and internally evolving.
 
 ## Where the method came from
 
