@@ -178,6 +178,32 @@ hardware-measured anatomy of what relational-time observables certify, and a
 Page–Wootters history state demonstrated in both of its defining
 properties — stationary, entangled, and internally evolving.
 
+### Known limitations, stated plainly
+
+Three, identified in review and recorded in full in
+`docs/AQ_PAGE_WOOTTERS_IBM_5_RESULTS_2026-08-08.md`:
+
+1. **Stationarity is certified only up to a global phase.** The Loschmidt
+   echo measures `|⟨Ψ|A|Ψ⟩|²`, so it establishes that `|Ψ⟩` is an
+   *eigenvector* of `Ŝ ⊗ U`, not that the eigenvalue is +1. This is not
+   cosmetic: the Wheeler–DeWitt constraint is `Ĥ|Ψ⟩ = 0` specifically, and a
+   nonzero phase would mean an eigenstate carrying nonzero "energy" — not the
+   constraint. The prepared state's eigenvalue *is* exactly +1 by statevector
+   (phase ≈ 10⁻¹⁷), but the hardware did not measure it. A Hadamard test
+   would close this and has not been run.
+2. **The clock/system split is chosen, not derived.** Nothing in the state
+   designates which qubits are the clock; the bipartition was imposed in the
+   circuit design. Every run here demonstrates the mechanism *given* a frame
+   we selected, not that a preferred frame emerges. (Note the labels are
+   arguably inverted from physical practice — our "clock" is an index, our
+   "system" is the oscillator.)
+3. **Global stationarity was measured before this work.**
+   [Moreva *et al.* (2014)](https://doi.org/10.1103/PhysRevA.89.052122)
+   demonstrated external-observer stasis photonically. No priority is claimed
+   here; the contribution is methodological — testing invariance under a
+   specific joint group element against mismatched controls that quantify how
+   the invariance fails.
+
 ## Where the method came from
 
 The hypothesis and the epistemic standard of this program were built on

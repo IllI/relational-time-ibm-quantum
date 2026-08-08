@@ -119,6 +119,79 @@ demonstrates this — it separates by 41.7σ even at d=8.
   entangled global state whose conditional slices evolve under the operator
   that makes it stationary.
 
+## Known limitations (added 2026-08-08 after review)
+
+Three limitations were identified after the run and are recorded here rather
+than left for a referee. None invalidates a measured number; all three narrow
+what the numbers mean.
+
+### 1. The echo is phase-blind, and the phase is not cosmetic
+
+The Loschmidt echo measures `|⟨Ψ|A|Ψ⟩|²`. That certifies **|Ψ⟩ is an
+eigenvector** of `Ŝ ⊗ U` — it does **not** certify that the eigenvalue is
++1. A state with `(Ŝ⊗U)|Ψ⟩ = e^{iφ}|Ψ⟩`, φ ≠ 0, returns 1.0 on this test.
+
+This matters for the constraint interpretation specifically. The
+Wheeler–DeWitt constraint is `Ĥ|Ψ⟩ = 0` — *zero* eigenvalue, not an arbitrary
+one. In generator language, a nonzero φ means `Ĵ|Ψ⟩ = (φ/Δτ)|Ψ⟩ ≠ 0`: an
+eigenstate of the joint evolution carrying nonzero "energy," which is
+**not** the constraint. Relational dynamics would still work, but the strict
+WDW analogue would fail.
+
+For the state actually prepared here the eigenvalue **is** exactly +1 —
+verified by statevector, `⟨Ψ|(Ŝ⊗U)|Ψ⟩ = 1.000000 + 0j`, phase ≈ 10⁻¹⁷ at both
+d. But that is an analytic fact about the target state, **not** something this
+run's hardware measured. The measured claim is "stationary up to a global
+phase."
+
+*Closable:* a Hadamard test (one ancilla, controlled-`Ŝ⊗U`) returns
+`Re⟨Ψ|A|Ψ⟩` and `Im⟨Ψ|A|Ψ⟩` separately and would upgrade the claim from
+eigenvector to eigenvalue-exactly-+1. Not run.
+
+### 2. The clock/system bipartition is chosen, not derived
+
+Nothing in the prepared state designates which qubits are "the clock." The
+split was imposed in the circuit design and dynamics were then measured
+relative to it. **Every run in this program — IBM-0 through IBM-5 —
+demonstrates the Page–Wootters mechanism *given* a bipartition we selected,
+not that a preferred bipartition emerges from the structure.**
+
+The labelling is also arguably inverted relative to physical practice: our
+"clock" register is an *index* over moments, while the single-qubit "system"
+is the thing that *oscillates* (`⟨X_S|t⟩ = cos(2πt/d)`). In an atomic clock
+the oscillator is the clock. There is a dimensional asymmetry that partly
+justifies the choice — the Schmidt rank is 2, capped by the qubit system, so
+inverting the roles would give a 2-state clock able to resolve only two
+moments — but that is a consequence of the register sizes chosen, not a
+derivation.
+
+Testing this properly (the "clock ambiguity" problem) requires a state
+admitting two inequivalent clock/system decompositions. Note that a
+deliberately *symmetric* two-register state would beg the question: real
+clock–system pairs are asymmetric precisely because a good clock has many
+stable states and the timed system does not, so engineering the symmetry and
+then observing it would be circular.
+
+### 3. Prior art: stationarity has been measured before
+
+[Moreva *et al.* (2014)](https://doi.org/10.1103/PhysRevA.89.052122)
+demonstrated the Page–Wootters mechanism photonically and **explicitly
+measured the external-observer stasis** — conditioning on a clock photon
+yields dynamics while the global state remains static and pure. **This run is
+therefore not the first experimental test of global stationarity, and no
+priority claim should be made.**
+
+What is different here is methodological: stationarity is tested as
+invariance under a specific joint group element `Ŝ ⊗ U`, against three
+mismatched controls (clock-only, system-only, and the reversed pairing) that
+quantify *how* the invariance fails when the pairing is broken, on a
+gate-based processor with pre-registered gates. That is a contribution to
+method, not a first observation.
+
+Related work on defining time observables in this setting:
+[Favalli & Smerzi (2020)](https://quantum-journal.org/wp-content/uploads/2020/10/q-2020-10-29-354.pdf),
+[*Measuring time in a timeless universe* (2024)](https://arxiv.org/abs/2406.14642).
+
 ## What it does not establish
 
 Invariance under a discrete joint shift on 3–4 qubits is a **finite-dimensional
