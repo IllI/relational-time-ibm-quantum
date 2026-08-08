@@ -118,9 +118,17 @@ Stated as narrowly as the evidence supports:
 > entanglement, and none could have.** This despite the history state being
 > *maximally* entangled across clock|system (Schmidt coefficients exactly
 > ½, ½). What the witnesses certify, and certify well, is clock *coherence*
-> (local) and coherence-plus-correlation (joint). The multi-setting fidelity
-> witness that would certify entanglement (`F > λ_max = 0.5`) is specified in
-> the IBM-3 doc as a possible IBM-4, not yet run.
+> (local) and coherence-plus-correlation (joint).
+>
+> **The arc closes with IBM-4 (same day): entanglement certified.** The
+> multi-setting fidelity witness — 10/20 incompatible measurement settings,
+> immune to the diagonal-mimic construction by design — measured
+> **F = 0.9419 (d=4) and 0.8829 (d=8) against the derived bound
+> λ_max = 0.5**, certifying clock–system entanglement with margins of
+> +0.44/+0.38, while the two adversarial states that defeated the earlier
+> witnesses were correctly rejected (F = 0.02–0.06, near their exact
+> values). Necessary → insufficient → insufficient → sufficient, measured:
+> `docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md`.
 
 **What this does not show.** It does not show that time in nature is emergent,
 does not test quantum gravity or the Wheeler–DeWitt equation, does not realize
@@ -134,9 +142,34 @@ measured decoherence threshold past which apparent temporal dynamics survives
 its own quantum signature; and each witness's certification limit was found
 and quantified by this program's own pre-registered adversarial controls —
 the local witness by IBM-2, the joint witness by IBM-3 — rather than left for
-a referee. The one genuinely quantum resource certified throughout is clock
-coherence; whether the clock's quantumness is *relational* remains open on
-hardware pending a multi-setting measurement.
+a referee. The clock's quantumness is certified throughout as *coherence*;
+its quantumness as *relational* — genuine clock–system entanglement — is
+certified by IBM-4's multi-setting fidelity witness, the one observable in
+the program that provably cannot be mimicked by a separable state, tested
+against the exact adversarial states that broke its predecessors.
+
+## Where the method came from
+
+The hypothesis and the epistemic standard of this program were built on
+**Google TPU Research Cloud** hardware with the **D-LinOSS** state-space
+model, before any QPU was touched — and the lineage is load-bearing, not
+ceremonial. The TPU campaigns established that relational time is
+recoverable only from entropy-bearing, irreversible histories (the origin of
+IBM-1's decoherence-sweep design, whose measured clock-record overlaps are
+the same quantity the synthetic runs characterized). D-LinOSS twice served
+as a hypothesis test whose *negatives* carried the information: its
+event-damped variant's synthetic success motivated decoherence as the
+independent variable, and its entanglement-damped variant's structured loss
+to a stationary model exposed the wrong functional form and pointed to the
+record-overlap power law that hardware confirmed. Most importantly, the
+program's certification standard — *single-setting observables never certify
+quantum structure; measurement diversity does* — was first learned from
+D-LinOSS's own adversarial failure (classifying classical telegraph noise as
+a multi-mode quantum signal) and from the sister OAT program's V_Q
+resolution, then rediscovered for relational-time witnesses in IBM-2/IBM-3
+and finally executed in IBM-4. The full account is in
+`docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md` ("Where the method came
+from") and the sister repository's `DISCOVERY_NARRATIVE.md`.
 
 **Where this connects to current work.** Two recent results make quantitative
 predictions this apparatus is positioned to test, and both note the

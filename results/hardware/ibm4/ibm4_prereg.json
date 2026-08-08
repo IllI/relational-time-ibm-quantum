@@ -1,0 +1,82 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-4",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-07T22:54:07.003941Z",
+  "optimization_level": 0,
+  "shots": 2000,
+  "lambda_max": 0.5,
+  "plan": {
+    "4": {
+      "n_qubits": 3,
+      "schmidt": [
+        0.4999999999999999,
+        0.4999999999999998
+      ],
+      "lambda_max": 0.4999999999999999,
+      "n_pauli_terms": 18,
+      "n_settings": 10,
+      "settings": [
+        "XXX",
+        "YYY",
+        "XZX",
+        "ZXX",
+        "ZZX",
+        "XXZ",
+        "XZZ",
+        "YYX",
+        "ZXZ",
+        "ZZZ"
+      ]
+    },
+    "8": {
+      "n_qubits": 4,
+      "schmidt": [
+        0.4999999999999998,
+        0.4999999999999996
+      ],
+      "lambda_max": 0.4999999999999998,
+      "n_pauli_terms": 54,
+      "n_settings": 20,
+      "settings": [
+        "XXXX",
+        "YYYY",
+        "XZXX",
+        "ZXXX",
+        "ZZXX",
+        "XXZZ",
+        "XZZZ",
+        "YYXX",
+        "ZXZZ",
+        "ZZZZ",
+        "YYXY",
+        "YYYX",
+        "XXXZ",
+        "XXZX",
+        "XZXZ",
+        "XZZX",
+        "ZXXZ",
+        "ZXZX",
+        "ZZXZ",
+        "ZZZX"
+      ]
+    }
+  },
+  "exact_fidelities": {
+    "4": {
+      "history": 1.0,
+      "separable": 0.06249999999999996,
+      "product": 0.06249999999999996
+    },
+    "8": {
+      "history": 1.0,
+      "separable": 0.03216031380536922,
+      "product": 0.015624999999999993
+    }
+  },
+  "gates": {
+    "gate1_history_certified": "F(history) > lambda_max = 0.5 -> entanglement CERTIFIED",
+    "gate2_separable_not_certified": "F(separable) < 0.5 (control must fail)",
+    "gate3_product_not_certified": "F(product) < 0.5 (control must fail)"
+  }
+}

@@ -132,7 +132,12 @@ F(ρ, |Ψ⟩) = ⟨Ψ|ρ|Ψ⟩ > λ_max = 0.5   ⟹   ρ is entangled across clo
 suggest a prepared history state would clear 0.5 with margin. That is a
 concrete, standard, pre-registrable IBM-4 — the *sufficient* condition the
 program has so far lacked — at an estimated cost comparable to IBM-2/IBM-3
-combined. It is specified as an option, not run.
+combined.
+
+**Update, same day: IBM-4 was run and the certification succeeded** —
+F = 0.9419 (d=4) / 0.8829 (d=8) against the bound 0.5, with this document's
+separable state and IBM-2's product state both correctly rejected
+(F = 0.02–0.06). See `AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md`.
 
 ## Claim boundary
 

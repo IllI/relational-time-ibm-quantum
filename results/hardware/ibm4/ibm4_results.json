@@ -1,0 +1,119 @@
+{
+  "backend": "ibm_marrakesh",
+  "plan": {
+    "4": {
+      "n_qubits": 3,
+      "schmidt": [
+        0.4999999999999999,
+        0.4999999999999998
+      ],
+      "lambda_max": 0.4999999999999999,
+      "n_pauli_terms": 18,
+      "n_settings": 10,
+      "settings": [
+        "XXX",
+        "YYY",
+        "XZX",
+        "ZXX",
+        "ZZX",
+        "XXZ",
+        "XZZ",
+        "YYX",
+        "ZXZ",
+        "ZZZ"
+      ]
+    },
+    "8": {
+      "n_qubits": 4,
+      "schmidt": [
+        0.4999999999999998,
+        0.4999999999999996
+      ],
+      "lambda_max": 0.4999999999999998,
+      "n_pauli_terms": 54,
+      "n_settings": 20,
+      "settings": [
+        "XXXX",
+        "YYYY",
+        "XZXX",
+        "ZXXX",
+        "ZZXX",
+        "XXZZ",
+        "XZZZ",
+        "YYXX",
+        "ZXZZ",
+        "ZZZZ",
+        "YYXY",
+        "YYYX",
+        "XXXZ",
+        "XXZX",
+        "XZXZ",
+        "XZZX",
+        "ZXXZ",
+        "ZXZX",
+        "ZZXZ",
+        "ZZZX"
+      ]
+    }
+  },
+  "exact_fidelities": {
+    "4": {
+      "history": 1.0,
+      "separable": 0.06249999999999996,
+      "product": 0.06249999999999996
+    },
+    "8": {
+      "history": 1.0,
+      "separable": 0.03216031380536922,
+      "product": 0.015624999999999993
+    }
+  },
+  "arms": {
+    "4": {
+      "F_history": 0.9419057037589897,
+      "F_separable": 0.05980469426993573,
+      "F_product": 0.04814416036400301,
+      "lambda_max": 0.5,
+      "margin_history": 0.44190570375898974
+    },
+    "8": {
+      "F_history": 0.8828935980617149,
+      "F_separable": 0.034770383767481594,
+      "F_product": 0.02066309768477029,
+      "lambda_max": 0.5,
+      "margin_history": 0.38289359806171486
+    }
+  },
+  "gates": {
+    "gate1_history_certified_d4": true,
+    "gate2_separable_not_certified_d4": true,
+    "gate3_product_not_certified_d4": true,
+    "gate1_history_certified_d8": true,
+    "gate2_separable_not_certified_d8": true,
+    "gate3_product_not_certified_d8": true
+  },
+  "all_gates_pass": true,
+  "job_ids": [
+    "d9r6441dsedc73ag8730",
+    "d9r6477tfhrs73dr8c6g",
+    "d9r64a7tfhrs73dr8cb0",
+    "d9r64cvpemts73cs6v90",
+    "d9r64fopdb6s73e4ghl0",
+    "d9r64lhdsedc73ag87ng",
+    "d9r64tvpemts73cs6vt0",
+    "d9r6537pemts73cs702g"
+  ],
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3
+    ]
+  }
+}
