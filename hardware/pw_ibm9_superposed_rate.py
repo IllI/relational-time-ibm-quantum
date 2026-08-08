@@ -260,7 +260,10 @@ def main() -> None:
     gates = {"gate1_zmarg_is_mixture": gate1,
              "gate2_branches_recover_rates": gate2,
              "gate3_interference_present": gate3}
+    # "layouts" is the key pw_ibm_provenance.py reads; "layout" kept for the
+    # already-published 2026-08-08 artifact's shape.
     results = {"backend": backend.name, "layout": layout,
+               "layouts": {str(2**N_CLOCK): list(layout)},
                "exact": {k: {kk: {str(t): v for t, v in vv.items()} for kk, vv in val.items()}
                          for k, val in ex.items()},
                "measured": {k: {str(t): v for t, v in val.items()} for k, val in meas.items()},

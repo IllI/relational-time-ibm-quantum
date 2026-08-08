@@ -153,10 +153,24 @@ def main() -> None:
     results = json.loads(args.results.read_text(encoding="utf-8"))
     job_ids = results.get("job_ids", [])
     backend_name = results.get("backend")
-    layouts = results.get("layouts", {})
+    # Runs record their physical qubits as either {"layouts": {label: chain}}
+    # (IBM-0/1/5/8, one chain per clock size) or a flat {"layout": chain}
+    # (IBM-9, a single circuit family). Accept both -- reading only "layouts"
+    # silently captured an EMPTY calibration snapshot for IBM-9, the same
+    # failure mode that hit ibm1_results.json.
+    layouts = results.get("layouts")
+    if not layouts:
+        flat = results.get("layout")
+        layouts = {"all": list(flat)} if flat else {}
     qubits = sorted({q for chain in layouts.values() for q in chain})
     if not job_ids:
         raise SystemExit(f"no job_ids found in {args.results}")
+    if not qubits:
+        raise SystemExit(
+            f"no physical qubits found in {args.results} (looked for 'layouts' and "
+            "'layout'). Refusing to write provenance with an empty calibration "
+            "snapshot -- fix the results writer, then re-run."
+        )
 
     from qiskit_ibm_runtime import QiskitRuntimeService
 

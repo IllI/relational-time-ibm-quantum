@@ -153,6 +153,40 @@ Stated as narrowly as the evidence supports:
 > corrected statistic separate:
 > `docs/AQ_PAGE_WOOTTERS_IBM_5_RESULTS_2026-08-08.md`.
 
+> [!NOTE]
+> **The constraint is dilated, and rate superposition interferes (IBM-7,
+> IBM-9).** Having established that the *paired* operation `Ŝ ⊗ U` is what
+> preserves the state, IBM-7 asks what happens when the pairing is detuned —
+> when the system runs at rate `α` against the clock's unit rate. The answer
+> is a **commensurability resonance**: the constraint closes only at integer
+> `α`, and the measured conditional frequency tracks the programmed rate over
+> `α ∈ [0.5, 3]`. One pre-registered gate failed and the failure was
+> informative — the matched pairing is *not* maximal at `α = 0.75`, exactly as
+> theory says it should not be, so the gate encoded a false assumption and the
+> data corrected it. Nyquist aliasing (`α` and `d − α` are indistinguishable
+> with `d` clock samples) is a hard resolution limit, not an artifact:
+> `docs/AQ_PAGE_WOOTTERS_IBM_7_RESULTS_2026-08-08.md`.
+>
+> **IBM-9 (2026-08-08) then puts the clock into a superposition of rates** —
+> the discrete analogue of Smith & Ahmadi quantum time dilation
+> ([arXiv:1904.12390](https://arxiv.org/abs/1904.12390)). A which-rate qubit
+> `G` in `|+⟩` selects between `α₁ = 1` and `α₂ = 2`, so the system evolves
+> along two proper-time histories at once. Read `G` in **Z** and the result is
+> an ordinary classical mixture: the marginal tracks the closed-form
+> `[cos(α₁θt) + cos(α₂θt)]/2` (max residual 0.089) and post-selection recovers
+> the two branch rates at **0.981 and 1.964**, both R² 0.994. Read `G` in
+> **X** and conditioning on `G = +` shifts the dynamics by **0.2411** where
+> any mixture predicts exactly zero — **2.32× the 3σ bar**, retaining 91.6% of
+> the exact 0.2632, with the sign pattern and relative magnitudes tracking
+> prediction across all eight clock readings (shape correlation 0.85). **A
+> decohered which-rate qubit is excluded by the data**: were `G` classically
+> mixed, an X measurement would return 50/50 independent of everything and the
+> `G = +` conditional would equal the marginal identically. It does not. Being
+> a *two-setting* claim, this escapes IBM-3's single-setting mimic by the same
+> structural route as IBM-4's fidelity witness. All 3 gates pass — the only
+> run in the program to **exceed** its own pre-run feasibility estimate:
+> `docs/AQ_PAGE_WOOTTERS_IBM_9_RESULTS_2026-08-08.md`.
+
 **What this does not show.** It does not show that time in nature is emergent,
 does not test quantum gravity or the Wheeler–DeWitt equation, does not realize
 a physical Page–Wootters universe — and, per IBM-3, does not certify the
@@ -173,10 +207,16 @@ against the exact adversarial states that broke its predecessors. IBM-5 then
 closes the mechanism by measuring its other half: the global state is
 stationary under the joint clock-shift-plus-evolution and under nothing else,
 with the operator that makes it stationary being the same one that generates
-its conditional dynamics. What the program delivers is therefore both a
-hardware-measured anatomy of what relational-time observables certify, and a
-Page–Wootters history state demonstrated in both of its defining
-properties — stationary, entangled, and internally evolving.
+its conditional dynamics. IBM-7 then detunes that pairing and finds the
+constraint closes only at commensurate rates, and IBM-9 puts the rate itself
+into superposition and measures the interference between two proper-time
+histories — a signature no classical mixture of rates can produce. What the
+program delivers is therefore both a hardware-measured anatomy of what
+relational-time observables certify, and a Page–Wootters history state
+demonstrated in all of its defining properties — stationary, entangled,
+internally evolving, and supporting coherent superposition of its own rate of
+time. Two of the program's ten runs are reported as failures (IBM-6, IBM-8),
+both attacking the same limitation, which is published unclosed.
 
 ### Known limitations, stated plainly
 
@@ -189,8 +229,25 @@ Three, identified in review and recorded in full in
    cosmetic: the Wheeler–DeWitt constraint is `Ĥ|Ψ⟩ = 0` specifically, and a
    nonzero phase would mean an eigenstate carrying nonzero "energy" — not the
    constraint. The prepared state's eigenvalue *is* exactly +1 by statevector
-   (phase ≈ 10⁻¹⁷), but the hardware did not measure it. A Hadamard test
-   would close this and has not been run.
+   (phase ≈ 10⁻¹⁷), but the hardware did not measure it.
+
+   **This limitation was attacked twice and remains open.** IBM-6
+   (2026-08-08) ran the Hadamard test and failed: its four arms had wildly
+   different two-qubit cost (29 CX for the joint arm vs 8 for the control at
+   d=8), so the shallow control outscored the joint arm and the comparison was
+   confounded by depth rather than physics. IBM-8 fixed that properly — one
+   angle swept through one *identical* circuit, with the dry run **asserting**
+   equal transpiled cost at every β — and **still failed** (d=8: 0/4 gates,
+   43% of signal gone and the curve non-monotone; d=4: 2/4, borderline). That
+   is the useful part: IBM-6 had *two* causes and depth asymmetry was the
+   lesser one. The dominant cause is that the **controlled clock-shift is too
+   expensive for the signal to survive**, which depth-matching cannot address.
+   A further trap surfaced: fitting a β-independent offset to separate
+   coherent error from a genuine phase can absorb exactly the quantity being
+   measured, so even the one gate that passed does not license claiming the
+   eigenvalue is real. **Two pre-registered attempts, both reported as
+   failures, and the recommendation is to stop rather than tune a third until
+   it passes**: `docs/AQ_PAGE_WOOTTERS_IBM_8_RESULTS_2026-08-08.md`.
 2. **The clock/system split is chosen, not derived.** Nothing in the state
    designates which qubits are the clock; the bipartition was imposed in the
    circuit design. Every run here demonstrates the mechanism *given* a frame
@@ -393,6 +450,30 @@ analysis reproduces from counts with no IBM dependency.
    reproducibility of conditional evolution — the four findings that
    constitute the result.
 
+### Part V — AQ-PAGE-WOOTTERS-IBM-1…9: the adversarial and mechanism runs (2026-08-07/08)
+
+Each run has a pre-registration filed before submission and a results document
+carrying its own honest ledger. Nine runs, 35 jobs, all on `ibm_marrakesh`.
+
+| run | question | outcome |
+|---|---|---|
+| **IBM-1** | does the witness survive decoherence? | decoherence threshold measured; witness degrades before conditional evolution does |
+| **IBM-2** | can a zero-entanglement product state fake the local witness? | **yes** — scores 4.2×/1.9× *higher*. Local witness certifies coherence, not structure |
+| **IBM-3** | can a separable state fake the joint witness? | **yes** — 1.7× higher; two-line theorem shows *no* single-setting observable can certify entanglement |
+| **IBM-4** | can anything certify it? | **yes** — multi-setting fidelity witness, F = 0.9419/0.8829 vs λ_max = 0.5 |
+| **IBM-5** | is the global state stationary? | yes under `Ŝ ⊗ U` and nothing else, 44σ–167σ (1 gate failed at d=8, reported) |
+| **IBM-6** | is the eigenvalue exactly +1? | **FAILED** — arms not depth-matched; comparison confounded |
+| **IBM-7** | what if the rates are detuned? | commensurability resonance; constraint closes only at integer α (1 gate failed — the gate was wrong, the data was right) |
+| **IBM-8** | retry IBM-6, depth-matched | **FAILED** — d=8: 0/4, d=4: 2/4. Limitation published unclosed; recommendation is to stop |
+| **IBM-9** | superpose the *rate* of time | **3/3** — interference 0.2411 vs 3σ bar 0.1039; classical rate mixture excluded |
+
+The sequence IBM-2 → IBM-3 → IBM-4 is the methodological core: each
+adversarial run broke the previous run's witness with a state the program
+constructed against itself, until IBM-4 reached an observable that provably
+cannot be mimicked. The standing rule extracted from it — *derive what class
+of states can mimic a witness before designing the run around it* — was
+learned three times before it was written down.
+
 ---
 
 ## Repository layout
@@ -440,9 +521,11 @@ All hardware analyses reproduce from the archived raw counts in
 ## Provenance
 
 - Backends: `ibm_marrakesh`, `ibm_fez` (156-qubit Heron r2), IBM Open Plan
-  (trial instance). 36 jobs total, ~4 s QPU each; all job IDs and server-side
-  timestamps in `results/hardware/*/pw_ibm_provenance.json` (authoritative
-  for chronology).
+  (trial instance). **71 jobs total** — 36 for IBM-0 across both devices, 35
+  for IBM-1…9 on `ibm_marrakesh` — a few seconds of QPU each; all job IDs and
+  server-side timestamps in `results/hardware/*/*provenance.json`
+  (authoritative for chronology), alongside per-run backend calibration
+  snapshots for the physical qubits actually used.
 - Simulation stages (CHRONOS, synthetic ladder) ran on Google TPU Research
   Cloud (TRC) `v6e` spot instances during the grant window 2026-04-21 →
   2026-06-21 (initial one-month grant extended a further month on the
