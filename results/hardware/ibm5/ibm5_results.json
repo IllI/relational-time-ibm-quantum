@@ -1,0 +1,111 @@
+{
+  "backend": "ibm_marrakesh",
+  "predictions": {
+    "4": {
+      "echo": {
+        "joint": 0.9999999999999991,
+        "clock_only": 0.4999999999999996,
+        "system_only": 0.4999999999999996,
+        "wrong_way": 1.4950558849080197e-33
+      },
+      "analytic_controls": {
+        "clock_only": 0.5000000000000001,
+        "system_only": 0.5000000000000001,
+        "wrong_way": 3.749399456654644e-33
+      }
+    },
+    "8": {
+      "echo": {
+        "joint": 0.9999999999999989,
+        "clock_only": 0.8535533905932725,
+        "system_only": 0.853553390593273,
+        "wrong_way": 0.49999999999999944
+      },
+      "analytic_controls": {
+        "clock_only": 0.8535533905932737,
+        "system_only": 0.8535533905932737,
+        "wrong_way": 0.5000000000000001
+      }
+    }
+  },
+  "arms": {
+    "4": {
+      "echo": {
+        "joint": 0.903,
+        "clock_only": 0.4605,
+        "system_only": 0.4985,
+        "wrong_way": 0.02425
+      },
+      "echo_normalised": {
+        "joint": 1.0,
+        "clock_only": 0.5099667774086378,
+        "system_only": 0.552048726467331,
+        "wrong_way": 0.026854928017718716
+      },
+      "echo_attenuation": 0.903,
+      "conditional_x": {
+        "0": 0.933649289099526,
+        "1": 0.0958627648839556,
+        "2": -0.9556840077071291,
+        "3": -0.03711790393013101
+      },
+      "conditional_amplitude": 0.9446666484033276,
+      "conditional_r2": 0.9939785032156102
+    },
+    "8": {
+      "echo": {
+        "joint": 0.7885,
+        "clock_only": 0.64825,
+        "system_only": 0.73275,
+        "wrong_way": 0.37125
+      },
+      "echo_normalised": {
+        "joint": 1.0,
+        "clock_only": 0.8221306277742549,
+        "system_only": 0.9292961318960051,
+        "wrong_way": 0.47083069118579585
+      },
+      "echo_attenuation": 0.7885,
+      "conditional_x": {
+        "0": 0.8859180035650623,
+        "1": 0.636734693877551,
+        "2": -0.00390625,
+        "3": -0.6198019801980198,
+        "4": -0.9347408829174664,
+        "5": -0.5974842767295597,
+        "6": -0.026694045174537988,
+        "7": 0.6331096196868009
+      },
+      "conditional_amplitude": 0.8948314446434351,
+      "conditional_r2": 0.9988066544264945
+    }
+  },
+  "gates": {
+    "gate1_stationary_d4": true,
+    "gate2_beats_controls_d4": true,
+    "gate3_controls_track_theory_d4": true,
+    "gate4_conditional_recovered_d4": true,
+    "gate1_stationary_d8": true,
+    "gate2_beats_controls_d8": false,
+    "gate3_controls_track_theory_d8": true,
+    "gate4_conditional_recovered_d8": true
+  },
+  "all_gates_pass": false,
+  "job_ids": [
+    "d9rbs17pemts73csdpdg",
+    "d9rbt0hdsedc73agf5tg"
+  ],
+  "layouts": {
+    "4": [
+      0,
+      1,
+      2
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      3
+    ]
+  }
+}

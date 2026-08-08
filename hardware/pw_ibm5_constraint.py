@@ -273,7 +273,22 @@ def main() -> None:
 
         worst_ctrl = max(v for k, v in echo.items() if k != "joint")
         gates[f"gate1_stationary_d{d}"] = bool(echo["joint"] == max(echo.values()))
-        gates[f"gate2_beats_controls_d{d}"] = bool(echo["joint"] - worst_ctrl > 3 * sigma * np.sqrt(2))
+        # Significance uses the ACTUAL per-arm binomial sigma, sqrt(p(1-p)/N),
+        # not the worst-case 1/sqrt(N). The 2026-08-08 run used the worst-case
+        # form (attained only at p=0.5) and therefore demanded a 0.0671 gap
+        # where the true 1-sigma uncertainty was 0.0095; the d=8 joint-vs-
+        # system_only gap of 0.0557 was recorded as a FAILURE at the
+        # pre-registered bar despite being 5.9 sigma by the correct statistic.
+        # Same class of error as IBM-1's hardcoded gate slack: a threshold
+        # that did not track the actual noise. Fixed here for future runs; the
+        # 2026-08-08 verdict stands as registered in that run's results doc.
+        def sig(a: float, b: float) -> float:
+            va = a * (1.0 - a) / SHOTS
+            vb = b * (1.0 - b) / SHOTS
+            return (a - b) / max(np.sqrt(va + vb), 1e-12)
+        sigmas = {k: sig(echo["joint"], v) for k, v in echo.items() if k != "joint"}
+        results["arms"][str(d)]["control_sigmas"] = sigmas
+        gates[f"gate2_beats_controls_d{d}"] = bool(min(sigmas.values()) > 3.0)
         gates[f"gate3_controls_track_theory_d{d}"] = bool(all(
             abs(normalised[k] - preds[str(d)]["echo"][k]) < 0.10
             for k in ("clock_only", "system_only", "wrong_way")))

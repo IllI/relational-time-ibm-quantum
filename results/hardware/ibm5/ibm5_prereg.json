@@ -1,0 +1,43 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-5",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-08T05:26:29.373629Z",
+  "optimization_level": 0,
+  "shots": 4000,
+  "predictions": {
+    "4": {
+      "echo": {
+        "joint": 0.9999999999999991,
+        "clock_only": 0.4999999999999996,
+        "system_only": 0.4999999999999996,
+        "wrong_way": 1.4950558849080197e-33
+      },
+      "analytic_controls": {
+        "clock_only": 0.5000000000000001,
+        "system_only": 0.5000000000000001,
+        "wrong_way": 3.749399456654644e-33
+      }
+    },
+    "8": {
+      "echo": {
+        "joint": 0.9999999999999989,
+        "clock_only": 0.8535533905932725,
+        "system_only": 0.853553390593273,
+        "wrong_way": 0.49999999999999944
+      },
+      "analytic_controls": {
+        "clock_only": 0.8535533905932737,
+        "system_only": 0.8535533905932737,
+        "wrong_way": 0.5000000000000001
+      }
+    }
+  },
+  "generator": "U = P(2*pi/d) phase gate; U^d = +I exactly (Ry version is -I)",
+  "gates": {
+    "gate1_stationary": "joint echo return-probability is the largest of the four arms",
+    "gate2_beats_controls": "joint exceeds every control by > 3x combined shot noise",
+    "gate3_controls_track_theory": "clock_only/system_only/wrong_way within 0.1 of closed form AFTER normalising by the joint arm, whose exact value is 1.0 and which therefore calibrates this circuit's echo attenuation in-run",
+    "gate4_conditional_recovered": "R^2 > 0.90 for <X_S|t> vs cos(2 pi t/d)"
+  }
+}
