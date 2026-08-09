@@ -14,9 +14,22 @@ is classically reproducible, and this program measured that on hardware. It
 then spent four runs discovering that its own replacement witnesses were also
 insufficient — using adversarial states it constructed against itself — before
 reaching an observable that provably cannot be mimicked. What survives is a
-Page–Wootters history state demonstrated in all of its defining properties:
-**stationary, entangled, internally evolving, and supporting coherent
-superposition of its own rate of time.**
+hardware-measured account of the Page–Wootters mechanism's defining
+properties — **entangled, stationary, internally evolving, and supporting
+coherent superposition of its own rate of time** — each certified by a
+distinct observable rather than inferred from one tomographic fit.
+
+> [!WARNING]
+> **These properties are measured across two different history states, not
+> one.** Entanglement (IBM-4) was certified on the `Ry`-generated state;
+> stationarity (IBM-5) on the `P`-generated state. Those two states are
+> **orthogonal** (fidelity 0.000 at `d = 4`) and are not related by any
+> system-local unitary. Both are maximally entangled by construction, so the
+> theory transfers — but the *measured* F = 0.9419 belongs to a state that was
+> never shown stationary, and the state shown stationary was never
+> hardware-certified as entangled. The single-preparation run that would close
+> this is specified in `docs/AQ_PAGE_WOOTTERS_IBM_10_RUN_SPEC.md` and **has not
+> been executed.** See *Known limitations*.
 
 All raw counts, pre-registrations, and provenance are archived here; every
 analysis reproduces from counts with no IBM account.
@@ -143,7 +156,7 @@ it was shown to be insufficient.
 |---|---|---|
 | **IBM-2** | same witness, adversarial input | tests whether a *product* state (zero entanglement) can score on the arm-C witness |
 | **IBM-3** | `W_joint = TVD(p(k,z), p(k)p(z))` | the repair for IBM-2 — and its own adversarial test, a separable mixture |
-| **IBM-4** | fidelity witness, 10/20 QWC settings | the first observable provably immune to the diagonal mimic |
+| **IBM-4** | fidelity witness, 10/20 QWC settings | exceeds the *derived* separable bound `λ_max = ½` — certification is mathematical, not "no adversary happened to beat it" |
 | **IBM-5** | Loschmidt echo of `Ŝ ⊗ U` | tests global *stationarity*, the half Page–Wootters is named for |
 | **IBM-6/8** | Hadamard test, β-swept | attempts to certify the constraint eigenvalue is exactly `+1` — **both failed** |
 | **IBM-7** | two clocks at rate ratio `α` | detunes the pairing; asks when the constraint still closes |
@@ -157,16 +170,19 @@ it was shown to be insufficient.
 > conditional-evolution signal usually cited as evidence for relational time is
 > classically reproducible, and **no single-setting observable can do better** —
 > a theorem, not a limitation of this apparatus. Certification requires
-> relationships between complementary settings. Given that standard, the
-> Page–Wootters history state was demonstrated in each of its defining
-> properties: **entangled** (F = 0.94/0.88 against bound 0.5), **stationary**
-> under the paired operation `Ŝ ⊗ U` and nothing else (44σ–167σ),
-> **internally evolving** with the same operator that enforces its
-> stationarity (R² = 0.994), **constrained only at commensurate rates**, and
-> **able to superpose its own rate of time** (interference 0.2411 where every
-> classical rate mixture predicts zero). One property — that the constraint
-> eigenvalue is exactly `+1` rather than merely of unit modulus — was attacked
-> twice and **remains uncertified on this hardware.**
+> relationships between complementary settings. Given that standard, each
+> defining property of the Page–Wootters mechanism was measured by a distinct
+> observable: **entangled** — a multi-setting fidelity witness *exceeding the
+> exact separable bound* `λ_max = ½` (F = 0.94/0.88), **stationary as a ray**
+> under the paired operation `Ŝ ⊗ U` and not under the mismatched controls
+> (44σ–167σ), **internally evolving** under the same operator that enforces
+> that stationarity (R² = 0.994), **constrained only at commensurate rates**,
+> and **able to superpose its own rate of time** (interference 0.2411 where
+> every classical rate mixture predicts zero). Two things are **not**
+> certified: the *phase* of the stationarity eigenvalue — and therefore the
+> stronger `+1` constraint condition — which was attacked twice and failed
+> twice; and the conjunction itself, since entanglement and stationarity were
+> measured on two orthogonal preparations rather than one.
 
 The narrow Movement I result, which the above is built on:
 
@@ -301,20 +317,28 @@ constraint closes only at commensurate rates, and IBM-9 puts the rate itself
 into superposition and measures the interference between two proper-time
 histories — a signature no classical mixture of rates can produce. What the
 program delivers is therefore both a hardware-measured anatomy of what
-relational-time observables certify, and a Page–Wootters history state
-demonstrated in all of its defining properties — stationary, entangled,
-internally evolving, and supporting coherent superposition of its own rate of
-time. Two of the program's ten runs are reported as failures (IBM-6, IBM-8),
-both attacking the same limitation, which is published unclosed.
+relational-time observables certify, and a hardware measurement of each
+defining property of the Page–Wootters mechanism by a distinct observable —
+though, as flagged at the top and in limitation 4 below, **across two
+orthogonal history states rather than one preparation.** Two of the program's
+ten runs are reported as failures (IBM-6, IBM-8), both attacking the same
+limitation, which is published unclosed.
 
 ### Known limitations, stated plainly
 
-Three, identified in review and recorded in full in
-`docs/AQ_PAGE_WOOTTERS_IBM_5_RESULTS_2026-08-08.md`:
+Seven. The first three were identified in review of IBM-5 and are recorded in
+full in `docs/AQ_PAGE_WOOTTERS_IBM_5_RESULTS_2026-08-08.md`; 4–7 were
+identified in pre-publication review of the whole program and mark the
+boundary between a Page–Wootters *realization* and a theory of why time
+exists:
 
-1. **Stationarity is certified only up to a global phase.** The Loschmidt
-   echo measures `|⟨Ψ|A|Ψ⟩|²`, so it establishes that `|Ψ⟩` is an
-   *eigenvector* of `Ŝ ⊗ U`, not that the eigenvalue is +1. This is not
+1. **Stationarity is certified in the ray sense; the eigenvalue phase is not
+   certified.** The Loschmidt echo measures `|⟨Ψ|A|Ψ⟩|²`, and what was
+   observed is a strongly preferential return under the correctly paired
+   operation against mismatched controls — *consistent with* `|Ψ⟩` being an
+   eigenvector of `Ŝ ⊗ U`. Note the raw number is 0.903, not 1.0, so this is
+   not a direct measurement of unit modulus either; the certification is of
+   ray-stationarity relative to controls, not of the eigenvalue itself. This is not
    cosmetic: the Wheeler–DeWitt constraint is `Ĥ|Ψ⟩ = 0` specifically, and a
    nonzero phase would mean an eigenstate carrying nonzero "energy" — not the
    constraint. The prepared state's eigenvalue *is* exactly +1 by statevector
@@ -349,6 +373,38 @@ Three, identified in review and recorded in full in
    here; the contribution is methodological — testing invariance under a
    specific joint group element against mismatched controls that quantify how
    the invariance fails.
+4. **The properties were measured on two different states, not one.**
+   Entanglement (IBM-4) was certified on the `Ry`-generated state,
+   stationarity (IBM-5) on the `P`-generated state. These are **orthogonal**
+   (fidelity 0.000 at `d = 4`, 0.005 at `d = 8`) and are **not** related by
+   any system-local unitary — they differ by a *clock-conditioned* phase,
+   which is precisely the `U^d = −I` vs `U^d = +I` distinction that IBM-5
+   discovered. Both are maximally entangled by construction (Schmidt exactly
+   ½,½, `ρ_S = I/2`), so the entanglement of the stationary state follows from
+   theory — but it was never *measured*, and the measured F = 0.9419 belongs
+   to a state never shown stationary. **The Page–Wootters mechanism's
+   conjunction is therefore not yet certified on a single preparation.** The
+   run that would close this is specified in
+   `docs/AQ_PAGE_WOOTTERS_IBM_10_RUN_SPEC.md`.
+5. **The certification is device-dependent.** A fidelity witness assumes the
+   measurement operators are what they are labeled. This is not a Bell test
+   and no loophole-free claim is made. A CHSH test on the effective
+   two-dimensional Schmidt subspace would give a stronger operational
+   nonclassicality test, but **would not** make the result
+   device-independent: two logical subsystems on the same superconducting
+   processor are not spacelike separated. Genuine device-independent
+   certification would require physically separated parties, independent
+   measurement choices, and the usual loophole controls — a substantially
+   larger experiment.
+6. **The state is engineered, not found.** Externally timed gates compile it.
+   There is no measured Hamiltonian constraint and no autonomous dynamics: the
+   *internal description* has Page–Wootters structure, but the preparation is
+   a laboratory sequence in ordinary external time, not a universe satisfying
+   a timeless constraint.
+7. **Commensurability is a finite-cyclic-clock property.** IBM-7's integer
+   resonance follows from demanding exact return after `d` ticks. It says
+   nothing about continuum or noncyclic Page–Wootters models, and nothing
+   about gravitational dilation.
 
 ## Where the method came from: TRC TPUs and D-LinOSS
 
