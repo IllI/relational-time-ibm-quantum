@@ -15,9 +15,10 @@ then spent four runs discovering that its own replacement witnesses were also
 insufficient — using adversarial states it constructed against itself — before
 reaching an observable that provably cannot be mimicked. What survives is a
 hardware-measured account of the Page–Wootters mechanism's defining
-properties — **entangled, stationary, internally evolving, and supporting
-coherent superposition of its own rate of time** — each certified by a
-distinct observable rather than inferred from one tomographic fit.
+properties — **entangled, stationary up to a global phase, internally
+evolving, and supporting coherent superposition and interference between two
+programmed relational evolution rates** — each certified by a distinct
+observable rather than inferred from one tomographic fit.
 
 > [!WARNING]
 > **These properties are measured across two different history states, not
@@ -115,7 +116,17 @@ carried by *relationships between complementary measurement settings* — and it
 is certifiable, which IBM-4 (fidelity witness), IBM-5 (stationarity), IBM-7
 (commensurability), and IBM-9 (rate superposition) then demonstrate. The
 original hypothesis identified the right *quantity* (clock-marginal coherence)
-and the wrong *epistemic status* for it (sufficient rather than necessary).
+and the wrong *epistemic status* for it.
+
+**The witness is neither sufficient nor necessary for clock–system
+entanglement**, and the program proves both halves — the second one
+accidentally. IBM-2 demonstrates insufficiency directly. Necessity fails at
+`d = 2`, which is the very null the hypothesis pre-registered as a
+confirmation: that state carries **1.0 ebits, maximal entanglement, while the
+local witness reads exactly 0.000000** and the clock marginal is exactly
+maximally mixed. Filed claim 3 was therefore confirmed as a prediction *and* is
+a counterexample to necessity at the same time. What the witness tracks is
+clock coherence, which at `d = 2` is absent from a maximally entangled state.
 
 ## What was tested
 
@@ -168,17 +179,23 @@ it was shown to be insufficient.
 
 > In engineered 2–5 qubit history states on superconducting hardware, the
 > conditional-evolution signal usually cited as evidence for relational time is
-> classically reproducible, and **no single-setting observable can do better** —
-> a theorem, not a limitation of this apparatus. Certification requires
-> relationships between complementary settings. Given that standard, each
+> classically reproducible, and **no single local product-basis distribution
+> can do better** — a theorem, not a limitation of this apparatus. (Stated
+> precisely: under the local measurement architecture used here, certification
+> requires incompatible settings. This is *not* the claim that no
+> single-configuration observable whatsoever could certify entanglement — a
+> suitable global entangled measurement can be a witness in one configuration.)
+> Given that standard, each
 > defining property of the Page–Wootters mechanism was measured by a distinct
 > observable: **entangled** — a multi-setting fidelity witness *exceeding the
 > exact separable bound* `λ_max = ½` (F = 0.94/0.88), **stationary as a ray**
 > under the paired operation `Ŝ ⊗ U` and not under the mismatched controls
 > (44σ–167σ), **internally evolving** under the same operator that enforces
-> that stationarity (R² = 0.994), **constrained only at commensurate rates**,
-> and **able to superpose its own rate of time** (interference 0.2411 where
-> every classical rate mixture predicts zero). Two things are **not**
+> that stationarity (R² = 0.994), subject to a **hardware-measured
+> commensurability condition for exact cycle closure of a finite cyclic
+> clock**, and **supporting coherent superposition and interference between
+> two programmed relational evolution rates** (interference 0.2411 where every
+> classical rate mixture predicts zero). Two things are **not**
 > certified: the *phase* of the stationarity eigenvalue — and therefore the
 > stronger `+1` constraint condition — which was attacked twice and failed
 > twice; and the conjunction itself, since entanglement and stationarity were
@@ -196,8 +213,11 @@ The narrow Movement I result, which the above is built on:
 > 0.497), and vanishes at the `d = 2` structural null.
 
 > [!IMPORTANT]
-> **The clock-marginal witness is necessary but NOT sufficient — measured, not
-> speculated.** An adversarial run (IBM-2, 2026-08-07) prepared a coherent
+> **The clock-marginal witness is neither necessary nor sufficient for
+> clock–system entanglement — measured, not speculated.** Insufficiency is
+> shown here; non-necessity at `d = 2`, where a maximally entangled state
+> (1.0 ebits) has a local witness of exactly zero. An adversarial run
+> (IBM-2, 2026-08-07) prepared a coherent
 > clock–system *product* state `(1/√d)Σ_t|t⟩_C ⊗ |0⟩_S` with **zero**
 > entanglement and found it scores **4.2× (d=4) and 1.9× (d=8) higher** on the
 > local witness than the actual history state. The witness certifies *clock
@@ -263,7 +283,13 @@ The narrow Movement I result, which the above is built on:
 > IBM-9).** Having established that the *paired* operation `Ŝ ⊗ U` is what
 > preserves the state, IBM-7 asks what happens when the pairing is detuned —
 > when the system runs at rate `α` against the clock's unit rate. The answer
-> is a **commensurability resonance**: the constraint closes only at integer
+> is a **commensurability resonance** — scoped to a *finite cyclic* clock,
+> where exact return after `d` ticks is what is being demanded, so a branch
+> accumulating `2πα` closes only at integer `α`. This is a hardware-measured
+> cycle-closure condition, **not** a general Page–Wootters prohibition on
+> irrational rate ratios: in continuum or noncyclic models such ratios simply
+> generate quasiperiodic, nonrepeating relational trajectories. With that
+> scope: the constraint closes only at integer
 > `α`, and the measured conditional frequency tracks the programmed rate over
 > `α ∈ [0.5, 3]`. One pre-registered gate failed and the failure was
 > informative — the matched pairing is *not* maximal at `α = 0.75`, exactly as
@@ -313,7 +339,7 @@ closes the mechanism by measuring its other half: the global state is
 stationary under the joint clock-shift-plus-evolution and under nothing else,
 with the operator that makes it stationary being the same one that generates
 its conditional dynamics. IBM-7 then detunes that pairing and finds the
-constraint closes only at commensurate rates, and IBM-9 puts the rate itself
+finite cyclic constraint closes exactly only at commensurate rates, and IBM-9 puts the rate itself
 into superposition and measures the interference between two proper-time
 histories — a signature no classical mixture of rates can produce. What the
 program delivers is therefore both a hardware-measured anatomy of what
@@ -332,13 +358,17 @@ identified in pre-publication review of the whole program and mark the
 boundary between a Page–Wootters *realization* and a theory of why time
 exists:
 
-1. **Stationarity is certified in the ray sense; the eigenvalue phase is not
-   certified.** The Loschmidt echo measures `|⟨Ψ|A|Ψ⟩|²`, and what was
-   observed is a strongly preferential return under the correctly paired
-   operation against mismatched controls — *consistent with* `|Ψ⟩` being an
-   eigenvector of `Ŝ ⊗ U`. Note the raw number is 0.903, not 1.0, so this is
-   not a direct measurement of unit modulus either; the certification is of
-   ray-stationarity relative to controls, not of the eigenvalue itself. This is not
+1. **Stationarity is certified up to a global phase; the stricter
+   zero-generator condition is not.** The Loschmidt echo measures
+   `|⟨Ψ|A|Ψ⟩|²`, and a strongly preferential return under the correctly
+   paired operation against mismatched controls establishes stationarity **in
+   the ordinary physical sense** — `|Ψ⟩ → e^{iφ}|Ψ⟩` is the same ray, so this
+   is a real result and not a hedge. (The raw value is 0.903, so it is a
+   certification of ray-stationarity *relative to controls*, not a direct
+   measurement of unit modulus.) The phase matters only for the stronger
+   analogy `(H_C + H_S)|Ψ⟩ = 0`, where a *zero* eigenvalue is a stricter
+   condition than *being* an eigenstate — and that stricter, Wheeler–DeWitt-
+   analogous condition remains uncertified. This is not
    cosmetic: the Wheeler–DeWitt constraint is `Ĥ|Ψ⟩ = 0` specifically, and a
    nonzero phase would mean an eigenstate carrying nonzero "energy" — not the
    constraint. The prepared state's eigenvalue *is* exactly +1 by statevector
@@ -741,7 +771,7 @@ carrying its own honest ledger. Nine runs, 35 jobs, all on `ibm_marrakesh`.
 | **IBM-4** | can anything certify it? | **yes** — multi-setting fidelity witness, F = 0.9419/0.8829 vs λ_max = 0.5 |
 | **IBM-5** | is the global state stationary? | yes under `Ŝ ⊗ U` and nothing else, 44σ–167σ (1 gate failed at d=8, reported) |
 | **IBM-6** | is the eigenvalue exactly +1? | **FAILED** — arms not depth-matched; comparison confounded |
-| **IBM-7** | what if the rates are detuned? | commensurability resonance; constraint closes only at integer α (1 gate failed — the gate was wrong, the data was right) |
+| **IBM-7** | what if the rates are detuned? | commensurability condition for exact cycle closure of a *finite cyclic* clock; closes only at integer α (1 gate failed — the gate was wrong, the data was right) |
 | **IBM-8** | retry IBM-6, depth-matched | **FAILED** — d=8: 0/4, d=4: 2/4. Limitation published unclosed; recommendation is to stop |
 | **IBM-9** | superpose the *rate* of time | **3/3** — interference 0.2411 vs 3σ bar 0.1039; classical rate mixture excluded |
 
