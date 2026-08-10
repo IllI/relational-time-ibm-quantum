@@ -33,8 +33,10 @@ observable rather than inferred from one tomographic fit.
 > assertions, not prose — see
 > `docs/AQ_PAGE_WOOTTERS_IBM_10_RESULTS_2026-08-09.md`.
 
-All raw counts, pre-registrations, and provenance are archived here; every
-analysis reproduces from counts with no IBM account.
+Pre-registrations, derived results and server-side provenance (including
+per-run backend calibration) are archived for all eleven runs. **Raw counts are
+archived for IBM-0 only**; for IBM-1…10 they are retrievable from IBM via the
+archived job IDs and are being backfilled — see *Reproducing*.
 
 ---
 
@@ -260,7 +262,9 @@ The narrow Movement I result, which the above is built on:
 > λ_max = 0.5**, certifying clock–system entanglement with margins of
 > +0.44/+0.38, while the two adversarial states that defeated the earlier
 > witnesses were correctly rejected (F = 0.02–0.06, near their exact
-> values). Necessary → insufficient → insufficient → sufficient, measured:
+> values). The arc, measured: local coherence → defeated by a product state →
+> joint correlation defeated by a separable state → multi-setting entanglement
+> certification:
 > `docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md`.
 
 > [!NOTE]
@@ -310,12 +314,14 @@ The narrow Movement I result, which the above is built on:
 > the discrete analogue of Smith & Ahmadi quantum time dilation
 > ([arXiv:1904.12390](https://arxiv.org/abs/1904.12390)). A which-rate qubit
 > `G` in `|+⟩` selects between `α₁ = 1` and `α₂ = 2`, so the system evolves
-> along two proper-time histories at once. Read `G` in **Z** and the result is
+> along two **programmed relational-rate histories** at once (the discrete
+> analogue Smith & Ahmadi discuss for proper time; the circuit has no metric). Read `G` in **Z** and the result is
 > an ordinary classical mixture: the marginal tracks the closed-form
 > `[cos(α₁θt) + cos(α₂θt)]/2` (max residual 0.089) and post-selection recovers
 > the two branch rates at **0.981 and 1.964**, both R² 0.994. Read `G` in
-> **X** and conditioning on `G = +` shifts the dynamics by **0.2411** where
-> any mixture predicts exactly zero — **2.32× the 3σ bar**, retaining 91.6% of
+> **X** and conditioning on `G = +` shifts the dynamics by **0.2411** where the
+> corresponding incoherent mixture of the two programmed rate branches predicts
+> exactly zero — **2.32× the 3σ bar**, retaining 91.6% of
 > the exact 0.2632, with the sign pattern and relative magnitudes tracking
 > prediction across all eight clock readings (shape correlation 0.85). **A
 > decohered which-rate qubit is excluded by the data**: were `G` classically
@@ -520,21 +526,27 @@ D-LinOSS is a state-space recurrence `x_{k+1} = Λ x_k + B u_k` with **Λ comple
 diagonal**, `λ_j = exp((−γ_j + i ω_j) Δt)`. Each mode is a damped oscillator:
 a frequency `ω_j` and a decay rate `γ_j`. That is not an incidental
 architectural choice for this problem — it is the *same object* as the physics
-under test. The Page–Wootters system qubit evolving under `U = P(2πα/d)` is
-exactly one D-LinOSS mode with `ω = αθ`, and hardware decoherence supplies the
-`γ`. The model class and the physical system are structurally matched, which
-is why the model's failures were diagnostic rather than merely disappointing.
+under test. The Page–Wootters system qubit evolving under `U = P(2πα/d)` **maps
+onto a single complex oscillatory mode at the level of the measured phase
+evolution**, with `ω = αθ` and hardware decoherence supplying the `γ`. (An
+analogy at the level of the observable, not an identity of physical objects —
+the classical recurrence and the quantum phase evolution are different things.)
+The model class and the measured quantity are structurally matched, which is
+why the model's failures were diagnostic rather than merely disappointing.
 
 ### D-LinOSS's negatives carried the information
 
 Three times the informative result was a **failure**, and each one set a
 parameter of the hardware program:
 
-1. **Entropy is required.** A projected-harmonic generator proved
+1. **Entropy-bearing structure was required for recoverability in the tested
+   family.** A projected-harmonic generator proved
    *under-identifiable* — no matcher, metric, or embedding could recover the
    clock correspondence, diagnosed by observability-first decomposition rather
    than tuning. Recovery only became possible once the generator produced
-   irreversible, entropy-bearing histories (arm `A10`). This independently
+   irreversible, entropy-bearing histories (arm `A10`). This is a statement
+   about the synthetic generators tested here, **not** a general claim that
+   relational time requires entropy. It independently
    converged with the entropic-time construction later published for cold
    atoms (arXiv:2509.07745, `τ ∝ ∫dS`).
 2. **Physics-damped beats stationary — and where it doesn't, that's data.**
@@ -557,8 +569,11 @@ parameter of the hardware program:
    quantum signal. The lesson — *the model reads spectral morphology, not
    quantum structure* — is the same wall the sister OAT program hit
    (entanglement is not identifiable from PTM anisotropy alone; resolved by
-   `V_Q` over Haar-random settings). Written as a standing rule: **single-setting
-   observables never certify quantum structure; measurement diversity does.**
+   `V_Q` over Haar-random settings). Written as a standing rule: **a single local
+   product-basis distribution does not certify quantum structure; measurement
+   diversity does.** (Narrow by design — a global entangled measurement can
+   witness in one configuration; what fails is the local single-setting family
+   used here and in the sister program.)
 
 That rule is the thesis of this repository. It was learned classically on
 TPUs, forgotten, rediscovered the hard way when IBM-2 and IBM-3 broke this
@@ -907,11 +922,12 @@ learned three times before it was written down.
 ## Repository layout
 
 ```
-hardware/           16 scripts: the IBM-0 four-arm protocol (dry run against
-                    Aer ideal+noisy, submitter), the nine follow-up runs
-                    pw_ibm{1..9}_*.py, plus shared infrastructure —
-                    provenance capture, post-hoc readout mitigation,
-                    layout verification
+hardware/           the IBM-0 four-arm protocol (dry run against Aer
+                    ideal+noisy, submitter), the ten follow-up runs
+                    pw_ibm{1..10}_*.py, plus shared infrastructure —
+                    provenance capture, raw-counts retrieval, fidelity
+                    bootstrap, post-hoc readout mitigation, layout
+                    verification, backend queue selection
 results/hardware/   per-run: prereg (filed BEFORE submission), raw counts,
                     analysis, provenance incl. backend calibration snapshot,
                     mitigation; plus the Aer dry-run predictions
@@ -957,8 +973,26 @@ python hardware/pw_ibm_provenance.py \
     --out /tmp/ibm9_provenance.json
 ```
 
-All hardware analyses reproduce from the archived raw counts in
-`results/hardware/*/pw_ibm_counts_nclock*.json` without any IBM access.
+**Reproducibility status, stated precisely.** IBM-0's analyses reproduce end to
+end from the archived raw counts in
+`results/hardware/*/pw_ibm_counts_nclock*.json` with no IBM access.
+
+For **IBM-1…10 the raw counts were not archived** — those runs stored
+pre-registrations, derived results and provenance, but the counts-archiving
+discipline established for IBM-0 was not carried forward. The gap was found
+while attempting a bootstrap of the IBM-4/IBM-10 fidelity confidence intervals
+and discovering there was nothing local to resample. It is recoverable: the
+counts still live on IBM's servers and the job IDs are archived, so
+
+```bash
+python hardware/pw_ibm_fetch_counts.py --all      # no QPU cost
+```
+
+retrieves and archives them. This must happen **before the submitting account
+lapses (~2026-09-02)**; afterwards the raw data is gone and those runs remain
+reproducible only from derived numbers, which is a materially weaker archive.
+Recorded here rather than quietly fixed, because an archive's limitations are
+part of its documentation.
 
 ## Provenance
 
@@ -977,15 +1011,25 @@ All hardware analyses reproduce from the archived raw counts in
 
 ## Acknowledgments
 
-**Google TPU Research Cloud (TRC)**, whose `v6e` grant (2026-04-21 →
-2026-06-21, one month extended by a second on the time-emergence thesis)
-funded the entire simulation phase — which is to say, it funded the
-hypothesis, the observables, the adversarial controls, and the certification
-standard. Every design parameter of the quantum program came out of that
-window; see *Where the method came from* above. The QPU stage used no TRC
-resources and would not have been worth submitting without it.
+**Research supported with Cloud TPUs from Google's TPU Research Cloud (TRC).**
+The TRC allocation supported the simulation and hypothesis-development phase;
+the IBM Quantum hardware experiments used separate IBM Open Plan access.
 
 **IBM Quantum** Open Plan for hardware access (trial instance).
+
+### Computational resources
+
+- **TRC allocation:** `v6e` instances, 2026-04-21 → 2026-06-21 — an initial
+  one-month allocation extended by one further month.
+- **Workloads:** the CHRONOS cross-datacenter telemetry campaign, the synthetic
+  Page–Wootters ladder (~20 runs), the D-LinOSS variants and their
+  observability-first diagnostics, the finite-clock record-overlap bounds, and
+  the BEC entropic-bridge Gate 0. In short: the hypothesis, the observables,
+  the adversarial controls, and the certification standard. Every design
+  parameter that survived to hardware came out of this window — see *Where the
+  method came from*.
+- **Separation of stages:** the QPU stage used no TRC resources; the TRC stage
+  used no quantum hardware.
 
 The entropic-time framing of Part III follows arXiv:2509.07745; the
 quantum-time-dilation framing of IBM-9 follows Smith & Ahmadi
