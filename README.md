@@ -425,7 +425,13 @@ exists:
    worked exactly as intended — and both were measuring something the
    construction had already fixed. A two-line calculation, available before
    either was written, would have retired the question at zero QPU cost.
-2. **The clock/system split is chosen, not derived.** Nothing in the state
+2. **The clock/system split is chosen, not derived.** *(A follow-up that would
+   narrow this — three clocks encoding only mutual relations, with no
+   privileged frame — is proposed in
+   `docs/AQ_PAGE_WOOTTERS_IBM_11_RELATIONAL_NETWORK_PROPOSAL.md`, along with
+   two structural results derived at zero QPU cost: rate loop closure is
+   automatic rather than contingent, and a clock can serve as a reference frame
+   only if `gcd(α, d) = 1`.)* Nothing in the state
    designates which qubits are the clock; the bipartition was imposed in the
    circuit design. Every run here demonstrates the mechanism *given* a frame
    we selected, not that a preferred frame emerges. (Note the labels are
