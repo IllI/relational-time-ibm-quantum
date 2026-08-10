@@ -1,5 +1,11 @@
 # Measuring the Quantum Signature of Relational Time on Superconducting Hardware
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21878786.svg)](https://doi.org/10.5281/zenodo.21878786)
+
+*The DOI above is the concept DOI — it always resolves to the latest archived
+version. Cite this one, not a version-pinned link, so the citation stays
+current if the repository is ever re-released.*
+
 **What this is.** An experimental program testing whether *relational time* —
 time defined by correlations between a clock and the rest of a system, rather
 than by an external parameter — leaves a measurable quantum signature that can

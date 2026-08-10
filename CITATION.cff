@@ -11,6 +11,7 @@ authors:
     given-names: "Kevin"
     # orcid: "https://orcid.org/0000-0000-0000-0000"   # add before release
 repository-code: "https://github.com/IllI/relational-time-ibm-quantum"
+doi: 10.5281/zenodo.21878786
 abstract: >-
   An experimental program testing whether relational time -- time defined by
   correlations between a clock and the rest of a system rather than by an
