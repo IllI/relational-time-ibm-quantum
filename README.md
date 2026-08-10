@@ -243,9 +243,12 @@ The narrow Movement I result, which the above is built on:
 > as statevector predicted (0.500 vs 0.302/0.379). A two-line theorem
 > (`docs/AQ_PAGE_WOOTTERS_IBM_3_RESULTS_2026-08-07.md`) generalizes this: any
 > single-product-basis distribution is exactly reproducible by a separable
-> state, so **no observable measured in this program — local witness, joint
-> witness, conditional evolution, the arrow — certifies clock–system
-> entanglement, and none could have.** This despite the history state being
+> state, so **no single-configuration observable in IBM-0…IBM-3 — local
+> witness, joint witness, conditional evolution, the arrow — certifies
+> clock–system entanglement, and none could have.** (The theorem is about
+> local product-basis distributions; IBM-4 escapes it by combining
+> *incompatible settings*, not by finding a better single distribution.) This
+> despite the history state being
 > *maximally* entangled across clock|system (Schmidt coefficients exactly
 > ½, ½). What the witnesses certify, and certify well, is clock *coherence*
 > (local) and coherence-plus-correlation (joint).
@@ -324,36 +327,45 @@ The narrow Movement I result, which the above is built on:
 > `docs/AQ_PAGE_WOOTTERS_IBM_9_RESULTS_2026-08-08.md`.
 
 **What this does not show.** It does not show that time in nature is emergent,
-does not test quantum gravity or the Wheeler–DeWitt equation, does not realize
-a physical Page–Wootters universe — and, per IBM-3, does not certify the
-clock–system *entanglement* of the engineered history state by any measured
-observable. What the program establishes is a systematic, hardware-measured
-anatomy of relational-time observables: the conditional-evolution signal and
-the informational arrow are classically reproducible; the clock-coherence
-witness is not, scales with clock dimension, has a structural null, and has a
-measured decoherence threshold past which apparent temporal dynamics survives
-its own quantum signature; and each witness's certification limit was found
-and quantified by this program's own pre-registered adversarial controls —
-the local witness by IBM-2, the joint witness by IBM-3 — rather than left for
-a referee. The clock's quantumness is certified throughout as *coherence*;
-its quantumness as *relational* — genuine clock–system entanglement — is
-certified by IBM-4's multi-setting fidelity witness — the one observable in
-the program that provably cannot be mimicked by a separable state, tested
-against the exact adversarial states that broke its predecessors. IBM-5 then
-closes the mechanism by measuring its other half: the global state is
-stationary under the joint clock-shift-plus-evolution and under nothing else,
-with the operator that makes it stationary being the same one that generates
-its conditional dynamics. IBM-7 then detunes that pairing and finds the
-finite cyclic constraint closes exactly only at commensurate rates, and IBM-9 puts the rate itself
-into superposition and measures the interference between two proper-time
-histories — a signature no classical mixture of rates can produce. What the
-program delivers is therefore both a hardware-measured anatomy of what
-relational-time observables certify, and a hardware measurement of each
-defining property of the Page–Wootters mechanism by a distinct observable —
-though, as flagged at the top and in limitation 4 below, **across two
-orthogonal history states rather than one preparation.** Two of the program's
-ten runs are reported as failures (IBM-6, IBM-8), both attacking the same
-limitation, which is published unclosed.
+does not test quantum gravity or the Wheeler–DeWitt equation, and does not
+realize a physical Page–Wootters universe. The state is engineered by
+externally timed gates, the clock/system split is imposed, and the
+certification is device-dependent. Those boundaries are itemized as
+limitations 1–7 below and none of them is closed by any run here.
+
+**What it does show**, in one arc:
+
+1. **The signal usually cited is classically reproducible.** Conditional
+   evolution and the informational arrow are reproduced by an explicit
+   classical clock control to within shot noise (IBM-0, IBM-1).
+2. **The natural repair is insufficient, twice, and provably so.** The
+   clock-coherence witness is not classically reproducible — it scales with
+   clock dimension and has a structural null — but a zero-entanglement product
+   state scores *higher* on it (IBM-2), and a separable state scores higher on
+   the joint witness built to fix that (IBM-3). A two-line theorem then
+   generalizes both: within this local product-basis architecture, no single
+   measurement configuration can certify clock–system entanglement.
+3. **Certification requires measurement diversity, and then it succeeds.**
+   IBM-4's multi-setting fidelity witness exceeds the derived separable bound
+   `λ_max = ½` — a bound no separable state can cross, tested against the exact
+   adversarial states that broke its predecessors.
+4. **The other half of the mechanism is measured.** The global state is
+   stationary under the paired clock-shift-plus-evolution and under nothing
+   else, with the operator enforcing stationarity being the same one generating
+   the conditional dynamics (IBM-5).
+5. **The mechanism is then characterized, not just verified.** Detuning the
+   pairing reveals a commensurability condition for exact cycle closure of a
+   finite cyclic clock (IBM-7), and superposing the rate itself produces
+   interference no classical mixture of rates can produce (IBM-9).
+6. **The conjunction holds on one preparation.** IBM-10 measures entanglement,
+   ray-stationarity and internal evolution on a single state in a single job —
+   which is the Page–Wootters mechanism's actual content, rather than three
+   properties of three states.
+
+Every certification limit above was found by this program's **own
+pre-registered adversarial controls** rather than left for a referee, and two
+of eleven runs are reported as failures (IBM-6, IBM-8) on a limitation
+published unclosed.
 
 ### Known limitations, stated plainly
 
@@ -611,12 +623,80 @@ failure rather than a QPU-stage intuition: **the independent variable**
 overlap, from the entanglement-damped loss), **the certification standard**
 (measurement diversity, from the RTN false positive), and **the substrate
 itself** (a QPU at all, from the CHRONOS one-hour-offset control). The QPU
-runs were cheap — 71 jobs, seconds of QPU each, on a free trial. The expensive,
+runs were cheap — 72 jobs, seconds of QPU each, on a free trial. The expensive,
 month-scale work that made them worth submitting was classical, and it was the
 TRC grant that made it possible.
 
 Full account: `docs/AQ_PAGE_WOOTTERS_IBM_4_RESULTS_2026-08-07.md` ("Where the
 method came from") and the sister repository's `DISCOVERY_NARRATIVE.md`.
+
+---
+
+## Every failure, and what it bought
+
+This program's failures are not disclosed reluctantly at the end. **They are
+the mechanism by which it arrived at its results**, and every one of them was
+eventually explained and converted into a design parameter, a scope
+correction, or a theorem. The table is the honest audit and, we would argue,
+the most reusable thing here.
+
+| failure | what it looked like | what it bought |
+|---|---|---|
+| **CHRONOS-SCHUMANN-0a/0b** | striking first result: +0.50 separation, `p = 0.001` | **failed its own pre-registered replication** → reported, not promoted. The single most important discipline in the program, established before it had anything to lose |
+| **CHRONOS-MARGINAL-DRIFT-1** | US/EU correlation `r ≈ 0.57` looked like shared time | correlation **survives a one-hour offset** at `r ≈ 0.50` → structural hardware similarity, not time. Closed the telemetry line *decisively* rather than leaving it stalled |
+| **BEC entropic bridge, Gate 0** | 0/5 regimes, clean controls | pre-registered stop, executed. No second attempt tuned until it passed |
+| **D-LinOSS under-identifiability** | no matcher/metric/embedding could recover the clock | diagnosed by observability-first decomposition → **entropy is required**; produced arm `A10` and IBM-1's independent variable |
+| **D-LinOSS entanglement-damped loss** | lost to a *stationary* model at every grid density | the loss was **structured** → exposed the wrong functional form → record overlap as the right variable → IBM-1's measured power law |
+| **D-LinOSS RTN false positive** | classified classical telegraph noise as multi-mode quantum | *the model reads spectral morphology, not quantum structure* → the **measurement-diversity certification standard** IBM-4 executes |
+| **IBM-0 Gate 3** | classical arm breached its floor on **both** replications | not relaxed; reported `all_gates_pass=False`. Mitigation did **not** rescue it → first diagnosis (readout) was **wrong** → revised to an input-dependent iQFT coherent error, with a corrected design rule for future runs |
+| **IBM-0 layout bug** | `initial_layout` computed but never passed to the transpiler | found in code review, verified against all 36 archived jobs → the "disjoint layout" run was honestly re-scoped to a *temporal* replicate |
+| **IBM-1 Gate 0 doc/code mismatch** | doc claimed 16/16; committed code disagreed | **all fixed in code first, original results doc formally withdrawn** — plus a 4× shot-budget overrun and a miscalibrated gate slack caught before hardware |
+| **IBM-2** | the headline witness **defeated by a zero-entanglement product state** | the witness certifies clock *coherence*, not structure → `W_joint` built as the repair |
+| **IBM-3** | the repair **defeated by a separable state** | a two-line theorem generalizing both → forced the multi-setting design that finally worked |
+| **IBM-4 Schmidt assertion** | `λ_max` came out 0.8536, not 0.5 | a reshape-ordering bug caught **before hardware contact** by a theorem-first assertion |
+| **IBM-5 Gate 2 (d=8)** | failed as written | reported as registered; revealed a crude worst-case σ *and* that the test's contrast degrades with `d` — a design limit, not a statistics problem |
+| **IBM-7 Gate 2** | failed | **the gate was wrong and the data was right** — matched pairing is not maximal at `α = 0.75`, exactly as theory says |
+| **IBM-6, then IBM-8** | two pre-registered attempts at the eigenvalue phase, both failed | IBM-8's depth-matching worked *and it still failed* → proved depth was the *lesser* cause → and ultimately a **theorem**: the eigenvalue is `+1` by construction, so there was never a phase to find |
+| **IBM-9 feasibility assertions** | `d = 4` blocked; σ understated ~25% | reversed the "smaller `d` is safer" heuristic on principled grounds; both caught at zero shot cost |
+| **the stitched claim** | README asserted a conjunction never measured on one state | measured the two states to be **orthogonal** → motivated IBM-10, which closed it |
+
+Three patterns are worth naming because they generalize:
+
+- **A failed replication is worth more than an unreplicated success.** The
+  Schumann result would have been the program's most exciting number. Killing
+  it set the standard everything after had to meet.
+- **A *structured* loss is data; an unstructured one is noise.** D-LinOSS
+  losing to a stationary baseline *at every grid density* was informative
+  precisely because it was systematic — it named the wrong functional form.
+- **A failed pre-registered gate is not a failed experiment.** IBM-7's gate
+  encoded an assumption the data corrected. IBM-5's revealed a design limit.
+  The gate failing is how you learn the gate was wrong.
+
+## The methodology as a transferable protocol
+
+The physics here is specific. The method is not, and it was assembled to be
+cheap: **72 jobs, seconds of QPU each, on a free-tier account.** Nothing below
+requires privileged hardware access.
+
+| practice | what it cost | what it caught here |
+|---|---|---|
+| **Pre-register numeric predictions and a pass criterion before submission** | minutes per run | made every failure *reportable* instead of quietly re-scoped; `all_gates_pass=False` appears in the archive four times |
+| **Assert exact statevector predictions in the dry run, before any backend contact** | one `assert` per design | a Schmidt reshape bug, an infeasible `d`, a 25%-wrong σ, a 4× shot overrun — **all at zero shot cost** |
+| **Build the adversary yourself, and build it to win** | one extra run each | IBM-2 and IBM-3 broke this program's own headline witnesses before a referee could |
+| **Derive what can mimic your witness *before* designing around it** | a calculation | learned three times the hard way; now a standing rule |
+| **Derive whether a quantity is *contingent* before measuring it** | a calculation | learned at the cost of IBM-6 and IBM-8; a two-line argument would have retired the question |
+| **Archive counts + prereg + server-side provenance per run** | one script | makes every analysis reproducible with no vendor account, and caught two silently-empty calibration captures |
+| **Report the failed gate as registered, then give the corrected statistic separately** | discipline only | preserves the pre-registration while still reporting the better number honestly |
+
+The division of labour is the part most transferable to other groups:
+**a physics-matched classical model on cheap large-scale compute as the
+hypothesis-and-adversary generator, and scarce quantum hardware purely as the
+arbiter.** Accelerator time is abundant and QPU time is not, so the expensive
+month-scale work — deciding *what* to measure, and constructing the states
+that would defeat a naive answer — belongs on the accelerator. The design
+parameters that survived to hardware here all came from TPU-stage failures.
+Any lab with a simulation cluster and a free-tier quantum account can run this
+loop; that is the point of documenting it.
 
 **Where this connects to current work.** Two recent results make quantitative
 predictions this apparatus is positioned to test, and both note the
@@ -634,7 +714,7 @@ specified in `docs/AQ_PAGE_WOOTTERS_IBM_1_RUN_SPEC.md`.
 ## The research path
 
 The program produced **three disciplined nulls on classical substrates, then
-ten hardware runs**, in that order. The nulls are load-bearing: each redirected
+eleven hardware runs**, in that order. The nulls are load-bearing: each redirected
 the question onto a better substrate until it became well-posed. The two
 hardware failures (IBM-6, IBM-8) are load-bearing for the same reason.
 
@@ -658,8 +738,8 @@ the 4-arm protocol above measured the clock-marginal coherence witness of
 The off-diagonals being measured, `ρ_C[t,t'] = (1/d)cos((t−t')π/d)`, are
 exactly the finite-clock record overlaps that the synthetic branch of this
 program characterized as a *limitation* (locally indistinguishable clock
-records). On hardware, that same non-orthogonality is the *signal*. That
-inversion is the conceptual through-line of the paper.
+records). On hardware, that same non-orthogonality is the *signal* — the
+inversion described under *Where the method came from* above.
 
 **Claim boundary (locked).** This is a set of hardware measurements on
 engineered 2–5 qubit states. It is **not** a claim that time is emergent, a
@@ -806,7 +886,7 @@ carrying its own honest ledger. Ten runs, 36 jobs, all on `ibm_marrakesh`.
 |---|---|---|
 | **IBM-1** | does the witness survive decoherence? | decoherence threshold measured; witness degrades before conditional evolution does |
 | **IBM-2** | can a zero-entanglement product state fake the local witness? | **yes** — scores 4.2×/1.9× *higher*. Local witness certifies coherence, not structure |
-| **IBM-3** | can a separable state fake the joint witness? | **yes** — 1.7× higher; two-line theorem shows *no* single-setting observable can certify entanglement |
+| **IBM-3** | can a separable state fake the joint witness? | **yes** — 1.7× higher; two-line theorem: no single local product-basis distribution can certify entanglement |
 | **IBM-4** | can anything certify it? | **yes** — multi-setting fidelity witness, F = 0.9419/0.8829 vs λ_max = 0.5 |
 | **IBM-5** | is the global state stationary? | yes under `Ŝ ⊗ U` and nothing else, 44σ–167σ (1 gate failed at d=8, reported) |
 | **IBM-6** | is the eigenvalue exactly +1? | **FAILED** — arms not depth-matched; comparison confounded |
