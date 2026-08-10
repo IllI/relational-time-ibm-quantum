@@ -65,7 +65,7 @@ qualify (`α ∈ {1, 5, 7, 11}`).
 exists" when `gcd(α,d) ≠ 1`. That is wrong in one direction — the rate *from*
 the summation label *to* B is always defined, being `α` by construction. What
 fails is the reverse, which is what "use B as the clock" actually requires. The
-corrected statement is verified executably in Program 3's
+corrected statement is verified executably in the successor repository's
 `theory/verify_structural_results.py`.
 
 This is a *new* structural condition and is **not** the same as IBM-7's
@@ -146,9 +146,10 @@ Recommendation: publish the current program as it stands, and treat this as the
 opening of a second line — with structural results 1 and 2 above as its first
 contributions, already derived at zero QPU cost.
 
-**That second line now exists** as its own repository, Program 3
-(*Relational Clock Networks and Self-Timed Quantum States*), which carries this
-proposal forward as Run A of four and adds two further structural results: that
+**That second line now exists** as its own repository,
+**relational-entanglement-network** (*Relational Clock Networks and Self-Timed
+Quantum States*), which carries this proposal forward as Run A of four and adds
+two further structural results: that
 relativistic time dilation trades local throughput for Earth-frame storage
 rather than accelerating computation, and that Holevo/superdense bounds require
 any "semantic compression" to be earned in the classical layer.
