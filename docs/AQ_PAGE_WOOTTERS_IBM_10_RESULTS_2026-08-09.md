@@ -61,10 +61,20 @@ omit. The one visible consequence is below.
 **The joint echo is 4.4% lower than IBM-5's on the same state and backend**
 (0.8630 here vs **0.9030** in IBM-5, 2026-08-08). The control structure
 replicates closely (IBM-5: 0.4605 / 0.4985 / 0.0243; here: 0.3990 / 0.4607 /
-0.0210), so this reads as calibration drift and/or the maintenance state, not
-a different physical result. Taken together with IBM-5 this is an **independent
-replication of the stationarity measurement on a different day**, which was not
-a design goal of this run but is a real bonus.
+0.0210), so this reads as calibration drift, not a different physical result.
+
+The provenance capture supports that reading with a specific number rather
+than a guess: the backend's **last calibration update was
+`2026-08-06T22:19:40-05:00`** — three days before this run, and the same
+snapshot IBM-9 ran against on 2026-08-08. So the device executed this job in
+`maintenance` status against a three-day-old calibration. That is a plausible
+and *documented* source of the drift, and it is why the calibration snapshot
+is archived per run rather than described in prose.
+
+Taken together with IBM-5 this is also an **independent replication of the
+stationarity measurement on a different day and a different calibration
+epoch**, which was not a design goal of this run but is a real bonus: the
+separations survive at 42σ–143σ despite the degraded conditions.
 
 **The fidelity σ is an independence estimate.** `fidelity_sigma()` propagates
 `Var(F) = (1/2ⁿ)² Σ c_P²(1−⟨P⟩²)/N` but ignores the correlation between Paulis
