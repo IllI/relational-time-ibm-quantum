@@ -6,8 +6,8 @@ than by an external parameter — leaves a measurable quantum signature that can
 be distinguished from its classical mimic. It runs from three disciplined
 nulls on classical substrates, through a simulation campaign on **Google TPU
 Research Cloud** hardware that built the hypothesis and the certification
-standard, to **ten pre-registered runs on IBM Quantum Heron processors** (71
-jobs) — eight positive, two reported as failures.
+standard, to **eleven pre-registered runs on IBM Quantum Heron processors** (72
+jobs) — nine positive, two reported as failures.
 
 **The short version.** The signature usually cited as "time from entanglement"
 is classically reproducible, and this program measured that on hardware. It
@@ -20,17 +20,18 @@ evolving, and supporting coherent superposition and interference between two
 programmed relational evolution rates** — each certified by a distinct
 observable rather than inferred from one tomographic fit.
 
-> [!WARNING]
-> **These properties are measured across two different history states, not
-> one.** Entanglement (IBM-4) was certified on the `Ry`-generated state;
-> stationarity (IBM-5) on the `P`-generated state. Those two states are
-> **orthogonal** (fidelity 0.000 at `d = 4`) and are not related by any
-> system-local unitary. Both are maximally entangled by construction, so the
-> theory transfers — but the *measured* F = 0.9419 belongs to a state that was
-> never shown stationary, and the state shown stationary was never
-> hardware-certified as entangled. The single-preparation run that would close
-> this is specified in `docs/AQ_PAGE_WOOTTERS_IBM_10_RUN_SPEC.md` and **has not
-> been executed.** See *Known limitations*.
+> [!IMPORTANT]
+> **The conjunction is certified on a single preparation (IBM-10,
+> 2026-08-09).** Entanglement (IBM-4) and stationarity (IBM-5) were originally
+> measured on **orthogonal** states — fidelity 0.000 at `d = 4` — so the
+> Page–Wootters mechanism's actual content, *a state that does not change
+> globally while its conditioned slices do*, had never been measured on one
+> state. IBM-10 puts all three arms on the same `P(2π/d)` cyclic preparation in
+> one job: **F = 0.9014** against the separable bound ½, **joint echo 0.8630**
+> against mismatched controls at 42σ–143σ, and **`⟨X_S|t⟩` amplitude 0.9193**
+> at R² = 0.9942. The single-state discipline is enforced by pre-submission
+> assertions, not prose — see
+> `docs/AQ_PAGE_WOOTTERS_IBM_10_RESULTS_2026-08-09.md`.
 
 All raw counts, pre-registrations, and provenance are archived here; every
 analysis reproduces from counts with no IBM account.
@@ -105,10 +106,12 @@ pre-registered on 2026-08-03, unedited.
 The refuted clause is the italicized one, and it failed hard: a **zero-entanglement product state** scores 4.2× *higher* on that witness than the
 history state does (IBM-2), and a **separable** state scores 1.7× higher on
 the joint-readout witness built to repair it (IBM-3). A two-line theorem then
-generalized the failure — *no* single-setting observable can certify
-clock–system entanglement, so every witness in the original design was
+generalized the failure — no single **local product-basis distribution** can
+certify clock–system entanglement, so every witness in the original design was
 entanglement-blind by construction, despite the history state being maximally
-entangled.
+entangled. (The theorem is about local product-basis distributions
+specifically; it does not rule out that some global entangled measurement
+could serve as a witness in a single configuration.)
 
 **The corrected hypothesis, which the rest of the program tests:** the quantum
 signature of relational time is not carried by any single distribution. It is
@@ -130,14 +133,14 @@ clock coherence, which at `d = 2` is absent from a maximally entangled state.
 
 ## What was tested
 
-Ten runs on IBM Heron r2 processors, each pre-registered before submission.
+Eleven runs on IBM Heron r2 processors, each pre-registered before submission.
 The program is best read as three movements:
 
 | movement | runs | question |
 |---|---|---|
 | **I. The witness** | IBM-0, IBM-1 | does relational time leave a signature the classical mixture cannot reproduce, and does it survive decoherence? |
 | **II. What the witness certifies** | IBM-2, IBM-3, IBM-4 | can that signature be faked? (twice: yes) — and what, if anything, cannot be? |
-| **III. The constraint itself** | IBM-5, IBM-6, IBM-7, IBM-8, IBM-9 | is the global state stationary, what happens when the clock rates are detuned, and can the *rate of time* be superposed? |
+| **III. The constraint itself** | IBM-5 … IBM-10 | is the global state stationary, what happens when the clock rates are detuned, and can the *rate of time* be superposed? |
 
 Movement II is the methodological core: each run was an adversarial control
 this program built to attack its own previous result.
@@ -172,10 +175,11 @@ it was shown to be insufficient.
 | **IBM-6/8** | Hadamard test, β-swept | attempts to certify the constraint eigenvalue is exactly `+1` — **both failed** |
 | **IBM-7** | two clocks at rate ratio `α` | detunes the pairing; asks when the constraint still closes |
 | **IBM-9** | which-rate qubit `G`, read in Z and X | superposes two proper-time histories and looks for interference |
+| **IBM-10** | all three arms on ONE preparation, one job | certifies the *conjunction* — IBM-4 and IBM-5 had used orthogonal states |
 
 ## Conclusion
 
-**Program-level, stated as narrowly as ten runs support:**
+**Program-level, stated as narrowly as eleven runs support:**
 
 > In engineered 2–5 qubit history states on superconducting hardware, the
 > conditional-evolution signal usually cited as evidence for relational time is
@@ -195,11 +199,12 @@ it was shown to be insufficient.
 > commensurability condition for exact cycle closure of a finite cyclic
 > clock**, and **supporting coherent superposition and interference between
 > two programmed relational evolution rates** (interference 0.2411 where every
-> classical rate mixture predicts zero). Two things are **not**
-> certified: the *phase* of the stationarity eigenvalue — and therefore the
-> stronger `+1` constraint condition — which was attacked twice and failed
-> twice; and the conjunction itself, since entanglement and stationarity were
-> measured on two orthogonal preparations rather than one.
+> classical rate mixture predicts zero). **The first three hold jointly on a
+> single preparation** (IBM-10: F = 0.9014, joint echo 0.8630 at 42σ–143σ,
+> conditional amplitude 0.9193 at R² = 0.9942) — which is the mechanism's
+> actual content, rather than three properties of three states. What is **not**
+> certified is the *phase* of the stationarity eigenvalue, and therefore the
+> stronger `+1` constraint condition: attacked twice, failed twice.
 
 The narrow Movement I result, which the above is built on:
 
@@ -403,19 +408,18 @@ exists:
    here; the contribution is methodological — testing invariance under a
    specific joint group element against mismatched controls that quantify how
    the invariance fails.
-4. **The properties were measured on two different states, not one.**
-   Entanglement (IBM-4) was certified on the `Ry`-generated state,
-   stationarity (IBM-5) on the `P`-generated state. These are **orthogonal**
-   (fidelity 0.000 at `d = 4`, 0.005 at `d = 8`) and are **not** related by
-   any system-local unitary — they differ by a *clock-conditioned* phase,
-   which is precisely the `U^d = −I` vs `U^d = +I` distinction that IBM-5
-   discovered. Both are maximally entangled by construction (Schmidt exactly
-   ½,½, `ρ_S = I/2`), so the entanglement of the stationary state follows from
-   theory — but it was never *measured*, and the measured F = 0.9419 belongs
-   to a state never shown stationary. **The Page–Wootters mechanism's
-   conjunction is therefore not yet certified on a single preparation.** The
-   run that would close this is specified in
-   `docs/AQ_PAGE_WOOTTERS_IBM_10_RUN_SPEC.md`.
+4. **~~The properties were measured on two different states.~~ CLOSED by
+   IBM-10 (2026-08-09).** IBM-4 and IBM-5 used **orthogonal** preparations
+   (fidelity 0.000 at `d = 4`, 0.005 at `d = 8`), not related by any
+   system-local unitary — they differ by a *clock-conditioned* phase, which is
+   precisely the `U^d = −I` vs `U^d = +I` distinction IBM-5 discovered. So the
+   conjunction was never measured on one state. IBM-10 measured it: all three
+   arms on the same `P(2π/d)` preparation, one job, one calibration epoch.
+   Retained here rather than deleted because the gap was real and the record
+   of closing it is part of the evidence. **Caveat:** `ibm_marrakesh` was in
+   `maintenance` status during that run — every gate passed with large
+   margins, and the joint echo (0.8630) replicates IBM-5's (0.9030) to within
+   4.4% with the same control structure, but the status is recorded.
 5. **The certification is device-dependent.** A fidelity witness assumes the
    measurement operators are what they are labeled. This is not a Bell test
    and no loophole-free claim is made. A CHSH test on the effective
@@ -758,10 +762,10 @@ analysis reproduces from counts with no IBM dependency.
    reproducibility of conditional evolution — the four findings that
    constitute the result.
 
-### Part V — AQ-PAGE-WOOTTERS-IBM-1…9: the adversarial and mechanism runs (2026-08-07/08)
+### Part V — AQ-PAGE-WOOTTERS-IBM-1…10: the adversarial and mechanism runs (2026-08-07/09)
 
 Each run has a pre-registration filed before submission and a results document
-carrying its own honest ledger. Nine runs, 35 jobs, all on `ibm_marrakesh`.
+carrying its own honest ledger. Ten runs, 36 jobs, all on `ibm_marrakesh`.
 
 | run | question | outcome |
 |---|---|---|
@@ -774,6 +778,7 @@ carrying its own honest ledger. Nine runs, 35 jobs, all on `ibm_marrakesh`.
 | **IBM-7** | what if the rates are detuned? | commensurability condition for exact cycle closure of a *finite cyclic* clock; closes only at integer α (1 gate failed — the gate was wrong, the data was right) |
 | **IBM-8** | retry IBM-6, depth-matched | **FAILED** — d=8: 0/4, d=4: 2/4. Limitation published unclosed; recommendation is to stop |
 | **IBM-9** | superpose the *rate* of time | **3/3** — interference 0.2411 vs 3σ bar 0.1039; classical rate mixture excluded |
+| **IBM-10** | all three properties on ONE state | **4/4** — F 0.9014, echo 0.8630 at 42–143σ, R² 0.9942; conjunction certified |
 
 The sequence IBM-2 → IBM-3 → IBM-4 is the methodological core: each
 adversarial run broke the previous run's witness with a state the program
@@ -843,8 +848,8 @@ All hardware analyses reproduce from the archived raw counts in
 ## Provenance
 
 - Backends: `ibm_marrakesh`, `ibm_fez` (156-qubit Heron r2), IBM Open Plan
-  (trial instance). **71 jobs total** — 36 for IBM-0 across both devices, 35
-  for IBM-1…9 on `ibm_marrakesh` — a few seconds of QPU each; all job IDs and
+  (trial instance). **72 jobs total** — 36 for IBM-0 across both devices, 36
+  for IBM-1…10 on `ibm_marrakesh` — a few seconds of QPU each; all job IDs and
   server-side timestamps in `results/hardware/*/*provenance.json`
   (authoritative for chronology), alongside per-run backend calibration
   snapshots for the physical qubits actually used.

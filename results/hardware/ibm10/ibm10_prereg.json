@@ -1,0 +1,49 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-10",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-09T23:47:03.775176Z",
+  "optimization_level": 0,
+  "n_clock": 2,
+  "d": 4,
+  "layout": [
+    0,
+    1,
+    2
+  ],
+  "shots": {
+    "fidelity": 4000,
+    "echo": 4000,
+    "conditional": 4000
+  },
+  "lambda_max": 0.5,
+  "settings": [
+    "ZXX",
+    "ZXY",
+    "XYX",
+    "XZX",
+    "YYX",
+    "YZX",
+    "XYY",
+    "XYZ",
+    "XZY",
+    "XZZ",
+    "YYY",
+    "YYZ",
+    "YZY",
+    "YZZ"
+  ],
+  "exact_echo_overlaps": {
+    "joint": 0.9999999999999991,
+    "clock_only": 0.4999999999999996,
+    "system_only": 0.4999999999999996,
+    "wrong_way": 1.4950558849080197e-33
+  },
+  "purpose": "Certify entanglement, ray-stationarity and internal evolution on a SINGLE hardware preparation. IBM-4 and IBM-5 established the first two on orthogonal states (fidelity 0.000 at d=4), so the conjunction -- which is the Page-Wootters mechanism's actual content -- was never measured. All three arms here compose the same prepare_history() circuit and the same system_step() operator.",
+  "gates": {
+    "gate1_entangled": "F > lambda_max = 0.5 by more than 3 sigma",
+    "gate2_stationary": "joint echo exceeds EVERY mismatched control by >3 sigma (binomial sigma at the measured p, not worst-case 1/sqrt(N))",
+    "gate3_evolving": "<X_S|t> fits cos(2 pi t/d) with R^2 > 0.90",
+    "gate4_conjunction": "gates 1-3 all hold on the SAME prepared state"
+  }
+}
