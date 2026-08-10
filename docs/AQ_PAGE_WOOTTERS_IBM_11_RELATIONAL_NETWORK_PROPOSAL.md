@@ -55,10 +55,18 @@ verification of closure.
 
 ### 2. A clock can only serve as a reference frame if `gcd(α, d) = 1`
 
-When `α` shares a factor with `d`, the map `t ↦ αt mod d` is not a bijection
-and **no pairwise rate exists**: the relation is many-to-one, so that clock
-cannot index the others. Observed directly in the numerical check (`a = 2,
-b = 3` at `d = 12` yields no well-defined `α_BC` or `α_CA`).
+Using B as the clock requires recovering the shared label from B's readings,
+which requires `t ↦ αt mod d` to be **injective**, i.e. `gcd(α, d) = 1`.
+Equivalently, `B→C` is expressible as a rate only if `β = m·α (mod d)` is
+solvable, which again needs `α` invertible. At `d = 12` only **4 of 11** rates
+qualify (`α ∈ {1, 5, 7, 11}`).
+
+*Precision note:* an earlier draft of this section said "no pairwise rate
+exists" when `gcd(α,d) ≠ 1`. That is wrong in one direction — the rate *from*
+the summation label *to* B is always defined, being `α` by construction. What
+fails is the reverse, which is what "use B as the clock" actually requires. The
+corrected statement is verified executably in Program 3's
+`theory/verify_structural_results.py`.
 
 This is a *new* structural condition and is **not** the same as IBM-7's
 commensurability. IBM-7's integer resonance is about exact cycle closure after
@@ -137,3 +145,10 @@ so nothing here bears on whether time in nature is emergent.
 Recommendation: publish the current program as it stands, and treat this as the
 opening of a second line — with structural results 1 and 2 above as its first
 contributions, already derived at zero QPU cost.
+
+**That second line now exists** as its own repository, Program 3
+(*Relational Clock Networks and Self-Timed Quantum States*), which carries this
+proposal forward as Run A of four and adds two further structural results: that
+relativistic time dilation trades local throughput for Earth-frame storage
+rather than accelerating computation, and that Holevo/superdense bounds require
+any "semantic compression" to be earned in the classical layer.
