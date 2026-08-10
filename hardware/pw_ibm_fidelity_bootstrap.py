@@ -69,6 +69,57 @@ def resample_counts(counts: dict[str, int], rng: np.random.Generator) -> dict[st
     return {k: int(v) for k, v in zip(keys, draw)}
 
 
+def load_case(run: str, d_dir: Path):
+    """Yield (label, settings, terms, n, lambda_max, counts_by_setting, F_recorded).
+
+    IBM-10 records its own settings/pauli_terms, so it is read directly.
+    IBM-4 does not -- it predates that convention -- so the decomposition is
+    regenerated deterministically from the same prep circuit the run used, and
+    the history arm is located by circuit order: for each d, one job per prep in
+    {history, product, sep0, sep1}, so history is the FIRST job of each block."""
+    res_path = d_dir / f"{run}_results.json"
+    cnt_path = d_dir / f"{run}_counts.json"
+    if not cnt_path.exists():
+        raise SystemExit(
+            f"{cnt_path} not found. Retrieve the counts first (no QPU cost):\n"
+            f"  python pw_ibm_fetch_counts.py --results {res_path}"
+        )
+    results = json.loads(res_path.read_text(encoding="utf-8"))
+    archive = json.loads(cnt_path.read_text(encoding="utf-8"))
+    jobs = archive["jobs"]
+
+    if run == "ibm10":
+        settings = results["settings"]
+        terms = results["pauli_terms"]
+        n = results["n_clock"] + 1
+        flat = [c for j in jobs for c in j.get("counts", [])]
+        yield ("d4", settings, terms, n, results["lambda_max"],
+               {s: flat[i] for i, s in enumerate(settings)}, results["fidelity"])
+        return
+
+    # ---- IBM-4: regenerate the decomposition, one block per clock size ----
+    from pw_ibm4_fidelity import covering_settings as cover, pauli_terms
+
+    block_start = 0
+    for n_clock in (2, 3):
+        d = 2**n_clock
+        n = n_clock + 1
+        terms = pauli_terms(n_clock)
+        settings = cover(list(terms), n)
+        hist = jobs[block_start]                     # history is first in each block
+        counts = hist.get("counts", [])
+        if len(counts) != len(settings):
+            raise SystemExit(
+                f"d={d}: job {hist['job_id']} has {len(counts)} circuits but the "
+                f"regenerated decomposition needs {len(settings)} — circuit-order "
+                "assumption is wrong, do not trust a CI from this")
+        yield (f"d{d}", settings, terms, n,
+               results["arms"][str(d)]["lambda_max"],
+               {s: counts[i] for i, s in enumerate(settings)},
+               results["arms"][str(d)]["F_history"])
+        block_start += 4                             # history, product, sep0, sep1
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", default="ibm10", help="ibm10 or ibm4")
@@ -76,6 +127,43 @@ def main() -> None:
     ap.add_argument("--resamples", type=int, default=10000)
     ap.add_argument("--seed", type=int, default=20260810)
     args = ap.parse_args()
+
+    if args.run != "ibm10":
+        d = args.dir or Path(f"results_{args.run}_ibm_marrakesh")
+        rng = np.random.default_rng(args.seed)
+        out_all = []
+        for label, settings, terms, n, lam, by_setting, f_rec in load_case(args.run, d):
+            point = fidelity_from(terms, settings, by_setting, n)
+            print(f"\nrun={args.run} {label}  settings={len(settings)}  "
+                  f"terms={len(terms)}  bound={lam}")
+            print(f"  recomputed F from counts : {point:.6f}")
+            print(f"  F recorded in results    : {f_rec:.6f}")
+            if abs(point - f_rec) > 1e-9:
+                print("  [WARN] mismatch — check the circuit-order assumption")
+            draws = np.array([
+                fidelity_from(terms, settings,
+                              {s: resample_counts(by_setting[s], rng) for s in settings},
+                              n)
+                for _ in range(args.resamples)])
+            lo, hi = np.percentile(draws, [2.5, 97.5])
+            print(f"  bootstrap std {draws.std(ddof=1):.6f}   "
+                  f"95% CI [{lo:.6f}, {hi:.6f}]   above bound: {lo > lam}")
+            print(f"  publishable: F = {point:.4f}, 95% CI [{lo:.4f}, {hi:.4f}]")
+            out_all.append({"case": label, "F_point_recomputed": point,
+                            "F_recorded": f_rec, "lambda_max": lam,
+                            "bootstrap_std": float(draws.std(ddof=1)),
+                            "ci95": [float(lo), float(hi)],
+                            "fraction_above_bound": float(np.mean(draws > lam)),
+                            "lower_95_above_bound": bool(lo > lam),
+                            "n_settings": len(settings), "resamples": args.resamples})
+        (d / f"{args.run}_fidelity_bootstrap.json").write_text(
+            json.dumps({"run": args.run, "seed": args.seed, "cases": out_all,
+                        "method": ("Setting-wise multinomial resampling of archived raw "
+                                   "counts; each setting resampled whole, preserving "
+                                   "within-setting Pauli correlations.")},
+                       indent=2), encoding="utf-8")
+        print(f"\n  -> {d / f'{args.run}_fidelity_bootstrap.json'}")
+        return
 
     d = args.dir or Path(f"results_{args.run}_ibm_marrakesh")
     res_path = d / f"{args.run}_results.json"

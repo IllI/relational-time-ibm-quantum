@@ -164,3 +164,36 @@ Backend `ibm_marrakesh`, 8 jobs, 2026-08-07T22:54Z. Job IDs in
 ```
 python pw_ibm_provenance.py --results results_ibm4_ibm_marrakesh/ibm4_results.json --out results_ibm4_ibm_marrakesh/ibm4_provenance.json
 ```
+
+
+---
+
+## Postscript, 2026-08-10: bootstrap confidence intervals
+
+The original run reported point estimates with a significance "by independence
+estimate" and explicitly deferred the bootstrap. It has now been done, from the
+archived raw counts, at no hardware cost
+(`hardware/pw_ibm_fidelity_bootstrap.py`, 10 000 setting-wise multinomial
+resamples; each measurement setting is resampled as a whole object, so the
+correlations between Paulis recovered from it are preserved):
+
+| case | F | bootstrap σ | 95% CI | lower bound > λ_max = ½ |
+|---|---|---|---|---|
+| d = 4 | 0.9419 | 0.006727 | **[0.9286, 0.9548]** | yes |
+| d = 8 | 0.8829 | 0.006002 | **[0.8709, 0.8945]** | yes |
+
+**Both lower limits clear the separable bound outright**, so the entanglement
+certification is statistical rather than a point estimate against a bound.
+
+Two independent validations fell out of doing this. The Pauli decomposition was
+**regenerated from scratch** rather than read from the results file — IBM-4
+predates the convention of recording it — and the recomputed fidelities matched
+the archived values to six decimal places at both clock sizes. That confirms
+the archived counts, the circuit-order assumption (history is the first job of
+each per-`d` block), and the decomposition all agree. It is the strongest
+end-to-end reproducibility check the program has: a number computed by one
+script on one day, reproduced from raw counts by different code on another.
+
+Note also that this bootstrap was only possible because the raw counts were
+retrievable. They had **not** been archived at the time of the run — see the
+*Reproducibility status* note in the top-level README for that history.

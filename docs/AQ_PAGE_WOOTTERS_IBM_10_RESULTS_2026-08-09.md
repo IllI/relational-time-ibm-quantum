@@ -76,12 +76,30 @@ stationarity measurement on a different day and a different calibration
 epoch**, which was not a design goal of this run but is a real bonus: the
 separations survive at 42σ–143σ despite the degraded conditions.
 
-**The fidelity σ is an independence estimate.** `fidelity_sigma()` propagates
-`Var(F) = (1/2ⁿ)² Σ c_P²(1−⟨P⟩²)/N` but ignores the correlation between Paulis
-read from the same setting. It is used only to set a 3σ bar (0.0133) far below
-the observed margin (0.4014). **No N-sigma significance is quoted for arm A**,
-and none should be without bootstrapping the covariance — IBM-4 made the same
-choice and deferred the bootstrap.
+**The fidelity σ is an independence estimate — and the bootstrap has now been
+done.** `fidelity_sigma()` propagates `Var(F) = (1/2ⁿ)² Σ c_P²(1−⟨P⟩²)/N` but
+ignores the correlation between Paulis read from the same setting, so it was
+used only to set a 3σ bar (0.0133) far below the observed margin (0.4014), and
+no N-sigma significance was quoted.
+
+**Resolved 2026-08-10** by a setting-wise multinomial bootstrap of the archived
+raw counts (`hardware/pw_ibm_fidelity_bootstrap.py`, 10 000 resamples, each
+setting resampled as a whole object so within-setting correlations are
+preserved):
+
+```
+F = 0.9014      95% CI [0.8913, 0.9113]      99% CI [0.8883, 0.9145]
+bootstrap sigma 0.005066     fraction of resamples above 1/2: 1.000000
+```
+
+**The lower 95% bound clears the separable bound outright**, which upgrades the
+result from a point estimate to a statistical certification. Two things worth
+recording: the recomputation of `F` from raw counts reproduced the recorded
+0.901406 exactly, independently validating the archive and the circuit-order
+assumption; and the independence estimate turned out to be
+**anti-conservative by ~14%** (0.00444 against the bootstrap's 0.00507) — the
+within-setting correlations *inflate* the variance rather than cancel, which is
+precisely why no N-sigma should have been quoted from it.
 
 **Arm C is thin at `d = 4`, as pre-registered.** The exact sequence is
 `[1, 0, −1, 0]`, so two of four points are zero by construction and R² is

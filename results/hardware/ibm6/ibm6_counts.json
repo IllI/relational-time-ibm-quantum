@@ -1,0 +1,85 @@
+{
+  "source_results": "results_ibm6_ibm_marrakesh\\ibm6_results.json",
+  "backend": "ibm_marrakesh",
+  "note": "Counts in circuit-submission order per job -- the order the run script built its circuit list. Retrieved post-hoc from IBM via archived job IDs; no QPU time consumed.",
+  "jobs": [
+    {
+      "job_id": "d9rldhgpdb6s73e52shg",
+      "status": "DONE",
+      "n_circuits": 8,
+      "counts": [
+        {
+          "0": 3522,
+          "1": 478
+        },
+        {
+          "1": 2186,
+          "0": 1814
+        },
+        {
+          "1": 1330,
+          "0": 2670
+        },
+        {
+          "1": 3051,
+          "0": 949
+        },
+        {
+          "0": 2951,
+          "1": 1049
+        },
+        {
+          "0": 2762,
+          "1": 1238
+        },
+        {
+          "0": 2128,
+          "1": 1872
+        },
+        {
+          "1": 2030,
+          "0": 1970
+        }
+      ]
+    },
+    {
+      "job_id": "d9rldl8pdb6s73e52slg",
+      "status": "DONE",
+      "n_circuits": 8,
+      "counts": [
+        {
+          "1": 837,
+          "0": 3163
+        },
+        {
+          "1": 2199,
+          "0": 1801
+        },
+        {
+          "0": 3111,
+          "1": 889
+        },
+        {
+          "1": 2258,
+          "0": 1742
+        },
+        {
+          "0": 3700,
+          "1": 300
+        },
+        {
+          "1": 1373,
+          "0": 2627
+        },
+        {
+          "0": 2571,
+          "1": 1429
+        },
+        {
+          "1": 2575,
+          "0": 1425
+        }
+      ]
+    }
+  ]
+}

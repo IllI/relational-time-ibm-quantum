@@ -1,0 +1,37 @@
+{
+  "run": "ibm4",
+  "seed": 20260810,
+  "cases": [
+    {
+      "case": "d4",
+      "F_point_recomputed": 0.9419057037589897,
+      "F_recorded": 0.9419057037589897,
+      "lambda_max": 0.5,
+      "bootstrap_std": 0.006727390766209096,
+      "ci95": [
+        0.9285610354311741,
+        0.9547716347133898
+      ],
+      "fraction_above_bound": 1.0,
+      "lower_95_above_bound": true,
+      "n_settings": 10,
+      "resamples": 10000
+    },
+    {
+      "case": "d8",
+      "F_point_recomputed": 0.8828935980617149,
+      "F_recorded": 0.8828935980617149,
+      "lambda_max": 0.5,
+      "bootstrap_std": 0.00600194287826415,
+      "ci95": [
+        0.8708588194329678,
+        0.8945069812633318
+      ],
+      "fraction_above_bound": 1.0,
+      "lower_95_above_bound": true,
+      "n_settings": 20,
+      "resamples": 10000
+    }
+  ],
+  "method": "Setting-wise multinomial resampling of archived raw counts; each setting resampled whole, preserving within-setting Pauli correlations."
+}

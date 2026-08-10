@@ -27,16 +27,18 @@ observable rather than inferred from one tomographic fit.
 > Page–Wootters mechanism's actual content, *a state that does not change
 > globally while its conditioned slices do*, had never been measured on one
 > state. IBM-10 puts all three arms on the same `P(2π/d)` cyclic preparation in
-> one job: **F = 0.9014** against the separable bound ½, **joint echo 0.8630**
+> one job: **F = 0.9014**, bootstrap 95% CI **[0.8913, 0.9113]**, against the
+> separable bound ½; **joint echo 0.8630**
 > against mismatched controls at 42σ–143σ, and **`⟨X_S|t⟩` amplitude 0.9193**
 > at R² = 0.9942. The single-state discipline is enforced by pre-submission
 > assertions, not prose — see
 > `docs/AQ_PAGE_WOOTTERS_IBM_10_RESULTS_2026-08-09.md`.
 
-Pre-registrations, derived results and server-side provenance (including
-per-run backend calibration) are archived for all eleven runs. **Raw counts are
-archived for IBM-0 only**; for IBM-1…10 they are retrievable from IBM via the
-archived job IDs and are being backfilled — see *Reproducing*.
+Raw counts, pre-registrations, derived results and server-side provenance
+(including per-run backend calibration) are archived for **all eleven runs** —
+518 circuits of counts across 34 jobs. Every analysis reproduces from counts
+with no IBM account; the fidelity witnesses are re-derived from raw counts and
+bootstrapped in `hardware/pw_ibm_fidelity_bootstrap.py`.
 
 ---
 
@@ -194,7 +196,9 @@ it was shown to be insufficient.
 > Given that standard, each
 > defining property of the Page–Wootters mechanism was measured by a distinct
 > observable: **entangled** — a multi-setting fidelity witness *exceeding the
-> exact separable bound* `λ_max = ½` (F = 0.94/0.88), **stationary as a ray**
+> exact separable bound* `λ_max = ½`, with bootstrap 95% confidence intervals
+> whose lower limits clear the bound outright
+> (d=4: F = 0.9419, CI [0.9286, 0.9548]; d=8: F = 0.8829, CI [0.8709, 0.8945]), **stationary as a ray**
 > under the paired operation `Ŝ ⊗ U` and not under the mismatched controls
 > (44σ–167σ), **internally evolving** under the same operator that enforces
 > that stationarity (R² = 0.994), subject to a **hardware-measured
@@ -202,7 +206,8 @@ it was shown to be insufficient.
 > clock**, and **supporting coherent superposition and interference between
 > two programmed relational evolution rates** (interference 0.2411 where every
 > classical rate mixture predicts zero). **The first three hold jointly on a
-> single preparation** (IBM-10: F = 0.9014, joint echo 0.8630 at 42σ–143σ,
+> single preparation** (IBM-10: F = 0.9014 with 95% CI [0.8913, 0.9113],
+> joint echo 0.8630 at 42σ–143σ,
 > conditional amplitude 0.9193 at R² = 0.9942) — which is the mechanism's
 > actual content, rather than three properties of three states. What is **not**
 > certified is the *phase* of the stationarity eigenvalue, and therefore the
@@ -702,6 +707,7 @@ requires privileged hardware access.
 | **Derive whether a quantity is *contingent* before measuring it** | a calculation | learned at the cost of IBM-6 and IBM-8; a two-line argument would have retired the question |
 | **Archive counts + prereg + server-side provenance per run** | one script | makes every analysis reproducible with no vendor account, and caught two silently-empty calibration captures |
 | **Report the failed gate as registered, then give the corrected statistic separately** | discipline only | preserves the pre-registration while still reporting the better number honestly |
+| **Bootstrap the witness from archived counts rather than propagating a σ** | minutes, no QPU | the independence estimate was **anti-conservative by ~14%** (σ 0.00444 vs bootstrap 0.00507) — correlations *within* a setting inflate the variance rather than cancel |
 
 The division of labour is the part most transferable to other groups:
 **a physics-matched classical model on cheap large-scale compute as the
@@ -973,26 +979,30 @@ python hardware/pw_ibm_provenance.py \
     --out /tmp/ibm9_provenance.json
 ```
 
-**Reproducibility status, stated precisely.** IBM-0's analyses reproduce end to
-end from the archived raw counts in
-`results/hardware/*/pw_ibm_counts_nclock*.json` with no IBM access.
+**Reproducibility status.** All eleven runs reproduce from archived raw counts
+with no IBM access — IBM-0 from `pw_ibm_counts_nclock*.json`, IBM-1…10 from
+`results/hardware/ibm*/ibm*_counts.json` (518 circuits, 34 jobs).
 
-For **IBM-1…10 the raw counts were not archived** — those runs stored
-pre-registrations, derived results and provenance, but the counts-archiving
-discipline established for IBM-0 was not carried forward. The gap was found
-while attempting a bootstrap of the IBM-4/IBM-10 fidelity confidence intervals
-and discovering there was nothing local to resample. It is recoverable: the
-counts still live on IBM's servers and the job IDs are archived, so
+This was not true until 2026-08-10 and the history is worth recording. IBM-0
+archived its counts; **IBM-1…10 did not** — the discipline was established once
+and not carried forward. The gap surfaced only when a reviewer asked for
+bootstrap confidence intervals on the fidelity witnesses and there was nothing
+local to resample. It was recoverable because the job IDs were archived and the
+submitting account was still live, so `pw_ibm_fetch_counts.py --all` backfilled
+every run at zero QPU cost. Had the trial lapsed first (~2026-09-02) the raw
+data would have been gone and ten runs would have remained reproducible only
+from derived numbers.
+
+The lesson generalizes past this repository: **an archive is only as good as
+its least-archived run, and provenance discipline decays silently.** Nothing
+failed, no result changed, and the omission was invisible from the outside for
+a week.
 
 ```bash
-python hardware/pw_ibm_fetch_counts.py --all      # no QPU cost
+python hardware/pw_ibm_fetch_counts.py --all         # re-retrieve (no QPU cost)
+python hardware/pw_ibm_fidelity_bootstrap.py --run ibm10
+python hardware/pw_ibm_fidelity_bootstrap.py --run ibm4
 ```
-
-retrieves and archives them. This must happen **before the submitting account
-lapses (~2026-09-02)**; afterwards the raw data is gone and those runs remain
-reproducible only from derived numbers, which is a materially weaker archive.
-Recorded here rather than quietly fixed, because an archive's limitations are
-part of its documentation.
 
 ## Provenance
 
