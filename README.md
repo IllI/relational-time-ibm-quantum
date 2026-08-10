@@ -372,14 +372,35 @@ exists:
    certification of ray-stationarity *relative to controls*, not a direct
    measurement of unit modulus.) The phase matters only for the stronger
    analogy `(H_C + H_S)|Ψ⟩ = 0`, where a *zero* eigenvalue is a stricter
-   condition than *being* an eigenstate — and that stricter, Wheeler–DeWitt-
-   analogous condition remains uncertified. This is not
-   cosmetic: the Wheeler–DeWitt constraint is `Ĥ|Ψ⟩ = 0` specifically, and a
-   nonzero phase would mean an eigenstate carrying nonzero "energy" — not the
-   constraint. The prepared state's eigenvalue *is* exactly +1 by statevector
-   (phase ≈ 10⁻¹⁷), but the hardware did not measure it.
+   condition than *being* an eigenstate.
 
-   **This limitation was attacked twice and remains open.** IBM-6
+   > **The phase is not an open empirical question about this construction —
+   > it is fixed by it.** For *any* cyclic history state, the eigenvalue of
+   > `Ŝ ⊗ U` is **exactly +1 identically**:
+   >
+   > ```
+   > (Ŝ⊗U)|Ψ⟩ = (1/√d) Σ_t |t+1 mod d⟩ ⊗ U^{t+1}|ψ₀⟩ = |Ψ⟩
+   > ```
+   >
+   > relabelling `t' = t+1`, where the `t = d−1` term closes because
+   > `U^d|ψ₀⟩ = |ψ₀⟩`. Verified numerically to 12 decimals for random `U` with
+   > `U^d = I`, random `|ψ₀⟩`, system dimensions 2–5 and `d` from 3 to 16.
+   > The hypotheses have teeth: with `U^d = −I` (the `Ry` state of IBM-0…4)
+   > the state is **not an eigenvector at all** — overlap 0.5 at `d = 4`,
+   > 0.75 at `d = 8`.
+   >
+   > **Consequence.** The Wheeler–DeWitt-analogous condition is *built into*
+   > this construction rather than tested by it, and there is no genuine
+   > nonzero eigenvalue phase for an experiment to find. A hardware
+   > measurement of that phase would report the **circuit's coherent error** —
+   > device characterization, not physics. This is the real reason IBM-8's
+   > offset/phase fit was degenerate: it was trying to separate an instrumental
+   > offset from a signal the construction guarantees is identically zero.
+   >
+   > This was derived *after* the two failed runs, not before. Recorded as
+   > such — see the lesson below.
+
+   **This limitation was attacked twice before that was understood.** IBM-6
    (2026-08-08) ran the Hadamard test and failed: its four arms had wildly
    different two-qubit cost (29 CX for the joint arm vs 8 for the control at
    d=8), so the shallow control outscored the joint arm and the comparison was
@@ -394,8 +415,16 @@ exists:
    coherent error from a genuine phase can absorb exactly the quantity being
    measured, so even the one gate that passed does not license claiming the
    eigenvalue is real. **Two pre-registered attempts, both reported as
-   failures, and the recommendation is to stop rather than tune a third until
-   it passes**: `docs/AQ_PAGE_WOOTTERS_IBM_8_RESULTS_2026-08-08.md`.
+   failures**: `docs/AQ_PAGE_WOOTTERS_IBM_8_RESULTS_2026-08-08.md`.
+
+   **The lesson, which cost two runs.** This program's standing rule was
+   *derive what class of states can mimic a witness before designing a run
+   around it* (learned from IBM-2/3). IBM-6 and IBM-8 exposed its sibling:
+   **derive whether the quantity is contingent before designing a run to
+   measure it.** Both runs were well-built — IBM-8's depth-matching assertion
+   worked exactly as intended — and both were measuring something the
+   construction had already fixed. A two-line calculation, available before
+   either was written, would have retired the question at zero QPU cost.
 2. **The clock/system split is chosen, not derived.** Nothing in the state
    designates which qubits are the clock; the bipartition was imposed in the
    circuit design. Every run here demonstrates the mechanism *given* a frame

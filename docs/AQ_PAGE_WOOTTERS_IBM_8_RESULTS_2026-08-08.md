@@ -101,3 +101,54 @@ passes.
 ```
 python pw_ibm_provenance.py --results results_ibm8_ibm_marrakesh/ibm8_results.json --out results_ibm8_ibm_marrakesh/ibm8_provenance.json
 ```
+
+---
+
+## Postscript, 2026-08-09: why this could not have succeeded
+
+Added after the fact. The recommendation above — *stop, publish the limitation*
+— was right, but the reason given for it was wrong. It said the controlled
+clock-shift is too expensive for the signal to survive. That is true, and it is
+not the binding constraint.
+
+**For any cyclic history state the constraint eigenvalue is exactly +1 by
+construction**, not as a contingent fact:
+
+```
+|Ψ⟩      = (1/√d) Σ_t |t⟩ ⊗ U^t|ψ₀⟩
+(Ŝ⊗U)|Ψ⟩ = (1/√d) Σ_t |t+1 mod d⟩ ⊗ U^{t+1}|ψ₀⟩ = |Ψ⟩
+```
+
+relabelling `t' = t+1`, where the wraparound term closes because
+`U^d|ψ₀⟩ = |ψ₀⟩`. Verified numerically to 12 decimal places for random `U`
+satisfying `U^d = I`, random `|ψ₀⟩`, system dimension 2–5, and `d ∈ {3,…,16}`:
+the result is `+1.000000000000` in every case. The hypotheses are not vacuous —
+with `U^d = −I` (IBM-0…4's `Ry` state) the state is not an eigenvector at all,
+with overlap 0.5 at `d = 4` and 0.75 at `d = 8`.
+
+**So there was never a genuine eigenvalue phase to detect.** IBM-6 and IBM-8
+were both built to separate a β-independent instrumental offset from a genuine
+eigenvalue phase. The genuine phase is identically zero by construction, so
+that separation problem is degenerate by definition — which is exactly the
+"further trap" noted above, now with its cause identified. Whatever offset a
+clean run had measured would have been the circuit's coherent error: useful
+device characterization, and no information about the constraint.
+
+**This does not weaken IBM-5 or IBM-10.** Ray-stationarity — that `|Ψ⟩` is
+invariant under the correctly paired operation and not under the mismatched
+ones — is a real, contingent, measured property, and the controls quantify how
+the invariance fails. What is *not* contingent, and therefore not measurable,
+is which eigenvalue an exactly-cyclic construction lands on.
+
+**The honest framing for the paper** is therefore stronger than "we tried and
+failed": the Wheeler–DeWitt-analogous condition `(H_C + H_S)|Ψ⟩ = 0` is
+**assumed by this construction rather than tested by it**. An experiment that
+tested it would need a constraint that is not built in by fiat — which means a
+system whose Hamiltonian is given rather than compiled, i.e. limitation 6, not
+a better Hadamard test.
+
+**Lesson.** The program's standing rule was *derive what class of states can
+mimic a witness before designing a run around it*. Its sibling, which these two
+runs paid for: **derive whether the quantity is contingent before designing a
+run to measure it.** Two well-built runs, one of them with a working
+depth-matching assertion, spent on a theorem.
