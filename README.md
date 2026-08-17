@@ -74,8 +74,9 @@ observable rather than inferred from one tomographic fit.
 > [`docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md`](docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md).
 
 Raw counts, pre-registrations, derived results and server-side provenance
-(including per-run backend calibration) are archived for **all eleven runs** —
-518 circuits of counts across 34 jobs. Every analysis reproduces from counts
+(including per-run backend calibration) are archived for **all twelve runs** —
+571 circuits of counts across 35 jobs, 73 jobs of provenance in total, zero
+records with an empty calibration block. Every analysis reproduces from counts
 with no IBM account; the fidelity witnesses are re-derived from raw counts and
 bootstrapped in `hardware/pw_ibm_fidelity_bootstrap.py`.
 
@@ -1061,8 +1062,8 @@ python hardware/pw_ibm_fidelity_bootstrap.py --run ibm4
 ## Provenance
 
 - Backends: `ibm_marrakesh`, `ibm_fez` (156-qubit Heron r2), IBM Open Plan
-  (trial instance). **72 jobs total** — 36 for IBM-0 across both devices, 36
-  for IBM-1…10 on `ibm_marrakesh` — a few seconds of QPU each; all job IDs and
+  (trial instance). **73 jobs total** — 36 for IBM-0 across both devices, 37
+  for IBM-1…11 on `ibm_marrakesh` — a few seconds of QPU each; all job IDs and
   server-side timestamps in `results/hardware/*/*provenance.json`
   (authoritative for chronology), alongside per-run backend calibration
   snapshots for the physical qubits actually used.
