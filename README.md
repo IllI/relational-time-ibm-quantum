@@ -457,10 +457,12 @@ exists:
 2. **The clock/system split is chosen, not derived.** *(A follow-up that would
    narrow this — three clocks encoding only mutual relations, with no
    privileged frame — is proposed in
-   `docs/AQ_PAGE_WOOTTERS_IBM_11_RELATIONAL_NETWORK_PROPOSAL.md`, along with
-   two structural results derived at zero QPU cost: rate loop closure is
-   automatic rather than contingent, and a clock can serve as a reference frame
-   only if `gcd(α, d) = 1`.)* Nothing in the state
+   `docs/AQ_PAGE_WOOTTERS_IBM_11_RELATIONAL_NETWORK_PROPOSAL.md`. Two
+   structural results constraining any such run are derived and executable in
+   `theory/verify_clock_structure.py`: rate loop closure is automatic rather
+   than contingent, so it cannot serve as a physics gate; and a clock can act
+   as a reference frame only if `gcd(rate, d) = 1`, which is about resolution
+   rather than the cycle closure IBM-7 measured.)* Nothing in the state
    designates which qubits are the clock; the bipartition was imposed in the
    circuit design. Every run here demonstrates the mechanism *given* a frame
    we selected, not that a preferred frame emerges. (Note the labels are
@@ -959,6 +961,8 @@ results/synthetic/  compact JSON results for the runs above
 telemetry/          CHRONOS collector + the 2026-08-03 real-data reanalysis
 data/telemetry/     the actual US/EU TPU q-streams (real data, 128 Hz, ~256 s)
 results/telemetry/  real-data reanalysis outputs
+theory/             finite-clock structural results, executable
+                    (verify_clock_structure.py) -- derived, not measured
 docs/               IBM run spec + results (the paper's evidentiary core)
 docs/history/       the full research trail: CHRONOS specs/results, the
                     synthetic ladder log, BEC bridge spec/results
