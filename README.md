@@ -40,6 +40,31 @@ observable rather than inferred from one tomographic fit.
 > assertions, not prose — see
 > `docs/AQ_PAGE_WOOTTERS_IBM_10_RESULTS_2026-08-09.md`.
 
+> [!NOTE]
+> **Companion result — this programme's witness runs backwards, and the sibling
+> proves why.** This programme and
+> [twisted-spin-ptm](https://github.com/IllI/twisted-spin-ptm) ran
+> independently and measure the *same law*: coherence as a product of
+> half-angle state overlaps, one factor per informed party — there against
+> coupling angle (`T_xx = cos(χt/2)^(N−2)`), here against time
+> (`ρ_C = cos(Δt·π/d)`). Exact, not analogical.
+>
+> The consequence is not neutral. This programme's headline witness reads a
+> **marginal**, and for a bipartite pure state the marginal entropy *is* the
+> entanglement entropy — so entanglement is exactly what flattens what the
+> witness measures. A zero-entanglement product state outscores the maximally
+> entangled history state at every `d`, and the exact `d = 4` ratio
+> (`0.750 / 0.176777 = 4.24`) **reproduces IBM-2's measured 4.2×**. The
+> adversary did not find a loophole; it saturated a quantity that entanglement
+> necessarily suppresses.
+>
+> The sibling supplies what this programme cannot: a *separable* state with
+> maximally mixed marginals (`I/4` at `χt = π`, concurrence 0) to pair against
+> this programme's maximally entangled `d = 2` null. Independently converged on
+> by [arXiv:2512.09100](https://arxiv.org/abs/2512.09100), whose singlet clock
+> has uninformative marginals for the same reason:
+> [`docs/COMPANION_RESULT.md`](docs/COMPANION_RESULT.md).
+
 Raw counts, pre-registrations, derived results and server-side provenance
 (including per-run backend calibration) are archived for **all eleven runs** —
 518 circuits of counts across 34 jobs. Every analysis reproduces from counts
