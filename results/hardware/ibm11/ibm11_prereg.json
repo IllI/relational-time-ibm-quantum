@@ -1,0 +1,168 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-11",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-17T22:18:30.510834Z",
+  "optimization_level": 0,
+  "lambdas": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "shots": 4000,
+  "layout": [
+    0,
+    1
+  ],
+  "exact": {
+    "0.0": {
+      "witness": 0.5,
+      "chsh": 1.9999999999999996,
+      "ebits": -0.0,
+      "settings": {
+        "a": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "ap": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bp": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "0.25": {
+      "witness": 0.46193976625564337,
+      "chsh": 2.141444941535248,
+      "ebits": 0.23332662865093495,
+      "settings": {
+        "a": [
+          1.213641518363227e-17,
+          0.346639078438349,
+          0.9379985870455307
+        ],
+        "ap": [
+          -1.0,
+          -4.248639577543065e-17,
+          4.1108506330150385e-18
+        ],
+        "b": [
+          -0.6671346055478116,
+          -0.12389114448448721,
+          -0.7345627287025185
+        ],
+        "bp": [
+          -0.04767888312537505,
+          0.1238911444844874,
+          -0.9911496902195149
+        ]
+      }
+    },
+    "0.5": {
+      "witness": 0.3535533905932738,
+      "chsh": 2.449489742783178,
+      "ebits": 0.6008760366928564,
+      "settings": {
+        "a": [
+          -1.3184162859094759e-16,
+          0.5773502691896256,
+          0.8164965809277263
+        ],
+        "ap": [
+          -1.0,
+          -7.850462293418875e-17,
+          1.895269253967044e-16
+        ],
+        "b": [
+          -0.9106836025229592,
+          -0.3333333333333331,
+          -0.24401693585629236
+        ],
+        "bp": [
+          -0.24401693585629242,
+          0.3333333333333333,
+          -0.9106836025229591
+        ]
+      }
+    },
+    "0.75": {
+      "witness": 0.19134171618254492,
+      "chsh": 2.722905353179411,
+      "ebits": 0.8916186018581329,
+      "settings": {
+        "a": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "ap": [
+          -1.0,
+          0.0,
+          -1.446705215588676e-16
+        ],
+        "b": [
+          -0.678598344545847,
+          -0.678598344545847,
+          -0.2810846377148204
+        ],
+        "bp": [
+          -0.678598344545847,
+          0.678598344545847,
+          -0.2810846377148204
+        ]
+      }
+    },
+    "1.0": {
+      "witness": 3.061616997868383e-17,
+      "chsh": 2.82842712474619,
+      "ebits": 1.0,
+      "settings": {
+        "a": [
+          -6.123233995736766e-17,
+          0.0,
+          -1.0
+        ],
+        "ap": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "b": [
+          0.0,
+          -0.7071067811865476,
+          -0.7071067811865476
+        ],
+        "bp": [
+          0.0,
+          -0.7071067811865476,
+          0.7071067811865476
+        ]
+      }
+    }
+  },
+  "purpose": "Sweep the clock-marginal coherence witness and CHSH on the same states, from a zero-entanglement product state to a Bell pair, to test on hardware whether the witness is ANTI-correlated with nonlocal correlation. Forced for ideal pure states; contingent for the mixed states hardware actually prepares.",
+  "gates": {
+    "gate1_witness_monotone": "measured witness decreases across lambda",
+    "gate2_chsh_monotone": "measured CHSH increases across lambda",
+    "gate3_anticorrelated": "Pearson r(witness, CHSH) < -0.9",
+    "gate4_classical_endpoint": "at lambda=0, CHSH does not exceed 2 by >3 sigma (this gate can falsify the framing)",
+    "gate5_quantum_endpoint": "at lambda=1, CHSH exceeds 2 by >3 sigma",
+    "gate6_separable_control": "the classical mixture does not violate at any lambda",
+    "gate8_svozil_nulls": "at theta = 90 and 180 deg the quantum and local benchmark curves cross EXACTLY, so the measured excess must vanish there within 3 sigma. Instrumental calibration of the excess estimator, free of charge.",
+    "gate9_svozil_excess_is_separable": "at theta = 140.5 deg the PRODUCT state reproduces the Bell state's excess over the local benchmark to within 3 sigma. R(theta) is a single-setting joint rate, so IBM-3's theorem applies and it cannot certify nonclassicality -- verified exactly in preflight, where the two curves coincide at every angle. A significant gap here would falsify that reading. CHSH, measured on the same states, does separate them.",
+    "gate7_tradeoff_flat": "measured S^2 + 16 W^2 is CONSTANT across lambda (spread within 3 sigma). The pure-state identity puts it at 8; decoherence attenuates the level, so the contingent claim is that the trade-off STRUCTURE survives, not that the value does. A gate demanding 8 would encode a false assumption -- the mistake IBM-7 made and the data corrected."
+  }
+}

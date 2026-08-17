@@ -12,8 +12,8 @@ than by an external parameter — leaves a measurable quantum signature that can
 be distinguished from its classical mimic. It runs from three disciplined
 nulls on classical substrates, through a simulation campaign on **Google TPU
 Research Cloud** hardware that built the hypothesis and the certification
-standard, to **eleven pre-registered runs on IBM Quantum Heron processors** (72
-jobs) — nine positive, two reported as failures.
+standard, to **twelve pre-registered runs on IBM Quantum Heron processors** (73
+jobs) — ten positive, two reported as failures.
 
 **The short version.** The signature usually cited as "time from entanglement"
 is classically reproducible, and this program measured that on hardware. It
@@ -64,6 +64,14 @@ observable rather than inferred from one tomographic fit.
 > by [arXiv:2512.09100](https://arxiv.org/abs/2512.09100), whose singlet clock
 > has uninformative marginals for the same reason:
 > [`docs/COMPANION_RESULT.md`](docs/COMPANION_RESULT.md).
+>
+> **Measured on hardware, 2026-08-17 (IBM-11).** Sweeping a single parameter
+> from product state to Bell pair, the witness and CHSH anti-correlate at
+> **r = −0.9573**: the witness peaks at 0.4830 where CHSH is **1.8605, below the
+> classical bound**, and falls to 0.0100 where CHSH reaches 2.6565. The exact
+> trade-off `S² + 16W² = const` survives at 0.891 attenuation with a spread of
+> 0.15 against a 1.14 band. 9/9 gates —
+> [`docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md`](docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md).
 
 Raw counts, pre-registrations, derived results and server-side provenance
 (including per-run backend calibration) are archived for **all eleven runs** —
@@ -168,7 +176,7 @@ clock coherence, which at `d = 2` is absent from a maximally entangled state.
 
 ## What was tested
 
-Eleven runs on IBM Heron r2 processors, each pre-registered before submission.
+Twelve runs on IBM Heron r2 processors, each pre-registered before submission.
 The program is best read as three movements:
 
 | movement | runs | question |
@@ -211,10 +219,11 @@ it was shown to be insufficient.
 | **IBM-7** | two clocks at rate ratio `α` | detunes the pairing; asks when the constraint still closes |
 | **IBM-9** | which-rate qubit `G`, read in Z and X | superposes two proper-time histories and looks for interference |
 | **IBM-10** | all three arms on ONE preparation, one job | certifies the *conjunction* — IBM-4 and IBM-5 had used orthogonal states |
+| **IBM-11** | witness and CHSH swept together, product → Bell | measures the witness running *backwards*: r = −0.9573 |
 
 ## Conclusion
 
-**Program-level, stated as narrowly as eleven runs support:**
+**Program-level, stated as narrowly as twelve runs support:**
 
 > In engineered 2–5 qubit history states on superconducting hardware, the
 > conditional-evolution signal usually cited as evidence for relational time is
@@ -940,10 +949,10 @@ analysis reproduces from counts with no IBM dependency.
    reproducibility of conditional evolution — the four findings that
    constitute the result.
 
-### Part V — AQ-PAGE-WOOTTERS-IBM-1…10: the adversarial and mechanism runs (2026-08-07/09)
+### Part V — AQ-PAGE-WOOTTERS-IBM-1…11: the adversarial and mechanism runs (2026-08-07/17)
 
 Each run has a pre-registration filed before submission and a results document
-carrying its own honest ledger. Ten runs, 36 jobs, all on `ibm_marrakesh`.
+carrying its own honest ledger. Eleven runs, 37 jobs, all on `ibm_marrakesh`.
 
 | run | question | outcome |
 |---|---|---|
@@ -957,6 +966,7 @@ carrying its own honest ledger. Ten runs, 36 jobs, all on `ibm_marrakesh`.
 | **IBM-8** | retry IBM-6, depth-matched | **FAILED** — d=8: 0/4, d=4: 2/4. Limitation published unclosed; recommendation is to stop |
 | **IBM-9** | superpose the *rate* of time | **3/3** — interference 0.2411 vs 3σ bar 0.1039; classical rate mixture excluded |
 | **IBM-10** | all three properties on ONE state | **4/4** — F 0.9014, echo 0.8630 at 42–143σ, R² 0.9942; conjunction certified |
+| **IBM-11** | is the witness anti-correlated with CHSH? | **9/9** — r = −0.9573; max witness sits *below* the Bell bound at CHSH 1.86 |
 
 The sequence IBM-2 → IBM-3 → IBM-4 is the methodological core: each
 adversarial run broke the previous run's witness with a state the program
