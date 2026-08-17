@@ -560,13 +560,19 @@ parameter of the hardware program:
    relational time requires entropy. It independently
    converged with the entropic-time construction later published for cold
    atoms (arXiv:2509.07745, `τ ∝ ∫dS`).
-2. **Physics-damped beats stationary — and where it doesn't, that's data.**
-   The *event-damped* D-LinOSS (damping driven by entropy/event observables —
-   the original grant thesis, "a state-space model damped by physical
-   constraints") closed the ridge gap across ten seeds through noise 0.03. But
-   the *entanglement-damped* variant **lost to a stationary model at every
-   tested grid density**. That structured loss exposed the wrong functional
-   form and pointed at record overlap as the correct independent variable —
+2. **D-LinOSS never beat its baselines — and the *shape* of the losses is the
+   information.** Stated plainly because an earlier draft of this README
+   overstated it: across the entire synthetic campaign, **every measured
+   `D-LinOSS − ridge` value is negative.** The event-damped variant (damping
+   driven by entropy/event observables — the original grant thesis, "a
+   state-space model damped by physical constraints") narrowed the deficit
+   from ≈ −0.40 to ≈ −0.07 across ten seeds through noise 0.03, and the
+   pre-registered gate it passed was a *competitiveness tolerance*
+   (`D-LinOSS − ridge ≥ −0.05`, met in 75% of cases), **not** a superiority
+   test. Separately, the *entanglement-damped* variant lost to a stationary
+   model at every tested grid density. Those structured losses exposed the
+   wrong functional form and pointed at record overlap as the correct
+   independent variable —
    which IBM-1 then confirmed on hardware as a **power law in
    `cos(μ/2)`** (exactly linear at `d = 4`; `p ≈ 1.06–1.21` at `d = 8` —
    density-dependent, so not a universal `p = 1` law). This is a different
@@ -685,6 +691,7 @@ the most reusable thing here.
 | **IBM-6, then IBM-8** | two pre-registered attempts at the eigenvalue phase, both failed | IBM-8's depth-matching worked *and it still failed* → proved depth was the *lesser* cause → and ultimately a **theorem**: the eigenvalue is `+1` by construction, so there was never a phase to find |
 | **IBM-9 feasibility assertions** | `d = 4` blocked; σ understated ~25% | reversed the "smaller `d` is safer" heuristic on principled grounds; both caught at zero shot cost |
 | **the stitched claim** | README asserted a conjunction never measured on one state | measured the two states to be **orthogonal** → motivated IBM-10, which closed it |
+| **"closed the ridge gap"** | this README claimed the event-damped variant caught up to its ridge baseline | traced to source on 2026-08-10: the gate was a ±0.05 *competitiveness tolerance*, and **every `D-LinOSS − ridge` value in the whole campaign is negative** — the deficit narrowed from ≈ −0.40 to ≈ −0.07, it never closed. Corrected in place |
 
 Three patterns are worth naming because they generalize:
 
@@ -835,11 +842,13 @@ ladder log). Key findings:
   memory, entropy/action integrals — arm `A10`). Independently convergent
   with the entropic-time construction later published for cold atoms
   (arXiv:2509.07745, τ ∝ ∫dS).
-- **Physics-damped state spaces win:** a stationary recurrence failed;
-  an **event-damped D-LinOSS** (damping driven by entropy/event observables —
-  the original grant thesis, "a state-space model damped by physical
-  constraints") closed the ridge gap and passed all mechanism gates across
-  ten seeds through noise 0.03.
+- **Physics-damped damping helps, but never enough to win:** a stationary
+  recurrence failed outright; an **event-damped D-LinOSS** (damping driven by
+  entropy/event observables — the original grant thesis, "a state-space model
+  damped by physical constraints") passed the gain, external and path-rank
+  gates at 100% across ten seeds through noise 0.03 and narrowed its deficit
+  against ridge from ≈ −0.40 to ≈ −0.07. It did **not** overtake ridge; the
+  ridge gate was a ±0.05 competitiveness tolerance, met 75% of the time.
 - **Finite-clock bounds:** local clock records are provably non-orthogonal
   (record overlap ≈0.94 on failed windows; Helstrom-style ceiling ≈0.60);
   the *global monotone path* remains perfectly recoverable (rank 1). Promoted
