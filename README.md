@@ -41,22 +41,33 @@ observable rather than inferred from one tomographic fit.
 > `docs/AQ_PAGE_WOOTTERS_IBM_10_RESULTS_2026-08-09.md`.
 
 > [!NOTE]
-> **Companion result — this programme's witness runs backwards, and the sibling
-> proves why.** This programme and
-> [twisted-spin-ptm](https://github.com/IllI/twisted-spin-ptm) ran
-> independently and measure the *same law*: coherence as a product of
+> **Companion result — every magnitude this programme measured is on one
+> budget, and the budget is why a shared clock cannot be built from it.** This
+> programme and [twisted-spin-ptm](https://github.com/IllI/twisted-spin-ptm)
+> ran independently and measure the *same law*: coherence as a product of
 > half-angle state overlaps, one factor per informed party — there against
 > coupling angle (`T_xx = cos(χt/2)^(N−2)`), here against time
 > (`ρ_C = cos(Δt·π/d)`). Exact, not analogical.
 >
-> The consequence is not neutral. This programme's headline witness reads a
-> **marginal**, and for a bipartite pure state the marginal entropy *is* the
-> entanglement entropy — so entanglement is exactly what flattens what the
-> witness measures. A zero-entanglement product state outscores the maximally
-> entangled history state at every `d`, and the exact `d = 4` ratio
-> (`0.750 / 0.176777 = 4.24`) **reproduces IBM-2's measured 4.2×**. The
-> adversary did not find a loophole; it saturated a quantity that entanglement
-> necessarily suppresses.
+> **Within a pair**, this programme's headline witness reads a **marginal**, and
+> entanglement is exactly what flattens what it measures. That is the `P = 0`
+> slice of the **Jakob–Bergou complete complementarity relation**
+> `V² + P² + C² = 1` (Phys. Rev. A **68**, 022107, 2003), with `W = V/2` — a
+> known theorem, stated here because this programme derived it independently as
+> `(2W)² + C² = 1` and it would be easy to present as a finding. A
+> zero-entanglement product state outscores the maximally entangled history
+> state at every `d`, and the exact `d = 4` ratio (`0.750 / 0.176777 = 4.24`)
+> **reproduces IBM-2's measured 4.2×**. The adversary did not find a loophole;
+> it saturated a quantity that entanglement necessarily suppresses.
+>
+> **Across pairs**, the same unit is spent again — Coffman–Kundu–Wootters
+> monogamy (Phys. Rev. A **61**, 052306, 2000) makes a clock's entanglement
+> with its own system compete with its entanglement with any other clock. Run
+> the synthesis repository's verifier and the two families print the *identical*
+> curve. **The consequence: a Page–Wootters clock earns its quality by spending
+> the budget on itself, which leaves nothing to spend on agreeing with anyone
+> else — so no correlation magnitude can be a shared temporal reference between
+> two good clocks.**
 >
 > The sibling supplies what this programme cannot: a *separable* state with
 > maximally mixed marginals (`I/4` at `χt = π`, concurrence 0) to pair against
@@ -65,13 +76,23 @@ observable rather than inferred from one tomographic fit.
 > has uninformative marginals for the same reason:
 > [`docs/COMPANION_RESULT.md`](docs/COMPANION_RESULT.md).
 >
-> **Measured on hardware, 2026-08-17 (IBM-11).** Sweeping a single parameter
-> from product state to Bell pair, the witness and CHSH anti-correlate at
-> **r = −0.9573**: the witness peaks at 0.4830 where CHSH is **1.8605, below the
-> classical bound**, and falls to 0.0100 where CHSH reaches 2.6565. The exact
-> trade-off `S² + 16W² = const` survives at 0.891 attenuation with a spread of
-> 0.15 against a 1.14 band. 9/9 gates —
-> [`docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md`](docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md).
+> **Both trade-offs measured on hardware, 2026-08-17.** IBM-11 sweeps a single
+> parameter from product state to Bell pair: witness and CHSH anti-correlate at
+> **r = −0.9573**, the witness peaking at 0.4830 where CHSH is **1.8605, below
+> the classical bound**, falling to 0.0100 where CHSH reaches 2.6565 (9/9 gates,
+> [results](docs/AQ_PAGE_WOOTTERS_IBM_11_RESULTS_2026-08-17.md)). IBM-12 then
+> moves a clock's entanglement partner from its own system to a second clock:
+> **r = −0.9833 with both endpoints at exactly zero**, and at the balance point
+> *neither* pair violates Bell (6/6 gates,
+> [results](docs/AQ_PAGE_WOOTTERS_IBM_12_RESULTS_2026-08-17.md)).
+>
+> **What is left open.** The budget covers *magnitudes*. The Aharonov–Anandan
+> geometric phase is not one — it is a property of the path in projective
+> Hilbert space and is reparameterisation-invariant, which is precisely the
+> invariance a shared time between clocks of different rates would need.
+> Whether it is also on the budget is untested; the run that would settle it in
+> either direction is specified in the synthesis repository,
+> [relational-entanglement-network](https://github.com/IllI/relational-entanglement-network).
 
 Raw counts, pre-registrations, derived results and server-side provenance
 (including per-run backend calibration) are archived for **all thirteen runs** —
@@ -414,10 +435,43 @@ limitations 1–7 below and none of them is closed by any run here.
    ray-stationarity and internal evolution on a single state in a single job —
    which is the Page–Wootters mechanism's actual content, rather than three
    properties of three states.
+7. **The witness does not merely fail — it runs backwards, measured.** IBM-11
+   sweeps product state → Bell pair and finds the clock-marginal witness and
+   CHSH anti-correlated at **r = −0.9573**, with the witness-maximising state
+   producing no Bell violation at all (CHSH 1.8605). Forced for ideal pure
+   states, contingent on mixed hardware states, and it survived: decoherence
+   lowered the level without bending the curve.
+8. **Shared relational time has a measured price.** IBM-12 moves a clock's
+   entanglement partner from its own system to a second clock and measures
+   clock quality against synchronisability at **r = −0.9833, with both
+   endpoints at exactly zero** — a clock maximally entangled with its own
+   system has no measurable correlation with any other clock. At the balance
+   point *neither* pair violates Bell.
+
+**The two together close a class.** Item 7 is the `P = 0` slice of Jakob–Bergou
+complementarity; item 8 is Coffman–Kundu–Wootters monogamy. Both are standard
+theorems and neither is claimed here — but they are the **same conserved unit**,
+spent once against a clock's own local coherence and once against every partner
+other than its own system, and depolarizing noise never creates headroom in
+either. A Page–Wootters clock earns its quality by spending that budget on
+itself. **No correlation magnitude can therefore serve as a shared temporal
+reference between two good clocks** — which is not a limitation of this
+apparatus but a property of the observable class, and it is the reason this
+programme stops here rather than proposing a fourteenth magnitude. The full
+argument, executable, is
+[`docs/COMPANION_RESULT.md`](docs/COMPANION_RESULT.md).
+
+What the budget does **not** cover is quantities that are not magnitudes. The
+Aharonov–Anandan geometric phase depends on the path traced in projective
+Hilbert space rather than on the instantaneous state, and is
+reparameterisation-invariant by construction — the invariance a time shared
+between clocks of different rates would require, and the one property no
+observable in this programme has. Whether it too is on the budget is open, and
+is the specified next run.
 
 Every certification limit above was found by this program's **own
 pre-registered adversarial controls** rather than left for a referee, and two
-of eleven runs are reported as failures (IBM-6, IBM-8) on a limitation
+of thirteen runs are reported as failures (IBM-6, IBM-8) on a limitation
 published unclosed.
 
 ### Known limitations, stated plainly
@@ -1036,9 +1090,9 @@ python hardware/pw_ibm_provenance.py \
     --out /tmp/ibm9_provenance.json
 ```
 
-**Reproducibility status.** All eleven runs reproduce from archived raw counts
-with no IBM access — IBM-0 from `pw_ibm_counts_nclock*.json`, IBM-1…10 from
-`results/hardware/ibm*/ibm*_counts.json` (518 circuits, 34 jobs).
+**Reproducibility status.** All thirteen runs reproduce from archived raw counts
+with no IBM access — IBM-0 from `pw_ibm_counts_nclock*.json`, IBM-1…12 from
+`results/hardware/ibm*/ibm*_counts.json` (706 circuits, 36 jobs).
 
 This was not true until 2026-08-10 and the history is worth recording. IBM-0
 archived its counts; **IBM-1…10 did not** — the discipline was established once

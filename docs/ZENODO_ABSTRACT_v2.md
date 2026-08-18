@@ -1,9 +1,19 @@
 # Replacement Zenodo abstract — Paper 2
 
-The live abstract on record 21878787 is stale: it describes six runs, stops at
-IBM-5, omits IBM-7/9/10, and retains the "necessary but not sufficient"
-phrasing since corrected to "neither necessary nor sufficient." Zenodo
-metadata is editable in place, so this replaces it without a new DOI.
+> [!IMPORTANT]
+> **Superseded as of v1.3.0.** The authoritative description now lives in
+> [`.zenodo.json`](../.zenodo.json), which Zenodo reads automatically on
+> release and which covers all **thirteen** runs including IBM-11 and IBM-12,
+> the Jakob–Bergou and Coffman–Kundu–Wootters attributions, and the one-budget
+> statement. Prefer it over anything below.
+>
+> This file is kept only for the **manual** edit of the older stale record
+> **21878787**, whose live abstract still describes six runs. That record
+> predates the `.zenodo.json` pipeline, so its Description field has to be
+> pasted by hand. Note that the text below is itself now an eleven-run
+> intermediate: it omits IBM-11 and IBM-12. **Paste the description from
+> `.zenodo.json` instead** unless plain text is required, in which case use
+> the version below and add the two closing runs.
 
 Paste the plain-text version below into the Description field (Zenodo accepts
 basic HTML; the tagged version follows).

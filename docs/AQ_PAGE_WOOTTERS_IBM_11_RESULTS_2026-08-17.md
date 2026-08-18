@@ -97,6 +97,17 @@ summary conflates the two maxima.
 
 ## Honest ledger
 
+**The relation is not new; the curve is.** `(2W)² + C² = 1` was derived
+independently for this run, and it is the `P = 0` slice of the **Jakob–Bergou
+complete complementarity relation** `V² + P² + C² = 1`
+([Phys. Rev. A **68**, 022107, 2003](https://doi.org/10.1103/PhysRevA.68.022107)),
+with `V` the single-party visibility, `P` the predictability, and `W = V/2`. `P`
+vanishes here because the clock populations are flat by construction. Recorded
+as a known theorem rather than a finding — one of six times in this programme
+that a derived result turned out to be standard. What this run contributes is
+the measured hardware curve, and the demonstration that the relation survives on
+*mixed* states, where the marginal-entropy identity that forces it fails.
+
 **The separable control matches exact predictions, including a value that looks
 wrong.** Gate 6 returned CHSH = 0.0035 at `λ = 0`, suspiciously close to zero
 for a classical mixture. It is correct: at `λ = 0` both branches leave the

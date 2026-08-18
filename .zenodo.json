@@ -1,7 +1,7 @@
 {
   "title": "Measuring the Quantum Signature of Relational Time on Superconducting Hardware",
   "upload_type": "software",
-  "description": "<p>An experimental program testing whether <em>relational time</em> &mdash; time defined by correlations between a clock and the rest of a system rather than by an external parameter &mdash; leaves a measurable quantum signature distinguishable from its classical mimic.</p><p>Six pre-registered runs on IBM Quantum Heron processors (<code>ibm_marrakesh</code>, <code>ibm_fez</code>) establish, in order:</p><ul><li><strong>IBM-0</strong>: the conditional-evolution signal usually cited as &ldquo;time from entanglement&rdquo; is reproduced by a classical clock control to within shot noise; the clock-marginal coherence witness is not, scales with clock dimension, and vanishes at a structural null. Replicated across two devices.</li><li><strong>IBM-1</strong>: the witness has a measured decoherence threshold, following a power law in the clock-record overlap; conditional evolution survives at R&sup2; &ge; 0.94 at every coupling strength, including where the witness has collapsed &mdash; apparent temporal dynamics outliving its own quantum signature.</li><li><strong>IBM-2</strong>: that witness is necessary but <em>not sufficient</em> &mdash; a coherent clock&ndash;system product state with zero entanglement scores 1.9&ndash;4.2&times; higher on it.</li><li><strong>IBM-3</strong>: the joint-readout replacement fails the same way (a separable mixture scores 1.7&times; higher), and a two-line theorem shows <em>no</em> functional of a single measurement setting can certify clock&ndash;system entanglement.</li><li><strong>IBM-4</strong>: a multi-setting fidelity witness does certify it &mdash; F = 0.9419 (d=4) and 0.8829 (d=8) against a derived bound of &lambda;<sub>max</sub> = 0.5 &mdash; with both adversarial states correctly rejected by the same measurement.</li><li><strong>IBM-5</strong>: the global state is <em>stationary</em> &mdash; invariant under the joint clock-shift-plus-evolution (S &otimes; U) but not under either factor alone nor the mismatched pairing (44&ndash;167&sigma; at d=4) &mdash; and the operator that makes it stationary is the same one generating its conditional dynamics. Both halves of &ldquo;evolution without evolution&rdquo; measured.</li></ul><p>Also archived: the preceding cross-datacenter TPU telemetry experiments (disciplined nulls, with the raw 128 Hz streams), the synthetic Page&ndash;Wootters / D-LinOSS simulation campaign from which the hypothesis and the measurement-diversity certification standard originate, and a Bose&ndash;Einstein-condensate entropic-time bridge that failed its pre-registered gate.</p><p>Every limitation was found by this program's own pre-registered adversarial controls. All raw shot counts, pre-registrations, and server-side provenance (job IDs, calibration snapshots) are archived; every analysis reproduces from counts without IBM access.</p><p><strong>Claim boundary:</strong> nothing here claims that time in nature is emergent, tests quantum gravity or the Wheeler&ndash;DeWitt equation, or realizes a physical Page&ndash;Wootters universe. The history state is engineered; the clock is 2&ndash;3 qubits.</p><p>Simulation phase supported by Google TPU Research Cloud; hardware phase by the IBM Quantum Open Plan.</p>",
+  "description": "<p>An experimental program testing whether <em>relational time</em> &mdash; time defined by correlations between a clock and the rest of a system rather than by an external parameter &mdash; leaves a measurable quantum signature distinguishable from its classical mimic.</p><p><strong>Thirteen pre-registered runs</strong> on IBM Quantum Heron processors (<code>ibm_marrakesh</code>, <code>ibm_fez</code>), 74 jobs, 706 circuits of raw counts archived across 36 jobs with server-side provenance and backend calibration for every run and zero empty calibration records.</p><ul><li><strong>IBM-0</strong>: the conditional-evolution signal usually cited as &ldquo;time from entanglement&rdquo; is reproduced by a classical clock control to within shot noise; the clock-marginal coherence witness is not, scales with clock dimension, and vanishes at a structural null. Replicated across two devices.</li><li><strong>IBM-1</strong>: the witness has a measured decoherence threshold following a power law in the clock-record overlap; conditional evolution survives at R&sup2; &ge; 0.94 at every coupling strength, including where the witness has collapsed &mdash; apparent temporal dynamics outliving its own quantum signature.</li><li><strong>IBM-2</strong>: that witness is necessary but <em>not sufficient</em> &mdash; a coherent clock&ndash;system product state with zero entanglement scores 1.9&ndash;4.2&times; higher on it.</li><li><strong>IBM-3</strong>: the joint-readout replacement fails the same way (a separable mixture scores 1.7&times; higher), and a two-line theorem shows no functional of a single local product-basis measurement setting can certify clock&ndash;system entanglement.</li><li><strong>IBM-4</strong>: a multi-setting fidelity witness does certify it &mdash; F = 0.9419 (d=4) and 0.8829 (d=8) against a derived separable bound of 0.5, with bootstrap 95% confidence intervals clearing the bound outright and both adversarial states correctly rejected by the same measurement.</li><li><strong>IBM-5</strong>: the global state is <em>stationary</em> &mdash; invariant under the joint clock-shift-plus-evolution but not under either factor alone nor the mismatched pairing (44&ndash;167&sigma; at d=4) &mdash; and the operator that makes it stationary is the same one generating its conditional dynamics.</li><li><strong>IBM-6, IBM-8</strong>: reported as failures. Both spent shots measuring a quantity fixed by construction; published unclosed, and the source of the standing preflight rule that governs every later run.</li><li><strong>IBM-7, IBM-9</strong>: a hardware-measured commensurability condition for exact cycle closure of a finite cyclic clock, and coherent superposition of two programmed relational rates producing interference of 0.2411 where every classical rate mixture predicts exactly zero.</li><li><strong>IBM-10</strong>: entangled, stationary as a ray, and internally evolving measured on a <em>single</em> preparation in a single job &mdash; the mechanism's actual content, rather than three properties of three states.</li><li><strong>IBM-11</strong>: the marginal witness does not merely fail to certify entanglement &mdash; it runs backwards. Swept from a product state to a Bell pair, witness and CHSH anti-correlate at r = -0.9573, and the witness-maximising state produces no Bell violation at all (CHSH 1.8605, below the classical bound).</li><li><strong>IBM-12</strong>: what shared relational time costs. Moving a clock's entanglement partner from its own system to a second clock, clock quality trades against synchronisability at r = -0.9833 with <em>both endpoints reaching exactly zero</em> &mdash; a clock maximally entangled with its own system has no measurable correlation with any other clock. At the balance point neither pair violates Bell.</li></ul><p><strong>The two closing runs close a class.</strong> IBM-11 measures the P = 0 slice of the Jakob-Bergou complete complementarity relation (Phys. Rev. A 68, 022107, 2003); IBM-12 measures Coffman-Kundu-Wootters monogamy (Phys. Rev. A 61, 052306, 2000). Both identities are standard and neither is claimed here &mdash; but they are the same conserved unit, spent once against a clock's own local coherence and once against every partner other than its own system, and depolarizing noise never creates headroom in either. A Page-Wootters clock earns its quality by spending that budget on itself, so <strong>no correlation magnitude can serve as a shared temporal reference between two good clocks</strong> &mdash; a property of the observable class, not a limitation of this apparatus. What the budget does not cover is quantities that are not magnitudes: the Aharonov-Anandan geometric phase depends on the path in projective Hilbert space and is reparameterisation-invariant, which is the invariance a time shared between clocks of different rates would require. Whether it too is on the budget is open and is the specified next run.</p><p>Also archived: the preceding cross-datacenter TPU telemetry experiments (disciplined nulls, with the raw 128 Hz streams), the synthetic Page-Wootters / D-LinOSS simulation campaign from which the hypothesis and the measurement-diversity certification standard originate, and a Bose-Einstein-condensate entropic-time bridge that failed its pre-registered gate.</p><p>Every limitation was found by this program's own pre-registered adversarial controls. All raw shot counts, pre-registrations, and server-side provenance (job IDs, calibration snapshots) are archived; every analysis reproduces from counts without IBM access.</p><p><strong>Claim boundary:</strong> nothing here claims that time in nature is emergent, tests quantum gravity or the Wheeler-DeWitt equation, or realizes a physical Page-Wootters universe. The history state is engineered by externally timed gates, the clock/system split is imposed rather than derived, the certification is device-dependent, and the clock is 2-5 qubits. Endpoints measured at exactly zero are statements about correlation between engineered registers, not about simultaneity in nature.</p><p>Simulation phase supported by Google TPU Research Cloud; hardware phase by the IBM Quantum Open Plan.</p>",
   "creators": [
     {
       "name": "O'Neill, Kevin"
@@ -9,7 +9,7 @@
   ],
   "license": "mit",
   "access_right": "open",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "language": "eng",
   "keywords": [
     "quantum information",
@@ -26,7 +26,14 @@
     "reproducibility",
     "state-space models",
     "D-LinOSS",
-    "TPU"
+    "TPU",
+    "complementarity",
+    "monogamy of entanglement",
+    "concurrence",
+    "CHSH",
+    "Bell inequality",
+    "geometric phase",
+    "quantum clock synchronization"
   ],
   "related_identifiers": [
     {
@@ -58,6 +65,24 @@
       "relation": "cites",
       "resource_type": "publication-article",
       "scheme": "doi"
+    },
+    {
+      "identifier": "10.1103/PhysRevA.68.022107",
+      "relation": "cites",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1103/PhysRevA.61.052306",
+      "relation": "cites",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://github.com/IllI/relational-entanglement-network",
+      "relation": "references",
+      "scheme": "url",
+      "resource_type": "software"
     }
   ],
   "notes": "Simulation phase (synthetic Page-Wootters / D-LinOSS campaign and CHRONOS telemetry collection) supported by Google TPU Research Cloud, grant window 2026-04-21 to 2026-06-21, extended one month on the time-emergence thesis. Hardware phase used the IBM Quantum Open Plan and no TRC resources. The views expressed are those of the author and do not reflect the official policy or position of IBM, the IBM Quantum team, or Google."

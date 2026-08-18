@@ -30,6 +30,15 @@ and the anti-correlation is an EXACT TRADE-OFF, not merely a monotone trend:
 Marginal coherence and entanglement lie on a circle. The run therefore has a
 quantitative curve to test, not only a sign.
 
+ATTRIBUTION. The first relation is NOT new. It is the P = 0 slice of the
+Jakob-Bergou complete complementarity relation V^2 + P^2 + C^2 = 1
+(Phys. Rev. A 68, 022107, 2003), with V the single-party visibility, P the
+predictability, and W = V/2. P vanishes for this family because the clock
+populations are flat by construction. It was derived independently for this run
+and is recorded here as a known theorem, not as a finding. What the run
+contributes is the measured hardware curve -- and whether the relation survives
+on MIXED states, where the marginal-entropy identity that forces it fails.
+
 The endpoints are the whole result: the state that MAXIMISES the coherence
 witness sits exactly at the classical CHSH boundary of 2, and the state that
 saturates Tsirelson's bound has a witness of exactly zero.
