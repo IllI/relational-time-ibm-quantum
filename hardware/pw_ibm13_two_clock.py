@@ -212,6 +212,191 @@ def count_two_qubit(qc: QuantumCircuit) -> int:
                if g in ("cx", "cz", "ecr", "rzz", "cry", "cp", "crz"))
 
 
+def select_layout(backend, seed: int = 13) -> tuple[list, list]:
+    """Pick ONE physical 6-qubit chain and pin every circuit to it.
+
+    IBM-13's first job did not do this: the transpiler chose layouts per
+    circuit, the job touched 20 physical qubits for a 6-qubit circuit, and the
+    dominant-layout purity drifted from 67% to 76% across the sweep. A changing
+    admixture of differently-calibrated qubits shifts fidelity for reasons that
+    are not physics, which left the nu = 0.65 point (clearing its bound by only
+    0.0215) unresolvable. Paper 1 adopted the same fix after its own layout bug.
+
+    The interaction graph is a 6-CYCLE: SA-A0-B0-SB-B1-A1-SA. Heavy-hex has no
+    6-cycles, so one edge must always be routed -- that is unavoidable, and
+    fine. What matters is that it is routed the SAME way for every circuit.
+    Mapping the cycle onto a physical path leaves 5 of 6 edges native.
+
+    Returns (initial_layout, chain) where initial_layout is indexed by virtual
+    qubit [A0, A1, B0, B1, SA, SB].
+    """
+    edges = {}
+    props = backend.properties() if hasattr(backend, "properties") else None
+    adj = {}
+    for a, b in backend.coupling_map:
+        adj.setdefault(a, set()).add(b)
+        adj.setdefault(b, set()).add(a)
+        err = 1e-2
+        if props is not None:
+            try:
+                err = props.gate_error("cz", [a, b])
+            except Exception:
+                try:
+                    err = props.gate_error("ecr", [a, b])
+                except Exception:
+                    err = 1e-2
+        edges[tuple(sorted((a, b)))] = float(err if err and err > 0 else 1e-2)
+
+    def readout(q):
+        try:
+            return float(props.readout_error(q))
+        except Exception:
+            return 1e-2
+
+    best = None
+    for start in sorted(adj):
+        stack = [(start, [start])]
+        while stack:
+            node, path = stack.pop()
+            if len(path) == 6:
+                cost = sum(edges.get(tuple(sorted((path[i], path[i + 1]))), 1.0)
+                           for i in range(5))
+                cost += sum(readout(q) for q in path)
+                if best is None or cost < best[0]:
+                    best = (cost, list(path))
+                continue
+            for nxt in sorted(adj.get(node, ())):
+                if nxt not in path:
+                    stack.append((nxt, path + [nxt]))
+    if best is None:
+        raise SystemExit("no 6-qubit chain found on this backend")
+
+    p = best[1]
+
+    # WHICH logical edge gets routed is a free choice, and it matters a lot.
+    # The cycle can be laid on the path in 12 ways (6 rotations x 2 directions),
+    # each leaving a different edge non-native. Naively taking the first gave
+    # max 17 two-qubit gates -- against Paper 1's 18-CX failure bound -- while
+    # the best rotation gives 9 on the same qubits. Search rather than guess.
+    from qiskit import transpile as _tp
+
+    def n2q(c):
+        return sum(n for g, n in c.count_ops().items()
+                   if g in ("cz", "cx", "ecr", "rzz"))
+
+    cyc = [SA, A0, B0, SB, B1, A1]
+    ranked = []
+    # BOTH blocks must be probed. Optimising on block A alone produced an
+    # embedding with 9 two-qubit gates on block A and 17 on block B -- the two
+    # arms are compared against the same bound and are symmetric by
+    # construction, so an asymmetric depth makes any measured F(A) != F(B)
+    # instrumental. Which cycle edge gets routed decides this: routing a
+    # CLOCK-SYSTEM edge penalises one pair, routing a CLOCK-CLOCK coupling edge
+    # penalises both equally and preserves the symmetry.
+    probes_a = [tomo_circuit(nu, "A", "XYZ") for nu in nus_for_probe()]
+    probes_b = [tomo_circuit(nu, "B", "XYZ") for nu in nus_for_probe()]
+    for rot in range(6):
+        for direc in (1, -1):
+            order = [cyc[(rot + direc * i) % 6] for i in range(6)]
+            lay = [0] * 6
+            for pos, v in enumerate(order):
+                lay[v] = p[pos]
+            try:
+                ta = _tp(probes_a, backend=backend, optimization_level=3,
+                         seed_transpiler=seed, initial_layout=lay)
+                tb = _tp(probes_b, backend=backend, optimization_level=3,
+                         seed_transpiler=seed, initial_layout=lay)
+            except Exception:
+                continue
+            ma, mb = max(n2q(c) for c in ta), max(n2q(c) for c in tb)
+            asym = abs(ma - mb)
+            d = max(max(c.depth() for c in ta), max(c.depth() for c in tb))
+            ranked.append((asym, max(ma, mb), d, lay, ma, mb))
+    if not ranked:
+        raise SystemExit("no admissible embedding of the interaction cycle")
+    # symmetry first, then depth: an asymmetric arm is a confounder, a deeper
+    # symmetric one is only attenuation, and attenuation is reported anyway.
+    # Forcing ONE layout to serve both blocks is a bad trade: the shallow
+    # embeddings are asymmetric (A=9, B=17) and the symmetric ones are deep
+    # (21, above Paper 1's 18-CX failure bound). Neither is acceptable.
+    #
+    # The way out is that the interaction cycle is INVARIANT under swapping the
+    # A and B registers: the edge set {SA-A0, A0-B0, B0-SB, SB-B1, B1-A1,
+    # A1-SA} maps to itself under SA<->SB, A0<->B0, A1<->B1. So take the
+    # shallowest embedding for block A and apply that swap to get block B's.
+    # Both blocks are then shallow, both sit on the SAME physical chain, and
+    # block B's measured trio occupies exactly the physical qubits block A's
+    # did -- identical error exposure, which is what makes F(A) and F(B)
+    # comparable.
+    ranked.sort(key=lambda r: (r[4], r[2]))          # shallowest for block A
+    lay_a = ranked[0][3]
+    swap = {SA: SB, SB: SA, A0: B0, B0: A0, A1: B1, B1: A1}
+    lay_b = [0] * 6
+    for v in range(6):
+        lay_b[swap[v]] = lay_a[v]
+    lay = lay_a
+
+    # The mimic's padding CX must sit on a NATIVE edge. Padding on (A0, A1)
+    # cost 8 extra two-qubit gates per circuit under the best embedding,
+    # because A0 and A1 are opposite ends of the cycle and not adjacent -- the
+    # pad meant to equalise depth was inflating it instead.
+    cm = set()
+    for a, b in backend.coupling_map:
+        cm.add((a, b)); cm.add((b, a))
+    pad_pair = None
+    for u, v in ((SA, A0), (A0, B0), (B0, SB), (SB, B1), (B1, A1), (A1, SA)):
+        if (lay_a[u], lay_a[v]) in cm and (lay_b[u], lay_b[v]) in cm:
+            pad_pair = (u, v)
+            break
+    if pad_pair is None:
+        raise SystemExit("no native edge available for depth padding")
+    return lay_a, lay_b, p, pad_pair
+
+
+def nus_for_probe():
+    return NUS
+
+
+def transpile_pinned(circs, idx, backend, lay_a, lay_b, seed: int = 13):
+    """Transpile each block with its own pinned layout, preserving order.
+
+    Block B uses the A<->B register swap of block A's layout, so both blocks
+    are shallow AND block B's measured trio sits on the same physical qubits
+    block A's did. The mimic follows block A, since Gate 5 compares it against
+    V(Sa|B) which is read from block A circuits.
+    """
+    out = [None] * len(circs)
+    for tag, lay in (("A", lay_a), ("B", lay_b)):
+        sel = [i for i, r in enumerate(idx)
+               if (r.get("block") == tag) or (r["kind"] == "mimic" and tag == "A")]
+        if not sel:
+            continue
+        tq = transpile([circs[i] for i in sel], backend=backend,
+                       optimization_level=3, seed_transpiler=seed,
+                       initial_layout=lay)
+        for i, c in zip(sel, tq):
+            out[i] = c
+    assert all(c is not None for c in out), "some circuits were not transpiled"
+    return out
+
+
+def assert_single_layout(tq, expected: list) -> None:
+    """Abort rather than archive a run whose circuits drifted across qubits."""
+    want = set(expected)
+    seen = set()
+    for c in tq:
+        try:
+            seen.update(c.layout.final_index_layout()[:6])
+        except Exception:
+            pass
+    extra = seen - want
+    if extra:
+        raise SystemExit(
+            f"layout not pinned: circuits touched {sorted(extra)} outside the "
+            f"selected chain {sorted(want)}. Refusing to submit -- this is the "
+            f"defect that left IBM-13's nu = 0.65 point unresolvable.")
+
+
 def calibrate_mimic_padding(backend, nus=NUS, seed: int = 13) -> dict:
     """Gate 5.5 -- how many padding CX the mimic needs, PER nu, measured against
     the transpiled history-state circuits rather than guessed.
@@ -240,17 +425,18 @@ def calibrate_mimic_padding(backend, nus=NUS, seed: int = 13) -> dict:
     return targets
 
 
-def pad_two_qubit(qc: QuantumCircuit, n_cx: int) -> None:
+def pad_two_qubit(qc: QuantumCircuit, n_cx: int, pair=(A0, A1)) -> None:
     """Append n_cx padding gates as CX PAIRS (identity on the state, but they
     accumulate the same decoherence). Barriers stop the transpiler cancelling
     them. n_cx must be even or the padding is not the identity.
     """
     assert n_cx % 2 == 0, f"odd pad {n_cx} would not be the identity"
+    u, v = pair
     for _ in range(n_cx // 2):
         qc.barrier()
-        qc.cx(A0, A1)
+        qc.cx(u, v)
         qc.barrier()
-        qc.cx(A0, A1)
+        qc.cx(u, v)
         qc.barrier()
 
 
@@ -273,7 +459,7 @@ def tomo_circuit(nu: float, block: str, setting: str) -> QuantumCircuit:
     return qc
 
 
-def mimic_circuits(nu: float, pad: int = 0) -> list[QuantumCircuit]:
+def mimic_circuits(nu: float, pad: int = 0, pad_pair=(A0, A1)) -> list[QuantumCircuit]:
     """Gate 5. One circuit per clock-B reading t; the classical mixture over t
     with weights p(t) is formed in analysis, never on the device.
 
@@ -299,7 +485,7 @@ def mimic_circuits(nu: float, pad: int = 0) -> list[QuantumCircuit]:
         # this reproduces the single-basis distribution exactly -- which is
         # precisely the content of IBM-3's theorem.
         qc.ry(float(np.arcsin(np.clip(m[t], -1.0, 1.0))), SA)
-        pad_two_qubit(qc, pad)                           # depth match, Gate 5.5
+        pad_two_qubit(qc, pad, pad_pair)                 # depth match, Gate 5.5
         _basis_change(qc, SA, "X")
         qc.add_register(ClassicalRegister(6, "c"))
         qc.measure(range(6), range(6))
@@ -307,7 +493,7 @@ def mimic_circuits(nu: float, pad: int = 0) -> list[QuantumCircuit]:
     return out
 
 
-def build_all(nus=NUS, padding: dict | None = None):
+def build_all(nus=NUS, padding: dict | None = None, pad_pair=(A0, A1)):
     """Returns (circuits, index). `padding` comes from calibrate_mimic_padding
     against the target backend; without it the mimic is NOT depth-matched and
     Gate 5.5 does not hold."""
@@ -318,7 +504,7 @@ def build_all(nus=NUS, padding: dict | None = None):
                 circs.append(tomo_circuit(nu, block, s))
                 idx.append({"nu": nu, "kind": "tomo", "block": block, "setting": s})
         pad = (padding or {}).get(nu, {}).get("pad", 0)
-        for t, qc in enumerate(mimic_circuits(nu, pad)):
+        for t, qc in enumerate(mimic_circuits(nu, pad, pad_pair)):
             circs.append(qc)
             idx.append({"nu": nu, "kind": "mimic", "t": t, "pad": pad})
     return circs, idx
@@ -524,6 +710,12 @@ def run_dry(nus=NUS, shots=SHOTS) -> None:
     print(f"FEASIBILITY -- transpiled against {fake.name} "
           f"({fake.num_qubits} qubits, real coupling map)\n")
 
+    lay_a, lay_b, chain, pad_pair = select_layout(fake)
+    print(f"  PINNED LAYOUT  chain {chain}")
+    print(f"    block A: A0,A1,B0,B1,SA,SB -> {lay_a}")
+    print(f"    block B (register swap, same chain) -> {lay_b}")
+    print()
+
     padding = calibrate_mimic_padding(fake, nus)
     print("  GATE 5.5 depth match (mimic padded to the history arm, per nu)")
     print("    nu     tomo 2Q      mimic pad   residual")
@@ -532,8 +724,10 @@ def run_dry(nus=NUS, shots=SHOTS) -> None:
         print(f"    {nu:.2f}   {str(p['tomo_2q']):<12} {p['pad']:<11} {p['residual']}")
     print()
 
-    circs, idx = build_all(nus, padding)
-    tq = transpile(circs, backend=fake, optimization_level=3, seed_transpiler=13)
+    circs, idx = build_all(nus, padding, pad_pair)
+    tq = transpile_pinned(circs, idx, fake, lay_a, lay_b)
+    assert_single_layout(tq, chain)
+    print("  layout pinned and verified: every circuit on the same qubits\n")
     two_q = [sum(n for g, n in c.count_ops().items()
                  if g in ("cz", "cx", "ecr", "rzz")) for c in tq]
     tom = [q for q, r in zip(two_q, idx) if r["kind"] == "tomo"]
@@ -576,13 +770,18 @@ def run_submit(nus=NUS, shots=SHOTS, backend_name: str | None = None) -> None:
                                                                       simulator=False,
                                                                       min_num_qubits=6)
     print(f"backend: {be.name}")
+    lay_a, lay_b, chain, pad_pair = select_layout(be)
+    print(f"pinned layout chain {chain}")
+    print(f"  block A -> {lay_a}")
+    print(f"  block B -> {lay_b}")
     padding = calibrate_mimic_padding(be, nus)
     print("Gate 5.5 depth match:", {k: v["pad"] for k, v in padding.items()})
-    circs, idx = build_all(nus, padding)
-    tq = transpile(circs, backend=be, optimization_level=3, seed_transpiler=13)
+    circs, idx = build_all(nus, padding, pad_pair)
+    tq = transpile_pinned(circs, idx, be, lay_a, lay_b)
+    assert_single_layout(tq, chain)      # abort rather than archive a drifted run
     two_q = max(sum(n for g, n in c.count_ops().items()
                     if g in ("cz", "cx", "ecr", "rzz")) for c in tq)
-    print(f"{len(tq)} circuits, max 2Q gates {two_q}")
+    print(f"{len(tq)} circuits, max 2Q gates {two_q}, layout pinned and verified")
     job = SamplerV2(mode=be).run(tq, shots=shots)
     print(f"job {job.job_id()} submitted")
     res = job.result()
@@ -591,16 +790,12 @@ def run_submit(nus=NUS, shots=SHOTS, backend_name: str | None = None) -> None:
     # Physical layout, recorded from the circuits actually submitted. Omitting
     # this is what made pw_ibm_provenance.py refuse to write a snapshot for the
     # first IBM-13 job -- the guard fired correctly and the writer was at fault.
-    layouts = {}
-    for c in tq:
-        try:
-            layouts[str(c.num_qubits)] = sorted(set(c.layout.final_index_layout()[:6]))
-            break
-        except Exception:
-            pass
+    layouts = {"6": sorted(chain)}
     raw = {"index": idx, "counts": counts, "shots": shots,
            "backend": be.name, "job_ids": [job.job_id()], "dry": False,
-           "layouts": layouts, "layout": layouts.get(str(be.num_qubits), [])}
+           "layouts": layouts, "layout": sorted(chain),
+           "initial_layout_A": lay_a, "initial_layout_B": lay_b,
+           "layout_pinned": True}
     pathlib.Path("results_ibm13/raw.json").write_text(json.dumps(raw, indent=1))
     out = analyze(raw)
     pathlib.Path("results_ibm13/ibm13_results.json").write_text(json.dumps(out, indent=1))
