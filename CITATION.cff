@@ -16,8 +16,8 @@ abstract: >-
   An experimental program testing whether relational time -- time defined by
   correlations between a clock and the rest of a system rather than by an
   external parameter -- leaves a measurable quantum signature distinguishable
-  from its classical mimic. Thirteen pre-registered runs on IBM Quantum Heron
-  processors, 74 jobs, establish in order: that the conditional-evolution
+  from its classical mimic. Fifteen pre-registered runs on IBM Quantum Heron
+  processors, 77 jobs, establish in order: that the conditional-evolution
   signal usually cited as "time from entanglement" is reproduced by a
   classical clock control; that the clock-marginal coherence witness is not,
   and has a measured decoherence threshold past which apparent temporal
@@ -48,7 +48,14 @@ abstract: >-
   hypothesis and the measurement-diversity certification standard originate.
   Two runs are reported as failures on a limitation published unclosed. All
   raw counts, pre-registrations, and server-side provenance are archived;
-  every analysis reproduces from counts.
+  every analysis reproduces from counts. Two further runs extend the line to
+  two clocks: IBM-13 couples two d=4 clocks each driving its own system and
+  measures how much mutual readability they can afford before certification
+  fails, and IBM-14 shows the foreign-clock reading certifies nothing by
+  dephasing the clock in its computational basis -- entanglement across
+  (clock : rest) drops to exactly zero while the measured distribution is
+  unchanged, so a provably separable state reproduces the reading at every
+  coupling.
 keywords:
   - quantum information
   - Page-Wootters mechanism
@@ -63,7 +70,7 @@ keywords:
   - state-space models
   - D-LinOSS
 license: MIT
-version: 1.3.0
+version: 1.4.0
 date-released: "2026-08-17"
 references:
   - type: article

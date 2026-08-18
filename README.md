@@ -12,7 +12,7 @@ than by an external parameter — leaves a measurable quantum signature that can
 be distinguished from its classical mimic. It runs from three disciplined
 nulls on classical substrates, through a simulation campaign on **Google TPU
 Research Cloud** hardware that built the hypothesis and the certification
-standard, to **thirteen pre-registered runs on IBM Quantum Heron processors** (74
+standard, to **fifteen pre-registered runs on IBM Quantum Heron processors** (77
 jobs) — eleven positive, two reported as failures.
 
 **The short version.** The signature usually cited as "time from entanglement"
@@ -95,8 +95,8 @@ observable rather than inferred from one tomographic fit.
 > [relational-entanglement-network](https://github.com/IllI/relational-entanglement-network).
 
 Raw counts, pre-registrations, derived results and server-side provenance
-(including per-run backend calibration) are archived for **all thirteen runs** —
-706 circuits of counts across 36 jobs, 74 jobs of provenance in total, zero
+(including per-run backend calibration) are archived for **all fifteen runs** —
+1480 circuits of counts, 77 jobs of provenance in total, zero
 records with an empty calibration block. Every analysis reproduces from counts
 with no IBM account; the fidelity witnesses are re-derived from raw counts and
 bootstrapped in `hardware/pw_ibm_fidelity_bootstrap.py`.
@@ -246,7 +246,7 @@ it was shown to be insufficient.
 
 ## Conclusion
 
-**Program-level, stated as narrowly as thirteen runs support:**
+**Program-level, stated as narrowly as fifteen runs support:**
 
 > In engineered 2–5 qubit history states on superconducting hardware, the
 > conditional-evolution signal usually cited as evidence for relational time is
@@ -448,6 +448,21 @@ limitations 1–7 below and none of them is closed by any run here.
    system has no measurable correlation with any other clock. At the balance
    point *neither* pair violates Bell.
 
+9. **Two clocks, each with its own system, both certified at once.** IBM-13
+   couples two `d = 4` clocks and finds both pairs stay certified through
+   `ν = 0.65`, failing at `0.80` — a measured bound on how much mutual
+   readability two good clocks can afford. Run twice, the second time with the
+   layout pinned to six qubits after the first job drifted across twenty; the
+   window and the crossover reproduce on different physical qubits.
+10. **The foreign-clock reading certifies nothing, shown physically.** IBM-14
+   dephases the clock in its computational basis: entanglement across
+   `(clock : rest)` drops to **exactly zero** while the measured distribution
+   moves by **nothing**. A provably separable state, prepared through the
+   identical circuit at identical depth, reproduces the reading at every
+   coupling (TVD 0.007–0.017 against a 0.022 threshold). The observable lives
+   in the clock's pointer basis, so it is invariant under dephasing there —
+   IBM-3's theorem demonstrated rather than argued.
+
 **The two together close a class.** Item 7 is the `P = 0` slice of Jakob–Bergou
 complementarity; item 8 is Coffman–Kundu–Wootters monogamy. Both are standard
 theorems and neither is claimed here — but they are the **same conserved unit**,
@@ -471,7 +486,7 @@ is the specified next run.
 
 Every certification limit above was found by this program's **own
 pre-registered adversarial controls** rather than left for a referee, and two
-of thirteen runs are reported as failures (IBM-6, IBM-8) on a limitation
+of fifteen runs are reported as failures (IBM-6, IBM-8) on a limitation
 published unclosed.
 
 ### Known limitations, stated plainly
@@ -1090,9 +1105,9 @@ python hardware/pw_ibm_provenance.py \
     --out /tmp/ibm9_provenance.json
 ```
 
-**Reproducibility status.** All thirteen runs reproduce from archived raw counts
-with no IBM access — IBM-0 from `pw_ibm_counts_nclock*.json`, IBM-1…12 from
-`results/hardware/ibm*/ibm*_counts.json` (706 circuits, 36 jobs).
+**Reproducibility status.** All fifteen runs reproduce from archived raw counts
+with no IBM access — IBM-0 from `pw_ibm_counts_nclock*.json`, IBM-1…14 from
+`results/hardware/ibm*/` (1480 circuits, 77 jobs, zero empty calibration).
 
 This was not true until 2026-08-10 and the history is worth recording. IBM-0
 archived its counts; **IBM-1…10 did not** — the discipline was established once
@@ -1118,7 +1133,7 @@ python hardware/pw_ibm_fidelity_bootstrap.py --run ibm4
 ## Provenance
 
 - Backends: `ibm_marrakesh`, `ibm_fez` (156-qubit Heron r2), IBM Open Plan
-  (trial instance). **74 jobs total** — 36 for IBM-0 across both devices, 38
+  (trial instance). **77 jobs total** — 36 for IBM-0 across both devices, 41
   for IBM-1…12 on `ibm_marrakesh` — a few seconds of QPU each; all job IDs and
   server-side timestamps in `results/hardware/*/*provenance.json`
   (authoritative for chronology), alongside per-run backend calibration
