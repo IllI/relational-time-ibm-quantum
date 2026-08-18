@@ -802,6 +802,71 @@ def run_submit(nus=NUS, shots=SHOTS, backend_name: str | None = None) -> None:
     print("\nwrote results_ibm13/raw.json and ibm13_results.json")
 
 
+def run_recover(job_id: str, instance: str | None = None,
+                nus=NUS, shots: int = SHOTS) -> None:
+    """Rebuild raw.json from a COMPLETED job whose results were never saved.
+
+    The submitting machine crashed after the job finished. Nothing is lost: the
+    counts live on IBM's servers, and the circuit ORDER is deterministic --
+    build_all emits (nu, block A settings, block B settings, mimics) in a fixed
+    sequence, and transpile_pinned preserves that order. So the index can be
+    regenerated locally and matched to the returned PUBs one for one.
+
+    No QPU time is consumed; this is a download.
+    """
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    kw = {"channel": "ibm_quantum_platform"}
+    if instance or os.environ.get("QISKIT_IBM_INSTANCE"):
+        kw["instance"] = instance or os.environ["QISKIT_IBM_INSTANCE"]
+    if os.environ.get("QISKIT_IBM_TOKEN"):
+        kw["token"] = os.environ["QISKIT_IBM_TOKEN"]
+    svc = QiskitRuntimeService(**kw)
+
+    job = svc.job(job_id)
+    print(f"job {job_id}: {job.status()}")
+    res = job.result()
+    counts = []
+    for pub in res:
+        data = pub.data
+        reg = getattr(data, "c", None)
+        if reg is None:                       # fall back to the only register
+            names = [n for n in dir(data) if not n.startswith("_")]
+            reg = getattr(data, names[0])
+            print(f"  (classical register named '{names[0]}', not 'c')")
+        counts.append(reg.get_counts())
+    print(f"  recovered {len(counts)} pubs, "
+          f"{sum(sum(c.values()) for c in counts)} shots")
+
+    _, idx = build_all(nus)                   # order is deterministic
+    if len(idx) != len(counts):
+        sys.exit(f"index/pub mismatch: rebuilt {len(idx)} vs returned "
+                 f"{len(counts)}. The submitted sweep used different NUS.")
+
+    qubits = set()
+    try:
+        for pub in (job.inputs.get("pubs") or []):
+            circ = pub[0] if isinstance(pub, (list, tuple)) else pub
+            qubits.update(circ.layout.final_index_layout()[:6])
+    except Exception as exc:
+        print(f"  layout recovery failed ({exc}); provenance will need --fixup")
+
+    backend = getattr(job, "backend", None)
+    backend_name = backend().name if callable(backend) else str(backend)
+    raw = {"index": idx, "counts": counts, "shots": shots,
+           "backend": backend_name, "job_ids": [job_id], "dry": False,
+           "layouts": {"6": sorted(qubits)} if qubits else {},
+           "layout": sorted(qubits), "recovered": True}
+    pathlib.Path("results_ibm13").mkdir(exist_ok=True)
+    pathlib.Path("results_ibm13/raw.json").write_text(json.dumps(raw, indent=1))
+    print(f"  wrote results_ibm13/raw.json (layout: {sorted(qubits)})")
+
+    out = analyze(raw)
+    out["job_ids"] = [job_id]
+    pathlib.Path("results_ibm13/ibm13_results.json").write_text(json.dumps(out, indent=1))
+    print("\nwrote results_ibm13/ibm13_results.json")
+
+
 def run_fixup(raw_path: str) -> None:
     """Recover the physical layout for an ALREADY-SUBMITTED job and patch it
     into raw.json, so provenance can be written without re-running anything.
@@ -893,10 +958,14 @@ if __name__ == "__main__":
     ap.add_argument("--submit", action="store_true")
     ap.add_argument("--analyze")
     ap.add_argument("--fixup", help="recover layout for an already-run job")
+    ap.add_argument("--recover", help="rebuild raw.json from a COMPLETED job id")
+    ap.add_argument("--instance", help="IBM instance CRN (or QISKIT_IBM_INSTANCE)")
     ap.add_argument("--backend")
     ap.add_argument("--shots", type=int, default=SHOTS)
     a = ap.parse_args()
-    if a.fixup:
+    if a.recover:
+        run_recover(a.recover, instance=a.instance, shots=a.shots)
+    elif a.fixup:
         run_fixup(a.fixup)
     elif a.analyze:
         analyze(json.loads(pathlib.Path(a.analyze).read_text()))
