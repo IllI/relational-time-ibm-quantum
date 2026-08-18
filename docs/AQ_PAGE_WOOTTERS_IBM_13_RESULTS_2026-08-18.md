@@ -132,6 +132,94 @@ two-qubit gates against 8–9 elsewhere), and a false alarm of my own about
 dropped gates, settled by running the transpiled circuits noiselessly and
 recovering the exact preflight values to within 0.005.
 
+## Second job: layout pinned — the fidelity result reproduces, Gate 5 fails
+
+**`da214p2ein7c73be0kvg`, 2026-08-18, 290 circuits, 580 000 shots, 2m36s.**
+Re-run with `initial_layout` pinned per block, to settle the qubit-drift
+caveat above. The submitting machine crashed before the results were saved;
+they were recovered from the job with `--recover` at zero QPU cost.
+
+**The layout fix worked.** The job touched **6 physical qubits**
+(`[52, 53, 54, 55, 59, 75]`) against 20 in the first, and the two arms are now
+depth-symmetric — both blocks at 9 two-qubit gates on the same chain, with
+block B on the register-swapped image of block A's layout so its measured trio
+sits on exactly the qubits block A's did.
+
+```
+ nu     F(A:Sa)  F(B:Sb)  both?   V(Sa|B)  mimic V  Gate5 TVD  (< 0.061)
+ 0.00   0.8469   0.8614   True    0.1220   0.0159   0.0264   PASS
+ 0.25   0.8095   0.8106   True    0.2543   0.2900   0.0258   PASS
+ 0.50   0.6302   0.6356   True    0.5001   0.5769   0.0337   PASS
+ 0.65   0.5214   0.5136   True    0.6459   0.7428   0.0371   PASS
+ 0.80   0.3813   0.3874   False   0.7939   0.8810   0.0612   FAIL
+```
+
+**The physics result reproduces on a clean layout.** Both pairs certified
+through `ν = 0.65`, failing at `0.80` — the same window and the same crossover
+as the first job and as the derivation. `F(A:Sₐ)` and `F(B:S_b)` now agree to
+within 0.015 at every setting, where before the two arms were not guaranteed
+comparable. **This is what the re-run was for, and it closes the qubit-drift
+caveat on the crossover.**
+
+> The `ν = 0.65` point still clears its bound by only `0.0214`. Pinning removes
+> the *layout* systematic; it does not make a thin margin thick. That point
+> remains the weakest link in the claim.
+
+**Gate 5 FAILED at `ν = 0.80`: TVD `0.0612` against the pre-registered
+threshold of `0.061`.**
+
+> Per the pre-registration: *"If it fails, the run remains valid and the
+> foreign-clock claim is withdrawn — the fidelity witnesses stand
+> independently of this arm."*
+>
+> **The foreign-clock claim is therefore withdrawn for this job.** Nothing is
+> asserted here about `V(Sₐ|B)` beyond its being measured. The certification
+> results above do not depend on it.
+
+The margin is `0.0002`, and it would be easy to call that a tie. It is not
+being called a tie. The threshold was fixed before submission precisely so that
+this decision could not be made after seeing the number.
+
+**What went wrong, stated as diagnosis rather than defence.** Pinning bought
+layout homogeneity at a cost in fidelity: mean `F` fell from `0.655` to
+`0.639`, because one fixed chain cannot match what a per-circuit transpiler
+finds by roaming. Mean Gate 5 TVD rose from `0.0275` to `0.0368`. The mimic
+carries 8 two-qubit gates against the tomography arm's 8–9, and on a noisier
+chain that residual one-gate parity gap costs more — the mimic is
+systematically *less* attenuated, and the gap between `V` mimic and `V` history
+roughly doubled.
+
+Two fixes were tried and rejected. Padding to an odd count is impossible, since
+CX pairs are the identity only in even numbers. Freezing the preparation with a
+barrier does make every tomography circuit identical at 20 two-qubit gates —
+but 20 is above Paper 1's 18-CX failure bound, which trades a small systematic
+for a large one.
+
+**The remaining fix is Gate 6, and it is not applied here.** The
+pre-registration says all margins should be evaluated as excess over a
+noise-matched Aer reference; `analyze()` compares raw distributions instead. A
+matched reference would absorb the depth systematic. Implementing it now, after
+seeing that the gate failed by 0.0002, would be changing the statistic to
+rescue the result — the precise move this programme's discipline exists to
+prevent. **It belongs in the next run's pre-registration, not in a re-analysis
+of this one.**
+
+## Which job is the result
+
+Neither supersedes the other, and both are archived.
+
+| | first job `da1ui86g52gs73cm4li0` | second job `da214p2ein7c73be0kvg` |
+|---|---|---|
+| layout | 20 qubits, drifting with `ν` | **6 qubits, pinned, arms symmetric** |
+| Gate 5 | **PASS** (TVD 0.014–0.049) | FAIL at `ν = 0.80` (0.0612) |
+| both certified | `ν ≤ 0.65` | `ν ≤ 0.65` |
+| crossover | 0.65 → 0.80 | 0.65 → 0.80 |
+| mean `F` | **0.655** | 0.639 |
+
+The certification window and the crossover **agree across both**, on different
+physical qubits and with different layout discipline. That agreement is the
+strongest evidence in this run, and it does not depend on Gate 5 in either job.
+
 ## What this establishes
 
 > Two Page–Wootters clocks with `d = 4`, each carrying its own evolving system,

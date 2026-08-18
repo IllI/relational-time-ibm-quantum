@@ -1,0 +1,88 @@
+{
+ "bound": 0.5000000000000001,
+ "settings": [
+  {
+   "nu": 0.0,
+   "F_A": 0.8469341401518828,
+   "F_B": 0.8613979920458256,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.12200445100483918,
+   "V_foreign_mimic": 0.015882380174268428,
+   "gate5_tvd": 0.02640277777777776,
+   "exact_F": 0.9999999999999996,
+   "exact_V_foreign": 5.073561872335215e-17
+  },
+  {
+   "nu": 0.25,
+   "F_A": 0.809543775464375,
+   "F_B": 0.8106151079531859,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.2543324758179546,
+   "V_foreign_mimic": 0.28998561911282905,
+   "gate5_tvd": 0.025777777777777754,
+   "exact_F": 0.9253281139039609,
+   "exact_V_foreign": 0.2897354127591693
+  },
+  {
+   "nu": 0.5,
+   "F_A": 0.6302388381231858,
+   "F_B": 0.6355982110484132,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.5000768178460167,
+   "V_foreign_mimic": 0.5768645638817654,
+   "gate5_tvd": 0.033680555555555464,
+   "exact_F": 0.7285533905932731,
+   "exact_V_foreign": 0.612372435695794
+  },
+  {
+   "nu": 0.65,
+   "F_A": 0.5213846217335218,
+   "F_B": 0.5136188366879259,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.6459393413159757,
+   "V_foreign_mimic": 0.742818169356363,
+   "gate5_tvd": 0.037069444444444474,
+   "exact_F": 0.5795004698905305,
+   "exact_V_foreign": 0.792312231132079
+  },
+  {
+   "nu": 0.8,
+   "F_A": 0.3813472520503023,
+   "F_B": 0.387392099255947,
+   "clears_A": false,
+   "clears_B": false,
+   "both": false,
+   "V_foreign_hist": 0.7938552251220522,
+   "V_foreign_mimic": 0.8810051078172019,
+   "gate5_tvd": 0.06123611111111109,
+   "exact_F": 0.42838137289060496,
+   "exact_V_foreign": 0.9280743824370478
+  }
+ ],
+ "job_ids": [
+  "da214p2ein7c73be0kvg"
+ ],
+ "backend": "ibm_marrakesh",
+ "shots": 2000,
+ "gates": {
+  "1_non_vacuity": true,
+  "3_both_certified_window": true,
+  "4_crossover_located": true,
+  "5_mimic_reproduces": false
+ },
+ "both_certified_nus": [
+  0.0,
+  0.25,
+  0.5,
+  0.65
+ ],
+ "all_gates_pass": false
+}
