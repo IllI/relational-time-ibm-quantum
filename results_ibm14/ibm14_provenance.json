@@ -1,0 +1,190 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-0-PROVENANCE",
+  "source_results": "results_ibm14\\raw.json",
+  "backend": "ibm_marrakesh",
+  "layouts": {
+    "6": [
+      52,
+      53,
+      54,
+      55,
+      59,
+      75
+    ]
+  },
+  "jobs": [
+    {
+      "job_id": "da28epkdedkc73ertdh0",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-18T11:25:10.686688-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2",
+        "timestamps": {
+          "created": "2026-08-18T16:25:10.686688Z",
+          "finished": "2026-08-18T19:31:21.010951Z",
+          "running": "2026-08-18T19:29:13.004889Z"
+        },
+        "bss": {
+          "seconds": 106
+        },
+        "usage": {
+          "quantum_seconds": 106,
+          "seconds": 106,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 121.253896681
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    }
+  ],
+  "calibration": {
+    "backend": "ibm_marrakesh",
+    "qubits_of_interest": [
+      52,
+      53,
+      54,
+      55,
+      59,
+      75
+    ],
+    "num_qubits": 156,
+    "processor_type": {
+      "family": "Heron",
+      "revision": "2"
+    },
+    "last_update_date": "2026-08-18T12:50:15-05:00",
+    "qubit_properties": {
+      "52": {
+        "T1": 0.00012332150922846733,
+        "T2": 6.944222136993893e-05,
+        "readout_error": 0.0185546875,
+        "prob_meas0_prep1": 0.026123046875,
+        "prob_meas1_prep0": 0.010986328125
+      },
+      "53": {
+        "T1": 0.000294042756559652,
+        "T2": 0.00024362949966261812,
+        "readout_error": 0.012451171875,
+        "prob_meas0_prep1": 0.016845703125,
+        "prob_meas1_prep0": 0.008056640625
+      },
+      "54": {
+        "T1": 0.00012182241607813877,
+        "T2": 0.00011355429984449592,
+        "readout_error": 0.00732421875,
+        "prob_meas0_prep1": 0.009521484375,
+        "prob_meas1_prep0": 0.005126953125
+      },
+      "55": {
+        "T1": 0.00020472976405917618,
+        "T2": 1.8557995962103966e-05,
+        "readout_error": 0.030029296875,
+        "prob_meas0_prep1": 0.046875,
+        "prob_meas1_prep0": 0.01318359375
+      },
+      "59": {
+        "T1": 0.00012902679127420308,
+        "T2": 5.34963417172956e-05,
+        "readout_error": 0.021484375,
+        "prob_meas0_prep1": 0.017822265625,
+        "prob_meas1_prep0": 0.025146484375
+      },
+      "75": {
+        "T1": 0.00015362387779815456,
+        "T2": 0.0001496125421875602,
+        "readout_error": 0.0177001953125,
+        "prob_meas0_prep1": 0.01904296875,
+        "prob_meas1_prep0": 0.016357421875
+      }
+    },
+    "two_qubit_gate_errors": {
+      "cz_55_59": {
+        "gate_error": 0.002218911088361447,
+        "gate_length": 68
+      },
+      "cz_59_55": {
+        "gate_error": 0.002218911088361447,
+        "gate_length": 68
+      },
+      "cz_59_75": {
+        "gate_error": 0.0030682298572330957,
+        "gate_length": 68
+      },
+      "cz_75_59": {
+        "gate_error": 0.0030682298572330957,
+        "gate_length": 68
+      },
+      "cz_52_53": {
+        "gate_error": 0.0023918006984043894,
+        "gate_length": 68
+      },
+      "cz_53_52": {
+        "gate_error": 0.0023918006984043894,
+        "gate_length": 68
+      },
+      "cz_53_54": {
+        "gate_error": 0.0015806015285221853,
+        "gate_length": 68
+      },
+      "cz_54_53": {
+        "gate_error": 0.0015806015285221853,
+        "gate_length": 68
+      },
+      "cz_54_55": {
+        "gate_error": 0.0017640631221640946,
+        "gate_length": 68
+      },
+      "cz_55_54": {
+        "gate_error": 0.0017640631221640946,
+        "gate_length": 68
+      },
+      "rzz_55_59": {
+        "gate_error": 0.002032093862316009,
+        "gate_length": 68
+      },
+      "rzz_59_55": {
+        "gate_error": 0.002032093862316009,
+        "gate_length": 68
+      },
+      "rzz_59_75": {
+        "gate_error": 0.0021896681244255034,
+        "gate_length": 68
+      },
+      "rzz_75_59": {
+        "gate_error": 0.0021896681244255034,
+        "gate_length": 68
+      },
+      "rzz_52_53": {
+        "gate_error": 0.001747888567434519,
+        "gate_length": 68
+      },
+      "rzz_53_52": {
+        "gate_error": 0.001747888567434519,
+        "gate_length": 68
+      },
+      "rzz_53_54": {
+        "gate_error": 0.001839823231734039,
+        "gate_length": 68
+      },
+      "rzz_54_53": {
+        "gate_error": 0.001839823231734039,
+        "gate_length": 68
+      },
+      "rzz_54_55": {
+        "gate_error": 0.0014071279630535616,
+        "gate_length": 68
+      },
+      "rzz_55_54": {
+        "gate_error": 0.0014071279630535616,
+        "gate_length": 68
+      }
+    }
+  },
+  "note": "Server-side timestamps are authoritative for chronology. Raw counts in pw_ibm_counts_nclock*.json remain the reproducible record and do not depend on this metadata."
+}
