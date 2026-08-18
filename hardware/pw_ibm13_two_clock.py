@@ -149,14 +149,38 @@ def exact_cond_x(psi: np.ndarray, clock: str) -> np.ndarray:
 
 
 def fit_amplitude_rate(seq: np.ndarray) -> tuple[float, float]:
+    """Least-squares amplitude and rate for seq[t] = V cos(theta*rate*t + phi).
+
+    TWO GUARDS, both added after the live IBM-13 run returned V = 2.92 and
+    9.80 at nu = 0 -- values that are impossible, since V is the amplitude of
+    an expectation value and cannot exceed 1.
+
+    As rate -> 0 the sine basis column goes to zero, so the design matrix
+    becomes rank deficient and least squares can put an unbounded coefficient
+    on it while keeping the residual small. That is harmless when there IS a
+    signal and catastrophic when there is not -- which is exactly the nu = 0
+    structural null, where the true amplitude is 0.
+
+    So: reject rates where the sine column carries too little norm to be
+    identifiable from d samples, and enforce the physical bound |V| <= 1.
+    """
     ts = np.arange(D)
     best = (0.0, 0.0, np.inf)
     for rate in np.linspace(0.0, 1.0, 1001):
-        basis = np.stack([np.cos(THETA * rate * ts), -np.sin(THETA * rate * ts)]).T
+        sin_col = -np.sin(THETA * rate * ts)
+        if float(sin_col @ sin_col) < 0.1:          # unidentifiable at d samples
+            continue
+        basis = np.stack([np.cos(THETA * rate * ts), sin_col]).T
         coef, *_ = np.linalg.lstsq(basis, seq, rcond=None)
+        amp = float(np.hypot(*coef))
+        if amp > 1.0 + 1e-9:                        # physically impossible
+            continue
         resid = float(np.sum((basis @ coef - seq) ** 2))
         if resid < best[2]:
-            best = (float(np.hypot(*coef)), float(rate), resid)
+            best = (amp, float(rate), resid)
+    if not np.isfinite(best[2]) or best[2] == np.inf:
+        # no admissible rate: the sequence carries no identifiable oscillation
+        return float(min(np.abs(seq).max(), 1.0)), 0.0
     return best[0], best[1]
 
 
@@ -409,7 +433,9 @@ def analyze(raw: dict, verbose: bool = True) -> dict:
     nus = sorted({r["nu"] for r in idx})
     bound = separable_bound(1.0)
     pre = {r["nu"]: r for r in preflight(nus, verbose=False)["rows"]}
-    out = {"bound": bound, "settings": []}
+    out = {"bound": bound, "settings": [],
+           "job_ids": raw.get("job_ids", []),
+           "backend": raw.get("backend"), "shots": raw.get("shots")}
 
     for nu in nus:
         blk = {"A": {}, "B": {}}

@@ -1,0 +1,83 @@
+{
+ "bound": 0.5000000000000001,
+ "settings": [
+  {
+   "nu": 0.0,
+   "F_A": 0.906569430048915,
+   "F_B": 0.9087174383720662,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 2.9240588320188743,
+   "V_foreign_mimic": 9.803972405465263,
+   "gate5_tvd": 0.014027777777777709,
+   "exact_F": 0.9999999999999996,
+   "exact_V_foreign": 1.7674076423098432e-15
+  },
+  {
+   "nu": 0.25,
+   "F_A": 0.8195007833665962,
+   "F_B": 0.823567441779933,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.2653236878812403,
+   "V_foreign_mimic": 0.24611555110519426,
+   "gate5_tvd": 0.026513888888888865,
+   "exact_F": 0.9253281139039609,
+   "exact_V_foreign": 0.2897354127591693
+  },
+  {
+   "nu": 0.5,
+   "F_A": 0.6453592856446642,
+   "F_B": 0.6660764795001579,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.5381147514964268,
+   "V_foreign_mimic": 0.5519789694752264,
+   "gate5_tvd": 0.01577777777777776,
+   "exact_F": 0.7285533905932731,
+   "exact_V_foreign": 0.612372435695794
+  },
+  {
+   "nu": 0.65,
+   "F_A": 0.5214866712765156,
+   "F_B": 0.528730098678713,
+   "clears_A": true,
+   "clears_B": true,
+   "both": true,
+   "V_foreign_hist": 0.708877821897186,
+   "V_foreign_mimic": 0.7314804995120051,
+   "gate5_tvd": 0.03209722222222223,
+   "exact_F": 0.5795004698905305,
+   "exact_V_foreign": 0.792312231132079
+  },
+  {
+   "nu": 0.8,
+   "F_A": 0.38132321072989905,
+   "F_B": 0.4038438512718169,
+   "clears_A": false,
+   "clears_B": false,
+   "both": false,
+   "V_foreign_hist": 0.8104079699944444,
+   "V_foreign_mimic": 0.8595569589720472,
+   "gate5_tvd": 0.048888888888888885,
+   "exact_F": 0.42838137289060496,
+   "exact_V_foreign": 0.9280743824370478
+  }
+ ],
+ "gates": {
+  "1_non_vacuity": false,
+  "3_both_certified_window": true,
+  "4_crossover_located": true,
+  "5_mimic_reproduces": true
+ },
+ "both_certified_nus": [
+  0.0,
+  0.25,
+  0.5,
+  0.65
+ ],
+ "all_gates_pass": false
+}
