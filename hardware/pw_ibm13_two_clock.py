@@ -649,8 +649,8 @@ def run_fixup(raw_path: str) -> None:
     groups = collections.defaultdict(collections.Counter)
     for r, lay in zip(raw.get("index", []), per_circuit):
         groups[(r.get("nu"), r.get("kind"))][tuple(lay)] += 1
-    print("
-  layout by (nu, arm) -- does it vary with nu?")
+    print()
+    print("  layout by (nu, arm) -- does it vary with nu?")
     for k in sorted(groups, key=lambda x: (x[1], x[0])):
         top, cnt = groups[k].most_common(1)[0]
         print(f"    nu={k[0]:.2f} {k[1]:5s}: {len(groups[k])} distinct, "
@@ -658,8 +658,8 @@ def run_fixup(raw_path: str) -> None:
     dom = {k: groups[k].most_common(1)[0][0] for k in groups if k[1] == "tomo"}
     nonzero = {k: v for k, v in dom.items() if k[0] > 0}
     same = len(set(nonzero.values())) == 1 if nonzero else False
-    print(f"
-  all nu > 0 tomo circuits on ONE layout: {same}"
+    print()
+    print(f"  all nu > 0 tomo circuits on ONE layout: {same}"
           f"   <- the crossover claim depends on this")
 
     raw["layouts"] = {"6": sorted(qubits)}
