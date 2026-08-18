@@ -247,11 +247,94 @@ def part3() -> bool:
     return True
 
 
+# --------------------------------------------------------------------------
+# PART 4 -- Gate 5's separable mimic, DERIVED and its threshold LOCKED
+# --------------------------------------------------------------------------
+
+def foreign_joint(psi: np.ndarray) -> np.ndarray:
+    """Full single-basis distribution p(t_B, x): clock B in Z, S_A in X."""
+    hx = np.array([[1, 1], [1, -1]], dtype=complex) / np.sqrt(2)
+    t = np.einsum("ij,abjd->abid", hx, psi)              # rotate S_A into X
+    p = np.einsum("abid,abid->bi", t, t.conj()).real     # sum over tA and sB
+    return p / p.sum()
+
+
+def mimic_joint(psi: np.ndarray) -> np.ndarray:
+    """The separable mimic, CONSTRUCTED from the ideal prediction, not fitted.
+
+        rho = sum_t p(t) |t><t|_B (x) sigma_t(S_A),   sigma_t = (I + m_t X)/2
+
+    with p(t) the ideal clock-B reading marginal and m_t the ideal conditional
+    <X_Sa | t_B = t>. Zero clock-system coherence by construction, diagonal in
+    the reading basis. It never touches measured data, which is what lets it be
+    locked before submission rather than fitted afterwards.
+    """
+    p = foreign_joint(psi)
+    pt = p.sum(axis=1)
+    m = np.where(pt > 1e-12, (p[:, 0] - p[:, 1]) / np.maximum(pt, 1e-12), 0.0)
+    out = np.zeros((D, 2))
+    out[:, 0] = pt * (1 + m) / 2
+    out[:, 1] = pt * (1 - m) / 2
+    return out
+
+
+def cond_seq(p: np.ndarray) -> np.ndarray:
+    pt = p.sum(axis=1)
+    return np.where(pt > 1e-12, (p[:, 0] - p[:, 1]) / np.maximum(pt, 1e-12), 0.0)
+
+
+def part4(shots: int = 2000, trials: int = 2000) -> bool:
+    print("\n" + "-" * 78)
+    print("PART 4 -- GATE 5: the separable mimic, derived and locked")
+    print("-" * 78)
+    print("  Built from the IDEAL prediction at each nu, so it can be fixed")
+    print("  BEFORE submission. Matching after the fact would be cherry-picking.\n")
+    print("   nu    V(Sa|B) hist   V(Sa|B) mimic   TVD(full 8-outcome dist)   p(t) uniform?")
+    ok = True
+    for nu in NUS:
+        psi = two_pair_state(nu)
+        ph, pm = foreign_joint(psi), mimic_joint(psi)
+        vh, _ = fit_amplitude_rate(cond_seq(ph))
+        vm, _ = fit_amplitude_rate(cond_seq(pm))
+        t = float(0.5 * np.sum(np.abs(ph - pm)))
+        unif = bool(np.allclose(ph.sum(axis=1), 1.0 / D, atol=1e-9))
+        ok &= bool(t < 1e-12 and abs(vh - vm) < 1e-9)
+        print(f"   {nu:.2f}     {vh:.6f}        {vm:.6f}       {t:.2e}"
+              f"                  {unif}")
+    print(f"\n  mimic reproduces the FULL distribution exactly -> {ok}")
+    print("  Not merely the scalar V. A separable state can match one number")
+    print("  and fail the probability vector; this one matches all eight")
+    print("  outcomes, which is the statement IBM-3's theorem actually makes.")
+
+    rng = np.random.default_rng(20260818)
+    pooled = []
+    print(f"\n  Shot-noise floor, {shots} shots/arm, two independent draws from")
+    print("  the SAME distribution (the null that mimic and history agree):\n")
+    print("   nu     mean TVD    sd        3-sigma point")
+    for nu in NUS:
+        p = foreign_joint(two_pair_state(nu)).ravel()
+        v = np.array([0.5 * np.abs(rng.multinomial(shots, p) / shots
+                                   - rng.multinomial(shots, p) / shots).sum()
+                      for _ in range(trials)])
+        pooled.append(v)
+        print(f"   {nu:.2f}   {v.mean():.5f}     {v.std():.5f}    {v.mean()+3*v.std():.5f}")
+    allv = np.concatenate(pooled)
+    thr = float(np.ceil((allv.mean() + 3 * allv.std()) * 1000) / 1000)
+    print(f"\n  Pooled: mean {allv.mean():.5f}, sd {allv.std():.5f}")
+    print(f"  PRE-REGISTERED GATE 5 THRESHOLD:  TVD < {thr:.3f}  at EVERY nu")
+    print(f"  (3 sigma above the same-distribution floor at {shots} shots)")
+    print("\n  Both arms are compared to the SAME noise-matched Aer reference.")
+    print("  Comparing the mimic to ideal theory while comparing the history")
+    print("  arm to noisy simulation would reintroduce exactly the estimator")
+    print("  asymmetry that IBM-11 and IBM-12 had to correct for.\n")
+    return ok
+
+
 if __name__ == "__main__":
     print("=" * 78)
     print(f"IBM-13 two-clock predictions   d = {D}  (both clocks genuinely > 2)")
     print("=" * 78 + "\n")
-    out = [part1(), part2(), part3()]
+    out = [part1(), part2(), part3(), part4()]
     print("=" * 78)
     print(f"all structural checks pass: {all(out)}")
     print("=" * 78)
