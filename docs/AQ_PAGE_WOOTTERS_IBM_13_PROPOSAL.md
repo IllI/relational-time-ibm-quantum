@@ -192,6 +192,55 @@ single `ν` would leave open that the mimic works only at that coupling; the
 full sweep shows the foreign-clock signal is classically reproducible
 *wherever it appears*, which closes the residual loophole.
 
+## Dry-run verdict (2026-08-18, zero QPU, zero token)
+
+Transpiled against `FakeMarrakesh` — the real coupling map and a stored noise
+snapshot — then simulated and run through the full analysis. **All gates pass.**
+
+```
+  2-qubit gates       max 9   median 9        depth  max 56  median 21
+  Paper 1's N=6 bound: 18 CX failed decisively (R^2 = -2.0)  -> at HALF that bound
+
+   nu     F(A:Sa)  F(B:Sb)  both?   V(Sa|B)  mimic V  Gate5 TVD  (< 0.061)
+   0.00   0.9265   0.9279   True    0.0135   0.0423   0.0167   PASS
+   0.25   0.8753   0.8576   True    0.2703   0.3039   0.0117   PASS
+   0.50   0.6900   0.6845   True    0.5973   0.5948   0.0036   PASS
+   0.65   0.5413   0.5393   True    0.7585   0.7868   0.0163   PASS
+   0.80   0.4023   0.4184   False   0.8804   0.9356   0.0179   PASS
+
+  attenuation 0.927 - 0.947 across the sweep
+```
+
+Much shallower than estimated: `CP(2θ) = CP(π) = CZ` is native, and routing
+found a layout without SWAP blowup. The circuit was validated end to end by
+running the *transpiled* circuits noiselessly and recovering the exact
+preflight values to within `0.005` — so nothing is dropped by the transpiler.
+
+**Two design errors this caught, both mine.**
+
+*The depth match was broken.* `CRY(0)` is the identity, so `ν = 0` transpiles to
+4–5 two-qubit gates while `ν > 0` gives 8–9. A fixed pad of 6 left the mimic
+**shallower than the history arm at every `ν > 0`**, and a shallower mimic
+decoheres less — which appeared as the mimic's `V` sitting systematically above
+the history arm's at all five settings. Padding is now calibrated per `ν`
+against the transpiled count (`[8,9,9] → pad 8, residual 1`). The residual is
+irreducible: CX pairs are the identity only in even numbers, and tomo itself
+varies 8–9 across settings.
+
+*A residual offset survives, and it is conservative.* The mimic remains ~1
+two-qubit gate shallower at some settings, so it is slightly cleaner than the
+history arm. That makes the two distributions **differ more**, inflating TVD and
+making Gate 5 *harder* to pass. Passing at `0.004–0.018` against a `0.061`
+threshold despite that is therefore robust, not flattered.
+
+**Caveat on the noise model.** `FakeMarrakesh` is a stored snapshot, not live
+calibration. The live check must be re-run at submission, per Gate 6. The
+margin that matters is `ν = 0` and `ν = 0.25`, at `F = 0.93` and `0.88` against
+a `0.5` bound — enormous. Only the `ν = 0.65` point is close (`0.541`), so
+under worse live noise the window may shrink to `ν ≤ 0.5` and the crossover
+move accordingly. That is a *result*, not a failure: gates 3 and 4 ask for a
+window and a located crossover, not for a specific one.
+
 ## Feasibility, honestly
 
 **This is the largest circuit the programme has proposed, and it may not
