@@ -623,21 +623,49 @@ def run_fixup(raw_path: str) -> None:
     raw = json.loads(path.read_text())
     svc = QiskitRuntimeService(channel="ibm_quantum_platform",
                                token=os.environ["QISKIT_IBM_TOKEN"])
-    qubits = set()
+    qubits, per_circuit = set(), []
     for jid in raw.get("job_ids", []):
         job = svc.job(jid)
         pubs = job.inputs.get("pubs") or []
         for pub in pubs:
             circ = pub[0] if isinstance(pub, (list, tuple)) else pub
             try:
-                qubits.update(circ.layout.final_index_layout()[:6])
+                lay = sorted(circ.layout.final_index_layout()[:6])
             except Exception:
-                continue
-        print(f"  {jid}: recovered {len(qubits)} physical qubits")
+                lay = []
+            per_circuit.append(lay)
+            qubits.update(lay)
+        print(f"  {jid}: recovered {len(qubits)} physical qubits "
+              f"over {len(per_circuit)} circuits")
     if not qubits:
         sys.exit("could not recover a layout from the job payload")
+
+    # PER-CIRCUIT layouts matter, not just the union. A 6-qubit circuit that
+    # reports 20 distinct physical qubits means the transpiler chose different
+    # layouts for different circuits -- and if that varies WITH nu, the measured
+    # crossover could be a qubit-quality artifact rather than physics. Recorded
+    # and grouped so the question is answerable from the archive.
+    import collections
+    groups = collections.defaultdict(collections.Counter)
+    for r, lay in zip(raw.get("index", []), per_circuit):
+        groups[(r.get("nu"), r.get("kind"))][tuple(lay)] += 1
+    print("
+  layout by (nu, arm) -- does it vary with nu?")
+    for k in sorted(groups, key=lambda x: (x[1], x[0])):
+        top, cnt = groups[k].most_common(1)[0]
+        print(f"    nu={k[0]:.2f} {k[1]:5s}: {len(groups[k])} distinct, "
+              f"dominant {list(top)} x{cnt}")
+    dom = {k: groups[k].most_common(1)[0][0] for k in groups if k[1] == "tomo"}
+    nonzero = {k: v for k, v in dom.items() if k[0] > 0}
+    same = len(set(nonzero.values())) == 1 if nonzero else False
+    print(f"
+  all nu > 0 tomo circuits on ONE layout: {same}"
+          f"   <- the crossover claim depends on this")
+
     raw["layouts"] = {"6": sorted(qubits)}
     raw["layout"] = sorted(qubits)
+    raw["layouts_per_circuit"] = per_circuit
+    raw["layout_uniform_across_nu"] = bool(same)
     path.write_text(json.dumps(raw, indent=1))
     print(f"patched {path} with layout {sorted(qubits)}")
 

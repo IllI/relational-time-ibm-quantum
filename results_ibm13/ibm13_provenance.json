@@ -1,0 +1,444 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-0-PROVENANCE",
+  "source_results": "results_ibm13\\raw.json",
+  "backend": "ibm_marrakesh",
+  "layouts": {
+    "6": [
+      1,
+      5,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      19,
+      35,
+      53,
+      54,
+      55,
+      59,
+      109,
+      139,
+      152,
+      154,
+      155
+    ]
+  },
+  "jobs": [
+    {
+      "job_id": "da1ui86g52gs73cm4li0",
+      "status": "DONE",
+      "backend": "ibm_marrakesh",
+      "creation_date": "2026-08-18T00:09:52.289460-05:00",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.47.0,qiskit-2.4.1*,qiskit_aer-0.17.2",
+        "timestamps": {
+          "created": "2026-08-18T05:09:52.28946Z",
+          "finished": "2026-08-18T05:12:52.488156Z",
+          "running": "2026-08-18T05:09:55.396083Z"
+        },
+        "bss": {
+          "seconds": 156
+        },
+        "usage": {
+          "quantum_seconds": 156,
+          "seconds": 156,
+          "status": "complete"
+        }
+      },
+      "usage_estimation": {
+        "quantum_seconds": 166.964187369
+      },
+      "program_id": null,
+      "tags": null,
+      "session_id": null
+    }
+  ],
+  "calibration": {
+    "backend": "ibm_marrakesh",
+    "qubits_of_interest": [
+      1,
+      5,
+      6,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      19,
+      35,
+      53,
+      54,
+      55,
+      59,
+      109,
+      139,
+      152,
+      154,
+      155
+    ],
+    "num_qubits": 156,
+    "processor_type": {
+      "family": "Heron",
+      "revision": "2"
+    },
+    "last_update_date": "2026-08-17T13:17:21-05:00",
+    "qubit_properties": {
+      "1": {
+        "T1": 0.00012074592359919709,
+        "T2": 0.00010601318366691514,
+        "readout_error": 0.0029296875,
+        "prob_meas0_prep1": 0.004638671875,
+        "prob_meas1_prep0": 0.001220703125
+      },
+      "5": {
+        "T1": 0.00011846065377346402,
+        "T2": 0.00010067825734868337,
+        "readout_error": 0.004150390625,
+        "prob_meas0_prep1": 0.0048828125,
+        "prob_meas1_prep0": 0.00341796875
+      },
+      "6": {
+        "T1": 0.0002544310043090194,
+        "T2": 0.0001711072599621884,
+        "readout_error": 0.0035400390625,
+        "prob_meas0_prep1": 0.005615234375,
+        "prob_meas1_prep0": 0.00146484375
+      },
+      "10": {
+        "T1": 0.0001380736550557845,
+        "T2": 0.00011099233109124773,
+        "readout_error": 0.00634765625,
+        "prob_meas0_prep1": 0.00830078125,
+        "prob_meas1_prep0": 0.00439453125
+      },
+      "11": {
+        "T1": 0.00018562673304104934,
+        "T2": 5.5712946990766286e-05,
+        "readout_error": 0.0101318359375,
+        "prob_meas0_prep1": 0.01025390625,
+        "prob_meas1_prep0": 0.010009765625
+      },
+      "12": {
+        "T1": 0.0002451416975485855,
+        "T2": 0.00011218525033822771,
+        "readout_error": 0.0040283203125,
+        "prob_meas0_prep1": 0.004638671875,
+        "prob_meas1_prep0": 0.00341796875
+      },
+      "13": {
+        "T1": 0.0002347376178368459,
+        "T2": 0.000178872565777852,
+        "readout_error": 0.0040283203125,
+        "prob_meas0_prep1": 0.007568359375,
+        "prob_meas1_prep0": 0.00048828125
+      },
+      "14": {
+        "T1": 0.00012981751199352023,
+        "T2": 5.120443934549907e-05,
+        "readout_error": 0.0093994140625,
+        "prob_meas0_prep1": 0.016357421875,
+        "prob_meas1_prep0": 0.00244140625
+      },
+      "15": {
+        "T1": 0.00018643291153352622,
+        "T2": 3.699586335223292e-05,
+        "readout_error": 0.0057373046875,
+        "prob_meas0_prep1": 0.010009765625,
+        "prob_meas1_prep0": 0.00146484375
+      },
+      "19": {
+        "T1": 0.0001490638429962889,
+        "T2": 6.69697789154777e-05,
+        "readout_error": 0.004150390625,
+        "prob_meas0_prep1": 0.00634765625,
+        "prob_meas1_prep0": 0.001953125
+      },
+      "35": {
+        "T1": 0.0002567743640808639,
+        "T2": 0.000354638338351407,
+        "readout_error": 0.0079345703125,
+        "prob_meas0_prep1": 0.0107421875,
+        "prob_meas1_prep0": 0.005126953125
+      },
+      "53": {
+        "T1": 0.000294042756559652,
+        "T2": 0.00024362949966261812,
+        "readout_error": 0.0040283203125,
+        "prob_meas0_prep1": 0.0048828125,
+        "prob_meas1_prep0": 0.003173828125
+      },
+      "54": {
+        "T1": 0.00012182241607813877,
+        "T2": 0.00011355429984449592,
+        "readout_error": 0.00439453125,
+        "prob_meas0_prep1": 0.00390625,
+        "prob_meas1_prep0": 0.0048828125
+      },
+      "55": {
+        "T1": 0.00020472976405917618,
+        "T2": 1.8557995962103966e-05,
+        "readout_error": 0.0069580078125,
+        "prob_meas0_prep1": 0.00830078125,
+        "prob_meas1_prep0": 0.005615234375
+      },
+      "59": {
+        "T1": 0.00012902679127420308,
+        "T2": 5.34963417172956e-05,
+        "readout_error": 0.0048828125,
+        "prob_meas0_prep1": 0.008056640625,
+        "prob_meas1_prep0": 0.001708984375
+      },
+      "109": {
+        "T1": 0.0001559245859467452,
+        "T2": 9.811360868122938e-05,
+        "readout_error": 0.002685546875,
+        "prob_meas0_prep1": 0.00439453125,
+        "prob_meas1_prep0": 0.0009765625
+      },
+      "139": {
+        "T1": 0.00013948299555199963,
+        "T2": 0.00011253724989215914,
+        "readout_error": 0.0025634765625,
+        "prob_meas0_prep1": 0.00390625,
+        "prob_meas1_prep0": 0.001220703125
+      },
+      "152": {
+        "T1": 0.0002373822901095659,
+        "T2": 0.00011933936781007582,
+        "readout_error": 0.004150390625,
+        "prob_meas0_prep1": 0.004638671875,
+        "prob_meas1_prep0": 0.003662109375
+      },
+      "154": {
+        "T1": 0.0002451475565142832,
+        "T2": 2.1086048913059652e-05,
+        "readout_error": 0.00341796875,
+        "prob_meas0_prep1": 0.004638671875,
+        "prob_meas1_prep0": 0.002197265625
+      },
+      "155": {
+        "T1": 0.0003110496277233381,
+        "T2": 0.00012990854046571323,
+        "readout_error": 0.0045166015625,
+        "prob_meas0_prep1": 0.007080078125,
+        "prob_meas1_prep0": 0.001953125
+      }
+    },
+    "two_qubit_gate_errors": {
+      "cz_55_59": {
+        "gate_error": 0.002218911088361447,
+        "gate_length": 68
+      },
+      "cz_59_55": {
+        "gate_error": 0.002218911088361447,
+        "gate_length": 68
+      },
+      "cz_14_15": {
+        "gate_error": 0.001309601690291623,
+        "gate_length": 68
+      },
+      "cz_15_14": {
+        "gate_error": 0.001309601690291623,
+        "gate_length": 68
+      },
+      "cz_12_13": {
+        "gate_error": 0.002463188723363152,
+        "gate_length": 80
+      },
+      "cz_13_12": {
+        "gate_error": 0.002463188723363152,
+        "gate_length": 80
+      },
+      "cz_13_14": {
+        "gate_error": 0.0016908162171317132,
+        "gate_length": 80
+      },
+      "cz_14_13": {
+        "gate_error": 0.0016908162171317132,
+        "gate_length": 80
+      },
+      "cz_139_155": {
+        "gate_error": 0.002190272689795103,
+        "gate_length": 80
+      },
+      "cz_155_139": {
+        "gate_error": 0.002190272689795103,
+        "gate_length": 80
+      },
+      "cz_53_54": {
+        "gate_error": 0.0015806015285221853,
+        "gate_length": 68
+      },
+      "cz_54_53": {
+        "gate_error": 0.0015806015285221853,
+        "gate_length": 68
+      },
+      "cz_54_55": {
+        "gate_error": 0.0017640631221640946,
+        "gate_length": 68
+      },
+      "cz_55_54": {
+        "gate_error": 0.0017640631221640946,
+        "gate_length": 68
+      },
+      "cz_5_6": {
+        "gate_error": 0.002301193966915166,
+        "gate_length": 68
+      },
+      "cz_6_5": {
+        "gate_error": 0.002301193966915166,
+        "gate_length": 68
+      },
+      "cz_19_35": {
+        "gate_error": 0.0036617206564460714,
+        "gate_length": 80
+      },
+      "cz_35_19": {
+        "gate_error": 0.0036617206564460714,
+        "gate_length": 80
+      },
+      "cz_154_155": {
+        "gate_error": 0.002065880130068698,
+        "gate_length": 68
+      },
+      "cz_155_154": {
+        "gate_error": 0.002065880130068698,
+        "gate_length": 68
+      },
+      "cz_10_11": {
+        "gate_error": 0.0020473340260361017,
+        "gate_length": 68
+      },
+      "cz_11_10": {
+        "gate_error": 0.0020473340260361017,
+        "gate_length": 68
+      },
+      "cz_15_19": {
+        "gate_error": 0.003986057866174203,
+        "gate_length": 68
+      },
+      "cz_19_15": {
+        "gate_error": 0.003986057866174203,
+        "gate_length": 68
+      },
+      "cz_11_12": {
+        "gate_error": 0.0018665863215329426,
+        "gate_length": 68
+      },
+      "cz_12_11": {
+        "gate_error": 0.0018665863215329426,
+        "gate_length": 68
+      },
+      "rzz_55_59": {
+        "gate_error": 0.002032093862316009,
+        "gate_length": 68
+      },
+      "rzz_59_55": {
+        "gate_error": 0.002032093862316009,
+        "gate_length": 68
+      },
+      "rzz_14_15": {
+        "gate_error": 0.0012004238328191252,
+        "gate_length": 68
+      },
+      "rzz_15_14": {
+        "gate_error": 0.0012004238328191252,
+        "gate_length": 68
+      },
+      "rzz_12_13": {
+        "gate_error": 0.0018189419312405752,
+        "gate_length": 80
+      },
+      "rzz_13_12": {
+        "gate_error": 0.0018189419312405752,
+        "gate_length": 80
+      },
+      "rzz_13_14": {
+        "gate_error": 0.0018553822927275532,
+        "gate_length": 80
+      },
+      "rzz_14_13": {
+        "gate_error": 0.0018553822927275532,
+        "gate_length": 80
+      },
+      "rzz_139_155": {
+        "gate_error": 0.0020177917111132426,
+        "gate_length": 80
+      },
+      "rzz_155_139": {
+        "gate_error": 0.0020177917111132426,
+        "gate_length": 80
+      },
+      "rzz_53_54": {
+        "gate_error": 0.001839823231734039,
+        "gate_length": 68
+      },
+      "rzz_54_53": {
+        "gate_error": 0.001839823231734039,
+        "gate_length": 68
+      },
+      "rzz_54_55": {
+        "gate_error": 0.0014071279630535616,
+        "gate_length": 68
+      },
+      "rzz_55_54": {
+        "gate_error": 0.0014071279630535616,
+        "gate_length": 68
+      },
+      "rzz_5_6": {
+        "gate_error": 0.0027124364225314945,
+        "gate_length": 68
+      },
+      "rzz_6_5": {
+        "gate_error": 0.0027124364225314945,
+        "gate_length": 68
+      },
+      "rzz_19_35": {
+        "gate_error": 0.0020707145001593597,
+        "gate_length": 80
+      },
+      "rzz_35_19": {
+        "gate_error": 0.0020707145001593597,
+        "gate_length": 80
+      },
+      "rzz_154_155": {
+        "gate_error": 0.001834946882171562,
+        "gate_length": 68
+      },
+      "rzz_155_154": {
+        "gate_error": 0.001834946882171562,
+        "gate_length": 68
+      },
+      "rzz_10_11": {
+        "gate_error": 0.001405586939757425,
+        "gate_length": 68
+      },
+      "rzz_11_10": {
+        "gate_error": 0.001405586939757425,
+        "gate_length": 68
+      },
+      "rzz_15_19": {
+        "gate_error": 0.002197403681777177,
+        "gate_length": 68
+      },
+      "rzz_19_15": {
+        "gate_error": 0.002197403681777177,
+        "gate_length": 68
+      },
+      "rzz_11_12": {
+        "gate_error": 0.0013900272480762421,
+        "gate_length": 68
+      },
+      "rzz_12_11": {
+        "gate_error": 0.0013900272480762421,
+        "gate_length": 68
+      }
+    }
+  },
+  "note": "Server-side timestamps are authoritative for chronology. Raw counts in pw_ibm_counts_nclock*.json remain the reproducible record and do not depend on this metadata."
+}
