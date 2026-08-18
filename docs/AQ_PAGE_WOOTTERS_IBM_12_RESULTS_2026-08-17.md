@@ -72,6 +72,47 @@ five settings — the second consecutive run to do so (IBM-11 measured
 attenuation 0.891 against a predicted 0.821), consistent with the four-hour-old
 calibration both runs drew on.
 
+## Post-hoc: the same structure appears on both pairs
+
+Added after the run, from the archived counts, at zero QPU cost
+(`hardware/pw_ibm12_endpoint_structure.py`). The reconstruction reproduces the
+reported concurrences to four decimals at all five settings, which is what
+licenses the rest.
+
+The run measured *magnitudes*. It did not ask whether the correlation
+**structure** at one endpoint is the same object as at the other. It is:
+
+```
+rho(A:Sₐ) at μ = 0    vs    rho(A:B) at μ = π/2
+  fidelity          0.9852
+  trace distance    0.0497
+  concurrence       0.8980  vs  0.9017        (differ by 0.0037)
+```
+
+**The structure transfers essentially intact.** Both endpoints sit at
+`F ≈ 0.945` with `|Φ⁺⟩` in the raw computational basis, both leave the partner
+in near-antipodal conditional states (178.1° and 176.1° between the two
+outcomes), and the conditional Bloch vectors agree between endpoints to
+`0.033` and `0.107`. The clock-marginal witness reads `0.0055` and `0.0186` on
+the two — near zero on both, as the complementarity relation requires of a
+maximally entangled pair, which is an independent cross-check against IBM-11
+using different circuits on a different family.
+
+**The degeneracy this does not escape, stated plainly.** At `d = 2` the
+Page–Wootters history state `(1/√2)(|0⟩|ψ₀⟩ + |1⟩U|ψ₀⟩)` **is** a Bell pair, so
+"both endpoints are history states" is nearly vacuous — every maximally
+entangled two-qubit state qualifies. More importantly, **no `U` appears
+anywhere in this run.** The circuit is `H(A); CX(A,Sₐ); CRY(2μ, Sₐ, B);
+CX(B,Sₐ)`; there is no evolution operator, no clock dimension above two, and no
+conditional-evolution sequence to fit. The 178° between conditional states is
+what a Bell pair does, **not** evidence of a system evolving.
+
+So what is established is a **static structural equivalence**: whatever the
+first pair was, the second pair becomes, to within 1.5% in fidelity. What is
+*not* established is that either pair carries temporal content. Testing that
+needs `d > 2`, a real `U` on both systems, and the conditional sequence
+`⟨X_S|t⟩` read against *each* clock — none of which this run has.
+
 ## Honest ledger
 
 **The relation is not new; the curve is.** Coffman–Kundu–Wootters monogamy is
