@@ -588,12 +588,58 @@ def run_submit(nus=NUS, shots=SHOTS, backend_name: str | None = None) -> None:
     res = job.result()
     counts = [r.data.c.get_counts() for r in res]
     pathlib.Path("results_ibm13").mkdir(exist_ok=True)
+    # Physical layout, recorded from the circuits actually submitted. Omitting
+    # this is what made pw_ibm_provenance.py refuse to write a snapshot for the
+    # first IBM-13 job -- the guard fired correctly and the writer was at fault.
+    layouts = {}
+    for c in tq:
+        try:
+            layouts[str(c.num_qubits)] = sorted(set(c.layout.final_index_layout()[:6]))
+            break
+        except Exception:
+            pass
     raw = {"index": idx, "counts": counts, "shots": shots,
-           "backend": be.name, "job_ids": [job.job_id()], "dry": False}
+           "backend": be.name, "job_ids": [job.job_id()], "dry": False,
+           "layouts": layouts, "layout": layouts.get(str(be.num_qubits), [])}
     pathlib.Path("results_ibm13/raw.json").write_text(json.dumps(raw, indent=1))
     out = analyze(raw)
     pathlib.Path("results_ibm13/ibm13_results.json").write_text(json.dumps(out, indent=1))
     print("\nwrote results_ibm13/raw.json and ibm13_results.json")
+
+
+def run_fixup(raw_path: str) -> None:
+    """Recover the physical layout for an ALREADY-SUBMITTED job and patch it
+    into raw.json, so provenance can be written without re-running anything.
+
+    The layout is read back from the job's own submitted circuits -- the same
+    discipline Paper 1 adopted after a layout bug: verified post-hoc from what
+    was actually run, never assumed from a local re-transpile, which could
+    differ from the live coupling map.
+    """
+    from qiskit_ibm_runtime import QiskitRuntimeService
+    if not os.environ.get("QISKIT_IBM_TOKEN"):
+        sys.exit("QISKIT_IBM_TOKEN not set in this shell.")
+    path = pathlib.Path(raw_path)
+    raw = json.loads(path.read_text())
+    svc = QiskitRuntimeService(channel="ibm_quantum_platform",
+                               token=os.environ["QISKIT_IBM_TOKEN"])
+    qubits = set()
+    for jid in raw.get("job_ids", []):
+        job = svc.job(jid)
+        pubs = job.inputs.get("pubs") or []
+        for pub in pubs:
+            circ = pub[0] if isinstance(pub, (list, tuple)) else pub
+            try:
+                qubits.update(circ.layout.final_index_layout()[:6])
+            except Exception:
+                continue
+        print(f"  {jid}: recovered {len(qubits)} physical qubits")
+    if not qubits:
+        sys.exit("could not recover a layout from the job payload")
+    raw["layouts"] = {"6": sorted(qubits)}
+    raw["layout"] = sorted(qubits)
+    path.write_text(json.dumps(raw, indent=1))
+    print(f"patched {path} with layout {sorted(qubits)}")
 
 
 if __name__ == "__main__":
@@ -601,10 +647,13 @@ if __name__ == "__main__":
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--submit", action="store_true")
     ap.add_argument("--analyze")
+    ap.add_argument("--fixup", help="recover layout for an already-run job")
     ap.add_argument("--backend")
     ap.add_argument("--shots", type=int, default=SHOTS)
     a = ap.parse_args()
-    if a.analyze:
+    if a.fixup:
+        run_fixup(a.fixup)
+    elif a.analyze:
         analyze(json.loads(pathlib.Path(a.analyze).read_text()))
     elif a.submit:
         run_submit(shots=a.shots, backend_name=a.backend)

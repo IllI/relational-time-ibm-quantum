@@ -47,21 +47,28 @@ little norm to be identifiable from `d` samples, and enforcing `|V| ≤ 1`.
 **No re-run was needed** — the archived counts were re-analysed at zero QPU
 cost.
 
-**`V` is positively biased at the null and must not be read as signal there.**
-At `ν = 0` the exact value is 0, but fitting an amplitude to noise always
-returns something positive: `0.054` on the history arm and `0.180` on the
-mimic. This is the same class of estimator bias as concurrence in IBM-12, and
-the same rule applies — only differences against a matched reference are
-interpretable, never the raw value near zero.
+**`V` is positively biased at the null.** When the true amplitude is zero,
+least squares — or any magnitude estimator — returns a positive number. The
+values `0.054` (history arm) and `0.180` (mimic) at `ν = 0` are therefore
+**upper bounds on residual bias, not measurements of signal**. The same
+pathology appeared with concurrence in IBM-12.
 
-**Gate 5 passes at every `ν` (TVD 0.014–0.049 against 0.061), and it is a
-negative control.** The separable mimic — constructed from the ideal
-prediction and locked before submission, never fitted to results — reproduces
-the full eight-outcome single-basis distribution. **Therefore the
-foreign-clock amplitude, while rising with `ν`, does not by itself certify
-non-classical structure. Certification rests only on the multi-setting
-fidelity witnesses.** This is the third instance of IBM-3's theorem in the
-programme.
+> Near the structural null the fitted amplitudes are positively biased by
+> construction; the reported values at `ν = 0` are not interpretable as
+> residual foreign-clock signal.
+
+**Gate 5 is a negative control, and it is the load-bearing caveat:**
+
+> Gate 5 passes at every `ν`. The foreign-clock amplitude `V(S_A|B)` rises with
+> coupling but is fully reproduced by a separable mimic (TVD < 0.05). It
+> therefore certifies nothing on its own. All non-classical claims rest
+> exclusively on the multi-setting fidelity witnesses `F(A:S_A)` and
+> `F(B:S_B)`.
+
+The mimic was constructed from the ideal prediction and locked before
+submission, never fitted to results. This is the third instance of IBM-3's
+theorem in the programme, and the paragraph above prevents the exact overclaim
+that sank IBM-2.
 
 **The mimic is ~1 two-qubit gate shallower than the history arm at some `ν`**
 (CX pairs are the identity only in even numbers, and the tomography circuits
@@ -69,12 +76,14 @@ themselves vary 8–9 by setting). A cleaner mimic makes the two distributions
 differ *more*, inflating TVD and making Gate 5 harder to pass — so passing is
 conservative, not flattered.
 
-**Hardware did not beat its noise model this time**, ending a two-run streak.
-The dry run against `FakeMarrakesh` predicted 0.927–0.947 attenuation and the
-device delivered ≈0.894. That is not the IBM-11/IBM-12 comparison, though:
-those used an in-process reference at the live calibration, while
-`FakeMarrakesh` is a stored snapshot. It is a weaker statement and is reported
-as one.
+**No noise-model comparison is claimed for this job.** `FakeMarrakesh` is a
+stored snapshot, not the live in-process calibration reference IBM-11 and
+IBM-12 used, and a stored model cannot be treated as a fair head-to-head. The
+accurate statement is:
+
+> Attenuation was flat at 0.886–0.907, consistent with the previous two runs on
+> the same device family. No claim is made that hardware outperformed the noise
+> model on this job.
 
 **Gate 2 is not evaluated here.** `V(Sₐ|A)` is flat at 1.000 by construction
 and is a calibration channel, not a result.
@@ -111,5 +120,14 @@ reproduces from them with no IBM access:
 
 ```
 python hardware/pw_ibm13_two_clock.py --analyze results_ibm13/raw.json
+python hardware/pw_ibm13_two_clock.py --fixup results_ibm13/raw.json
 python hardware/pw_ibm_provenance.py --results results_ibm13/raw.json --out results_ibm13/ibm13_provenance.json
 ```
+
+**The first provenance attempt was refused**, correctly: the results writer did
+not record a physical layout, and `pw_ibm_provenance.py` declines to write an
+empty calibration snapshot rather than archive a hollow record. The writer now
+records `layouts` at submission, and `--fixup` recovers the layout for this
+already-submitted job by reading it back from the job's own payload — the same
+discipline Paper 1 adopted after a layout bug: verified post-hoc from what was
+actually run, never assumed from a local re-transpile.
