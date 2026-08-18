@@ -962,7 +962,11 @@ if __name__ == "__main__":
     ap.add_argument("--instance", help="IBM instance CRN (or QISKIT_IBM_INSTANCE)")
     ap.add_argument("--backend")
     ap.add_argument("--shots", type=int, default=SHOTS)
+    ap.add_argument("--nus", help="comma-separated nu values, e.g. 0.65,0.70,0.75")
     a = ap.parse_args()
+    if a.nus:
+        NUS = tuple(float(x) for x in a.nus.split(","))
+        globals()["NUS"] = NUS
     if a.recover:
         run_recover(a.recover, instance=a.instance, shots=a.shots)
     elif a.fixup:
@@ -970,8 +974,8 @@ if __name__ == "__main__":
     elif a.analyze:
         analyze(json.loads(pathlib.Path(a.analyze).read_text()))
     elif a.submit:
-        run_submit(shots=a.shots, backend_name=a.backend)
+        run_submit(nus=NUS, shots=a.shots, backend_name=a.backend)
     elif a.dry:
-        run_dry(shots=a.shots)
+        run_dry(nus=NUS, shots=a.shots)
     else:
         preflight()
