@@ -1,0 +1,91 @@
+{
+ "tvd_threshold": 0.022,
+ "settings": [
+  {
+   "nu": 0.0,
+   "V_history": 0.026483386444424297,
+   "V_dephased": 0.12138546046468975,
+   "V_reconstructed": 0.02895414117931531,
+   "tvd_dephased": 0.009874999999999995,
+   "tvd_reconstructed": 0.02812500000000001,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.0932945165481733
+  },
+  {
+   "nu": 0.25,
+   "V_history": 0.2344227275152846,
+   "V_dephased": 0.18819575715285572,
+   "V_reconstructed": 0.2787169180977053,
+   "tvd_dephased": 0.01693749999999998,
+   "tvd_reconstructed": 0.01662500000000002,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.188950069184451
+  },
+  {
+   "nu": 0.5,
+   "V_history": 0.47152421218678964,
+   "V_dephased": 0.4677323992445477,
+   "V_reconstructed": 0.5612414157730544,
+   "tvd_dephased": 0.0078125,
+   "tvd_reconstructed": 0.029687499999999974,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.190270618703084
+  },
+  {
+   "nu": 0.65,
+   "V_history": 0.6171912283812132,
+   "V_dephased": 0.6130007219963924,
+   "V_reconstructed": 0.7473905058444513,
+   "tvd_dephased": 0.0072500000000000064,
+   "tvd_reconstructed": 0.035875000000000004,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.210954516973173
+  },
+  {
+   "nu": 0.8,
+   "V_history": 0.7283986716733355,
+   "V_dephased": 0.7325154804166403,
+   "V_reconstructed": 0.8689666966821864,
+   "tvd_dephased": 0.011937499999999965,
+   "tvd_reconstructed": 0.068375,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.1929822643497232
+  },
+  {
+   "nu": 0.9,
+   "V_history": 0.7853049384560663,
+   "V_dephased": 0.7834449989607221,
+   "V_reconstructed": 0.919137325814036,
+   "tvd_dephased": 0.007187499999999996,
+   "tvd_reconstructed": 0.03649999999999999,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.170420916518223
+  },
+  {
+   "nu": 1.0,
+   "V_history": 0.8375158042413118,
+   "V_dephased": 0.8433508144861933,
+   "V_reconstructed": 0.9429731113385071,
+   "tvd_dephased": 0.007312499999999996,
+   "tvd_reconstructed": 0.042874999999999996,
+   "dephased_pass": true,
+   "ratio_reconstructed": 1.125916796510756
+  }
+ ],
+ "job_ids": [
+  "da28epkdedkc73ertdh0"
+ ],
+ "backend": "ibm_marrakesh",
+ "anchor": {
+  "nu": 0.65,
+  "F": 0.5294814097281842,
+  "bound": 0.5000000000000001
+ },
+ "gates": {
+  "1_non_vacuity": true,
+  "2_dephased_reproduces": true,
+  "3_reconstructed_biased_high": true,
+  "5_anchor_certifies": true
+ },
+ "all_gates_pass": true
+}
