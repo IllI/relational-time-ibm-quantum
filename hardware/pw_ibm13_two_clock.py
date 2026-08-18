@@ -658,9 +658,31 @@ def run_fixup(raw_path: str) -> None:
     dom = {k: groups[k].most_common(1)[0][0] for k in groups if k[1] == "tomo"}
     nonzero = {k: v for k, v in dom.items() if k[0] > 0}
     same = len(set(nonzero.values())) == 1 if nonzero else False
+
+    # Sharing a DOMINANT layout is weaker than being homogeneous. Report the
+    # purity too, and how much it drifts across nu: a changing admixture of
+    # differently-calibrated qubits shifts fidelity for reasons that are not
+    # physics, and the first version of this check hid that behind a bare True.
+    purity = {}
+    for k in groups:
+        if k[1] != "tomo" or k[0] <= 0:
+            continue
+        tot = sum(groups[k].values())
+        purity[k[0]] = groups[k].most_common(1)[0][1] / tot
     print()
-    print(f"  all nu > 0 tomo circuits on ONE layout: {same}"
-          f"   <- the crossover claim depends on this")
+    print(f"  all nu > 0 tomo circuits share ONE dominant layout: {same}")
+    if purity:
+        lo, hi = min(purity.values()), max(purity.values())
+        print("  dominant-layout purity per nu: "
+              + "  ".join(f"{n:.2f}:{p:.0%}" for n, p in sorted(purity.items())))
+        print(f"  purity drift across nu: {hi - lo:.0%}"
+              f"   <- a changing admixture moves F for non-physical reasons")
+        if hi - lo > 0.05:
+            print("  NOT homogeneous. The crossover BRACKET is still safe (F falls")
+            print("  by ~0.14 between the last certified nu and the first failing")
+            print("  one, far above any plausible layout effect), but the status")
+            print("  of a setting clearing its bound by less than ~0.03 is NOT.")
+            print("  Any replication should pin initial_layout explicitly.")
 
     raw["layouts"] = {"6": sorted(qubits)}
     raw["layout"] = sorted(qubits)

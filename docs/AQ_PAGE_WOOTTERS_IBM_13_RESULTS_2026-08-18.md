@@ -85,6 +85,43 @@ accurate statement is:
 > the same device family. No claim is made that hardware outperformed the noise
 > model on this job.
 
+**The circuits did not all run on the same physical qubits, and this bounds
+what the `ν = 0.65` point supports.** The job used **20 distinct physical
+qubits for a 6-qubit circuit** — the transpiler chose layouts per circuit.
+Recovered from the job's own payload:
+
+```
+ nu=0.25 tomo : 3 distinct, dominant [10,11,12,13,14,15] x36 / 54
+ nu=0.50 tomo : 3 distinct, dominant [10,11,12,13,14,15] x37 / 54
+ nu=0.65 tomo : 3 distinct, dominant [10,11,12,13,14,15] x40 / 54
+ nu=0.80 tomo : 3 distinct, dominant [10,11,12,13,14,15] x41 / 54
+ nu=0.00 tomo : 2 distinct, dominant [53,54,109,139,154,155] x48 / 54
+ mimic (all)  : 1 distinct, [1,19,53,54,139,152]
+```
+
+All four `ν > 0` settings share the **same dominant layout**, so the crossover
+comparison is anchored on the same qubits and is not a gross artifact. But
+purity is only 67–76% and **drifts with `ν` (36 → 41 of 54)**, so the admixture
+of differently-calibrated qubits changes across the sweep.
+
+> **The crossover bracket is robust; the status of `ν = 0.65` is not.** `F`
+> falls from `0.5215` to `0.3813` between the last certified setting and the
+> first failing one — a gap of `0.14`, far above any plausible layout effect.
+> But `ν = 0.65` clears its bound by only `0.0215`, which is the same order as
+> the systematic a drifting layout admixture can produce. That single point
+> should be treated as unresolved until a replication pins `initial_layout`.
+
+Measured attenuation is flat at 0.886–0.907 with no monotonic trend tracking
+the purity drift, which argues the effect is small — but it is not a
+substitute for pinning the layout.
+
+**The mimic ran on a different layout entirely** (`[1,19,53,54,139,152]` versus
+the history arm's `[10..15]`), so Gate 5's two arms differ in qubit quality as
+well as in the residual depth mismatch. Both push the measured TVD **up**, so
+Gate 5 passing remains conservative — but neither the depth matching nor the
+seven conditions governing that gate anticipated a layout mismatch, and a
+replication should pin the layout for both arms.
+
 **Gate 2 is not evaluated here.** `V(Sₐ|A)` is flat at 1.000 by construction
 and is a calibration channel, not a result.
 
