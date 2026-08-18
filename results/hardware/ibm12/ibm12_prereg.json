@@ -1,0 +1,100 @@
+{
+  "program": "AQ-PAGE-WOOTTERS-IBM-12",
+  "backend": "ibm_marrakesh",
+  "dry_run": false,
+  "submission_time": "2026-08-18T01:27:57.272735Z",
+  "optimization_level": 0,
+  "mus": [
+    0.0,
+    0.39269908169872414,
+    0.7853981633974483,
+    1.1780972450961724,
+    1.5707963267948966
+  ],
+  "shots": 2000,
+  "layout": [
+    0,
+    1,
+    2
+  ],
+  "settings": [
+    "XXX",
+    "XXY",
+    "XXZ",
+    "XYX",
+    "XYY",
+    "XYZ",
+    "XZX",
+    "XZY",
+    "XZZ",
+    "YXX",
+    "YXY",
+    "YXZ",
+    "YYX",
+    "YYY",
+    "YYZ",
+    "YZX",
+    "YZY",
+    "YZZ",
+    "ZXX",
+    "ZXY",
+    "ZXZ",
+    "ZYX",
+    "ZYY",
+    "ZYZ",
+    "ZZX",
+    "ZZY",
+    "ZZZ"
+  ],
+  "exact": {
+    "0.000000": {
+      "C_ASa": 0.9999999999999994,
+      "C_AB": 0.0,
+      "S_ASa": 2.8284271247461894,
+      "S_AB": 0.0,
+      "sum_sq": 0.9999999999999989,
+      "4detA": 0.9999999999999996
+    },
+    "0.392699": {
+      "C_ASa": 0.9238795325112864,
+      "C_AB": 0.3826834323650896,
+      "S_ASa": 2.6131259297527523,
+      "S_AB": 1.0823922002923936,
+      "sum_sq": 0.9999999999999992,
+      "4detA": 0.9999999999999993
+    },
+    "0.785398": {
+      "C_ASa": 0.7071067811865475,
+      "C_AB": 0.7071067811865475,
+      "S_ASa": 1.9999999999999998,
+      "S_AB": 1.9999999999999998,
+      "sum_sq": 0.9999999999999998,
+      "4detA": 0.9999999999999998
+    },
+    "1.178097": {
+      "C_ASa": 0.3826834305024446,
+      "C_AB": 0.9238795325112864,
+      "S_ASa": 1.082392200292394,
+      "S_AB": 2.6131259297527523,
+      "sum_sq": 0.9999999985743924,
+      "4detA": 0.9999999999999996
+    },
+    "1.570796": {
+      "C_ASa": 6.123233995736765e-17,
+      "C_AB": 0.9999999999999994,
+      "S_ASa": 1.7319121124709863e-16,
+      "S_AB": 2.8284271247461894,
+      "sum_sq": 0.9999999999999989,
+      "4detA": 0.9999999999999996
+    }
+  },
+  "purpose": "Measure the cost of shared relational time. A clock is a good Page-Wootters clock in proportion to its entanglement with its own system, and a synchronisable clock in proportion to its entanglement with another clock; monogamy makes those compete. The saturation C^2 + C^2 = 1 is FORCED for pure states and is not the claim. The contingent quantities are the hardware deficit and its dependence on where the entanglement sits.",
+  "gates": {
+    "gate1_clock_quality_falls": "C(A:Sa) decreases monotonically in mu",
+    "gate2_sync_rises": "C(A:B) increases monotonically in mu",
+    "gate3_anticorrelated": "Pearson r(C_ASa, C_AB) < -0.9",
+    "gate4_endpoints": "at mu=0, C(A:B) is consistent with zero; at mu=pi/2, C(A:Sa) is. These are the no-go's two faces and either failing would falsify the framing.",
+    "gate5_deficit_tracks_reference": "the deficit measured on hardware tracks a NOISE-MATCHED Aer reference run through the same estimator, within 3 sigma. Gating against the ideal 1.0 would fire on estimator bias: concurrence is a max(0, l1-l2-l3-l4), so noise pushes it down hardest at intermediate entanglement and the raw deficit bows at the balanced point even in simulation. Departure from the REFERENCE in shape is the contingent claim -- it would mean decoherence treats clock-system and clock-clock entanglement differently. Reported either way.",
+    "gate6_chsh_tracks": "CHSH on both pairs tracks 2 sqrt(1 + C^2) within attenuation, cross-checking tomography against a Bell-type observable on the same counts"
+  }
+}

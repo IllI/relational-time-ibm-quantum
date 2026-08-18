@@ -12,8 +12,8 @@ than by an external parameter — leaves a measurable quantum signature that can
 be distinguished from its classical mimic. It runs from three disciplined
 nulls on classical substrates, through a simulation campaign on **Google TPU
 Research Cloud** hardware that built the hypothesis and the certification
-standard, to **twelve pre-registered runs on IBM Quantum Heron processors** (73
-jobs) — ten positive, two reported as failures.
+standard, to **thirteen pre-registered runs on IBM Quantum Heron processors** (74
+jobs) — eleven positive, two reported as failures.
 
 **The short version.** The signature usually cited as "time from entanglement"
 is classically reproducible, and this program measured that on hardware. It
@@ -177,7 +177,7 @@ clock coherence, which at `d = 2` is absent from a maximally entangled state.
 
 ## What was tested
 
-Twelve runs on IBM Heron r2 processors, each pre-registered before submission.
+Thirteen runs on IBM Heron r2 processors, each pre-registered before submission.
 The program is best read as three movements:
 
 | movement | runs | question |
@@ -221,10 +221,11 @@ it was shown to be insufficient.
 | **IBM-9** | which-rate qubit `G`, read in Z and X | superposes two proper-time histories and looks for interference |
 | **IBM-10** | all three arms on ONE preparation, one job | certifies the *conjunction* — IBM-4 and IBM-5 had used orthogonal states |
 | **IBM-11** | witness and CHSH swept together, product → Bell | measures the witness running *backwards*: r = −0.9573 |
+| **IBM-12** | clock quality vs synchronisability, three qubits | measures what shared time costs: r = −0.9833, both endpoints exactly zero |
 
 ## Conclusion
 
-**Program-level, stated as narrowly as twelve runs support:**
+**Program-level, stated as narrowly as thirteen runs support:**
 
 > In engineered 2–5 qubit history states on superconducting hardware, the
 > conditional-evolution signal usually cited as evidence for relational time is
@@ -950,10 +951,10 @@ analysis reproduces from counts with no IBM dependency.
    reproducibility of conditional evolution — the four findings that
    constitute the result.
 
-### Part V — AQ-PAGE-WOOTTERS-IBM-1…11: the adversarial and mechanism runs (2026-08-07/17)
+### Part V — AQ-PAGE-WOOTTERS-IBM-1…12: the adversarial and mechanism runs (2026-08-07/17)
 
 Each run has a pre-registration filed before submission and a results document
-carrying its own honest ledger. Eleven runs, 37 jobs, all on `ibm_marrakesh`.
+carrying its own honest ledger. Twelve runs, 38 jobs, all on `ibm_marrakesh`.
 
 | run | question | outcome |
 |---|---|---|
@@ -968,6 +969,7 @@ carrying its own honest ledger. Eleven runs, 37 jobs, all on `ibm_marrakesh`.
 | **IBM-9** | superpose the *rate* of time | **3/3** — interference 0.2411 vs 3σ bar 0.1039; classical rate mixture excluded |
 | **IBM-10** | all three properties on ONE state | **4/4** — F 0.9014, echo 0.8630 at 42–143σ, R² 0.9942; conjunction certified |
 | **IBM-11** | is the witness anti-correlated with CHSH? | **9/9** — r = −0.9573; max witness sits *below* the Bell bound at CHSH 1.86 |
+| **IBM-12** | what does a shared clock cost? | **6/6** — r = −0.9833; a perfect PW clock has *zero* correlation with any other clock |
 
 The sequence IBM-2 → IBM-3 → IBM-4 is the methodological core: each
 adversarial run broke the previous run's witness with a state the program
