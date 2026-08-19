@@ -493,7 +493,27 @@ def run_status(instance=None):
 
 def run_recover(job_id, instance=None, shots=SHOTS):
     svc = _service(instance)
-    job = svc.job(job_id)
+    if str(job_id).lower() in ("latest", "last"):
+        # The terminal keeps dying mid-run and job IDs get truncated in the
+        # console, so allow recovery without one. Picks the most recent job
+        # whose pub count matches this experiment, which also guards against
+        # grabbing a different run's data.
+        want = len(build_all()[1])
+        cand = None
+        for j in svc.jobs(limit=25, descending=True):
+            try:
+                if str(j.status()).upper().endswith("DONE") and len(j.result()) == want:
+                    cand = j
+                    break
+            except Exception:
+                continue
+        if cand is None:
+            sys.exit(f"no recent completed job with {want} pubs found")
+        job = cand
+        job_id = job.job_id()
+        print(f"resolved latest matching job: {job_id}")
+    else:
+        job = svc.job(job_id)
     print(f"job {job_id}: {job.status()}")
     counts = []
     for pub in job.result():
