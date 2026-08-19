@@ -577,7 +577,15 @@ if __name__ == "__main__":
     elif a.recover:
         run_recover(a.recover, instance=a.instance, shots=a.shots)
     elif a.analyze:
-        analyze(json.loads(pathlib.Path(a.analyze).read_text()))
+        _raw = json.loads(pathlib.Path(a.analyze).read_text())
+        _out = analyze(_raw)
+        # --analyze used to print without writing, so a re-analysis silently
+        # left the PREVIOUS run's results file on disk and the two runs got
+        # confused when archived.
+        _dest = pathlib.Path(a.analyze).with_name("ibm16_results.json")
+        _dest.write_text(json.dumps(_out, indent=1))
+        print()
+        print(f"wrote {_dest}")
     elif a.submit:
         run_submit(shots=a.shots, backend_name=a.backend, instance=a.instance,
                    force=a.force)
