@@ -471,7 +471,15 @@ def run_status(instance=None):
     """
     svc = _service(instance)
     print(f"{'backend':18s} {'operational':>12s}  {'pending':>8s}  status")
-    for be in svc.backends(simulator=False, operational=False):
+    # NOT operational=False -- that FILTERS TO non-operational backends and
+    # returned an empty list. Passing nothing lists everything.
+    try:
+        backends = svc.backends(simulator=False)
+    except Exception:
+        backends = svc.backends()
+    if not backends:
+        print("  (no backends returned -- check the instance/CRN)")
+    for be in backends:
         try:
             st = be.status()
             op = bool(getattr(st, "operational", False))
