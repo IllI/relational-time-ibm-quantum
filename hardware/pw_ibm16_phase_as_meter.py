@@ -163,11 +163,27 @@ def exact_phase(C, arm):
     return holonomy(tilted(r, THETA_WORK))[1]
 
 
+_CURVE_CACHE: dict = {}
+
+
+def _curve(arm, n=400):
+    """Calibration curve, computed ONCE per arm.
+
+    Without this, invert() rebuilt a 400-point grid on every call and each
+    Uhlmann point ran an 800-step SVD holonomy -- ~320k SVDs per inversion,
+    which stalled the analysis for minutes and looked like a hang.
+    """
+    key = (arm, n)
+    if key not in _CURVE_CACHE:
+        grid = np.linspace(0.01, 0.995, n)
+        _CURVE_CACHE[key] = (grid, np.array([exact_phase(c, arm) for c in grid]))
+    return _CURVE_CACHE[key]
+
+
 def invert(phase, arm, grid=None):
     """Read C off the calibration curve -- the meter, used in anger."""
-    grid = grid if grid is not None else np.linspace(0.01, 0.995, 400)
-    pred = np.array([exact_phase(c, arm) for c in grid])
-    return float(grid[int(np.argmin(np.abs(pred - phase)))])
+    g, pred = _curve(arm)
+    return float(g[int(np.argmin(np.abs(pred - phase)))])
 
 
 def sensitivity_table():
