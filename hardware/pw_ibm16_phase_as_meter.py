@@ -412,7 +412,7 @@ def _service(instance=None):
     return QiskitRuntimeService(**kw)
 
 
-def run_submit(shots=SHOTS, backend_name=None, instance=None):
+def run_submit(shots=SHOTS, backend_name=None, instance=None, force=False):
     from qiskit_ibm_runtime import SamplerV2
     if not os.environ.get("QISKIT_IBM_TOKEN"):
         sys.exit("QISKIT_IBM_TOKEN not set")
@@ -420,10 +420,25 @@ def run_submit(shots=SHOTS, backend_name=None, instance=None):
     svc = _service(instance)
     be = svc.backend(backend_name) if backend_name else svc.least_busy(
         operational=True, simulator=False, min_num_qubits=3)
-    st = str(getattr(be, "status", lambda: "")())
-    if "maintenance" in st.lower():
-        print(f"WARNING: {be.name} reports maintenance status -- IBM-15 was taken "
-              f"in one and its calibration never matched. Consider another backend.")
+    # ABORT, not warn. The first version stringified backend.status() and
+    # silently matched nothing, so IBM-15 AND IBM-16's first submission both
+    # went out during maintenance windows. BackendStatus exposes .operational
+    # and .status_msg; use them, and stop by default.
+    try:
+        stobj = be.status()
+        operational = bool(getattr(stobj, "operational", True))
+        msg = str(getattr(stobj, "status_msg", "") or "")
+    except Exception as exc:                       # never fail open silently
+        operational, msg = True, f"status query failed: {exc}"
+    if (not operational) or ("maintenance" in msg.lower()):
+        print(f"  backend {be.name}: operational={operational}  status={msg!r}")
+        if not force:
+            sys.exit(
+                "ABORTING: backend is not operational. IBM-15 was taken in a "
+                "maintenance window and its archived calibration never matched "
+                "the job, which made the numbers provisional. Pass --force to "
+                "submit anyway, or choose another backend.")
+        print("  --force given: submitting into a maintenance window anyway.")
     circs, idx = build_all()
     tq = transpile(circs, backend=be, optimization_level=3, seed_transpiler=16,
                    scheduling_method="asap")
@@ -488,13 +503,16 @@ if __name__ == "__main__":
     ap.add_argument("--instance")
     ap.add_argument("--backend")
     ap.add_argument("--shots", type=int, default=SHOTS)
+    ap.add_argument("--force", action="store_true",
+                    help="submit even if the backend is not operational")
     a = ap.parse_args()
     if a.recover:
         run_recover(a.recover, instance=a.instance, shots=a.shots)
     elif a.analyze:
         analyze(json.loads(pathlib.Path(a.analyze).read_text()))
     elif a.submit:
-        run_submit(shots=a.shots, backend_name=a.backend, instance=a.instance)
+        run_submit(shots=a.shots, backend_name=a.backend, instance=a.instance,
+                   force=a.force)
     elif a.dry:
         run_dry(shots=a.shots)
     else:
