@@ -463,6 +463,26 @@ def run_submit(shots=SHOTS, backend_name=None, instance=None, force=False):
     print("\nwrote results_ibm16/raw.json and ibm16_results.json")
 
 
+def run_status(instance=None):
+    """List backend status without submitting anything. Zero QPU cost.
+
+    Exists because the maintenance guard was broken and two runs went out into
+    maintenance windows before anyone looked.
+    """
+    svc = _service(instance)
+    print(f"{'backend':18s} {'operational':>12s}  {'pending':>8s}  status")
+    for be in svc.backends(simulator=False, operational=False):
+        try:
+            st = be.status()
+            op = bool(getattr(st, "operational", False))
+            msg = str(getattr(st, "status_msg", "") or "")
+            pend = getattr(st, "pending_jobs", "?")
+        except Exception as exc:
+            op, msg, pend = False, f"query failed: {exc}", "?"
+        flag = "OK" if op and "maintenance" not in msg.lower() else "AVOID"
+        print(f"{be.name:18s} {str(op):>12s}  {str(pend):>8s}  {msg}   [{flag}]")
+
+
 def run_recover(job_id, instance=None, shots=SHOTS):
     svc = _service(instance)
     job = svc.job(job_id)
@@ -503,10 +523,14 @@ if __name__ == "__main__":
     ap.add_argument("--instance")
     ap.add_argument("--backend")
     ap.add_argument("--shots", type=int, default=SHOTS)
+    ap.add_argument("--status", action="store_true",
+                    help="list backend status, submit nothing")
     ap.add_argument("--force", action="store_true",
                     help="submit even if the backend is not operational")
     a = ap.parse_args()
-    if a.recover:
+    if a.status:
+        run_status(a.instance)
+    elif a.recover:
         run_recover(a.recover, instance=a.instance, shots=a.shots)
     elif a.analyze:
         analyze(json.loads(pathlib.Path(a.analyze).read_text()))
