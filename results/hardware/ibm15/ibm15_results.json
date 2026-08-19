@@ -1,0 +1,219 @@
+{
+ "settings": [
+  {
+   "chi": 0.15708,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.5949133070502066,
+   "visibility": 0.953777358716383
+  },
+  {
+   "chi": 0.15708,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.9059880104873891,
+   "visibility": 0.9434141455373669
+  },
+  {
+   "chi": 0.15708,
+   "theta": "work",
+   "arm": "random",
+   "phase": 2.9364236184786177,
+   "visibility": 0.6307285469994204
+  },
+  {
+   "chi": 0.15708,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.837141728903384,
+   "visibility": 0.9296754810147464,
+   "phase_corrected": -0.837141728903384
+  },
+  {
+   "chi": 0.336599,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.6049804679814526,
+   "visibility": 0.9070299057914242
+  },
+  {
+   "chi": 0.336599,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.8437932357680701,
+   "visibility": 0.9208083405356404
+  },
+  {
+   "chi": 0.336599,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.7655836837787648,
+   "visibility": 0.9279062452640353,
+   "phase_corrected": -0.7655836837787648
+  },
+  {
+   "chi": 0.516119,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.6201100150689458,
+   "visibility": 0.8520357973700401
+  },
+  {
+   "chi": 0.516119,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.8331721500805275,
+   "visibility": 0.8809995743472298
+  },
+  {
+   "chi": 0.516119,
+   "theta": "work",
+   "arm": "random",
+   "phase": -0.8173974802328746,
+   "visibility": 0.27626662845881333
+  },
+  {
+   "chi": 0.516119,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.5774123073572359,
+   "visibility": 0.9297296650102115,
+   "phase_corrected": -0.5774123073572359
+  },
+  {
+   "chi": 0.695638,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.6168751800619319,
+   "visibility": 0.7272719573859562
+  },
+  {
+   "chi": 0.695638,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.7946338369827638,
+   "visibility": 0.8422000949893084
+  },
+  {
+   "chi": 0.695638,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.28538682175631047,
+   "visibility": 0.8915611308261481,
+   "phase_corrected": -0.28538682175631047
+  },
+  {
+   "chi": 0.875158,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.5658499532856647,
+   "visibility": 0.6065074195753916
+  },
+  {
+   "chi": 0.875158,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.6713978283486266,
+   "visibility": 0.7707999091852568
+  },
+  {
+   "chi": 0.875158,
+   "theta": "work",
+   "arm": "random",
+   "phase": -2.6088907509190458,
+   "visibility": 0.23333077379548547
+  },
+  {
+   "chi": 0.875158,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.13077116101155473,
+   "visibility": 0.9279229493875017,
+   "phase_corrected": -0.13077116101155473
+  },
+  {
+   "chi": 1.054678,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.5729082560731462,
+   "visibility": 0.47350105596503156
+  },
+  {
+   "chi": 1.054678,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.5661185475278013,
+   "visibility": 0.6907671460050774
+  },
+  {
+   "chi": 1.054678,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.04212469687329604,
+   "visibility": 0.949842618542672,
+   "phase_corrected": -0.04212469687329604
+  },
+  {
+   "chi": 1.234197,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.6205993465081456,
+   "visibility": 0.3213985065304443
+  },
+  {
+   "chi": 1.234197,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.42247865322479305,
+   "visibility": 0.668256126047491
+  },
+  {
+   "chi": 1.234197,
+   "theta": "work",
+   "arm": "random",
+   "phase": 0.5674399494578489,
+   "visibility": 0.4316480047446067
+  },
+  {
+   "chi": 1.234197,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": 0.008183960504665352,
+   "visibility": 0.9775327360247329,
+   "phase_corrected": 0.008183960504665352
+  },
+  {
+   "chi": 1.413717,
+   "theta": "null",
+   "arm": "interf",
+   "phase": -1.7590178320996674,
+   "visibility": 0.13895412912180768
+  },
+  {
+   "chi": 1.413717,
+   "theta": "work",
+   "arm": "interf",
+   "phase": -0.1893171675533502,
+   "visibility": 0.6190607805377433
+  },
+  {
+   "chi": 1.413717,
+   "theta": "work",
+   "arm": "uhlmann",
+   "phase": -0.02202512632500131,
+   "visibility": 0.9762367796800119,
+   "phase_corrected": -0.02202512632500131
+  }
+ ],
+ "job_ids": [
+  "da2hc6s3jnrc73adu6cg"
+ ],
+ "backend": "ibm_marrakesh",
+ "gates": {
+  "3_pure_state_null": true,
+  "4_divergence": true,
+  "5_both_vary_with_C": true,
+  "1_degenerate_null_flat": true
+ },
+ "all_gates_pass": true
+}
