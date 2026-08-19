@@ -968,7 +968,7 @@ if __name__ == "__main__":
         NUS = tuple(float(x) for x in a.nus.split(","))
         globals()["NUS"] = NUS
     if a.recover:
-        run_recover(a.recover, instance=a.instance, shots=a.shots)
+        run_recover(a.recover, instance=a.instance, shots=a.shots, nus=NUS)
     elif a.fixup:
         run_fixup(a.fixup)
     elif a.analyze:

@@ -204,6 +204,49 @@ rescue the result — the precise move this programme's discipline exists to
 prevent. **It belongs in the next run's pre-registration, not in a re-analysis
 of this one.**
 
+## Third job: the crossover bracketed, and `ν = 0.65` confirmed a third time
+
+**`da2eb861vhnc73fiiqc0`, 2026-08-18, 174 circuits, 348 000 shots, 1m35s.**
+A focused three-point sweep at `ν ∈ {0.65, 0.70, 0.75}`, layout pinned, on a
+third physical chain `[146, 147, 148, 149, 150, 151]`.
+
+```
+ nu     F(A:Sa)  F(B:Sb)  both?
+ 0.65   0.5463   0.5365   True
+ 0.70   0.4929   0.4861   False
+ 0.75   0.4425   0.4502   False
+```
+
+**The crossover narrows from `[0.65, 0.80]` to `[0.65, 0.70]`** — a factor of
+three, and the tightest localisation the programme has.
+
+**`ν = 0.65` now has three independent measurements on three different physical
+chains:**
+
+| job | chain | `F(A:Sₐ)` | margin over `λ_max` |
+|---|---|---|---|
+| 1 | 20 qubits, drifting | 0.5215 | +0.0215 |
+| 2 | pinned `[52…75]` | 0.5214 | +0.0214 |
+| 3 | pinned `[146…151]` | **0.5463** | **+0.0463** |
+
+All three clear the bound. The third clears it by **more than double** the
+earlier margin, which says the thin `0.0214` was partly the quality of those
+chains rather than a property of the state. The claim that both pairs stay
+certified at `ν = 0.65` is correspondingly firmer than it was.
+
+**Gate 1 failed, and it should never have been evaluated.** It requires
+`V(Sₐ|B)` to rise by more than `0.2` across the sweep — a test of the *whole*
+sweep from `ν = 0`, which is vacuous on a three-point bracket where the span is
+only `0.1072` by construction. That is a pre-registration error on my part: the
+gate was inapplicable to this run's design and should have been excluded before
+submission rather than reported as a failure afterwards. Gates 3, 4 and 5 are
+meaningful here and all pass.
+
+**Gate 5 passes at all three settings** (TVD 0.0267–0.0450 against 0.061) using
+the *reconstructed* mimic. IBM-14 shows that arm carries a multiplicative bias,
+so these passes are weaker evidence than the dephased construction — they are
+reported, not leaned on.
+
 ## Which job is the result
 
 Neither supersedes the other, and both are archived.
