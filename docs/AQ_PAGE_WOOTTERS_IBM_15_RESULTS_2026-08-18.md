@@ -72,6 +72,14 @@ carries a calibration caveat that no gate in this run tests. **A replication on
 an operational backend is the first thing to do**, and until then these numbers
 should be treated as provisional.
 
+**The archived calibration post-dates the job.** Provenance captured a
+snapshot with `last_update = 2026-08-19T00:27:30-05:00`, while the job ran at
+`2026-08-18T21:34-05:00` — about three hours earlier, and across the
+maintenance window. **The archived calibration therefore does not describe the
+device that produced this data.** It is archived because an unmatched snapshot
+is still better provenance than none, but it cannot be used to model this run's
+noise, and no noise-matched comparison is offered for that reason.
+
 **Two points deviate more than the rest.** At `C = 0.3303` the measured gap is
 `0.0782` against an exact `0.1447` — off by nearly half. At `C = 0.6409` it
 overshoots by `0.0613`. RMS residual across the sweep is `0.0441`, and the
