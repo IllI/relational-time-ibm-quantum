@@ -39,6 +39,25 @@ a cyclic evolution built from arcs each rotating about an axis perpendicular to
 the state has <H> = 0 pointwise, so its total phase is purely geometric. That
 much is checked below and is standard.
 
+THE DESIGN CANNOT BE PATCHED -- a no-go, established after the retraction.
+Cyclic evolution of a SUBSYSTEM requires U rho U^dag = rho. For a reduced state
+that is non-degenerate (any C < 1), the only unitaries commuting with it are
+diagonal in the Schmidt basis. Searched 200000 Haar-random U: ZERO are cyclic
+on rho and non-diagonal. So U (x) U necessarily acts on sum c_i |ii> by fixed
+phases and the two-party phase is arithmetic BY FORCE, not by bad luck in
+choosing a loop.
+
+Relaxing to GLOBAL cyclicity does not rescue it either: U (x) U with a
+single-qubit U does not return an entangled |Psi> to itself except trivially
+(measured |g| = 0.09 to 0.49, i.e. not cyclic at all), so there is no cyclic
+geometric phase to measure.
+
+Reformulating the QUESTION is required, not patching the circuit. Candidates,
+none yet verified and none to be claimed until they are: non-cyclic
+Pancharatnam phases, which are well defined without the cyclicity constraint;
+different loops on each qubit chosen so the GLOBAL state is cyclic; or the
+Uhlmann connection instead of the interferometric one.
+
 WHAT IS OPEN. Everything the synthesis repository asked. Whether the
 Aharonov-Anandan phase escapes the entanglement budget is UNANSWERED, and
 answering it needs a loop that is not diagonal in the entangled basis, tested
